@@ -16,7 +16,8 @@
     <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>a0d4061b-be6c-4067-b199-ac21e3d9a758</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -74,19 +75,23 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Action.cs" />
-    <Compile Include="Fonts.cs" />
-    <Compile Include="InputManager.cs" />
-    <Compile Include="MenuScreens\GameScreen.cs" />
-    <Compile Include="MenuScreens\Screens.cs" />
-    <Compile Include="MenuScreens\MainMenuScreen.cs" />
-    <Compile Include="MenuScreens\MenuEntry.cs" />
-    <Compile Include="MenuScreens\ScreenManager.cs" />
+    <Compile Include="Camera.cs" />
+    <Compile Include="enumActiveWindow.cs" />
+    <Compile Include="menuItems.cs" />
+    <Compile Include="Objects\Bonuses.cs" />
+    <Compile Include="Objects\Bullet.cs" />
+    <Compile Include="Objects\Characters.cs" />
+    <Compile Include="Objects\Cursor.cs" />
+    <Compile Include="Objects\Enemies.cs" />
+    <Compile Include="Objects\Heroes.cs" />
+    <Compile Include="Objects\Obj.cs" />
+    <Compile Include="Objects\Obsticles.cs" />
+    <Compile Include="Objects\Skills.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RPG.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Game.ico" />
+    <Compile Include="Game.ico" />
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
