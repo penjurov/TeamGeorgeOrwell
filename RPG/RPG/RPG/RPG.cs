@@ -106,8 +106,5 @@
                 game.Run();
             }
         }
-
-
-        // komentar za test push pull
     }
 }
