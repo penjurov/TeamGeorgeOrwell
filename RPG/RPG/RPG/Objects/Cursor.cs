@@ -15,17 +15,18 @@
     public class Cursor : Obj
     {
         MouseState mouse;
+
         public Cursor(Vector2 pos)
             : base(pos)
         {
-            position = pos;
+            this.Position = pos;
         }
 
         public override void Update()
         {
-            mouse = Mouse.GetState();
+            this.mouse = Mouse.GetState();
 
-            position = new Vector2(mouse.X, mouse.Y);
+            this.Position = new Vector2(this.mouse.X, this.mouse.Y);
 
             base.Update();
         }

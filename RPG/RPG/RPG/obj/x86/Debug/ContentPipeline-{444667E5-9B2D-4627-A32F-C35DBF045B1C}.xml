@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb</Output>
-      <Time>2014-02-05T16:33:51.578091+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb</Output>
+      <Time>2014-02-08T21:19:37.6499161+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenu.jpg</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb</Output>
-      <Time>2014-02-05T16:51:48+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb</Output>
+      <Time>2014-02-08T21:19:37.6809179+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenuPlank.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb</Output>
-      <Time>2014-02-05T15:39:23+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb</Output>
+      <Time>2014-02-08T21:19:37.6839181+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenuPlank01.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb</Output>
-      <Time>2014-02-05T15:39:23+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb</Output>
+      <Time>2014-02-08T21:19:37.6949187+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenuPlank02.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb</Output>
-      <Time>2014-02-05T15:39:23+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb</Output>
+      <Time>2014-02-08T21:19:37.7049193+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenuPlank03.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb</Output>
-      <Time>2014-02-05T15:39:23+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb</Output>
+      <Time>2014-02-08T21:19:37.7079194+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\GameScreens\GameScreen.jpg</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb</Output>
-      <Time>2014-02-08T13:40:52.7025792+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb</Output>
+      <Time>2014-02-08T21:19:37.6769177+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Objects\male.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb</Output>
-      <Time>2014-02-07T14:52:07+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb</Output>
+      <Time>2014-02-08T21:19:37.7169199+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Objects\crosshair.png</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb</Output>
-      <Time>2014-02-07T20:12:41.4182781+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb</Output>
+      <Time>2014-02-08T21:19:37.7109196+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Objects\bullet.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb</Output>
-      <Time>2014-02-08T15:52:36.3426415+02:00</Time>
+      <Output>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb</Output>
+      <Time>2014-02-08T21:19:37.7149198+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -98,10 +98,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPGContent\</RootDirectory>
-      <LoggerRootDirectory>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPGContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

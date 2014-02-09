@@ -16,6 +16,7 @@
             {
                 return this.length;
             }
+
             set
             {
                 this.length = value;
@@ -28,6 +29,7 @@
             {
                 return this.angle;
             }
+
             set
             {
                 this.angle = value;

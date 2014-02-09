@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-
-namespace RPG
+﻿namespace RPG
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Audio;
+    using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.GamerServices;
+    using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Input;
+    using Microsoft.Xna.Framework.Media;
+
     public class Heroes : Characters
     {
         private Skills skill;
@@ -20,18 +20,16 @@ namespace RPG
         private int ammo = 0;
         private int firingTimer = 0;
 
-
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
         private MouseState mouse;
         private MouseState previousMouse;
-
-        
+      
         public Heroes(Vector2 pos, float movSpeed)
             : base(pos, movSpeed)
         {
-            Position = pos;
-            MovingSpeed = movSpeed;
+            this.Position = pos;
+            this.MovingSpeed = movSpeed;
         }
 
         public Skills Skill
@@ -40,6 +38,7 @@ namespace RPG
             {
                 return this.skill;
             }
+
             set
             {
                 this.skill = value;
@@ -52,6 +51,7 @@ namespace RPG
             {
                 return this.currentExp;
             }
+
             set
             {
                 this.currentExp = value;
@@ -64,6 +64,7 @@ namespace RPG
             {
                 return this.level;
             }
+
             set
             {
                 this.level = value;
@@ -76,6 +77,7 @@ namespace RPG
             {
                 return this.ammo;
             }
+
             set
             {
                 this.ammo = value;
@@ -88,6 +90,7 @@ namespace RPG
             {
                 return this.firingTimer;
             }
+
             set
             {
                 this.firingTimer = value;
@@ -96,50 +99,74 @@ namespace RPG
 
         public override void Update()
         {
-            keyboard = Keyboard.GetState();
-            mouse = Mouse.GetState();
+            this.keyboard = Keyboard.GetState();
+            this.mouse = Mouse.GetState();
             Vector2 oldPos = Position;
 
-            if (keyboard.IsKeyDown(Keys.W))
+            if (this.keyboard.IsKeyDown(Keys.W))
             {
                 if (oldPos.Y > 0)
                 {
-                    Position = new Vector2(oldPos.X, oldPos.Y - MovingSpeed);
+                    this.Position = new Vector2(oldPos.X, oldPos.Y - this.MovingSpeed);
                 }
             }
 
-            if (keyboard.IsKeyDown(Keys.A))
+            if (this.keyboard.IsKeyDown(Keys.A))
             {
                 if (oldPos.X > -500)
                 {
-                    Position = new Vector2(oldPos.X - MovingSpeed, oldPos.Y);
+                    this.Position = new Vector2(oldPos.X - this.MovingSpeed, oldPos.Y);
                 }
             }
 
-            if (keyboard.IsKeyDown(Keys.S))
+            if (this.keyboard.IsKeyDown(Keys.S))
             {
                 if (oldPos.Y < 1000)
                 {
-                    Position = new Vector2(oldPos.X, oldPos.Y + MovingSpeed);
+                    this.Position = new Vector2(oldPos.X, oldPos.Y + this.MovingSpeed);
                 }
             }
 
-            if (keyboard.IsKeyDown(Keys.D))
+            if (this.keyboard.IsKeyDown(Keys.D))
             {
                 if (oldPos.X < 1500)
                 {
-                    Position = new Vector2(oldPos.X + MovingSpeed, oldPos.Y);
+                    this.Position = new Vector2(oldPos.X + this.MovingSpeed, oldPos.Y);
                 }
             }
 
-            oldPos = Position;
+            oldPos = this.Position;
 
-            Rotation = PointDirecions(Camera.globalToLocal(Position).X, Camera.globalToLocal(Position).Y, mouse.X, mouse.Y);
+            this.Rotation = this.PointDirecions(Camera.GlobalToLocal(Position).X, Camera.GlobalToLocal(Position).Y, this.mouse.X, this.mouse.Y);
 
-
-            previousMouse = mouse;
-            previousKeyboard = keyboard;
+            this.previousMouse = this.mouse;
+            this.previousKeyboard = this.keyboard;
             base.Update();
+        }
+
+        public void CheckShooting()
+        {
+            if (this.FiringTimer > this.FireRate && this.Ammo > 0)
+            {
+                this.FiringTimer = 0;
+                this.Shoot();
+            }
+        }
+
+        public void Shoot()
+        {
+            foreach (var bullet in GameScreen.Bullets)
+            {
+                if (!bullet.Alive)
+                {
+                    this.Ammo--;
+                    bullet.Alive = true;
+                    bullet.Position = this.Position;
+                    bullet.Rotation = this.Rotation;
+                    bullet.Speed = 10;
+                    break;
+                }
+            }
         }
 
         private float PointDirecions(float x, float y, float x2, float y2)
@@ -155,32 +182,8 @@ namespace RPG
             {
                 res += 360;
             }
+
             return res;
-        }
-
-        public void CheckShooting()
-        {
-            if (FiringTimer > FireRate && Ammo > 0)
-            {
-                FiringTimer = 0;
-                Shoot();
-            }
-        }
-
-        public void Shoot()
-        {
-            foreach (var bullet in RPG.bullets)
-            {
-                if (!bullet.Alive)
-                {
-                    Ammo--;
-                    bullet.Alive = true;
-                    bullet.Position = Position;
-                    bullet.Rotation = Rotation;
-                    bullet.Speed = 10;
-                    break;   
-                }              
-            }           
-        }
+        }        
     }
 }

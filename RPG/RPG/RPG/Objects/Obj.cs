@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
-
-namespace RPG
+﻿namespace RPG
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Audio;
+    using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.GamerServices;
+    using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Input;
+    using Microsoft.Xna.Framework.Media;
+
     public class Obj
     {
-        public Vector2 position;
-        public Texture2D spriteIndex;
+        private Vector2 position;
+        private Texture2D spriteIndex;
 
         private float rotation = 0.0f;
         private string spriteName;
@@ -23,10 +23,8 @@ namespace RPG
         private float scale = 1.0f;
         private bool alive;
 
-
         public Obj()
         {
-
         }
 
         public Obj(Vector2 pos)
@@ -40,6 +38,7 @@ namespace RPG
             {
                 return this.position;
             }
+
             set
             {
                 this.position = value;
@@ -48,8 +47,15 @@ namespace RPG
 
         public Texture2D SpriteIndex
         {
-            get;
-            set;
+            get
+            {
+                return this.spriteIndex;
+            }
+
+            set
+            {
+                this.spriteIndex = value;
+            }
         }
 
         public float Rotation
@@ -58,6 +64,7 @@ namespace RPG
             {
                 return this.rotation;
             }
+
             set
             {
                 this.rotation = value;
@@ -70,6 +77,7 @@ namespace RPG
             {
                 return this.speed;
             }
+
             set
             {
                 this.speed = value;
@@ -82,6 +90,7 @@ namespace RPG
             {
                 return this.alive;
             }
+
             set
             {
                 this.alive = value;
@@ -96,26 +105,26 @@ namespace RPG
 
         public virtual void Update()
         {
-            if (!Alive)
+            if (!this.Alive)
             {
                 return; 
             }
-            PushTo(Speed, Rotation);
+
+            this.PushTo(this.Speed, this.Rotation);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch, Viewport viewport)
-        {            
-            Vector2 center = new Vector2(spriteIndex.Width / 2, spriteIndex.Height / 2);
+        {
+            Vector2 center = new Vector2(this.SpriteIndex.Width / 2, this.SpriteIndex.Height / 2);
 
-            spriteBatch.Draw(this.spriteIndex, position, null, Color.White, MathHelper.ToRadians(rotation), center, scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(this.SpriteIndex, this.Position, null, Color.White, MathHelper.ToRadians(this.Rotation), center, this.scale, SpriteEffects.None, 0);
         }
 
         private void PushTo(float pix, float dir)
         {
             float newX = (float)Math.Cos(MathHelper.ToRadians(dir));
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
-            this.position.X += pix * (float)newX;
-            this.position.Y += pix * (float)newY;
+            this.Position += new Vector2(pix * (float)newX, pix * (float)newY);
         }
 
         private float PointDirecions(float x, float y, float x2, float y2)
@@ -131,6 +140,7 @@ namespace RPG
             {
                 res += 360;
             }
+
             return res;
         }
     }

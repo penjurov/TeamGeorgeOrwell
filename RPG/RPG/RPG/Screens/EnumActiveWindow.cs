@@ -1,11 +1,10 @@
 ﻿namespace RPG
 {
-    public enum enumActiveWindow
+    public enum EnumActiveWindow
     {
         MainMenu,
         GameWindow,
         AboutWindow,
         ControlWindow
     }
-
 }

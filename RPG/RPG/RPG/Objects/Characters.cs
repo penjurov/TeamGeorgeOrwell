@@ -21,7 +21,7 @@
         private float fireRate = 20;
 
         public Characters(Vector2 pos, float movSpeed)
-            :base(pos)
+            : base(pos)
         {
             this.MovingSpeed = movSpeed;    
         }
@@ -32,6 +32,7 @@
             {
                 return this.movingSpeed;
             }
+
             set
             {
                 this.movingSpeed = value;
@@ -44,6 +45,7 @@
             {
                 return this.health;
             }
+
             set
             {
                 this.health = value;
@@ -56,6 +58,7 @@
             {
                 return this.attack;
             }
+
             set
             {
                 this.attack = value;
@@ -68,6 +71,7 @@
             {
                 return this.defence;
             }
+
             set
             {
                 this.defence = value;
@@ -80,6 +84,7 @@
             {
                 return this.fireRate;
             }
+
             set
             {
                 this.fireRate = value;

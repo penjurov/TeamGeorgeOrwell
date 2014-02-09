@@ -1,18 +1,10 @@
 ﻿namespace RPG
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Audio;
-    using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;
-    using Microsoft.Xna.Framework.Storage;
-    using Microsoft.Xna.Framework.GamerServices;
 
-    public class menuItems
+    public class MenuItems
     {
         private Texture2D itemTexture;
         private Vector2 itemPosition;
@@ -20,7 +12,7 @@
         private SpriteFont itemFont;
         private bool selected;
 
-        public menuItems(Texture2D iTexture, Vector2 iPosition, string iText, SpriteFont iFont, bool iSelected)
+        public MenuItems(Texture2D iTexture, Vector2 iPosition, string iText, SpriteFont iFont, bool iSelected)
         {
             this.ItemTexture = iTexture;
             this.ItemPosition = iPosition;
@@ -35,6 +27,7 @@
             {
                 return this.itemTexture;
             }
+
             set
             {
                 this.itemTexture = value;
@@ -47,6 +40,7 @@
             {
                 return this.itemPosition;
             }
+
             set
             {
                 this.itemPosition = value;
@@ -59,6 +53,7 @@
             {
                 return this.itemText;
             }
+
             set
             {
                 this.itemText = value;
@@ -71,6 +66,7 @@
             {
                 return this.itemFont;
             }
+
             set
             {
                 this.itemFont = value;
@@ -83,6 +79,7 @@
             {
                 return this.selected;
             }
+
             set
             {
                 this.selected = value;
@@ -91,14 +88,14 @@
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            Color color = Selected ? new Color(248, 218, 127) : Color.Black;
-            spriteBatch.Draw(ItemTexture, ItemPosition, Color.White);
-          
-            Vector2 textSize = ItemFont.MeasureString(ItemText);
-            Vector2 textPosition = ItemPosition + new Vector2(
-                        (float)Math.Floor((ItemTexture.Width - textSize.X) / 2),
-                        (float)Math.Floor((ItemTexture.Height - textSize.Y) / 2));
-            spriteBatch.DrawString(ItemFont, ItemText, textPosition, color);
+            Color color = this.Selected ? new Color(248, 218, 127) : Color.Black;
+            spriteBatch.Draw(this.ItemTexture, this.ItemPosition, Color.White);
+
+            Vector2 textSize = this.ItemFont.MeasureString(this.ItemText);
+            Vector2 textPosition = this.ItemPosition + new Vector2(
+                        (float)Math.Floor((this.ItemTexture.Width - textSize.X) / 2),
+                        (float)Math.Floor((this.ItemTexture.Height - textSize.Y) / 2));
+            spriteBatch.DrawString(this.ItemFont, this.ItemText, textPosition, color);
         }
     }
 }

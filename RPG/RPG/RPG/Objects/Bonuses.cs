@@ -23,6 +23,7 @@
             {
                 return this.quantity;
             }
+
             set
             {
                 this.quantity = value;
@@ -35,6 +36,7 @@
             {
                 return this.spawnTime;
             }
+
             set
             {
                 this.spawnTime = value;

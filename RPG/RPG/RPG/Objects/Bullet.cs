@@ -17,15 +17,13 @@
         public Bullet(Vector2 pos, Texture2D texture)
             : base(pos)
         {
-            position = pos;
-            spriteIndex = texture;
+            this.Position = pos;
+            this.SpriteIndex = texture;
         }
-
 
         public override void Update()
         {
             base.Update();
         }
-
     }
 }

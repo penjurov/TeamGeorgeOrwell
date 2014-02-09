@@ -9,7 +9,6 @@
     {
         private Skills()
         {
-
         }
     }
 }

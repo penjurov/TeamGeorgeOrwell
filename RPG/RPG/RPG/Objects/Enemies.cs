@@ -18,9 +18,8 @@
         private float expGiven;
 
         public Enemies(Vector2 pos, float movSpeed)
-            :base(pos, movSpeed)
+            : base(pos, movSpeed)
         {
-
         }
 
         public Skills Skill
@@ -29,6 +28,7 @@
             {
                 return this.skill;
             }
+
             set
             {
                 this.skill = value;
@@ -41,6 +41,7 @@
             {
                 return this.expGiven;
             }
+
             set
             {
                 this.expGiven = value;

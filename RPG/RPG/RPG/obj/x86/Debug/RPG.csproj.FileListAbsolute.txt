@@ -108,3 +108,19 @@ D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\obj\x86\Debug\Microsoft.
 D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\obj\x86\Debug\RPG.exe
 D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\obj\x86\Debug\RPG.pdb
 D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.exe
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.pdb
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
+C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
