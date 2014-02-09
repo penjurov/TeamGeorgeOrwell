@@ -1,9 +1,10 @@
-﻿namespace RPG
+﻿namespace Rpg.Objects
 {
     using System;
     using System.Linq;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
+    using Screens;
 
     public class Heroes : Characters
     {
@@ -11,10 +12,8 @@
         private int firingTimer = 0;
 
         private KeyboardState keyboard;
-        private KeyboardState previousKeyboard;
         private MouseState mouse;
-        private MouseState previousMouse;
-      
+
         public Heroes(Vector2 pos, float movSpeed) : base(pos, movSpeed)
         {
             this.Position = pos;
@@ -26,6 +25,10 @@
         public float CurrentExp { get; set; }
 
         public int Level { get; set; }
+
+        public MouseState PreviousMouse { get; set; }
+
+        public KeyboardState PreviousKeyboard { get; set; }
 
         public int Ammo
         {
@@ -95,8 +98,8 @@
 
             this.Rotation = this.PointDirecions(Camera.GlobalToLocal(this.Position).X, Camera.GlobalToLocal(this.Position).Y, this.mouse.X, this.mouse.Y);
 
-            this.previousMouse = this.mouse;
-            this.previousKeyboard = this.keyboard;
+            this.PreviousMouse = this.mouse;
+            this.PreviousKeyboard = this.keyboard;
             base.Update();
         }
 
@@ -111,7 +114,7 @@
 
         public void Shoot()
         {
-            foreach (var bullet in GameScreen.Bullets)
+            foreach (var bullet in GameScreen.PBullets)
             {
                 if (!bullet.Alive)
                 {

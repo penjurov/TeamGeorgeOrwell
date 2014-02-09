@@ -1,4 +1,4 @@
-﻿namespace RPG
+﻿namespace Rpg.Screens
 {
     public enum EnumActiveWindow
     {

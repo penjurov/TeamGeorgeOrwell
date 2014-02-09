@@ -7,7 +7,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RPG</RootNamespace>
+    <RootNamespace>Rpg</RootNamespace>
     <AssemblyName>RPG</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -88,7 +88,7 @@
     <Compile Include="Objects\Obsticles.cs" />
     <Compile Include="Objects\Skills.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RPG.cs" />
+    <Compile Include="Rpg.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
   </ItemGroup>

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG", "RPG\RPG\RPG.csproj", "{43777F97-CB55-4D78-A906-C7D814BA1EF2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpg", "RPG\RPG\Rpg.csproj", "{43777F97-CB55-4D78-A906-C7D814BA1EF2}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "RPGContent", "RPG\RPGContent\RPGContent.contentproj", "{444667E5-9B2D-4627-A32F-C35DBF045B1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGContent", "RPG\RPGContent\RPGContent.contentproj", "{444667E5-9B2D-4627-A32F-C35DBF045B1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

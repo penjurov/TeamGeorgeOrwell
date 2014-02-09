@@ -1,4 +1,4 @@
-﻿namespace RPG
+﻿namespace Rpg.Screens
 {
     using System;
     using System.Collections.Generic;
@@ -6,13 +6,14 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Objects;
 
     internal class GameScreen
     {
-        public static List<Obj> Bullets = new List<Obj>();
+        private static List<Obj> bullets = new List<Obj>();
 
-        private static Rectangle Screen;
-        private static Rectangle Room;
+        private static Rectangle screen;
+        private static Rectangle room;
         private readonly Vector2 range = new Vector2(0, 0);
         private readonly Cursor cursor = new Cursor(new Vector2(0, 0));
 
@@ -24,15 +25,27 @@
         private MouseState mouse;
         private MouseState previousMouse;
 
+        public static List<Obj> PBullets
+        {
+            get
+            {
+                return bullets;
+            }
+            set
+            {
+                bullets = value;
+            }
+        }
+
         public static Rectangle PRoom
         {
             get
             {
-                return Room;
+                return room;
             }
             private set
             {
-                Room = value;
+                room = value;
             }
         }
 
@@ -40,18 +53,18 @@
         {
             get
             {
-                return Screen;
+                return screen;
             }
             private set
             {
-                Screen = value;
+                screen = value;
             }
         }
 
         public void Load(ContentManager content, Viewport viewport, Camera camera, GraphicsDeviceManager graphics)
         {
-            Room = new Rectangle(0, 0, graphics.PreferredBackBufferWidth * 10, graphics.PreferredBackBufferHeight * 10);
-            Screen = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            room = new Rectangle(0, 0, graphics.PreferredBackBufferWidth * 10, graphics.PreferredBackBufferHeight * 10);
+            screen = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
             this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\GameScreen");
             Vector2 characterPosition = new Vector2((this.gameWindowTexture.Width - viewport.Width) / 2, 0);
@@ -68,7 +81,7 @@
             {
                 Obj o = new Bullet(new Vector2(0, 0), bulletTexture);
                 o.Alive = false;
-                Bullets.Add(o);
+                PBullets.Add(o);
             }
 
             camera.Position = this.soldier.Position;
@@ -87,7 +100,7 @@
             Vector2 ammoPosition = new Vector2(10, 10);
             spriteBatch.DrawString(font, string.Format("Ammo :  {0}", this.soldier.Ammo), ammoPosition, Color.White);
 
-            foreach (var bullet in Bullets)
+            foreach (var bullet in bullets)
             {
                 if (bullet.Alive)
                 {
@@ -110,15 +123,15 @@
             this.soldier.Update();
             this.cursor.Update();
 
-            foreach (var bullet in Bullets)
+            foreach (var bullet in bullets)
             {
                 bullet.Update();
             }
 
             if (this.keyboard.IsKeyDown(Keys.Tab) && this.previousKeyboard.IsKeyUp(Keys.Tab))
             {
-                MainMenuScreen.MainMenuItems[0].ItemText = "Resume game";
-                RPG.ActiveWindowSet(EnumActiveWindow.MainMenu);
+                MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
+                Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
             }
 
             this.soldier.FiringTimer++;

@@ -1,9 +1,7 @@
-﻿namespace RPG
+﻿namespace Rpg.Objects
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
     public class Skills
     {

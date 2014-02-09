@@ -1,52 +1,53 @@
-﻿namespace RPG
+﻿namespace Rpg
 {
     using System;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+    using Screens;
 
-    public class RPG : Microsoft.Xna.Framework.Game
+    public class Rpg : Microsoft.Xna.Framework.Game
     {
-        private static Camera Camera = new Camera();
-        private static EnumActiveWindow ActiveWindow;
+        private static readonly Camera camera = new Camera();
+        private static EnumActiveWindow activeWindow;
 
-        private GraphicsDeviceManager graphics;
+        private readonly GraphicsDeviceManager graphics;
+        private readonly MainMenuScreen mainMenuScreen = new MainMenuScreen();
+        private readonly GameScreen gameScreen = new GameScreen();
+
         private SpriteBatch spriteBatch;
         private Viewport viewport;
 
-        MainMenuScreen mainMenuScreen = new MainMenuScreen();
-        GameScreen gameScreen = new GameScreen();
-
-        public RPG()
+        public Rpg()
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.graphics.PreferredBackBufferWidth = 1024;
             this.graphics.PreferredBackBufferHeight = 720;
-            Content.RootDirectory = "Content";
+            this.Content.RootDirectory = "Content";
         }
 
         public static EnumActiveWindow PActiveWindow
         {
             get
             {
-                return ActiveWindow;
+                return activeWindow;
             }
             private set
             {
-                ActiveWindow = value;
+                activeWindow = value;
             }
-        }
-
-        public static void ActiveWindowSet(EnumActiveWindow input)
-        {
-            PActiveWindow = input;
         }
 
         public static Camera PCamera
         {
             get
             {
-                return Camera;
+                return camera;
             }
+        }
+
+        public static void ActiveWindowSet(EnumActiveWindow input)
+        {
+            PActiveWindow = input;
         }
 
         protected override void Initialize()
@@ -57,27 +58,27 @@
 
         protected override void LoadContent()
         {
-            this.spriteBatch = new SpriteBatch(GraphicsDevice);
-            this.viewport = GraphicsDevice.Viewport;
+            this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
+            this.viewport = this.GraphicsDevice.Viewport;
 
             this.mainMenuScreen.Load(this.Content);
-            this.gameScreen.Load(this.Content, this.viewport, Camera, graphics);
+            this.gameScreen.Load(this.Content, this.viewport, camera, this.graphics);
 
             base.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (ActiveWindow == EnumActiveWindow.MainMenu)
+            if (activeWindow == EnumActiveWindow.MainMenu)
             {
                 this.IsMouseVisible = true;
                 this.mainMenuScreen.Update();
             }
 
-            if (ActiveWindow == EnumActiveWindow.GameWindow)
+            if (activeWindow == EnumActiveWindow.GameWindow)
             {
                 this.IsMouseVisible = false;
-                this.gameScreen.Update(Camera);
+                this.gameScreen.Update(camera);
             }
 
             base.Update(gameTime);
@@ -85,23 +86,22 @@
 
         protected override void Draw(GameTime gameTime)
         {
-            if (ActiveWindow == EnumActiveWindow.MainMenu)
+            if (activeWindow == EnumActiveWindow.MainMenu)
             {
                 this.mainMenuScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
 
-            if (ActiveWindow == EnumActiveWindow.GameWindow)
+            if (activeWindow == EnumActiveWindow.GameWindow)
             {
-                this.gameScreen.Draw(this.graphics.GraphicsDevice, this.viewport, this.spriteBatch, this.Content, Camera);
+                this.gameScreen.Draw(this.graphics.GraphicsDevice, this.viewport, this.spriteBatch, this.Content, camera);
             }
 
             base.Draw(gameTime);
         }
 
-        //Some comment...
-        static void Main()
+        private static void Main()
         {
-            using (RPG game = new RPG())
+            using (Rpg game = new Rpg())
             {
                 game.Run();
             }

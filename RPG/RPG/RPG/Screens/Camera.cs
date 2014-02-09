@@ -1,17 +1,12 @@
-﻿namespace RPG
+﻿namespace Rpg.Screens
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
     public class Camera
     {
-        private static float zoomAmount = 0.1f;
-        private Vector2 position;
-        private float rotation;
+        private static readonly float zoomAmount = 0.1f;
         private float zoom;
-        private int maxZoom;
-        private int minZoom;
-        private Matrix matrixTransform;
 
         public Camera()
         {
@@ -43,31 +38,9 @@
             }
         }
 
-        public Vector2 Position
-        {
-            get
-            {
-                return this.position;
-            }
+        public Vector2 Position { get; set; }
 
-            set
-            {
-                this.position = value;
-            }
-        }
-
-        public float Rotation
-        {
-            get
-            {
-                return this.rotation;
-            }
-
-            set
-            {
-                this.rotation = value;
-            }
-        }
+        public float Rotation { get; set; }
 
         public float Zoom
         {
@@ -91,54 +64,21 @@
             }
         }
 
-        public int MaxZoom
-        {
-            get
-            {
-                return this.maxZoom;
-            }
+        public int MaxZoom { get; set; }
 
-            set
-            {
-                this.maxZoom = value;
-            }
-        }
+        public int MinZoom { get; set; }
 
-        public int MinZoom
-        {
-            get
-            {
-                return this.minZoom;
-            }
-
-            set
-            {
-                this.minZoom = value;
-            }
-        }
-
-        public Matrix MatrixTransform
-        {
-            get
-            {
-                return this.matrixTransform;
-            }
-
-            set
-            {
-                this.matrixTransform = value;
-            }
-        }
+        public Matrix MatrixTransform { get; set; }
 
         public static Vector2 GlobalToLocal(Vector2 pos)
         {
-            pos -= RPG.PCamera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
+            pos -= Rpg.PCamera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
             return pos;
         }
 
         public static Vector2 LocalToGlobal(Vector2 pos)
         {
-            pos += RPG.PCamera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
+            pos += Rpg.PCamera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
             return pos;
         }
 
@@ -152,10 +92,10 @@
             float viewPortWidth = graphics.Viewport.Width;
             float viewPortHeight = graphics.Viewport.Height;
 
-            this.MatrixTransform = Matrix.CreateTranslation(new Vector3(-this.Position.X, -this.Position.Y, 0))
-                * Matrix.CreateRotationZ(this.Rotation)
-                * Matrix.CreateScale(this.Zoom)
-                * Matrix.CreateTranslation(new Vector3(viewPortWidth * 0.5f, viewPortHeight * 0.5f, 0));
+            this.MatrixTransform = Matrix.CreateTranslation(new Vector3(-this.Position.X, -this.Position.Y, 0)) *
+                                   Matrix.CreateRotationZ(this.Rotation) *
+                                   Matrix.CreateScale(this.Zoom) *
+                                   Matrix.CreateTranslation(new Vector3(viewPortWidth * 0.5f, viewPortHeight * 0.5f, 0));
 
             return this.MatrixTransform;
         }
