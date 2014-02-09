@@ -29,6 +29,7 @@
             {
                 return mainMenuItems;
             }
+
             set
             {
                 mainMenuItems = value;

@@ -5,7 +5,7 @@
 
     public class Camera
     {
-        private static readonly float zoomAmount = 0.1f;
+        private static float zoomAmount = 0.1f;
         private float zoom;
 
         public Camera()
@@ -26,7 +26,7 @@
 
             while (sLength * tempZoom < rLength)
             {
-                tempZoom *= 1.0f + (zoomAmount * 2);
+                tempZoom *= 1.0f + (ZoomAmount * 2);
                 c++;
             }
 
@@ -35,6 +35,18 @@
             if (this.MaxZoom > 9)
             {
                 this.MaxZoom = 9;
+            }
+        }
+
+        public static float ZoomAmount
+        {
+            get
+            {
+                return zoomAmount;
+            }
+            set
+            {
+                zoomAmount = value;
             }
         }
 
@@ -52,14 +64,14 @@
             set
             {
                 this.zoom = value;
-                if (this.zoom < 1.0f - (zoomAmount * this.MaxZoom))
+                if (this.zoom < 1.0f - (ZoomAmount * this.MaxZoom))
                 {
-                    this.zoom = 1.0f - (zoomAmount * this.MaxZoom);
+                    this.zoom = 1.0f - (ZoomAmount * this.MaxZoom);
                 }
 
-                if (this.zoom > 1.0f + (zoomAmount * this.MinZoom))
+                if (this.zoom > 1.0f + (ZoomAmount * this.MinZoom))
                 {
-                    this.zoom = 1.0f + (zoomAmount * this.MinZoom);
+                    this.zoom = 1.0f + (ZoomAmount * this.MinZoom);
                 }
             }
         }
@@ -72,13 +84,13 @@
 
         public static Vector2 GlobalToLocal(Vector2 pos)
         {
-            pos -= Rpg.PCamera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
+            pos -= Rpg.Camera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
             return pos;
         }
 
         public static Vector2 LocalToGlobal(Vector2 pos)
         {
-            pos += Rpg.PCamera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
+            pos += Rpg.Camera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
             return pos;
         }
 

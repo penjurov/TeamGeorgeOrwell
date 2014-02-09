@@ -31,6 +31,7 @@
             {
                 return bullets;
             }
+
             set
             {
                 bullets = value;
@@ -43,6 +44,7 @@
             {
                 return room;
             }
+
             private set
             {
                 room = value;
@@ -55,6 +57,7 @@
             {
                 return screen;
             }
+
             private set
             {
                 screen = value;

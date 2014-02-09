@@ -7,7 +7,7 @@
 
     public class Rpg : Microsoft.Xna.Framework.Game
     {
-        private static readonly Camera camera = new Camera();
+        private static Camera camera = new Camera();
         private static EnumActiveWindow activeWindow;
 
         private readonly GraphicsDeviceManager graphics;
@@ -31,17 +31,22 @@
             {
                 return activeWindow;
             }
+
             private set
             {
                 activeWindow = value;
             }
         }
 
-        public static Camera PCamera
+        public static Camera Camera
         {
             get
             {
                 return camera;
+            }
+            private set
+            {
+                camera = value;
             }
         }
 
@@ -62,7 +67,7 @@
             this.viewport = this.GraphicsDevice.Viewport;
 
             this.mainMenuScreen.Load(this.Content);
-            this.gameScreen.Load(this.Content, this.viewport, camera, this.graphics);
+            this.gameScreen.Load(this.Content, this.viewport, Camera, this.graphics);
 
             base.LoadContent();
         }
@@ -78,7 +83,7 @@
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
                 this.IsMouseVisible = false;
-                this.gameScreen.Update(camera);
+                this.gameScreen.Update(Camera);
             }
 
             base.Update(gameTime);
@@ -93,7 +98,7 @@
 
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
-                this.gameScreen.Draw(this.graphics.GraphicsDevice, this.viewport, this.spriteBatch, this.Content, camera);
+                this.gameScreen.Draw(this.graphics.GraphicsDevice, this.viewport, this.spriteBatch, this.Content, Camera);
             }
 
             base.Draw(gameTime);
