@@ -98,6 +98,7 @@
             base.Draw(gameTime);
         }
 
+        //Some comment...
         static void Main()
         {
             using (RPG game = new RPG())
@@ -105,8 +106,5 @@
                 game.Run();
             }
         }
-
-        // comment 
-        // komentar za test push pull
     }
 }
