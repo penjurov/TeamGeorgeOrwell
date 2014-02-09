@@ -98,6 +98,7 @@
             base.Draw(gameTime);
         }
 
+        //Some comment...
         static void Main()
         {
             using (RPG game = new RPG())
