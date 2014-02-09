@@ -124,22 +124,6 @@ C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\
 C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
 C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.exe
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.pdb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
