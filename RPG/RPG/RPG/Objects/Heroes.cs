@@ -1,22 +1,12 @@
 ﻿namespace RPG
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Audio;
-    using Microsoft.Xna.Framework.Content;
-    using Microsoft.Xna.Framework.GamerServices;
-    using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    using Microsoft.Xna.Framework.Media;
 
     public class Heroes : Characters
     {
-        private Skills skill;
-        private float currentExp;
-        private int level;
         private int ammo = 0;
         private int firingTimer = 0;
 
@@ -25,51 +15,17 @@
         private MouseState mouse;
         private MouseState previousMouse;
       
-        public Heroes(Vector2 pos, float movSpeed)
-            : base(pos, movSpeed)
+        public Heroes(Vector2 pos, float movSpeed) : base(pos, movSpeed)
         {
             this.Position = pos;
             this.MovingSpeed = movSpeed;
         }
 
-        public Skills Skill
-        {
-            get
-            {
-                return this.skill;
-            }
+        public Skills Skill { get; set; }
 
-            set
-            {
-                this.skill = value;
-            }
-        }
+        public float CurrentExp { get; set; }
 
-        public float CurrentExp
-        {
-            get
-            {
-                return this.currentExp;
-            }
-
-            set
-            {
-                this.currentExp = value;
-            }
-        }
-
-        public int Level
-        {
-            get
-            {
-                return this.level;
-            }
-
-            set
-            {
-                this.level = value;
-            }
-        }
+        public int Level { get; set; }
 
         public int Ammo
         {
@@ -101,7 +57,7 @@
         {
             this.keyboard = Keyboard.GetState();
             this.mouse = Mouse.GetState();
-            Vector2 oldPos = Position;
+            Vector2 oldPos = this.Position;
 
             if (this.keyboard.IsKeyDown(Keys.W))
             {
@@ -121,7 +77,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.S))
             {
-                if (oldPos.Y < 1000)
+                if (oldPos.Y < 2000)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y + this.MovingSpeed);
                 }
@@ -137,7 +93,7 @@
 
             oldPos = this.Position;
 
-            this.Rotation = this.PointDirecions(Camera.GlobalToLocal(Position).X, Camera.GlobalToLocal(Position).Y, this.mouse.X, this.mouse.Y);
+            this.Rotation = this.PointDirecions(Camera.GlobalToLocal(this.Position).X, Camera.GlobalToLocal(this.Position).Y, this.mouse.X, this.mouse.Y);
 
             this.previousMouse = this.mouse;
             this.previousKeyboard = this.keyboard;
@@ -184,6 +140,6 @@
             }
 
             return res;
-        }        
+        }
     }
 }

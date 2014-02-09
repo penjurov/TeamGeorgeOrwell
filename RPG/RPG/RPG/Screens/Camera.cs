@@ -15,16 +15,16 @@
 
         public Camera()
         {
-            this.Position = new Vector2(RPG.Room.Width / 2, RPG.Room.Height / 2);
+            this.Position = new Vector2(GameScreen.PRoom.Width / 2, GameScreen.PRoom.Height / 2);
             this.Rotation = 0.0f;
             this.Zoom = 1.0f;
 
-            float wRatio = (float)RPG.Room.Width / (float)RPG.Screen.Width;
-            float hRatio = (float)RPG.Room.Height / (float)RPG.Screen.Height;
+            float wRatio = (float)GameScreen.PRoom.Width / (float)GameScreen.PScreen.Width;
+            float hRatio = (float)GameScreen.PRoom.Height / (float)GameScreen.PScreen.Height;
             bool lowestRatio = (wRatio < hRatio) ? true : false;
 
-            float rLength = lowestRatio ? RPG.Room.Width : RPG.Screen.Width;
-            float sLength = lowestRatio ? RPG.Room.Height : RPG.Screen.Height;
+            float rLength = lowestRatio ? GameScreen.PRoom.Width : GameScreen.PScreen.Width;
+            float sLength = lowestRatio ? GameScreen.PRoom.Height : GameScreen.PScreen.Height;
 
             float tempZoom = 1.0f;
             int c = 0;
@@ -132,13 +132,13 @@
 
         public static Vector2 GlobalToLocal(Vector2 pos)
         {
-            pos -= RPG.Camera.Position - new Vector2(RPG.Screen.Width / 2, RPG.Screen.Height / 2);
+            pos -= RPG.PCamera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
             return pos;
         }
 
         public static Vector2 LocalToGlobal(Vector2 pos)
         {
-            pos += RPG.Camera.Position - new Vector2(RPG.Screen.Width / 2, RPG.Screen.Height / 2);
+            pos += RPG.PCamera.Position - new Vector2(GameScreen.PScreen.Width / 2, GameScreen.PScreen.Height / 2);
             return pos;
         }
 
@@ -158,6 +158,6 @@
                 * Matrix.CreateTranslation(new Vector3(viewPortWidth * 0.5f, viewPortHeight * 0.5f, 0));
 
             return this.MatrixTransform;
-        }     
+        }
     }
 }

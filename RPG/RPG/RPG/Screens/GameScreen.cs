@@ -7,23 +7,52 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
-    class GameScreen
+    internal class GameScreen
     {
         public static List<Obj> Bullets = new List<Obj>();
 
+        private static Rectangle Screen;
+        private static Rectangle Room;
+        private readonly Vector2 range = new Vector2(0, 0);
+        private readonly Cursor cursor = new Cursor(new Vector2(0, 0));
+
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;
-        private Vector2 range = new Vector2(0, 0);
         private Heroes soldier;
-        private Cursor cursor = new Cursor(new Vector2(0, 0));
-
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
         private MouseState mouse;
         private MouseState previousMouse;
-     
-        public void Load(ContentManager content, Viewport viewport, Camera camera)
+
+        public static Rectangle PRoom
         {
+            get
+            {
+                return Room;
+            }
+            private set
+            {
+                Room = value;
+            }
+        }
+
+        public static Rectangle PScreen
+        {
+            get
+            {
+                return Screen;
+            }
+            private set
+            {
+                Screen = value;
+            }
+        }
+
+        public void Load(ContentManager content, Viewport viewport, Camera camera, GraphicsDeviceManager graphics)
+        {
+            Room = new Rectangle(0, 0, graphics.PreferredBackBufferWidth * 10, graphics.PreferredBackBufferHeight * 10);
+            Screen = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+
             this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\GameScreen");
             Vector2 characterPosition = new Vector2((this.gameWindowTexture.Width - viewport.Width) / 2, 0);
 
@@ -56,7 +85,7 @@
 
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             Vector2 ammoPosition = new Vector2(10, 10);
-            spriteBatch.DrawString(font, "Ammo :  " + this.soldier.Ammo, ammoPosition, Color.White);
+            spriteBatch.DrawString(font, string.Format("Ammo :  {0}", this.soldier.Ammo), ammoPosition, Color.White);
 
             foreach (var bullet in Bullets)
             {
@@ -89,7 +118,7 @@
             if (this.keyboard.IsKeyDown(Keys.Tab) && this.previousKeyboard.IsKeyUp(Keys.Tab))
             {
                 MainMenuScreen.MainMenuItems[0].ItemText = "Resume game";
-                RPG.ActiveWindow = EnumActiveWindow.MainMenu;
+                RPG.ActiveWindowSet(EnumActiveWindow.MainMenu);
             }
 
             this.soldier.FiringTimer++;

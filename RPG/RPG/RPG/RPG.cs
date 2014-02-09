@@ -6,18 +6,16 @@
 
     public class RPG : Microsoft.Xna.Framework.Game
     {
-        public static Rectangle Screen;
-        public static Rectangle Room;
-        public static Camera Camera = new Camera();
-        public static EnumActiveWindow ActiveWindow;
+        private static Camera Camera = new Camera();
+        private static EnumActiveWindow ActiveWindow;
 
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Viewport viewport;
-                    
-        MainMenuScreen mainMenuScreen = new MainMenuScreen();                    
+
+        MainMenuScreen mainMenuScreen = new MainMenuScreen();
         GameScreen gameScreen = new GameScreen();
-                
+
         public RPG()
         {
             this.graphics = new GraphicsDeviceManager(this);
@@ -25,13 +23,36 @@
             this.graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
         }
-        
+
+        public static EnumActiveWindow PActiveWindow
+        {
+            get
+            {
+                return ActiveWindow;
+            }
+            private set
+            {
+                ActiveWindow = value;
+            }
+        }
+
+        public static void ActiveWindowSet(EnumActiveWindow input)
+        {
+            PActiveWindow = input;
+        }
+
+        public static Camera PCamera
+        {
+            get
+            {
+                return Camera;
+            }
+        }
+
         protected override void Initialize()
         {
-            Room = new Rectangle(0, 0, this.graphics.PreferredBackBufferWidth * 2, this.graphics.PreferredBackBufferHeight * 2);
-            Screen = new Rectangle(0, 0, this.graphics.PreferredBackBufferWidth, this.graphics.PreferredBackBufferHeight);
             base.Initialize();
-            ActiveWindow = EnumActiveWindow.MainMenu;  
+            PActiveWindow = EnumActiveWindow.MainMenu;
         }
 
         protected override void LoadContent()
@@ -40,13 +61,13 @@
             this.viewport = GraphicsDevice.Viewport;
 
             this.mainMenuScreen.Load(this.Content);
-            this.gameScreen.Load(this.Content, this.viewport, Camera);            
-            
-            base.LoadContent();           
+            this.gameScreen.Load(this.Content, this.viewport, Camera, graphics);
+
+            base.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
-        {           
+        {
             if (ActiveWindow == EnumActiveWindow.MainMenu)
             {
                 this.IsMouseVisible = true;
@@ -58,12 +79,12 @@
                 this.IsMouseVisible = false;
                 this.gameScreen.Update(Camera);
             }
-            
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
-        {           
+        {
             if (ActiveWindow == EnumActiveWindow.MainMenu)
             {
                 this.mainMenuScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
@@ -73,7 +94,7 @@
             {
                 this.gameScreen.Draw(this.graphics.GraphicsDevice, this.viewport, this.spriteBatch, this.Content, Camera);
             }
-                
+
             base.Draw(gameTime);
         }
 

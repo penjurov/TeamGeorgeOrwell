@@ -105,7 +105,7 @@
             {
                 if (MainMenuItems[this.selectedEntry].ItemText == "New game" || MainMenuItems[this.selectedEntry].ItemText == "Resume game")
                 {
-                    RPG.ActiveWindow = EnumActiveWindow.GameWindow;
+                    RPG.ActiveWindowSet(EnumActiveWindow.GameWindow);
                 }
 
                 if (MainMenuItems[this.selectedEntry].ItemText == "Exit game")
@@ -123,7 +123,7 @@
                     {
                         if (item.ItemText == "New game" || item.ItemText == "Resume game")
                         {
-                            RPG.ActiveWindow = EnumActiveWindow.GameWindow;
+                            RPG.ActiveWindowSet(EnumActiveWindow.GameWindow);
                         }
 
                         if (item.ItemText == "Exit game")
