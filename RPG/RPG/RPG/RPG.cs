@@ -1,6 +1,5 @@
 ﻿namespace Rpg
 {
-    using System;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Screens;
@@ -102,14 +101,6 @@
             }
 
             base.Draw(gameTime);
-        }
-
-        private static void Main()
-        {
-            using (Rpg game = new Rpg())
-            {
-                game.Run();
-            }
         }
     }
 }

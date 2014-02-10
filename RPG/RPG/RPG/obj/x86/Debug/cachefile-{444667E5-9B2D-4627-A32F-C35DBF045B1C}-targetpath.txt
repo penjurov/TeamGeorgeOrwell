@@ -1,0 +1,10 @@
+Content\Fonts\Comic Sans MS.xnb
+Content\Textures\MainMenu\MainMenu.xnb
+Content\Textures\MainMenu\MainMenuPlank.xnb
+Content\Textures\MainMenu\MainMenuPlank01.xnb
+Content\Textures\MainMenu\MainMenuPlank02.xnb
+Content\Textures\MainMenu\MainMenuPlank03.xnb
+Content\Textures\GameScreens\GameScreen.xnb
+Content\Textures\Objects\male.xnb
+Content\Textures\Objects\crosshair.xnb
+Content\Textures\Objects\bullet.xnb

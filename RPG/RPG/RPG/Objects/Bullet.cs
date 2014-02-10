@@ -29,9 +29,7 @@
                 this.speed = value;
             }
         }
-
-       
-
+      
         public  void Update()
         {
             if (!this.Alive)

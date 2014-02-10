@@ -47,8 +47,6 @@
 
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
-            // empty variable ????
-            Color color = Color.Black;
 
             graphicDevice.Clear(Color.CornflowerBlue);
             SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");

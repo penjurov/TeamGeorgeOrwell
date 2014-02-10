@@ -72,7 +72,7 @@
             this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\GameScreen");
             Vector2 characterPosition = new Vector2((this.gameWindowTexture.Width - viewport.Width) / 2, 0);
 
-            this.soldier = new Heroes(characterPosition, 3);
+            this.soldier = new Heroes(characterPosition, 2);
 
             this.soldier.LoadContent(content, "male");
             this.cursor.LoadContent(content, "crosshair");

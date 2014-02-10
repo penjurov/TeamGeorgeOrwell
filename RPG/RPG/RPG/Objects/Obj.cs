@@ -6,7 +6,7 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class Obj
+    public abstract class Obj
     {
         private readonly float scale = 1.0f;
         private float rotation = 0.0f;
@@ -24,9 +24,7 @@
 
         public Texture2D SpriteIndex { get; set; }
 
-        public string SpriteName { get; set; }
-
-        public float Rotation
+        public  float Rotation
         {
             get
             {
@@ -43,10 +41,8 @@
 
         public virtual void LoadContent(ContentManager content, string sprName)
         {
-            this.SpriteName = sprName;
             this.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", sprName));
         }
-
        
         public virtual void Draw(SpriteBatch spriteBatch, Viewport viewport)
         {
@@ -54,7 +50,6 @@
 
             spriteBatch.Draw(this.SpriteIndex, this.Position, null, Color.White, MathHelper.ToRadians(this.rotation), center, this.scale, SpriteEffects.None, 0);
         }
-
-       
+     
     }
 }
