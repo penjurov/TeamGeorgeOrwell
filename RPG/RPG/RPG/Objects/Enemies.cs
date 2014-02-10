@@ -6,7 +6,7 @@
 
     public class Enemies : Characters
     {
-        public Enemies(Vector2 pos, float movSpeed) : base(pos, movSpeed)
+        public Enemies(Vector2 pos) : base(pos)
         {
         }
 

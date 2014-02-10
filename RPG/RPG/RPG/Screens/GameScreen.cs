@@ -10,7 +10,7 @@
 
     internal class GameScreen
     {
-        private static List<Obj> bullets = new List<Obj>();
+        private static List<Bullet> bullets = new List<Bullet>();
 
         private static Rectangle screen;
         private static Rectangle room;
@@ -25,7 +25,7 @@
         private MouseState mouse;
         private MouseState previousMouse;
 
-        public static List<Obj> PBullets
+        public static List<Bullet> PBullets
         {
             get
             {
@@ -82,7 +82,7 @@
 
             for (int i = 0; i < this.soldier.Ammo; i++)
             {
-                Obj o = new Bullet(new Vector2(0, 0), bulletTexture);
+                Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
                 o.Alive = false;
                 PBullets.Add(o);
             }

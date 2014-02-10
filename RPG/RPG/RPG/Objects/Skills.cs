@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
 
-    public class Skills
+    public class Skills : Obj
     {
-        private Skills()
+        public Skills()
         {
         }
     }

@@ -5,19 +5,62 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
     using Screens;
+    using Interfaces;
 
-    public class Heroes : Characters
+    public class Heroes : Characters , IShootable, IMovable, ISkillable
     {
         private int ammo = 0;
         private int firingTimer = 0;
+        private float movingSpeed = 5;
+        private float fireRate = 20;
+        private float speed = 0.0f;
 
         private KeyboardState keyboard;
         private MouseState mouse;
-
-        public Heroes(Vector2 pos, float movSpeed) : base(pos, movSpeed)
+       
+        public Heroes(Vector2 pos, float movSpeed) : base(pos)
         {
             this.Position = pos;
             this.MovingSpeed = movSpeed;
+        }
+
+        public float Speed
+        {
+            get
+            {
+                return this.speed;
+            }
+
+            set
+            {
+                this.speed = value;
+            }
+        }
+
+        public float MovingSpeed
+        {
+            get
+            {
+                return this.movingSpeed;
+            }
+
+            private set
+            {
+                this.movingSpeed = value;
+            }
+        }
+
+        public float FireRate
+        {
+            get
+            {
+                return this.fireRate;
+            }
+
+            private set
+            {
+                this.fireRate = value;
+            }
         }
 
         public Skills Skill { get; set; }
@@ -56,7 +99,7 @@
             }
         }
 
-        public override void Update()
+        public void Update()
         {
             this.keyboard = Keyboard.GetState();
             this.mouse = Mouse.GetState();
@@ -100,7 +143,13 @@
 
             this.PreviousMouse = this.mouse;
             this.PreviousKeyboard = this.keyboard;
-            base.Update();
+
+            if (!this.Alive)
+            {
+                return;
+            }
+
+            this.PushTo(this.Speed, this.Rotation);
         }
 
         public void CheckShooting()
@@ -143,6 +192,13 @@
             }
 
             return res;
+        }
+
+        private void PushTo(float pix, float dir)
+        {
+            float newX = (float)Math.Cos(MathHelper.ToRadians(dir));
+            float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
+            this.Position += new Vector2(pix * newX, pix * newY);
         }
     }
 }
