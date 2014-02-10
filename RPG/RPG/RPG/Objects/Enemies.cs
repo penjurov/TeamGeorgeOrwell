@@ -10,8 +10,6 @@
         {
         }
 
-        public Skills Skill { get; set; }
-
         public float ExpGiven { get; set; }
     }
 }

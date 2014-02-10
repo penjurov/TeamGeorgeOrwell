@@ -6,7 +6,7 @@
     using Microsoft.Xna.Framework.Input;
     using Interfaces;
 
-    public class Cursor : Obj, IMovable
+    public class Cursor : Obj
     {
         private MouseState mouse;
 
@@ -15,7 +15,7 @@
             this.Position = pos;
         }
 
-        public void Update()
+        public void UpdateCursor()
         {
             this.mouse = Mouse.GetState();
 

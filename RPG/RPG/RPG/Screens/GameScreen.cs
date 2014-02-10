@@ -124,7 +124,7 @@
             this.previousMouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();
             this.soldier.Update();
-            this.cursor.Update();
+            this.cursor.UpdateCursor();
 
             foreach (var bullet in bullets)
             {

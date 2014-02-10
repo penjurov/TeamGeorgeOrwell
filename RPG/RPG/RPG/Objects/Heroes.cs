@@ -7,7 +7,7 @@
     using Screens;
     using Interfaces;
 
-    public class Heroes : Characters , IShootable, IMovable, ISkillable
+    public class Heroes : Characters , IShootable, IMovable
     {
         private int ammo = 0;
         private int firingTimer = 0;
@@ -62,8 +62,6 @@
                 this.fireRate = value;
             }
         }
-
-        public Skills Skill { get; set; }
 
         public float CurrentExp { get; set; }
 
