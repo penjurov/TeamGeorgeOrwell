@@ -6,7 +6,7 @@
     using Microsoft.Xna.Framework.Graphics;
     using Interfaces;
 
-    public class Bullet : Obj
+    public class Bullet : Obj, IMovable
     {
         private float speed;
 
@@ -16,7 +16,8 @@
             this.SpriteIndex = texture;
         }
 
-
+        public float Rotation { get; set; }
+ 
         public float Speed
         {
             get
@@ -30,14 +31,12 @@
             }
         }
       
-        public  void Update()
+        public void Update()
         {
-            if (!this.Alive)
+            if (this.Alive)
             {
-                return;
-            }
-
-            PushTo(this.Speed, this.Rotation);
+                PushTo(this.Speed, this.Rotation);
+            }          
         }
 
         private void PushTo(float pix, float dir)
@@ -46,5 +45,6 @@
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
             this.Position += new Vector2(pix * newX, pix * newY);
         }
+
     }
 }

@@ -9,7 +9,7 @@ namespace Rpg.Interfaces
     {
         float Speed {get;}
 
-        float MovingSpeed { get; }
+        float Rotation { get; set; }
 
         void Update();
 

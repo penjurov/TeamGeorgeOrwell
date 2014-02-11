@@ -91,6 +91,15 @@
       <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb</Output>
       <Time>2014-02-09T10:48:44.8401876+02:00</Time>
     </Item>
+    <Item>
+      <Source>Textures\Objects\thor_top_view.png</Source>
+      <Name>Textures\Objects\thor_top_view</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\thor_top_view.xnb</Output>
+      <Time>2014-02-11T15:39:25.6570913+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{444667E5-9B2D-4627-A32F-C35DBF045B1C}</ContentProjectGUID>

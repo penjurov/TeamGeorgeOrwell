@@ -9,6 +9,9 @@ namespace Rpg.Interfaces
     {
         int FiringTimer { get; set; }
 
+        float FireRate { get; set; }
+
         void CheckShooting();
+
     }
 }

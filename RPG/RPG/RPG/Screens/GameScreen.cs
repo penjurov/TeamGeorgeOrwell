@@ -20,10 +20,12 @@
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;
         private Heroes soldier;
+        private MeleUnits meleUnit;
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
         private MouseState mouse;
         private MouseState previousMouse;
+        private Vector2 characterPosition;
 
         public static List<Bullet> PBullets
         {
@@ -64,19 +66,24 @@
             }
         }
 
+
+
         public void Load(ContentManager content, Viewport viewport, Camera camera, GraphicsDeviceManager graphics)
-        {
-            room = new Rectangle(0, 0, graphics.PreferredBackBufferWidth * 10, graphics.PreferredBackBufferHeight * 10);
-            screen = new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
-            this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\GameScreen");
-            Vector2 characterPosition = new Vector2((this.gameWindowTexture.Width - viewport.Width) / 2, 0);
-
+        {           
+            this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\GameScreen");           
+            room = new Rectangle(0, 0, gameWindowTexture.Width, gameWindowTexture.Height);
+            
+            this.characterPosition = new Vector2(room.Width/2, room.Height/2);
             this.soldier = new Heroes(characterPosition, 2);
 
-            this.soldier.LoadContent(content, "male");
+            screen = new Rectangle(viewport.X, viewport.Y, viewport.Width, viewport.Height);
+
+            this.meleUnit = new MeleUnits(new Vector2(500, 500), 1.8f);
+
+            this.soldier.LoadContent(content, "thor_top_view");
             this.cursor.LoadContent(content, "crosshair");
-            this.soldier.Ammo = 32;
+            this.meleUnit.LoadContent(content, "male");
+            this.soldier.Ammo = 1000;
 
             Texture2D bulletTexture = content.Load<Texture2D>(@"Textures\Objects\bullet");
 
@@ -92,12 +99,13 @@
 
         public void Draw(GraphicsDevice graphicDevice, Viewport viewport, SpriteBatch spriteBatch, ContentManager content, Camera camera)
         {
-            this.gameWindowTexturePos = new Vector2((viewport.Width - this.gameWindowTexture.Width) / 2, 0);
+            this.gameWindowTexturePos = new Vector2(0,0);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform(graphicDevice));
             graphicDevice.Clear(Color.Black);
             spriteBatch.Draw(this.gameWindowTexture, this.gameWindowTexturePos, Color.White);
-            this.soldier.Draw(spriteBatch, viewport);
+            this.soldier.Draw(spriteBatch, viewport,soldier.Rotation);
+            this.meleUnit.Draw(spriteBatch, viewport, meleUnit.Rotation);
 
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             Vector2 ammoPosition = new Vector2(10, 10);
@@ -107,14 +115,14 @@
             {
                 if (bullet.Alive)
                 {
-                    bullet.Draw(spriteBatch, viewport);
+                    bullet.Draw(spriteBatch, viewport,bullet.Rotation);
                 }
             }
 
             spriteBatch.End();
 
             spriteBatch.Begin();
-            this.cursor.Draw(spriteBatch, viewport);
+            this.cursor.Draw(spriteBatch, viewport, soldier.Rotation);
             spriteBatch.End();
         }
 
@@ -125,6 +133,12 @@
             this.keyboard = Keyboard.GetState();
             this.soldier.Update();
             this.cursor.UpdateCursor();
+
+            if (Math.Abs(this.soldier.Position.X - this.meleUnit.Position.X) < 475 &&
+               Math.Abs(this.soldier.Position.Y - this.meleUnit.Position.Y) < 340)
+            {
+                this.meleUnit.Update();
+            }
 
             foreach (var bullet in bullets)
             {

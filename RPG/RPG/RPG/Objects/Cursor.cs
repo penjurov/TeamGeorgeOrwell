@@ -15,6 +15,7 @@
             this.Position = pos;
         }
 
+
         public void UpdateCursor()
         {
             this.mouse = Mouse.GetState();

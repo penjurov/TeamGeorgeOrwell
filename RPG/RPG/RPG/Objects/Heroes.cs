@@ -7,47 +7,18 @@
     using Screens;
     using Interfaces;
 
-    public class Heroes : Characters , IShootable, IMovable
+    public class Heroes : Units , IShootable
     {
         private int ammo = 0;
         private int firingTimer = 0;
-        private float movingSpeed = 5;
         private float fireRate = 20;
-        private float speed = 0.0f;
 
         private KeyboardState keyboard;
         private MouseState mouse;
        
-        public Heroes(Vector2 pos, float movSpeed) : base(pos)
+        public Heroes(Vector2 pos, float speed) : base(pos,speed)
         {
-            this.Position = pos;
-            this.MovingSpeed = movSpeed;
-        }
 
-        public float Speed
-        {
-            get
-            {
-                return this.speed;
-            }
-
-            set
-            {
-                this.speed = value;
-            }
-        }
-
-        public float MovingSpeed
-        {
-            get
-            {
-                return this.movingSpeed;
-            }
-
-            private set
-            {
-                this.movingSpeed = value;
-            }
         }
 
         public float FireRate
@@ -57,7 +28,7 @@
                 return this.fireRate;
             }
 
-            private set
+            set
             {
                 this.fireRate = value;
             }
@@ -67,11 +38,9 @@
 
         public int Level { get; set; }
 
-        public MouseState PreviousMouse { get; set; }
-
         public KeyboardState PreviousKeyboard { get; set; }
 
-        public int Ammo
+        public int Ammo 
         {
             get
             {
@@ -97,7 +66,7 @@
             }
         }
 
-        public void Update()
+        public override void Update()
         {
             this.keyboard = Keyboard.GetState();
             this.mouse = Mouse.GetState();
@@ -105,33 +74,33 @@
 
             if (this.keyboard.IsKeyDown(Keys.W))
             {
-                if (oldPos.Y > 0)
+                if (oldPos.Y > GameScreen.PRoom.Y)
                 {
-                    this.Position = new Vector2(oldPos.X, oldPos.Y - this.MovingSpeed);
+                    this.Position = new Vector2(oldPos.X, oldPos.Y - this.Speed);
                 }
             }
 
             if (this.keyboard.IsKeyDown(Keys.A))
             {
-                if (oldPos.X > -500)
+                if (oldPos.X > GameScreen.PRoom.X)
                 {
-                    this.Position = new Vector2(oldPos.X - this.MovingSpeed, oldPos.Y);
+                    this.Position = new Vector2(oldPos.X - this.Speed, oldPos.Y);
                 }
             }
 
-            if (this.keyboard.IsKeyDown(Keys.S))
+            if (this.keyboard.IsKeyDown(Keys.S) )
             {
-                if (oldPos.Y < 2000)
+                if (oldPos.Y < GameScreen.PRoom.Height)
                 {
-                    this.Position = new Vector2(oldPos.X, oldPos.Y + this.MovingSpeed);
+                    this.Position = new Vector2(oldPos.X, oldPos.Y + this.Speed);
                 }
             }
 
             if (this.keyboard.IsKeyDown(Keys.D))
             {
-                if (oldPos.X < 1500)
+                if (oldPos.X < GameScreen.PRoom.Width)
                 {
-                    this.Position = new Vector2(oldPos.X + this.MovingSpeed, oldPos.Y);
+                    this.Position = new Vector2(oldPos.X + this.Speed, oldPos.Y);
                 }
             }
 
@@ -139,27 +108,19 @@
 
             this.Rotation = this.PointDirecions(Camera.GlobalToLocal(this.Position).X, Camera.GlobalToLocal(this.Position).Y, this.mouse.X, this.mouse.Y);
 
-            this.PreviousMouse = this.mouse;
-            this.PreviousKeyboard = this.keyboard;
-
-            if (!this.Alive)
-            {
-                return;
-            }
-
-            this.PushTo(this.Speed, this.Rotation);
+            this.PreviousKeyboard = this.keyboard;            
         }
 
         public void CheckShooting()
         {
-            if (this.FiringTimer > this.FireRate && this.Ammo > 0)
+            if (this.FiringTimer > this.FireRate)
             {
                 this.FiringTimer = 0;
                 this.Shoot();
             }
         }
 
-        public void Shoot()
+        private void Shoot()
         {
             foreach (var bullet in GameScreen.PBullets)
             {

@@ -8,3 +8,4 @@ Content\Textures\GameScreens\GameScreen.xnb
 Content\Textures\Objects\male.xnb
 Content\Textures\Objects\crosshair.xnb
 Content\Textures\Objects\bullet.xnb
+Content\Textures\Objects\thor_top_view.xnb

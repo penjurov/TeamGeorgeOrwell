@@ -19,8 +19,8 @@
         public Rpg()
         {
             this.graphics = new GraphicsDeviceManager(this);
-            this.graphics.PreferredBackBufferWidth = 1024;
-            this.graphics.PreferredBackBufferHeight = 720;
+            this.graphics.PreferredBackBufferWidth = 1000;
+            this.graphics.PreferredBackBufferHeight = 700;
             this.Content.RootDirectory = "Content";
         }
 
