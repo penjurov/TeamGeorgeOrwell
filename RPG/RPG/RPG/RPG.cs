@@ -43,6 +43,7 @@
             {
                 return camera;
             }
+
             private set
             {
                 camera = value;
