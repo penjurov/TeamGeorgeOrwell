@@ -6,6 +6,7 @@
     using Microsoft.Xna.Framework.Input;
     using Screens;
     using Interfaces;
+    using Microsoft.Xna.Framework.Audio;
 
     public class Heroes : Units , IShootable
     {
@@ -15,10 +16,26 @@
 
         private KeyboardState keyboard;
         private MouseState mouse;
+
+        private SoundEffect walk;
+        private SoundEffectInstance walkInstance;
+        private SoundEffect walk2;
+        private SoundEffectInstance walkInstance2;
+        private SoundEffect gunShot;
+        private SoundEffectInstance gunShotInstance;
        
         public Heroes(Vector2 pos, float speed) : base(pos,speed)
         {
-
+            Content.RootDirectory = "Content";
+            walk = Content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt1");
+            walk2 = Content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt2");
+            gunShot = Content.Load<SoundEffect>(@"Textures\Sounds\gunShot");
+            walkInstance = walk.CreateInstance();
+            walkInstance.IsLooped = false;
+            walkInstance.Volume = 0.1f;
+            walkInstance2 = walk2.CreateInstance();
+            walkInstance2.IsLooped = false;
+            walkInstance2.Volume = 0.1f;
         }
 
         public float FireRate
@@ -77,6 +94,8 @@
                 if (oldPos.Y > GameScreen.PRoom.Y)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y - this.Speed);
+                    walkInstance.Play();
+                    walkInstance2.Play();
                 }
             }
 
@@ -85,6 +104,8 @@
                 if (oldPos.X > GameScreen.PRoom.X)
                 {
                     this.Position = new Vector2(oldPos.X - this.Speed, oldPos.Y);
+                    walkInstance.Play();
+                    walkInstance2.Play();
                 }
             }
 
@@ -93,6 +114,8 @@
                 if (oldPos.Y < GameScreen.PRoom.Height)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y + this.Speed);
+                    walkInstance.Play();
+                    walkInstance2.Play();
                 }
             }
 
@@ -101,6 +124,8 @@
                 if (oldPos.X < GameScreen.PRoom.Width)
                 {
                     this.Position = new Vector2(oldPos.X + this.Speed, oldPos.Y);
+                    walkInstance.Play();
+                    walkInstance2.Play();
                 }
             }
 
@@ -117,6 +142,7 @@
             {
                 this.FiringTimer = 0;
                 this.Shoot();
+                gunShot.Play();
             }
         }
 

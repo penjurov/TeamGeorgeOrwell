@@ -6,7 +6,7 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
-    public abstract class Obj
+    public abstract class Obj:Game
     {
         private readonly float scale = 0.7f;
 
