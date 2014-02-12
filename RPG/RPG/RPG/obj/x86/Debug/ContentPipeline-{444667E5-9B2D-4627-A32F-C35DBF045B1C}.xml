@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb</Output>
-      <Time>2014-02-12T17:05:11.3768388+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb</Output>
+      <Time>2014-02-07T11:03:54.5179727+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenu.jpg</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb</Output>
+      <Time>2014-02-07T11:03:54.6089779+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenuPlank.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb</Output>
+      <Time>2014-02-07T11:03:54.609978+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenuPlank01.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb</Output>
+      <Time>2014-02-07T11:03:54.6119781+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenuPlank02.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb</Output>
+      <Time>2014-02-07T11:03:54.6139782+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\MainMenu\MainMenuPlank03.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb</Output>
+      <Time>2014-02-07T11:03:54.6149782+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\GameScreens\GameScreen.jpg</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb</Output>
+      <Time>2014-02-09T10:48:44.8371874+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Objects\male.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb</Output>
+      <Time>2014-02-09T10:48:44.8411877+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Objects\crosshair.png</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb</Output>
+      <Time>2014-02-09T10:48:44.8391875+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Objects\bullet.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb</Output>
+      <Time>2014-02-09T10:48:44.8401876+02:00</Time>
     </Item>
     <Item>
       <Source>Textures\Objects\thor_top_view.png</Source>
@@ -97,8 +97,44 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\thor_top_view.xnb</Output>
-      <Time>2014-02-12T17:05:11+02:00</Time>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\thor_top_view.xnb</Output>
+      <Time>2014-02-11T15:39:25.6570913+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Sounds\gunShot.wav</Source>
+      <Name>Textures\Sounds\gunShot</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\gunShot.xnb</Output>
+      <Time>2014-02-12T11:39:22.7084669+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Sounds\mainTheme.wav</Source>
+      <Name>Textures\Sounds\mainTheme</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\mainTheme.xnb</Output>
+      <Time>2014-02-12T11:39:22.8474749+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Sounds\pl_dirt1.wav</Source>
+      <Name>Textures\Sounds\pl_dirt1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt1.xnb</Output>
+      <Time>2014-02-12T11:39:22.848475+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Sounds\pl_dirt2.wav</Source>
+      <Name>Textures\Sounds\pl_dirt2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt2.xnb</Output>
+      <Time>2014-02-12T11:39:22.849475+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -107,10 +143,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPGContent\</RootDirectory>
-      <LoggerRootDirectory>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPGContent\</RootDirectory>
+      <LoggerRootDirectory>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\</LoggerRootDirectory>
+      <IntermediateDirectory>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -139,7 +175,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2014-02-05T12:28:29.2280018+02:00</Value>
+        <Value>2014-02-07T11:10:24.6142849+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

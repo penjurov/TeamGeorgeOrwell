@@ -6,4 +6,3 @@ D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPGContent\obj\x86\Debu
 D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
 C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
