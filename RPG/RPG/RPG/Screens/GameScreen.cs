@@ -75,8 +75,31 @@
 
             CharacterPosition = new Vector2(room.Width/2, room.Height/2);
 
-            this.soldier = new Heroes(CharacterPosition, 2);
-            this.soldier.LoadContent(content, "thor_top_view");
+            switch (ChooseHeroScreen.HeroName)
+            {
+                case "ODIN" :
+                    {
+                        this.soldier = new Heroes(CharacterPosition, 2, 1200, 110, 90);
+                        this.soldier.LoadContent(content, "thor_top_view");
+                        break;
+                    }
+                case "THOR" :
+                    {
+                        this.soldier = new Heroes(CharacterPosition, 2, 1500, 130, 100);
+                        this.soldier.LoadContent(content, "thor_top_view");
+                        break;
+                    }
+                case "EIR" :
+                    {
+                        this.soldier = new Heroes(CharacterPosition, 2, 1000, 90, 80);
+                        this.soldier.LoadContent(content, "thor_top_view");
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+            
             units.Add(this.soldier);
 
             AddMeleUnit(content, 900, 700, 0.6f, "male");
@@ -114,9 +137,14 @@
             
 
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
-            Vector2 ammoPosition = new Vector2(10, 10);
-           
-            //spriteBatch.DrawString(font, string.Format("Ammo :  {0}", this.soldier.Ammo), ammoPosition, Color.White);
+            Vector2 statsPosition = new Vector2(10, 10);
+            spriteBatch.DrawString(font, string.Format("HP :  {0}", this.soldier.Health), statsPosition, Color.Red);
+
+            statsPosition = new Vector2(10, 40);
+            spriteBatch.DrawString(font, string.Format("Att :  {0}", this.soldier.Attack), statsPosition, Color.Red);
+
+            statsPosition = new Vector2(10, 70);
+            spriteBatch.DrawString(font, string.Format("Def :  {0}", this.soldier.Defence), statsPosition, Color.Red);
 
             foreach (var bullet in bullets)
             {
@@ -142,68 +170,67 @@
         }
 
         public void Update()
-        {
-            
-                this.mouse = Mouse.GetState();
-                this.keyboard = Keyboard.GetState();
+        {           
+            this.mouse = Mouse.GetState();
+            this.keyboard = Keyboard.GetState();
                 
-                this.cursor.UpdateCursor();
+            this.cursor.UpdateCursor();
 
-                foreach (var unit in units)
+            foreach (var unit in units)
+            {
+                if(unit is ILevelable)
                 {
-                    if(unit is ILevelable)
+                    unit.Update();
+                }
+                else
+                {
+                    if (Math.Abs(this.soldier.Position.X - unit.Position.X) < 200 &&
+                        Math.Abs(this.soldier.Position.Y - unit.Position.Y) < 200)
                     {
                         unit.Update();
+                    }                      
+                }
+
+                if(unit is IShootable)
+                {                                          
+                    if(unit is ILevelable)
+                    {
+                        unit.FiringTimer++;
+                        if (this.mouse.LeftButton == ButtonState.Pressed)
+                        {
+                            this.soldier.CheckShooting();
+                        }
                     }
                     else
                     {
+                        unit.FiringTimer++;
                         if (Math.Abs(this.soldier.Position.X - unit.Position.X) < 200 &&
-                           Math.Abs(this.soldier.Position.Y - unit.Position.Y) < 200)
+                            Math.Abs(this.soldier.Position.Y - unit.Position.Y) < 200)
                         {
                             unit.Update();
-                        }                      
-                    }
-
-                    if(unit is IShootable)
-                    {                                          
-                        if(unit is ILevelable)
-                        {
-                            unit.FiringTimer++;
-                            if (this.mouse.LeftButton == ButtonState.Pressed)
-                            {
-                                this.soldier.CheckShooting();
-                            }
-                        }
-                        else
-                        {
-                            unit.FiringTimer++;
-                            if (Math.Abs(this.soldier.Position.X - unit.Position.X) < 200 &&
-                               Math.Abs(this.soldier.Position.Y - unit.Position.Y) < 200)
-                            {
-                                unit.Update();
-                                unit.CheckShooting();
-                            }
+                            unit.CheckShooting();
                         }
                     }
-                }               
-
-                foreach (var bullet in bullets)
-                {
-                    if (bullet.Alive)
-                        bullet.Update();
                 }
+            }               
 
-                foreach (var bullet in enemyBullets)
-                {
-                    if (bullet.Alive)
-                        bullet.Update();
-                }
+            foreach (var bullet in bullets)
+            {
+                if (bullet.Alive)
+                    bullet.Update();
+            }
 
-                if (this.keyboard.IsKeyDown(Keys.Tab))
-                {
-                    MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
-                    Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
-                }                          
+            foreach (var bullet in enemyBullets)
+            {
+                if (bullet.Alive)
+                    bullet.Update();
+            }
+
+            if (this.keyboard.IsKeyDown(Keys.Tab))
+            {
+                MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
+                Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
+            }                          
         }
 
         private void AddMeleUnit(ContentManager content, int x, int y, float speed, string textureName)

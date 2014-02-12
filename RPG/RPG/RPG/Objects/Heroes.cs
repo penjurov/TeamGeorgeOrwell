@@ -41,6 +41,14 @@
             gunShotInstance.Volume = 0.1f;
         }
 
+
+        public Heroes(Vector2 pos, float speed, float HP, float Att, float Def) : this(pos,speed)
+        {
+            this.Health = HP;
+            this.Attack = Att;
+            this.Defence = Def;
+        }
+
         public override float FireRate
         {
             get
