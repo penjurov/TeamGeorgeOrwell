@@ -80,7 +80,7 @@
             PMainMenuItems[this.selectedEntry].Selected = true;
             foreach (var item in PMainMenuItems)
             {
-                    item.Draw(spriteBatch);                
+                item.Draw(spriteBatch);                
             }
 
             spriteBatch.End();

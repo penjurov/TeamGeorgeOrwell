@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
     using Interfaces;
     using Screens;
 
@@ -27,7 +28,7 @@
 
         public bool Alive { get; set; }
 
-        public virtual void Update()
+        public override void Update(Viewport viewport)
         {
             this.Rotation = this.PointDirecions(this.Position.X,this.Position.Y, 
                 GameScreen.CharacterPosition.X,GameScreen.CharacterPosition.Y);

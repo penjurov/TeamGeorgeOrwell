@@ -4,6 +4,7 @@
     using System.Linq;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
+    using Microsoft.Xna.Framework.Graphics;
 
     public class Cursor : Obj
     {
@@ -14,11 +15,13 @@
             this.Position = pos;
         }
 
-        public void UpdateCursor()
+        public override void Update()
         {
             this.mouse = Mouse.GetState();
 
-            this.Position = new Vector2(this.mouse.X, this.mouse.Y);
+            this.Position = new Vector2(mouse.X, mouse.Y);
+
+            base.Update();
         }
     }
 }
