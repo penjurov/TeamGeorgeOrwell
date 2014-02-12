@@ -80,7 +80,7 @@
     <Compile Include="Interfaces\ISkillable.cs" />
     <Compile Include="Objects\RangedUnits.cs" />
     <Compile Include="RPG.cs" />
-    <Compile Include="Screens\Camera.cs" />
+    <Compile Include="Screens\ChooseHeroScreen.cs" />
     <Compile Include="Screens\EnumActiveWindow.cs" />
     <Compile Include="Screens\MenuItems.cs" />
     <Compile Include="Objects\Bonuses.cs" />

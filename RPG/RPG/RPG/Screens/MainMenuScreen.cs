@@ -46,8 +46,7 @@
         }
 
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
-        {
-
+        {          
             graphicDevice.Clear(Color.CornflowerBlue);
             SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             this.mainMenuBackgroundPosition = new Vector2(0, 0);
@@ -75,6 +74,9 @@
                 PMainMenuItems.Add(new MenuItems(this.planketTexture[0], this.planketPosition, "Exit game", newFont, false));
             }
 
+
+            spriteBatch.DrawString(newFont, this.mouse.X + " " + this.mouse.Y, new Vector2(10, 10), Color.White);
+
             PMainMenuItems[this.selectedEntry].Selected = true;
             foreach (var item in PMainMenuItems)
             {
@@ -83,7 +85,7 @@
 
             spriteBatch.End();
         }
-
+        
         public void Update()
         {
             this.mouse = Mouse.GetState();
@@ -130,10 +132,18 @@
                 {
                     if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
                         this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)
+                        
                     {
-                        if (item.ItemText == "New game" || item.ItemText == "Resume game")
+                        if (item.ItemText == "New game")
+                        {
+                            Rpg.ActiveWindowSet(EnumActiveWindow.ChooseHeroWindow);
+                            break;
+                        }
+
+                        if (item.ItemText == "Resume game")
                         {
                             Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
+                            break;
                         }
 
                         if (item.ItemText == "Exit game")

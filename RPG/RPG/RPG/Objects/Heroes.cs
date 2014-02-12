@@ -134,7 +134,7 @@
 
             oldPos = this.Position;
 
-            this.Rotation = this.PointDirecions(Camera.GlobalToLocal(this.Position).X, Camera.GlobalToLocal(this.Position).Y, this.mouse.X, this.mouse.Y);
+            this.Rotation = this.PointDirecions(this.Position.X, this.Position.Y, this.mouse.X, this.mouse.Y);
 
             this.PreviousKeyboard = this.keyboard;            
         }

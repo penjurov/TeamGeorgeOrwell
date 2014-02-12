@@ -32,8 +32,8 @@
             float characterX = GameScreen.PScreen.Width / 2;
             float characterY = GameScreen.PScreen.Height / 2;
 
-            this.Rotation = this.PointDirecions(Camera.GlobalToLocal(this.Position).X,
-               Camera.GlobalToLocal(this.Position).Y, characterX, characterY);
+            this.Rotation = this.PointDirecions(this.Position.X,
+               this.Position.Y, characterX, characterY);
 
             this.PushTo(this.Speed, this.Rotation); 
         }

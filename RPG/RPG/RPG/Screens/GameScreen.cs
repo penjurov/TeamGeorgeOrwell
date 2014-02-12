@@ -78,15 +78,13 @@
                 screen = value;
             }
         }
-
-
-
-        public void Load(ContentManager content, Viewport viewport, Camera camera, GraphicsDeviceManager graphics)
-        {           
-            this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\GameScreen");           
+      
+        public void Load(ContentManager content, Viewport viewport, GraphicsDeviceManager graphics)
+        {
+            this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\Level1");
             room = new Rectangle(0, 0, gameWindowTexture.Width, gameWindowTexture.Height);
-            
-            this.characterPosition = new Vector2(room.Width/2, room.Height/2);
+
+            this.characterPosition = new Vector2(room.Width / 2, room.Height / 2);
             this.soldier = new Heroes(characterPosition, 2);
 
             screen = new Rectangle(viewport.X, viewport.Y, viewport.Width, viewport.Height);
@@ -113,15 +111,13 @@
                 Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
                 EnemyBullets.Add(o);
             }
-
-            camera.Position = this.soldier.Position;
         }
 
-        public void Draw(GraphicsDevice graphicDevice, Viewport viewport, SpriteBatch spriteBatch, ContentManager content, Camera camera)
+        public void Draw(GraphicsDevice graphicDevice, Viewport viewport, SpriteBatch spriteBatch, ContentManager content)
         {
             this.gameWindowTexturePos = new Vector2(0,0);
 
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform(graphicDevice));
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
             graphicDevice.Clear(Color.Black);
             spriteBatch.Draw(this.gameWindowTexture, this.gameWindowTexturePos, Color.White);
 
@@ -131,6 +127,7 @@
 
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             Vector2 ammoPosition = new Vector2(10, 10);
+           
             spriteBatch.DrawString(font, string.Format("Ammo :  {0}", this.soldier.Ammo), ammoPosition, Color.White);
 
             foreach (var bullet in bullets)
@@ -156,7 +153,7 @@
             spriteBatch.End();
         }
 
-        public void Update(Camera camera)
+        public void Update()
         {
             this.mouse = Mouse.GetState();
 
@@ -191,18 +188,17 @@
                 bullet.Update();
             }
 
-            if (this.keyboard.IsKeyDown(Keys.Tab) && this.previousKeyboard.IsKeyUp(Keys.Tab))
+            if (this.keyboard.IsKeyDown(Keys.Tab))      
             {
                 MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
                 Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
             }            
 
             if (this.mouse.LeftButton == ButtonState.Pressed)
-            {                
+            {
+                
                  this.soldier.CheckShooting();                
             }
-
-            camera.Position = this.soldier.Position;
         }
 
     }

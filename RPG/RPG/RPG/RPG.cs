@@ -7,7 +7,6 @@
 
     public class Rpg : Game
     {
-        private static Camera camera = new Camera();
         private static EnumActiveWindow activeWindow;
 
         private readonly GraphicsDeviceManager graphics;
@@ -19,6 +18,8 @@
 
         private SoundEffect mainTheme;
         private SoundEffectInstance mainThemeInstance;
+
+        private bool loaded = false;
 
         public Rpg()
         {
@@ -46,19 +47,6 @@
             }
         }
 
-        public static Camera Camera
-        {
-            get
-            {
-                return camera;
-            }
-
-            private set
-            {
-                camera = value;
-            }
-        }
-
         public static void ActiveWindowSet(EnumActiveWindow input)
         {
             PActiveWindow = input;
@@ -67,22 +55,22 @@
         protected override void Initialize()
         {
             base.Initialize();
-            PActiveWindow = EnumActiveWindow.MainMenu;
+            PActiveWindow = EnumActiveWindow.MainMenu;          
         }
 
         protected override void LoadContent()
         {
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
             this.viewport = this.GraphicsDevice.Viewport;
-
+            
             this.mainMenuScreen.Load(this.Content);
-            this.gameScreen.Load(this.Content, this.viewport, Camera, this.graphics);
-
+                       
             base.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
         {
+            
             if (activeWindow == EnumActiveWindow.MainMenu)
             {
                 this.IsMouseVisible = true;
@@ -92,8 +80,14 @@
 
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
+                if (!loaded)
+                {
+                    this.gameScreen.Load(this.Content, this.viewport, this.graphics);
+                    loaded = true;
+                }
+                
                 this.IsMouseVisible = false;
-                this.gameScreen.Update(Camera);
+                this.gameScreen.Update();
             }
             if (activeWindow != EnumActiveWindow.MainMenu)
             {
@@ -112,7 +106,7 @@
 
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
-                this.gameScreen.Draw(this.graphics.GraphicsDevice, this.viewport, this.spriteBatch, this.Content, Camera);
+                this.gameScreen.Draw(this.graphics.GraphicsDevice, this.viewport, this.spriteBatch, this.Content);
             }
 
             base.Draw(gameTime);
