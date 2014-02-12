@@ -13,7 +13,6 @@
         private static List<Bullet> bullets = new List<Bullet>();
         private static List<Bullet> enemyBullets = new List<Bullet>();
 
-        private static Rectangle screen;
         private static Rectangle room;
         private readonly Cursor cursor = new Cursor(new Vector2(0, 0));
 
@@ -25,8 +24,12 @@
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
         private MouseState mouse;
+<<<<<<< HEAD
         private Vector2 characterPosition;
         private bool inMenu;
+=======
+        private  Vector2 characterPosition;
+>>>>>>> 963f3c1e683ee4e8b146d338011de30946210d3f
 
         public static List<Bullet> PBullets
         {
@@ -67,31 +70,20 @@
             }
         }
 
-        public static Rectangle PScreen
-        {
-            get
-            {
-                return screen;
-            }
+        public static Vector2 CharacterPosition { get; set; }
 
-            private set
-            {
-                screen = value;
-            }
-        }
-      
+
         public void Load(ContentManager content, Viewport viewport, GraphicsDeviceManager graphics)
         {
             this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\Level1");
             room = new Rectangle(0, 0, gameWindowTexture.Width, gameWindowTexture.Height);
 
-            this.characterPosition = new Vector2(room.Width / 2, room.Height / 2);
-            this.soldier = new Heroes(characterPosition, 2);
+            CharacterPosition = new Vector2(room.Width / 2, room.Height / 2);
 
-            screen = new Rectangle(viewport.X, viewport.Y, viewport.Width, viewport.Height);
+            this.soldier = new Heroes(CharacterPosition, 2);
 
-            this.meleUnit = new MeleUnits(new Vector2(500, 500), 1.6f);
-            this.rangedUnit = new RangedUnits(new Vector2(480, 480), 0.1f);
+            this.meleUnit = new MeleUnits(new Vector2(500, 500), 1.3f);
+            this.rangedUnit = new RangedUnits(new Vector2(480, 480), 0);
 
             this.soldier.LoadContent(content, "thor_top_view");
             this.cursor.LoadContent(content, "crosshair");

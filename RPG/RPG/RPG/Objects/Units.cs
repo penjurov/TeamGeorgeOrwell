@@ -29,11 +29,8 @@
 
         public virtual void Update()
         {
-            float characterX = GameScreen.PScreen.Width / 2;
-            float characterY = GameScreen.PScreen.Height / 2;
-
-            this.Rotation = this.PointDirecions(this.Position.X,
-               this.Position.Y, characterX, characterY);
+            this.Rotation = this.PointDirecions(this.Position.X,this.Position.Y, 
+                GameScreen.CharacterPosition.X,GameScreen.CharacterPosition.Y);
 
             this.PushTo(this.Speed, this.Rotation); 
         }
