@@ -15,6 +15,7 @@
         private float fireRate = 20;
 
         private KeyboardState keyboard;
+        private KeyboardState previousKeyboard;
         private MouseState mouse;
 
         private SoundEffect walk;
@@ -97,6 +98,8 @@
                 if (oldPos.Y > GameScreen.PRoom.Y)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y - this.Speed);
+                    GameScreen.CharacterPosition = this.Position;
+
                     walkInstance.Play();
                     walkInstance2.Play();
                 }
@@ -107,6 +110,7 @@
                 if (oldPos.X > GameScreen.PRoom.X)
                 {
                     this.Position = new Vector2(oldPos.X - this.Speed, oldPos.Y);
+                    GameScreen.CharacterPosition = this.Position;
                     walkInstance.Play();
                     walkInstance2.Play();
                 }
@@ -117,6 +121,7 @@
                 if (oldPos.Y < GameScreen.PRoom.Height)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y + this.Speed);
+                    GameScreen.CharacterPosition = this.Position;
                     walkInstance.Play();
                     walkInstance2.Play();
                 }
@@ -127,6 +132,7 @@
                 if (oldPos.X < GameScreen.PRoom.Width)
                 {
                     this.Position = new Vector2(oldPos.X + this.Speed, oldPos.Y);
+                    GameScreen.CharacterPosition = this.Position;
                     walkInstance.Play();
                     walkInstance2.Play();
                 }
