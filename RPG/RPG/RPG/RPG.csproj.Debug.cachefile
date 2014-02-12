@@ -10,14 +10,10 @@ Content\Textures\Objects\crosshair.xnb
 Content\Textures\Objects\bullet.xnb
 Content\Textures\Objects\thor_top_view.xnb
 Content\Textures\GameScreens\Level1.xnb
+Content\Textures\ChooseHero\select_eir.xnb
+Content\Textures\ChooseHero\select_odin.xnb
+Content\Textures\ChooseHero\select_thor.xnb
 Content\Textures\Sounds\gunShot.xnb
 Content\Textures\Sounds\mainTheme.xnb
 Content\Textures\Sounds\pl_dirt1.xnb
 Content\Textures\Sounds\pl_dirt2.xnb
-<<<<<<< HEAD
-Content\Textures\GameScreens\Level1.xnb
-Content\Textures\ChooseHero\select_eir.xnb
-Content\Textures\ChooseHero\select_odin.xnb
-Content\Textures\ChooseHero\select_thor.xnb
-=======
->>>>>>> 963f3c1e683ee4e8b146d338011de30946210d3f
