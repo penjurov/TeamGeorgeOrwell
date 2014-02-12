@@ -4,7 +4,6 @@
     using System.Linq;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
-    using Interfaces;
 
     public class Cursor : Obj
     {
@@ -14,7 +13,6 @@
         {
             this.Position = pos;
         }
-
 
         public void UpdateCursor()
         {

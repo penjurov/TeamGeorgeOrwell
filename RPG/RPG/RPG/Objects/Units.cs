@@ -44,7 +44,6 @@
             float divY = y - y2;
             float adj = divX;
             float opp = divY;
-            float tan = opp / adj;
             float res = MathHelper.ToDegrees((float)Math.Atan2(opp, adj));
             res = (res - 180) % 360;
             if (res < 0)

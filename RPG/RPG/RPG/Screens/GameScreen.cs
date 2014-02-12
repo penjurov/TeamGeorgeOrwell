@@ -15,7 +15,6 @@
 
         private static Rectangle screen;
         private static Rectangle room;
-        private readonly Vector2 range = new Vector2(0, 0);
         private readonly Cursor cursor = new Cursor(new Vector2(0, 0));
 
         private Texture2D gameWindowTexture;
