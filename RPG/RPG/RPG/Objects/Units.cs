@@ -6,7 +6,7 @@
     using Interfaces;
     using Screens;
 
-    public class Units : Obj, ISkillable, IMovable
+    public abstract class Units : Obj, ISkillable, IMovable
     {      
         public Units(Vector2 pos,float speed) : base(pos)
         {

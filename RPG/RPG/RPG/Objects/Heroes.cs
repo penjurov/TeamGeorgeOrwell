@@ -145,7 +145,7 @@
             {
                 this.FiringTimer = 0;
                 this.Shoot();
-                //gunShot.Play();
+                gunShot.Play();
             }
         }
 
