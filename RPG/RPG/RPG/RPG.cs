@@ -1,6 +1,7 @@
 ﻿namespace Rpg
 {
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Graphics;
     using Screens;
 
@@ -16,12 +17,20 @@
         private SpriteBatch spriteBatch;
         private Viewport viewport;
 
+        private SoundEffect mainTheme;
+        private SoundEffectInstance mainThemeInstance;
+
         public Rpg()
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.graphics.PreferredBackBufferWidth = 1000;
             this.graphics.PreferredBackBufferHeight = 700;
             this.Content.RootDirectory = "Content";
+
+            this.mainTheme = Content.Load<SoundEffect>(@"Textures\Sounds\mainTheme");
+            this.mainThemeInstance = this.mainTheme.CreateInstance();
+            this.mainThemeInstance.IsLooped = false;
+            this.mainThemeInstance.Volume = 0.2f;
         }
 
         public static EnumActiveWindow PActiveWindow
@@ -78,6 +87,7 @@
             {
                 this.IsMouseVisible = true;
                 this.mainMenuScreen.Update();
+                this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.GameWindow)
@@ -85,7 +95,10 @@
                 this.IsMouseVisible = false;
                 this.gameScreen.Update(Camera);
             }
-
+            if (activeWindow != EnumActiveWindow.MainMenu)
+            {
+                this.mainThemeInstance.Stop();
+            }
             base.Update(gameTime);
         }
 
