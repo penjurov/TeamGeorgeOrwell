@@ -25,8 +25,8 @@
         public Rpg()
         {
             this.graphics = new GraphicsDeviceManager(this);
-            this.graphics.PreferredBackBufferWidth = 1000;
-            this.graphics.PreferredBackBufferHeight = 700;
+            this.graphics.PreferredBackBufferWidth = 1024;
+            this.graphics.PreferredBackBufferHeight = 768;
             this.Content.RootDirectory = "Content";
 
             this.mainTheme = Content.Load<SoundEffect>(@"Textures\Sounds\mainTheme");

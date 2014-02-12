@@ -8,14 +8,14 @@
     public class RangedUnits : MeleUnits, IShootable
     {
         private int firingTimer = 0;
-        private float fireRate = 50;
+        private float fireRate = 80;
 
         public RangedUnits(Vector2 pos, float speed) : base(pos, speed)
         {
             //To add stats to the unit: health, attack, defence, skills, experience to give.
         }
 
-        public float FireRate
+        public override float FireRate
         {
             get
             {
@@ -27,7 +27,7 @@
             }
         }
 
-        public int FiringTimer
+        public override int FiringTimer
         {
             get
             {
@@ -39,7 +39,7 @@
             }
         }
 
-        public void CheckShooting()
+        public override void CheckShooting()
         {
             if (this.FiringTimer > this.FireRate)
             {
@@ -57,7 +57,7 @@
                     bullet.Alive = true;
                     bullet.Position = this.Position;
                     bullet.Rotation = this.Rotation;
-                    bullet.Speed = 10;
+                    bullet.Speed = 5;
                     break;
                 }
             }

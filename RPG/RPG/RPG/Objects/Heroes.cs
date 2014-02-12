@@ -8,14 +8,13 @@
     using Interfaces;
     using Microsoft.Xna.Framework.Audio;
 
-    public class Heroes : Units , IShootable
+    public class Heroes : Units , IShootable, ILevelable
     {
         private int ammo = 0;
         private int firingTimer = 0;
         private float fireRate = 20;
 
         private KeyboardState keyboard;
-        private KeyboardState previousKeyboard;
         private MouseState mouse;
 
         private SoundEffect walk;
@@ -42,7 +41,7 @@
             gunShotInstance.Volume = 0.1f;
         }
 
-        public float FireRate
+        public override float FireRate
         {
             get
             {
@@ -74,7 +73,7 @@
             }
         }
 
-        public int FiringTimer
+        public override int FiringTimer
         {
             get
             {
@@ -145,7 +144,7 @@
             this.PreviousKeyboard = this.keyboard;            
         }
 
-        public void CheckShooting()
+        public override void CheckShooting()
         {
             if (this.FiringTimer > this.FireRate)
             {
