@@ -12,7 +12,7 @@
         
         public MeleUnits(Vector2 pos, float speed) : base(pos,speed)
         {
-            //To add stats to the unit.
+            //To add stats: health, attack, defence, skills, experience to give.
 
         }
 

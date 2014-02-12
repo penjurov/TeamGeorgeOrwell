@@ -126,7 +126,6 @@
             {
                 if (!bullet.Alive)
                 {
-                    this.Ammo--;
                     bullet.Alive = true;
                     bullet.Position = this.Position;
                     bullet.Rotation = this.Rotation;

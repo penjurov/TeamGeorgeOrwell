@@ -44,6 +44,7 @@
             {
                 return zoomAmount;
             }
+
             set
             {
                 zoomAmount = value;

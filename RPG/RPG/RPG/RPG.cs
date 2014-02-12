@@ -4,7 +4,7 @@
     using Microsoft.Xna.Framework.Graphics;
     using Screens;
 
-    public class Rpg : Microsoft.Xna.Framework.Game
+    public class Rpg : Game
     {
         private static Camera camera = new Camera();
         private static EnumActiveWindow activeWindow;
@@ -43,6 +43,7 @@
             {
                 return camera;
             }
+
             private set
             {
                 camera = value;
