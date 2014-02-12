@@ -25,14 +25,14 @@
         public Rpg()
         {
             this.graphics = new GraphicsDeviceManager(this);
-<<<<<<< HEAD
+
             this.graphics.PreferredBackBufferWidth = 1024;
             this.graphics.PreferredBackBufferHeight = 768;
-=======
+
             this.graphics.PreferredBackBufferWidth = 1000;
             this.graphics.PreferredBackBufferHeight = 700;
             this.graphics.IsFullScreen = false;
->>>>>>> 71dabed0cb897f544d2914a7bf9eb0416f51d0cc
+
             this.Content.RootDirectory = "Content";
 
             this.mainTheme = Content.Load<SoundEffect>(@"Textures\Sounds\mainTheme");
@@ -103,7 +103,7 @@
                 }
 
                 this.IsMouseVisible = false;
-                this.gameScreen.Update(viewport);
+                this.gameScreen.Update();
             }
 
             if (activeWindow != EnumActiveWindow.MainMenu)

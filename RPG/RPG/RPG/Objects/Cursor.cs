@@ -15,13 +15,11 @@
             this.Position = pos;
         }
 
-        public override void Update()
+        public void UpdateCursor()
         {
             this.mouse = Mouse.GetState();
 
             this.Position = new Vector2(mouse.X, mouse.Y);
-
-            base.Update();
         }
     }
 }
