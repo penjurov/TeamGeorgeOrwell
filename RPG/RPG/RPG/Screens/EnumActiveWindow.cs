@@ -5,6 +5,7 @@
         MainMenu,
         GameWindow,
         AboutWindow,
-        ControlWindow
+        ControlWindow,
+        ChooseHeroWindow
     }
 }

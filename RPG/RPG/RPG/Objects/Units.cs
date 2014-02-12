@@ -6,7 +6,7 @@
     using Interfaces;
     using Screens;
 
-    public class Units : Obj, ISkillable, IMovable
+    public abstract class Units : Obj, ISkillable, IMovable
     {      
         public Units(Vector2 pos,float speed) : base(pos)
         {
@@ -29,11 +29,8 @@
 
         public virtual void Update()
         {
-            float characterX = GameScreen.PScreen.Width / 2;
-            float characterY = GameScreen.PScreen.Height / 2;
-
-            this.Rotation = this.PointDirecions(Camera.GlobalToLocal(this.Position).X,
-               Camera.GlobalToLocal(this.Position).Y, characterX, characterY);
+            this.Rotation = this.PointDirecions(this.Position.X,this.Position.Y, 
+                GameScreen.CharacterPosition.X,GameScreen.CharacterPosition.Y);
 
             this.PushTo(this.Speed, this.Rotation); 
         }

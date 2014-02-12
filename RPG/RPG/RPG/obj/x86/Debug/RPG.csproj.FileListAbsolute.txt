@@ -141,3 +141,36 @@ D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framewor
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\thor_top_view.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\gunShot.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\mainTheme.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt1.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt2.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\thor_top_view.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.exe
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.pdb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Rpg.csprojResolveAssemblyReference.cache
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\gunShot.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\mainTheme.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt1.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt2.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Level1.xnb
+<<<<<<< HEAD
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_eir.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_odin.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_thor.xnb
+=======
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Level1.xnb
+>>>>>>> 963f3c1e683ee4e8b146d338011de30946210d3f
