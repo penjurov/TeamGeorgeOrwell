@@ -25,6 +25,8 @@
 
         public float Defence { get; set; }
 
+        public bool Alive { get; set; }
+
         public virtual void Update()
         {
             float characterX = GameScreen.PScreen.Width / 2;

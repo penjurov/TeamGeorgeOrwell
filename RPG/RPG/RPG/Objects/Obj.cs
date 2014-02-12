@@ -18,9 +18,7 @@
         public Vector2 Position { get; set; }
 
         public Texture2D SpriteIndex { get; set; }
-           
-        public bool Alive { get; set; }
-
+                  
         public virtual void LoadContent(ContentManager content, string sprName)
         {
             this.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", sprName));

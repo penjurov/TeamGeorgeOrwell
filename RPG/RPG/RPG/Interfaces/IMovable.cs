@@ -13,5 +13,7 @@ namespace Rpg.Interfaces
 
         void Update();
 
+        bool Alive { get; set; }
+
     }
 }
