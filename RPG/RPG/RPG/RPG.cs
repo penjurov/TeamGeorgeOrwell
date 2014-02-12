@@ -12,6 +12,7 @@
         private readonly GraphicsDeviceManager graphics;
         private readonly MainMenuScreen mainMenuScreen = new MainMenuScreen();
         private readonly GameScreen gameScreen = new GameScreen();
+        private readonly ChooseHeroScreen chooseHero = new ChooseHeroScreen();
 
         private SpriteBatch spriteBatch;
         private Viewport viewport;
@@ -64,6 +65,8 @@
             this.viewport = this.GraphicsDevice.Viewport;
             
             this.mainMenuScreen.Load(this.Content);
+            
+            this.chooseHero.Load(this.Content);
                        
             base.LoadContent();
         }
@@ -78,17 +81,25 @@
                 this.mainThemeInstance.Play();
             }
 
+            if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
+            {
+                this.IsMouseVisible = true;
+                this.chooseHero.Update();
+                this.mainThemeInstance.Play();
+            }
+
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
                 if (!loaded)
                 {
-                    this.gameScreen.Load(this.Content, this.viewport, this.graphics);
+                    this.gameScreen.Load(this.Content, this.viewport, this.graphics); 
                     loaded = true;
                 }
                 
                 this.IsMouseVisible = false;
                 this.gameScreen.Update();
             }
+
             if (activeWindow != EnumActiveWindow.MainMenu)
             {
                 this.mainThemeInstance.Stop();
@@ -107,6 +118,11 @@
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
                 this.gameScreen.Draw(this.graphics.GraphicsDevice, this.viewport, this.spriteBatch, this.Content);
+            }
+
+            if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
+            {
+                this.chooseHero.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
 
             base.Draw(gameTime);
