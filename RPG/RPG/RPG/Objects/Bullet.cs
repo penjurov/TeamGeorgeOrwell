@@ -16,6 +16,8 @@
             this.SpriteIndex = texture;
         }
 
+        public bool Alive { get; set; }
+
         public float Rotation { get; set; }
  
         public float Speed
@@ -35,7 +37,7 @@
         {
             if (this.Alive)
             {
-                PushTo(this.Speed, this.Rotation);
+                this.PushTo(this.Speed, this.Rotation);
             }          
         }
 

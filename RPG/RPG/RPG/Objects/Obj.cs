@@ -6,7 +6,7 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
-    public abstract class Obj
+    public abstract class Obj:Game
     {
         private readonly float scale = 0.7f;
 
@@ -18,9 +18,7 @@
         public Vector2 Position { get; set; }
 
         public Texture2D SpriteIndex { get; set; }
-           
-        public bool Alive { get; set; }
-
+                  
         public virtual void LoadContent(ContentManager content, string sprName)
         {
             this.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", sprName));
