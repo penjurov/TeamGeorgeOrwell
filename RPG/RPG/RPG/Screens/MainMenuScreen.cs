@@ -115,7 +115,12 @@
 
             if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter))
             {
-                if (PMainMenuItems[this.selectedEntry].ItemText == "New game" || PMainMenuItems[this.selectedEntry].ItemText == "Resume game")
+                if (PMainMenuItems[this.selectedEntry].ItemText == "New game")
+                {
+                    Rpg.ActiveWindowSet(EnumActiveWindow.ChooseHeroWindow);
+                }
+
+                if (PMainMenuItems[this.selectedEntry].ItemText == "Resume game")
                 {
                     Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
                 }

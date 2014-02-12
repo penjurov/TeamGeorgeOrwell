@@ -26,6 +26,7 @@
         private KeyboardState previousKeyboard;
         private MouseState mouse;
         private Vector2 characterPosition;
+        private bool inMenu;
 
         public static List<Bullet> PBullets
         {
@@ -155,50 +156,55 @@
 
         public void Update()
         {
-            this.mouse = Mouse.GetState();
-
-            this.soldier.Update();
-            this.cursor.UpdateCursor();
-
-            this.rangedUnit.FiringTimer++;
-            this.soldier.FiringTimer++;
-
-            if (Math.Abs(this.soldier.Position.X - this.meleUnit.Position.X) < 475 &&
-               Math.Abs(this.soldier.Position.Y - this.meleUnit.Position.Y) < 340)
-            {
-                this.meleUnit.Update();               
-            }
-
-            if (Math.Abs(this.soldier.Position.X - this.rangedUnit.Position.X) < 475 &&
-               Math.Abs(this.soldier.Position.Y - this.rangedUnit.Position.Y) < 340)
-            {
-                this.rangedUnit.Update();
-                this.rangedUnit.CheckShooting();
-            }
             
-            foreach (var bullet in bullets)
-            {
-                if(bullet.Alive)
-                bullet.Update();
-            }
+                this.mouse = Mouse.GetState();
+                this.keyboard = Keyboard.GetState();
 
-            foreach (var bullet in enemyBullets)
-            {
-                if(bullet.Alive)
-                bullet.Update();
-            }
+                this.soldier.Update();
+                this.cursor.UpdateCursor();
 
-            if (this.keyboard.IsKeyDown(Keys.Tab))      
-            {
-                MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
-                Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
-            }            
+                this.rangedUnit.FiringTimer++;
+                this.soldier.FiringTimer++;
 
-            if (this.mouse.LeftButton == ButtonState.Pressed)
-            {
-                
-                 this.soldier.CheckShooting();                
-            }
+                if (Math.Abs(this.soldier.Position.X - this.meleUnit.Position.X) < 475 &&
+                   Math.Abs(this.soldier.Position.Y - this.meleUnit.Position.Y) < 340)
+                {
+                    this.meleUnit.Update();
+                }
+
+                if (Math.Abs(this.soldier.Position.X - this.rangedUnit.Position.X) < 475 &&
+                   Math.Abs(this.soldier.Position.Y - this.rangedUnit.Position.Y) < 340)
+                {
+                    this.rangedUnit.Update();
+                    this.rangedUnit.CheckShooting();
+                }
+
+                //if (inMenu)
+                //{
+                foreach (var bullet in bullets)
+                {
+                    if (bullet.Alive)
+                        bullet.Update();
+                }
+
+                foreach (var bullet in enemyBullets)
+                {
+                    if (bullet.Alive)
+                        bullet.Update();
+                }
+                //}
+                if (this.keyboard.IsKeyDown(Keys.Tab))
+                {
+                    MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
+                    Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
+                }
+
+                if (this.mouse.LeftButton == ButtonState.Pressed)
+                {
+                    this.soldier.CheckShooting();
+                }
+            
+            inMenu = true;
         }
 
     }
