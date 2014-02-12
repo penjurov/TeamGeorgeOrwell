@@ -17,8 +17,8 @@
         private SpriteBatch spriteBatch;
         private Viewport viewport;
 
-        private SoundEffect mainTheme;
-        private SoundEffectInstance mainThemeInstance;
+        //private SoundEffect mainTheme;
+        //private SoundEffectInstance mainThemeInstance;
 
         public Rpg()
         {
@@ -27,10 +27,10 @@
             this.graphics.PreferredBackBufferHeight = 700;
             this.Content.RootDirectory = "Content";
 
-            this.mainTheme = Content.Load<SoundEffect>(@"Textures\Sounds\mainTheme");
-            this.mainThemeInstance = this.mainTheme.CreateInstance();
-            this.mainThemeInstance.IsLooped = false;
-            this.mainThemeInstance.Volume = 0.2f;
+            //this.mainTheme = Content.Load<SoundEffect>(@"Textures\Sounds\mainTheme");
+            //this.mainThemeInstance = this.mainTheme.CreateInstance();
+            //this.mainThemeInstance.IsLooped = false;
+            //this.mainThemeInstance.Volume = 0.2f;
         }
 
         public static EnumActiveWindow PActiveWindow
@@ -87,7 +87,7 @@
             {
                 this.IsMouseVisible = true;
                 this.mainMenuScreen.Update();
-                this.mainThemeInstance.Play();
+                //this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.GameWindow)
@@ -95,11 +95,12 @@
                 this.IsMouseVisible = false;
                 this.gameScreen.Update(Camera);
             }
-            if (activeWindow != EnumActiveWindow.MainMenu)
-            {
-                this.mainThemeInstance.Stop();
-            }
-            base.Update(gameTime);
+            //    if (activeWindow != EnumActiveWindow.MainMenu)
+            //    {
+            //        this.mainThemeInstance.Stop();
+            //    }
+            //    base.Update(gameTime);
+            //}
         }
 
         protected override void Draw(GameTime gameTime)
