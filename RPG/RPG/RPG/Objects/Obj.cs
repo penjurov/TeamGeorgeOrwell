@@ -6,6 +6,8 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
+    //Github is the most fucking shit in the WORRLLLD
+
     public abstract class Obj:Game
     {
         private readonly float scale = 0.7f;
