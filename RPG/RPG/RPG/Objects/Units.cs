@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
     using Interfaces;
     using Screens;
 
@@ -27,7 +28,14 @@
 
         public bool Alive { get; set; }
 
+<<<<<<< HEAD
         public abstract int FiringTimer { get; set; }
+=======
+        public override void Update(Viewport viewport)
+        {
+            this.Rotation = this.PointDirecions(this.Position.X,this.Position.Y, 
+                GameScreen.CharacterPosition.X,GameScreen.CharacterPosition.Y);
+>>>>>>> 71dabed0cb897f544d2914a7bf9eb0416f51d0cc
 
         public abstract float FireRate { get; set; }
 

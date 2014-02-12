@@ -18,6 +18,14 @@
         public Vector2 Position { get; set; }
 
         public Texture2D SpriteIndex { get; set; }
+
+        public virtual void Update(Viewport viewport)
+        {
+        }
+
+        public virtual void Update()
+        {
+        }
                   
         public virtual void LoadContent(ContentManager content, string sprName)
         {
@@ -31,6 +39,10 @@
             spriteBatch.Draw(this.SpriteIndex, this.Position, null, Color.White, 
                 MathHelper.ToRadians(rotation), center, this.scale, SpriteEffects.None, 0);
         }
-     
+
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(this.SpriteIndex, this.Position, Color.White);
+        }
     }
 }

@@ -25,8 +25,14 @@
         public Rpg()
         {
             this.graphics = new GraphicsDeviceManager(this);
+<<<<<<< HEAD
             this.graphics.PreferredBackBufferWidth = 1024;
             this.graphics.PreferredBackBufferHeight = 768;
+=======
+            this.graphics.PreferredBackBufferWidth = 1000;
+            this.graphics.PreferredBackBufferHeight = 700;
+            this.graphics.IsFullScreen = false;
+>>>>>>> 71dabed0cb897f544d2914a7bf9eb0416f51d0cc
             this.Content.RootDirectory = "Content";
 
             this.mainTheme = Content.Load<SoundEffect>(@"Textures\Sounds\mainTheme");
@@ -56,7 +62,7 @@
         protected override void Initialize()
         {
             base.Initialize();
-            PActiveWindow = EnumActiveWindow.MainMenu;          
+            PActiveWindow = EnumActiveWindow.MainMenu;           
         }
 
         protected override void LoadContent()
@@ -95,21 +101,21 @@
                     this.gameScreen.Load(this.Content, this.viewport, this.graphics); 
                     loaded = true;
                 }
-                
+
                 this.IsMouseVisible = false;
-                this.gameScreen.Update();
+                this.gameScreen.Update(viewport);
             }
 
             if (activeWindow != EnumActiveWindow.MainMenu)
             {
                 this.mainThemeInstance.Stop();
             }
-            base.Update(gameTime);
-            
+         //   base.Update(gameTime);           
         }
 
         protected override void Draw(GameTime gameTime)
         {
+
             if (activeWindow == EnumActiveWindow.MainMenu)
             {
                 this.mainMenuScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
@@ -125,7 +131,7 @@
                 this.chooseHero.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
 
-            base.Draw(gameTime);
+           // base.Draw(gameTime);
         }
     }
 }
