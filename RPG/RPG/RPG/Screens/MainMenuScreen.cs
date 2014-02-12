@@ -89,6 +89,7 @@
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();
 
+
             if (this.keyboard.IsKeyDown(Keys.Down) && this.previousKeyboard.IsKeyUp(Keys.Down))
             {
                 PMainMenuItems[this.selectedEntry].Selected = false;

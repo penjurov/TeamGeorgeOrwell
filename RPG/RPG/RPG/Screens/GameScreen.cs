@@ -91,8 +91,8 @@
 
             screen = new Rectangle(viewport.X, viewport.Y, viewport.Width, viewport.Height);
 
-            this.meleUnit = new MeleUnits(new Vector2(500, 500), 1.6f);
-            this.rangedUnit = new RangedUnits(new Vector2(480, 480), 0.1f);
+            this.meleUnit = new MeleUnits(new Vector2(200, 500), 1.6f);
+            this.rangedUnit = new RangedUnits(new Vector2(200, 700),0);
 
             this.soldier.LoadContent(content, "thor_top_view");
             this.cursor.LoadContent(content, "crosshair");
@@ -114,7 +114,6 @@
                 EnemyBullets.Add(o);
             }
 
-            camera.Position = this.soldier.Position;
         }
 
         public void Draw(GraphicsDevice graphicDevice, Viewport viewport, SpriteBatch spriteBatch, ContentManager content, Camera camera)
@@ -166,14 +165,14 @@
             this.rangedUnit.FiringTimer++;
             this.soldier.FiringTimer++;
 
-            if (Math.Abs(this.soldier.Position.X - this.meleUnit.Position.X) < 475 &&
-               Math.Abs(this.soldier.Position.Y - this.meleUnit.Position.Y) < 340)
+            if (Math.Abs(this.soldier.Position.X - this.meleUnit.Position.X) < 300 &&
+               Math.Abs(this.soldier.Position.Y - this.meleUnit.Position.Y) < 300)
             {
                 this.meleUnit.Update();               
             }
 
-            if (Math.Abs(this.soldier.Position.X - this.rangedUnit.Position.X) < 475 &&
-               Math.Abs(this.soldier.Position.Y - this.rangedUnit.Position.Y) < 340)
+            if (Math.Abs(this.soldier.Position.X - this.rangedUnit.Position.X) < 150 &&
+               Math.Abs(this.soldier.Position.Y - this.rangedUnit.Position.Y) < 150)
             {
                 this.rangedUnit.Update();
                 this.rangedUnit.CheckShooting();

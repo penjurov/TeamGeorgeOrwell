@@ -10,7 +10,7 @@
 
         public Camera()
         {
-            this.Position = new Vector2(GameScreen.PRoom.Width / 2, GameScreen.PRoom.Height / 2);
+            this.Position = new Vector2(GameScreen.PRoom.Width, GameScreen.PRoom.Height);
             this.Rotation = 0.0f;
             this.Zoom = 1.0f;
 
@@ -106,7 +106,7 @@
             float viewPortHeight = graphics.Viewport.Height;
 
             this.MatrixTransform = Matrix.CreateTranslation(new Vector3(-this.Position.X, -this.Position.Y, 0)) *
-                                   Matrix.CreateRotationZ(this.Rotation) *
+                                   Matrix.CreateRotationZ(0) *
                                    Matrix.CreateScale(this.Zoom) *
                                    Matrix.CreateTranslation(new Vector3(viewPortWidth * 0.5f, viewPortHeight * 0.5f, 0));
 

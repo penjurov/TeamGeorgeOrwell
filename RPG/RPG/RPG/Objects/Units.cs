@@ -29,8 +29,8 @@
 
         public virtual void Update()
         {
-            float characterX = GameScreen.PScreen.Width / 2;
-            float characterY = GameScreen.PScreen.Height / 2;
+            float characterX = GameScreen.PRoom.Width / 2;
+            float characterY = GameScreen.PRoom.Height / 2;
 
             this.Rotation = this.PointDirecions(Camera.GlobalToLocal(this.Position).X,
                Camera.GlobalToLocal(this.Position).Y, characterX, characterY);

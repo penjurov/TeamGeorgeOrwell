@@ -8,7 +8,7 @@
     public class RangedUnits : MeleUnits, IShootable
     {
         private int firingTimer = 0;
-        private float fireRate = 20;
+        private float fireRate = 60;
 
         public RangedUnits(Vector2 pos, float speed) : base(pos, speed)
         {
@@ -57,7 +57,7 @@
                     bullet.Alive = true;
                     bullet.Position = this.Position;
                     bullet.Rotation = this.Rotation;
-                    bullet.Speed = 20;
+                    bullet.Speed = 5;
                     break;
                 }
             }
