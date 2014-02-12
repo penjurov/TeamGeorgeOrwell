@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Rpg.Interfaces
 {
@@ -12,6 +10,5 @@ namespace Rpg.Interfaces
         float FireRate { get; set; }
 
         void CheckShooting();
-
     }
 }
