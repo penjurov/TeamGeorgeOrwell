@@ -4,7 +4,6 @@
     using System.Linq;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
-    using Microsoft.Xna.Framework.Graphics;
     using Screens;
     using Interfaces;
     using Microsoft.Xna.Framework.Audio;
@@ -88,7 +87,7 @@
             }
         }
 
-        public override void Update(Viewport viewport)
+        public override void Update()
         {
             this.keyboard = Keyboard.GetState();
             this.mouse = Mouse.GetState();
@@ -96,7 +95,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.W))
             {
-                if (oldPos.Y > viewport.Y)
+                if (oldPos.Y > GameScreen.PRoom.Y+20)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y - this.Speed);
                     GameScreen.CharacterPosition = this.Position;
@@ -108,7 +107,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.A))
             {
-                if (oldPos.X > viewport.X)
+                if (oldPos.X > GameScreen.PRoom.X+20)
                 {
                     this.Position = new Vector2(oldPos.X - this.Speed, oldPos.Y);
                     GameScreen.CharacterPosition = this.Position;
@@ -119,7 +118,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.S) )
             {
-                if (oldPos.Y < viewport.Height)
+                if (oldPos.Y < GameScreen.PRoom.Height-90)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y + this.Speed);
                     GameScreen.CharacterPosition = this.Position;
@@ -130,7 +129,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.D))
             {
-                if (oldPos.X < viewport.Width)
+                if (oldPos.X < GameScreen.PRoom.Width-50)
                 {
                     this.Position = new Vector2(oldPos.X + this.Speed, oldPos.Y);
                     GameScreen.CharacterPosition = this.Position;

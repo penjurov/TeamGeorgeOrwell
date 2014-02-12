@@ -1,0 +1,22 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/RPG/.JustCode/RPG.solution-user.settings.xml
+/RPG/RPG/RPG/bin/x86/Debug/Content/Fonts/Comic Sans MS.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/GameScreens/GameScreen.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/MainMenu/MainMenu.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/MainMenu/MainMenuPlank.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/MainMenu/MainMenuPlank01.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/MainMenu/MainMenuPlank02.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/MainMenu/MainMenuPlank03.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/Objects/bullet.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/Objects/crosshair.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/Objects/male.xnb
+/RPG/RPG/RPG/bin/x86/Debug/Content/Textures/Objects/thor_top_view.xnb
+/RPG/RPG/RPG/bin/x86/Debug/RPG.exe
+/RPG/RPG/RPG/obj/x86/Debug/cachefile-{444667E5-9B2D-4627-A32F-C35DBF045B1C}-targetpath.txt
+/RPG/RPG/RPG/obj/x86/Debug/ContentPipeline-{444667E5-9B2D-4627-A32F-C35DBF045B1C}.xml
+/RPG/RPG/RPG/obj/x86/Debug/Microsoft.Xna.Framework.RuntimeProfile.txt
+/RPG/RPG/RPG/obj/x86/Debug/RPG.exe
+/RPG/RPG/RPG/obj/x86/Debug/RPG.pdb

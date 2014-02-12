@@ -13,6 +13,7 @@
         private static List<Bullet> bullets = new List<Bullet>();
         private static List<Bullet> enemyBullets = new List<Bullet>();
 
+        private static Rectangle room;
         private readonly Cursor cursor = new Cursor(new Vector2(0, 0));
 
         private Texture2D gameWindowTexture;
@@ -21,8 +22,13 @@
         private MeleUnits meleUnit;
         private RangedUnits rangedUnit;
         private KeyboardState keyboard;
+        private KeyboardState previousKeyboard;
         private MouseState mouse;
-        private MouseState previousMouse;
+
+        private Vector2 characterPosition;
+        private bool inMenu;
+
+
 
         public static List<Bullet> PBullets
         {
@@ -50,15 +56,16 @@
             }
         }
 
-        public Heroes Soldier
+        public static Rectangle PRoom
         {
             get
             {
-                return this.soldier;
+                return room;
             }
-            set
+
+            private set
             {
-                this.soldier = value;
+                room = value;
             }
         }
 
@@ -68,8 +75,9 @@
         public void Load(ContentManager content, Viewport viewport, GraphicsDeviceManager graphics)
         {
             this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\Level1");
+            room = new Rectangle(0, 0, gameWindowTexture.Width, gameWindowTexture.Height);
 
-            CharacterPosition = new Vector2(viewport.Width / 2, viewport.Height / 2);
+            CharacterPosition = new Vector2(room.Width/2, room.Height/2);
 
             this.soldier = new Heroes(CharacterPosition, 2);
 
@@ -80,7 +88,7 @@
             this.cursor.LoadContent(content, "crosshair");
             this.meleUnit.LoadContent(content, "male");
             this.rangedUnit.LoadContent(content, "male");
-            this.soldier.Ammo = 200;
+            this.soldier.Ammo = 100;
 
             Texture2D bulletTexture = content.Load<Texture2D>(@"Textures\Objects\bullet");
 
@@ -99,19 +107,19 @@
 
         public void Draw(GraphicsDevice graphicDevice, Viewport viewport, SpriteBatch spriteBatch, ContentManager content)
         {
-            this.gameWindowTexturePos = new Vector2(0, 0);
+            this.gameWindowTexturePos = new Vector2(0,0);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
-            
+            graphicDevice.Clear(Color.Black);
             spriteBatch.Draw(this.gameWindowTexture, this.gameWindowTexturePos, Color.White);
 
-            this.soldier.Draw(spriteBatch, viewport, soldier.Rotation);
+            this.soldier.Draw(spriteBatch, viewport,soldier.Rotation);
             this.meleUnit.Draw(spriteBatch, viewport, meleUnit.Rotation);
             this.rangedUnit.Draw(spriteBatch, viewport, rangedUnit.Rotation);
 
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             Vector2 ammoPosition = new Vector2(10, 10);
-
+           
             spriteBatch.DrawString(font, string.Format("Ammo :  {0}", this.soldier.Ammo), ammoPosition, Color.White);
 
             foreach (var bullet in bullets)
@@ -129,49 +137,53 @@
                     bullet.Draw(spriteBatch, viewport, bullet.Rotation);
                 }
             }
+
             spriteBatch.End();
 
             spriteBatch.Begin();
-            this.cursor.Draw(spriteBatch);
+            this.cursor.Draw(spriteBatch, viewport, soldier.Rotation);
             spriteBatch.End();
         }
 
-        public void Update(Viewport viewport)
+        public void Update()
         {
-            this.mouse = Mouse.GetState();
-            this.keyboard = Keyboard.GetState();
+            
+                this.mouse = Mouse.GetState();
+                this.keyboard = Keyboard.GetState();
 
-            this.soldier.Update(viewport);
+                this.soldier.Update();
+                this.cursor.UpdateCursor();
 
-            this.cursor.Update();
-            this.rangedUnit.FiringTimer++;
-            this.soldier.FiringTimer++;
+                this.rangedUnit.FiringTimer++;
+                this.soldier.FiringTimer++;
 
-            if (Math.Abs(this.soldier.Position.X - this.meleUnit.Position.X) < 475 &&
-               Math.Abs(this.soldier.Position.Y - this.meleUnit.Position.Y) < 340)
-            {
-                this.meleUnit.Update(viewport);
-            }
+                if (Math.Abs(this.soldier.Position.X - this.meleUnit.Position.X) < 475 &&
+                   Math.Abs(this.soldier.Position.Y - this.meleUnit.Position.Y) < 340)
+                {
+                    this.meleUnit.Update();
+                }
 
-            if (Math.Abs(this.soldier.Position.X - this.rangedUnit.Position.X) < 475 &&
-               Math.Abs(this.soldier.Position.Y - this.rangedUnit.Position.Y) < 340)
-            {
-                this.rangedUnit.Update(viewport);
-                this.rangedUnit.CheckShooting();
-            }
+                if (Math.Abs(this.soldier.Position.X - this.rangedUnit.Position.X) < 475 &&
+                   Math.Abs(this.soldier.Position.Y - this.rangedUnit.Position.Y) < 340)
+                {
+                    this.rangedUnit.Update();
+                    this.rangedUnit.CheckShooting();
+                }
 
-            foreach (var bullet in bullets)
-            {
-                if (bullet.Alive)
-                    bullet.Update();
-            }
+                //if (inMenu)
+                //{
+                foreach (var bullet in bullets)
+                {
+                    if (bullet.Alive)
+                        bullet.Update();
+                }
 
-            foreach (var bullet in enemyBullets)
-            {
-                if (bullet.Alive)
-                    bullet.Update();
-            }
-
+                foreach (var bullet in enemyBullets)
+                {
+                    if (bullet.Alive)
+                        bullet.Update();
+                }
+                //}
                 if (this.keyboard.IsKeyDown(Keys.Tab))
                 {
                     MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
@@ -182,8 +194,8 @@
                 {
                     this.soldier.CheckShooting();
                 }
-
-                previousMouse = mouse;
+            
+            inMenu = true;
         }
 
     }
