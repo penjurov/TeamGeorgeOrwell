@@ -110,6 +110,33 @@
       <Time>2014-02-12T19:55:56.0983595+02:00</Time>
     </Item>
     <Item>
+      <Source>Textures\ChooseHero\select_eir.png</Source>
+      <Name>Textures\ChooseHero\select_eir</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_eir.xnb</Output>
+      <Time>2014-02-12T19:55:56.0653576+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ChooseHero\select_odin.png</Source>
+      <Name>Textures\ChooseHero\select_odin</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_odin.xnb</Output>
+      <Time>2014-02-12T19:55:56.0673578+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ChooseHero\select_thor.png</Source>
+      <Name>Textures\ChooseHero\select_thor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_thor.xnb</Output>
+      <Time>2014-02-12T19:55:56.0693579+02:00</Time>
+    </Item>
+    <Item>
       <Source>Textures\Sounds\gunShot.wav</Source>
       <Name>Textures\Sounds\gunShot</Name>
       <Importer>WavImporter</Importer>
@@ -144,33 +171,6 @@
       <Options>None</Options>
       <Output>D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt2.xnb</Output>
       <Time>2014-02-12T19:55:56.1793642+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\ChooseHero\select_eir.png</Source>
-      <Name>Textures\ChooseHero\select_eir</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_eir.xnb</Output>
-      <Time>2014-02-12T17:34:13+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\ChooseHero\select_odin.png</Source>
-      <Name>Textures\ChooseHero\select_odin</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_odin.xnb</Output>
-      <Time>2014-02-12T17:34:13+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Textures\ChooseHero\select_thor.png</Source>
-      <Name>Textures\ChooseHero\select_thor</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_thor.xnb</Output>
-      <Time>2014-02-12T17:34:13+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

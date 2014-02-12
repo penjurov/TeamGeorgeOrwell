@@ -24,12 +24,11 @@
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
         private MouseState mouse;
-<<<<<<< HEAD
+
         private Vector2 characterPosition;
         private bool inMenu;
-=======
-        private  Vector2 characterPosition;
->>>>>>> 963f3c1e683ee4e8b146d338011de30946210d3f
+
+
 
         public static List<Bullet> PBullets
         {
