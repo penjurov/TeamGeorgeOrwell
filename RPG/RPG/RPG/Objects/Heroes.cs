@@ -95,7 +95,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.W))
             {
-                if (oldPos.Y > GameScreen.PRoom.Y)
+                if (oldPos.Y > GameScreen.PRoom.Y+20)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y - this.Speed);
                     GameScreen.CharacterPosition = this.Position;
@@ -107,7 +107,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.A))
             {
-                if (oldPos.X > GameScreen.PRoom.X)
+                if (oldPos.X > GameScreen.PRoom.X+20)
                 {
                     this.Position = new Vector2(oldPos.X - this.Speed, oldPos.Y);
                     GameScreen.CharacterPosition = this.Position;
@@ -118,7 +118,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.S) )
             {
-                if (oldPos.Y < GameScreen.PRoom.Height)
+                if (oldPos.Y < GameScreen.PRoom.Height-90)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y + this.Speed);
                     GameScreen.CharacterPosition = this.Position;
@@ -129,7 +129,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.D))
             {
-                if (oldPos.X < GameScreen.PRoom.Width)
+                if (oldPos.X < GameScreen.PRoom.Width-50)
                 {
                     this.Position = new Vector2(oldPos.X + this.Speed, oldPos.Y);
                     GameScreen.CharacterPosition = this.Position;

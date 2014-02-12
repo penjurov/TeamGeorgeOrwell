@@ -73,7 +73,7 @@
             this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\Level1");
             room = new Rectangle(0, 0, gameWindowTexture.Width, gameWindowTexture.Height);
 
-            CharacterPosition = new Vector2(room.Width / 2, room.Height / 2);
+            CharacterPosition = new Vector2(room.Width/2, room.Height/2);
 
             this.soldier = new Heroes(CharacterPosition, 2);
 
