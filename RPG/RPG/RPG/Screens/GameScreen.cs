@@ -19,8 +19,9 @@
     
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;
-        private List<Units> units = new List<Units>();     
+        private List<Units> units = new List<Units>();
         private Heroes soldier;
+        private Obj something;
         //private MeleUnits meleUnit;
         //private RangedUnits rangedUnit;
         private KeyboardState keyboard;
@@ -71,35 +72,36 @@
         public void Load(ContentManager content, Viewport viewport, GraphicsDeviceManager graphics)
         {
             this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\Level1");
+
             room = new Rectangle(0, 0, gameWindowTexture.Width, gameWindowTexture.Height);
-
-            CharacterPosition = new Vector2(room.Width/2, room.Height/2);
-
+            
+            CharacterPosition = new Vector2(room.Width / 2, room.Height / 2);
+            
             switch (ChooseHeroScreen.HeroName)
             {
-                case "ODIN" :
+                case "ODIN":
                     {
                         this.soldier = new Heroes(CharacterPosition, 2, 1200, 110, 90);
-                        this.soldier.LoadContent(content, "thor_top_view");
+                        this.soldier.LoadContent(content, "Odin");
                         break;
                     }
-                case "THOR" :
+                case "THOR":
                     {
                         this.soldier = new Heroes(CharacterPosition, 2, 1500, 130, 100);
-                        this.soldier.LoadContent(content, "thor_top_view");
+                        this.soldier.LoadContent(content, "Thor");
                         break;
                     }
-                case "EIR" :
+                case "EIR":
                     {
                         this.soldier = new Heroes(CharacterPosition, 2, 1000, 90, 80);
-                        this.soldier.LoadContent(content, "thor_top_view");
+                        this.soldier.LoadContent(content, "Odin");
                         break;
                     }
                 default:
                     break;
             }
 
-            
+
             units.Add(this.soldier);
 
             AddMeleUnit(content, 900, 700, 0.6f, "male");
@@ -124,17 +126,19 @@
             
         public void Draw(GraphicsDevice graphicDevice, Viewport viewport, SpriteBatch spriteBatch, ContentManager content)
         {
-            this.gameWindowTexturePos = new Vector2(0,0);
+            this.gameWindowTexturePos = new Vector2(0, 0);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
             graphicDevice.Clear(Color.Black);
             spriteBatch.Draw(this.gameWindowTexture, this.gameWindowTexturePos, Color.White);
 
+
+
             foreach (var unit in units)
             {
-                unit.Draw(spriteBatch, viewport,unit.Rotation);
+                unit.Draw(spriteBatch, viewport, unit.Rotation);
             }
-            
+
 
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             Vector2 statsPosition = new Vector2(10, 10);
@@ -163,22 +167,22 @@
             }
 
             spriteBatch.End();
-
+         
             spriteBatch.Begin();
-            this.cursor.Draw(spriteBatch, viewport,  0);
+            this.cursor.DrawCursor(spriteBatch);
             spriteBatch.End();
         }
 
         public void Update()
-        {           
-            this.mouse = Mouse.GetState();
+        {
             this.keyboard = Keyboard.GetState();
-                
+
             this.cursor.UpdateCursor();
+            this.mouse = Mouse.GetState();
 
             foreach (var unit in units)
             {
-                if(unit is ILevelable)
+                if (unit is ILevelable)
                 {
                     unit.Update();
                 }
@@ -188,12 +192,12 @@
                         Math.Abs(this.soldier.Position.Y - unit.Position.Y) < 200)
                     {
                         unit.Update();
-                    }                      
+                    }
                 }
 
-                if(unit is IShootable)
-                {                                          
-                    if(unit is ILevelable)
+                if (unit is IShootable)
+                {
+                    if (unit is ILevelable)
                     {
                         unit.FiringTimer++;
                         if (this.mouse.LeftButton == ButtonState.Pressed)
@@ -212,7 +216,7 @@
                         }
                     }
                 }
-            }               
+            }
 
             foreach (var bullet in bullets)
             {

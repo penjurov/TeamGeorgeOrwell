@@ -10,7 +10,8 @@
     {
         private MouseState mouse;
 
-        public Cursor(Vector2 pos) : base(pos)
+        public Cursor(Vector2 pos)
+            : base(pos)
         {
             this.Position = pos;
         }
@@ -21,5 +22,11 @@
 
             this.Position = new Vector2(mouse.X, mouse.Y);
         }
+
+        public void DrawCursor(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(this.SpriteIndex, this.Position, Color.White);
+        }
+
     }
 }

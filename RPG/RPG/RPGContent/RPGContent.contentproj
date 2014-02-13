@@ -92,13 +92,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Objects\thor_top_view.png">
-      <Name>thor_top_view</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Textures\Sounds\gunShot.wav">
       <Name>gunShot</Name>
       <Importer>WavImporter</Importer>
@@ -127,7 +120,13 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Textures\Objects\Odin.png">
+      <Name>Odin</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Textures\ChooseHero\select_eir.png">
       <Name>select_eir</Name>
@@ -141,6 +140,13 @@
     </Compile>
     <Compile Include="Textures\ChooseHero\select_thor.png">
       <Name>select_thor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Objects\Thor.png">
+      <Name>Thor</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -3,6 +3,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Content;
     using Screens;
 
     public class Rpg : Game
@@ -73,6 +74,8 @@
             this.mainMenuScreen.Load(this.Content);
             
             this.chooseHero.Load(this.Content);
+
+
                        
             base.LoadContent();
         }
@@ -102,7 +105,7 @@
                     loaded = true;
                 }
 
-                this.IsMouseVisible = false;
+                this.IsMouseVisible = true;
                 this.gameScreen.Update();
             }
 

@@ -6,9 +6,13 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
-    public abstract class Obj:Game
+    public class Obj
     {
         private readonly float scale = 0.7f;
+
+        public Obj()
+        {
+        }
 
         public Obj(Vector2 pos)
         {
@@ -24,13 +28,14 @@
         {
             this.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", sprName));
         }
-       
+
         public virtual void Draw(SpriteBatch spriteBatch, Viewport viewport, float rotation)
         {
             Vector2 center = new Vector2(this.SpriteIndex.Width / 2, this.SpriteIndex.Height / 2);
 
-            spriteBatch.Draw(this.SpriteIndex, this.Position, null, Color.White, 
+            spriteBatch.Draw(this.SpriteIndex, this.Position, null, Color.White,
                 MathHelper.ToRadians(rotation), center, this.scale, SpriteEffects.None, 0);
         }
+
     }
 }

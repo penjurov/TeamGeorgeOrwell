@@ -4,6 +4,8 @@
     using System.Linq;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
+    using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.Graphics;
     using Screens;
     using Interfaces;
     using Microsoft.Xna.Framework.Audio;
@@ -26,19 +28,7 @@
        
         public Heroes(Vector2 pos, float speed) : base(pos,speed)
         {
-            Content.RootDirectory = "Content";
-            walk = Content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt1");
-            walk2 = Content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt2");
-            gunShot = Content.Load<SoundEffect>(@"Textures\Sounds\gunShot");
-            walkInstance = walk.CreateInstance();
-            walkInstance.IsLooped = false;
-            walkInstance.Volume = 0.1f;
-            walkInstance2 = walk2.CreateInstance();
-            walkInstance2.IsLooped = false;
-            walkInstance2.Volume = 0.1f;
-            gunShotInstance = gunShot.CreateInstance();
-            gunShotInstance.IsLooped = false;
-            gunShotInstance.Volume = 0.1f;
+            
         }
 
 
@@ -94,6 +84,22 @@
             }
         }
 
+        public override void LoadContent(ContentManager content, string sprName)
+        {
+            walk = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt1");
+            walk2 = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt2");
+            gunShot = content.Load<SoundEffect>(@"Textures\Sounds\gunShot");
+            walkInstance = walk.CreateInstance();
+            walkInstance.IsLooped = false;
+            walkInstance.Volume = 0.1f;
+            walkInstance2 = walk2.CreateInstance();
+            walkInstance2.IsLooped = false;
+            walkInstance2.Volume = 0.1f;
+            gunShotInstance = gunShot.CreateInstance();
+            gunShotInstance.IsLooped = false;
+            gunShotInstance.Volume = 0.1f;
+            this.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", sprName));
+        }
         public override void Update()
         {
             this.keyboard = Keyboard.GetState();
