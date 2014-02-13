@@ -8,14 +8,13 @@
     using Interfaces;
     using Microsoft.Xna.Framework.Audio;
 
-    public class Heroes : Units , IShootable
+    public class Heroes : Units , IShootable, ILevelable
     {
         private int ammo = 0;
         private int firingTimer = 0;
         private float fireRate = 20;
 
         private KeyboardState keyboard;
-        private KeyboardState previousKeyboard;
         private MouseState mouse;
 
         private SoundEffect walk;
@@ -42,7 +41,15 @@
             gunShotInstance.Volume = 0.1f;
         }
 
-        public float FireRate
+
+        public Heroes(Vector2 pos, float speed, float HP, float Att, float Def) : this(pos,speed)
+        {
+            this.Health = HP;
+            this.Attack = Att;
+            this.Defence = Def;
+        }
+
+        public override float FireRate
         {
             get
             {
@@ -74,7 +81,7 @@
             }
         }
 
-        public int FiringTimer
+        public override int FiringTimer
         {
             get
             {
@@ -95,7 +102,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.W))
             {
-                if (oldPos.Y > GameScreen.PRoom.Y)
+                if (oldPos.Y > GameScreen.PRoom.Y+20)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y - this.Speed);
                     GameScreen.CharacterPosition = this.Position;
@@ -107,7 +114,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.A))
             {
-                if (oldPos.X > GameScreen.PRoom.X)
+                if (oldPos.X > GameScreen.PRoom.X+20)
                 {
                     this.Position = new Vector2(oldPos.X - this.Speed, oldPos.Y);
                     GameScreen.CharacterPosition = this.Position;
@@ -118,7 +125,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.S) )
             {
-                if (oldPos.Y < GameScreen.PRoom.Height)
+                if (oldPos.Y < GameScreen.PRoom.Height-90)
                 {
                     this.Position = new Vector2(oldPos.X, oldPos.Y + this.Speed);
                     GameScreen.CharacterPosition = this.Position;
@@ -129,7 +136,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.D))
             {
-                if (oldPos.X < GameScreen.PRoom.Width)
+                if (oldPos.X < GameScreen.PRoom.Width-50)
                 {
                     this.Position = new Vector2(oldPos.X + this.Speed, oldPos.Y);
                     GameScreen.CharacterPosition = this.Position;
@@ -145,7 +152,7 @@
             this.PreviousKeyboard = this.keyboard;            
         }
 
-        public void CheckShooting()
+        public override void CheckShooting()
         {
             if (this.FiringTimer > this.FireRate)
             {

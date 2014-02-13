@@ -7,29 +7,24 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Objects;
+    using Interfaces;
 
     internal class GameScreen
     {
         private static List<Bullet> bullets = new List<Bullet>();
         private static List<Bullet> enemyBullets = new List<Bullet>();
-
+           
         private static Rectangle room;
         private readonly Cursor cursor = new Cursor(new Vector2(0, 0));
-
+    
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;
+        private List<Units> units = new List<Units>();     
         private Heroes soldier;
-        private MeleUnits meleUnit;
-        private RangedUnits rangedUnit;
+        //private MeleUnits meleUnit;
+        //private RangedUnits rangedUnit;
         private KeyboardState keyboard;
-        private KeyboardState previousKeyboard;
         private MouseState mouse;
-<<<<<<< HEAD
-        private Vector2 characterPosition;
-        private bool inMenu;
-=======
-        private  Vector2 characterPosition;
->>>>>>> 963f3c1e683ee4e8b146d338011de30946210d3f
 
         public static List<Bullet> PBullets
         {
@@ -78,22 +73,43 @@
             this.gameWindowTexture = content.Load<Texture2D>(@"Textures\GameScreens\Level1");
             room = new Rectangle(0, 0, gameWindowTexture.Width, gameWindowTexture.Height);
 
-            CharacterPosition = new Vector2(room.Width / 2, room.Height / 2);
+            CharacterPosition = new Vector2(room.Width/2, room.Height/2);
 
-            this.soldier = new Heroes(CharacterPosition, 2);
+            switch (ChooseHeroScreen.HeroName)
+            {
+                case "ODIN" :
+                    {
+                        this.soldier = new Heroes(CharacterPosition, 2, 1200, 110, 90);
+                        this.soldier.LoadContent(content, "thor_top_view");
+                        break;
+                    }
+                case "THOR" :
+                    {
+                        this.soldier = new Heroes(CharacterPosition, 2, 1500, 130, 100);
+                        this.soldier.LoadContent(content, "thor_top_view");
+                        break;
+                    }
+                case "EIR" :
+                    {
+                        this.soldier = new Heroes(CharacterPosition, 2, 1000, 90, 80);
+                        this.soldier.LoadContent(content, "thor_top_view");
+                        break;
+                    }
+                default:
+                    break;
+            }
 
-            this.meleUnit = new MeleUnits(new Vector2(500, 500), 1.3f);
-            this.rangedUnit = new RangedUnits(new Vector2(480, 480), 0);
+            
+            units.Add(this.soldier);
 
-            this.soldier.LoadContent(content, "thor_top_view");
+            AddMeleUnit(content, 900, 700, 0.6f, "male");
+            AddRangeUnit(content, 200, 670, 0, "male");
+          
             this.cursor.LoadContent(content, "crosshair");
-            this.meleUnit.LoadContent(content, "male");
-            this.rangedUnit.LoadContent(content, "male");
-            this.soldier.Ammo = 100;
 
             Texture2D bulletTexture = content.Load<Texture2D>(@"Textures\Objects\bullet");
 
-            for (int i = 0; i < this.soldier.Ammo; i++)
+            for (int i = 0; i < 100; i++)
             {
                 Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
                 PBullets.Add(o);
@@ -105,7 +121,7 @@
                 EnemyBullets.Add(o);
             }
         }
-
+            
         public void Draw(GraphicsDevice graphicDevice, Viewport viewport, SpriteBatch spriteBatch, ContentManager content)
         {
             this.gameWindowTexturePos = new Vector2(0,0);
@@ -114,14 +130,21 @@
             graphicDevice.Clear(Color.Black);
             spriteBatch.Draw(this.gameWindowTexture, this.gameWindowTexturePos, Color.White);
 
-            this.soldier.Draw(spriteBatch, viewport,soldier.Rotation);
-            this.meleUnit.Draw(spriteBatch, viewport, meleUnit.Rotation);
-            this.rangedUnit.Draw(spriteBatch, viewport, rangedUnit.Rotation);
+            foreach (var unit in units)
+            {
+                unit.Draw(spriteBatch, viewport,unit.Rotation);
+            }
+            
 
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
-            Vector2 ammoPosition = new Vector2(10, 10);
-           
-            spriteBatch.DrawString(font, string.Format("Ammo :  {0}", this.soldier.Ammo), ammoPosition, Color.White);
+            Vector2 statsPosition = new Vector2(10, 10);
+            spriteBatch.DrawString(font, string.Format("HP :  {0}", this.soldier.Health), statsPosition, Color.Red);
+
+            statsPosition = new Vector2(10, 40);
+            spriteBatch.DrawString(font, string.Format("Att :  {0}", this.soldier.Attack), statsPosition, Color.Red);
+
+            statsPosition = new Vector2(10, 70);
+            spriteBatch.DrawString(font, string.Format("Def :  {0}", this.soldier.Defence), statsPosition, Color.Red);
 
             foreach (var bullet in bullets)
             {
@@ -142,62 +165,86 @@
             spriteBatch.End();
 
             spriteBatch.Begin();
-            this.cursor.Draw(spriteBatch, viewport, soldier.Rotation);
+            this.cursor.Draw(spriteBatch, viewport,  0);
             spriteBatch.End();
         }
 
         public void Update()
-        {
-            
-                this.mouse = Mouse.GetState();
-                this.keyboard = Keyboard.GetState();
+        {           
+            this.mouse = Mouse.GetState();
+            this.keyboard = Keyboard.GetState();
+                
+            this.cursor.UpdateCursor();
 
-                this.soldier.Update();
-                this.cursor.UpdateCursor();
-
-                this.rangedUnit.FiringTimer++;
-                this.soldier.FiringTimer++;
-
-                if (Math.Abs(this.soldier.Position.X - this.meleUnit.Position.X) < 475 &&
-                   Math.Abs(this.soldier.Position.Y - this.meleUnit.Position.Y) < 340)
+            foreach (var unit in units)
+            {
+                if(unit is ILevelable)
                 {
-                    this.meleUnit.Update();
+                    unit.Update();
+                }
+                else
+                {
+                    if (Math.Abs(this.soldier.Position.X - unit.Position.X) < 200 &&
+                        Math.Abs(this.soldier.Position.Y - unit.Position.Y) < 200)
+                    {
+                        unit.Update();
+                    }                      
                 }
 
-                if (Math.Abs(this.soldier.Position.X - this.rangedUnit.Position.X) < 475 &&
-                   Math.Abs(this.soldier.Position.Y - this.rangedUnit.Position.Y) < 340)
-                {
-                    this.rangedUnit.Update();
-                    this.rangedUnit.CheckShooting();
+                if(unit is IShootable)
+                {                                          
+                    if(unit is ILevelable)
+                    {
+                        unit.FiringTimer++;
+                        if (this.mouse.LeftButton == ButtonState.Pressed)
+                        {
+                            this.soldier.CheckShooting();
+                        }
+                    }
+                    else
+                    {
+                        unit.FiringTimer++;
+                        if (Math.Abs(this.soldier.Position.X - unit.Position.X) < 200 &&
+                            Math.Abs(this.soldier.Position.Y - unit.Position.Y) < 200)
+                        {
+                            unit.Update();
+                            unit.CheckShooting();
+                        }
+                    }
                 }
+            }               
 
-                //if (inMenu)
-                //{
-                foreach (var bullet in bullets)
-                {
-                    if (bullet.Alive)
-                        bullet.Update();
-                }
+            foreach (var bullet in bullets)
+            {
+                if (bullet.Alive)
+                    bullet.Update();
+            }
 
-                foreach (var bullet in enemyBullets)
-                {
-                    if (bullet.Alive)
-                        bullet.Update();
-                }
-                //}
-                if (this.keyboard.IsKeyDown(Keys.Tab))
-                {
-                    MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
-                    Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
-                }
+            foreach (var bullet in enemyBullets)
+            {
+                if (bullet.Alive)
+                    bullet.Update();
+            }
 
-                if (this.mouse.LeftButton == ButtonState.Pressed)
-                {
-                    this.soldier.CheckShooting();
-                }
-            
-            inMenu = true;
+            if (this.keyboard.IsKeyDown(Keys.Tab))
+            {
+                MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
+                Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
+            }                          
         }
 
+        private void AddMeleUnit(ContentManager content, int x, int y, float speed, string textureName)
+        {
+            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), speed);
+            meleUnit.LoadContent(content, textureName);
+            units.Add(meleUnit);
+        }
+
+        private void AddRangeUnit(ContentManager content, int x, int y, float speed, string textureName)
+        {
+            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), speed);
+            rangedUnit.LoadContent(content, textureName);
+            units.Add(rangedUnit);
+        }
     }
 }

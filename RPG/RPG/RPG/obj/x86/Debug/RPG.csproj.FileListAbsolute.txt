@@ -1,129 +1,3 @@
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\obj\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\obj\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\ButtonNamesFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\CaptionFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\DamageFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\DebugFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\DescriptionFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\GearInfoFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\HeaderFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\HudDetailFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\PlayerNameFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\PlayerStatisticsFont.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\LoadingScreenStrip.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\AButton.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\BackButton.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\BButton.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\CharSelectFadeLeft.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\CharSelectFadeRight.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\CharSelectHlLeft.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\CharSelectHlRight.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\LeftTriggerButton.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\QuantityArrowLeft.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\QuantityArrowRight.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\RightTriggerButton.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\StartButton.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\XButton.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Textures\Buttons\YButton.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\WindowsGame1\RPG\RPG\bin\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\obj\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\bin\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\bin\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\obj\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\Test\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\bin\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\obj\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\Backup\RPG\RPG\obj\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\Crosshair.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\obj\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\bin\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\OneScreen\RPG\RPG\obj\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\obj\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\obj\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\OOP\Team project\Real\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.exe
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.pdb
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
-C:\Users\Mastermind\Documents\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
@@ -134,43 +8,18 @@ D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameS
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb
-D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.exe
-D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.pdb
-D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.csprojResolveAssemblyReference.cache
-D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
-D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\thor_top_view.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Level1.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_eir.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_odin.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_thor.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\gunShot.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\mainTheme.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt1.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt2.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenu.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank01.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank02.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\MainMenu\MainMenuPlank03.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameScreen.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\male.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bullet.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\thor_top_view.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Rpg.csprojResolveAssemblyReference.cache
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\gunShot.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\mainTheme.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt1.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt2.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Level1.xnb
-<<<<<<< HEAD
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_eir.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_odin.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_thor.xnb
-=======
-D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Level1.xnb
->>>>>>> 963f3c1e683ee4e8b146d338011de30946210d3f
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.exe
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.pdb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Rpg.csprojResolveAssemblyReference.cache

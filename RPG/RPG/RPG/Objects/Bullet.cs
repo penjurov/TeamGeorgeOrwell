@@ -33,7 +33,7 @@
             }
         }
       
-        public void Update()
+        public  void Update()
         {
             if (this.Alive)
             {

@@ -6,6 +6,7 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Objects;
 
     public class ChooseHeroScreen
     {
@@ -24,6 +25,7 @@
         private MouseState mouse;
         private MouseState previousMouse;
         private bool inMenu = false;
+        private static string heroName;
 
         public static List<MenuItems> PchooseHeroList
         {
@@ -35,6 +37,19 @@
             set
             {
                 chooseHeroList = value;
+            }
+        }
+
+        public static string HeroName
+        {
+            get
+            {
+                return heroName;
+            }
+
+            private set
+            {
+                heroName = value;
             }
         }
 
@@ -55,16 +70,13 @@
 
             spriteBatch.Begin();
 
-          //  spriteBatch.Draw(this.chooseHeroBackgroundTexture, this.chooseHeroBackgroundPosition, Color.White);
-
+ 
             if (PchooseHeroList.Count < 3)
             {
                 // Odin
                 this.heroPicturesPosition = new Vector2(10, 130);
                 PchooseHeroList.Add(new MenuItems(this.heroTexture[0], this.heroPicturesPosition, "ODIN", newFont, false));
-          
-               // PheroFrame.Add(new Texture2D(graphicDevice, this.heroTexture[0].Width, this.heroTexture[0].Height));
-               
+                      
                 // Thor
                 this.heroPicturesPosition.X += heroTexture[0].Width + 10;
                 PchooseHeroList.Add(new MenuItems(this.heroTexture[1], this.heroPicturesPosition, "THOR", newFont, false));
@@ -114,9 +126,9 @@
             {
                 if (inMenu)
                 {
+                    HeroName = chooseHeroList[this.selectedEntry].ItemText;
                     Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
-                }
-                
+                }              
             }
 
             if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed)
@@ -126,6 +138,7 @@
                     if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
                         this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)
                     {
+                        HeroName = item.ItemText;
                         Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
                     }
                 }
