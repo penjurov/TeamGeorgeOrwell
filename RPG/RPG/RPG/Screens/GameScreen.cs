@@ -1,13 +1,11 @@
 ﻿namespace Rpg.Screens
 {
-    using System;
     using System.Collections.Generic;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Objects;
-    using Interfaces;
 
     internal class GameScreen
     {
@@ -21,8 +19,6 @@
         private Vector2 gameWindowTexturePos;
         private List<Units> units = new List<Units>();
         private Heroes soldier;
-        //private MeleUnits meleUnit;
-        //private RangedUnits rangedUnit;
         private KeyboardState keyboard;
         private MouseState mouse;
 
@@ -102,7 +98,6 @@
 
 
             units.Add(this.soldier);
-
             AddMeleUnit(content, 900, 700, 0.6f, "male");
             AddRangeUnit(content, 200, 670, 0, "male");
           
@@ -130,8 +125,6 @@
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
             graphicDevice.Clear(Color.Black);
             spriteBatch.Draw(this.gameWindowTexture, this.gameWindowTexturePos, Color.White);
-
-
 
             foreach (var unit in units)
             {
@@ -181,40 +174,7 @@
 
             foreach (var unit in units)
             {
-                if (unit is ILevelable)
-                {
-                    unit.Update();
-                }
-                else
-                {
-                    if (Math.Abs(this.soldier.Position.X - unit.Position.X) < 200 &&
-                        Math.Abs(this.soldier.Position.Y - unit.Position.Y) < 200)
-                    {
-                        unit.Update();
-                    }
-                }
-
-                if (unit is IShootable)
-                {
-                    if (unit is ILevelable)
-                    {
-                        unit.FiringTimer++;
-                        if (this.mouse.LeftButton == ButtonState.Pressed)
-                        {
-                            this.soldier.CheckShooting();
-                        }
-                    }
-                    else
-                    {
-                        unit.FiringTimer++;
-                        if (Math.Abs(this.soldier.Position.X - unit.Position.X) < 200 &&
-                            Math.Abs(this.soldier.Position.Y - unit.Position.Y) < 200)
-                        {
-                            unit.Update();
-                            unit.CheckShooting();
-                        }
-                    }
-                }
+                unit.Update();
             }
 
             foreach (var bullet in bullets)

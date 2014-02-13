@@ -1,7 +1,6 @@
 ﻿namespace Rpg.Objects
 {
     using System;
-    using System.Linq;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
     using Microsoft.Xna.Framework.Content;
@@ -10,7 +9,7 @@
     using Interfaces;
     using Microsoft.Xna.Framework.Audio;
 
-    public class Heroes : Units , IShootable, ILevelable
+    public class Heroes : Units
     {
         private int ammo = 0;
         private int firingTimer = 0;
@@ -26,20 +25,14 @@
         private SoundEffect gunShot;
         private SoundEffectInstance gunShotInstance;
        
-        public Heroes(Vector2 pos, float speed) : base(pos,speed)
-        {
-            
-        }
-
-
-        public Heroes(Vector2 pos, float speed, float HP, float Att, float Def) : this(pos,speed)
+        public Heroes(Vector2 pos, float speed, float HP, float Att, float Def) : base(pos,speed)
         {
             this.Health = HP;
             this.Attack = Att;
             this.Defence = Def;
         }
 
-        public override float FireRate
+        public  float FireRate
         {
             get
             {
@@ -71,7 +64,7 @@
             }
         }
 
-        public override int FiringTimer
+        public  int FiringTimer
         {
             get
             {
@@ -155,31 +148,33 @@
 
             this.Rotation = this.PointDirecions(this.Position.X, this.Position.Y, this.mouse.X, this.mouse.Y);
 
-            this.PreviousKeyboard = this.keyboard;            
-        }
+            this.PreviousKeyboard = this.keyboard;
 
-        public override void CheckShooting()
-        {
-            if (this.FiringTimer > this.FireRate)
+            this.FiringTimer++;
+
+            if (this.mouse.LeftButton == ButtonState.Pressed)
             {
-                this.FiringTimer = 0;
                 this.Shoot();
-                gunShot.Play();
             }
         }
 
         private void Shoot()
         {
-            foreach (var bullet in GameScreen.PBullets)
+            if (this.FiringTimer > this.FireRate)
             {
-                if (!bullet.Alive)
+                this.FiringTimer = 0;
+                foreach (var bullet in GameScreen.PBullets)
                 {
-                    bullet.Alive = true;
-                    bullet.Position = this.Position;
-                    bullet.Rotation = this.Rotation;
-                    bullet.Speed = 10;
-                    break;
+                    if (!bullet.Alive)
+                    {
+                        bullet.Alive = true;
+                        bullet.Position = this.Position;
+                        bullet.Rotation = this.Rotation;
+                        bullet.Speed = 10;
+                        break;
+                    }
                 }
+                gunShot.Play();
             }
         }
 

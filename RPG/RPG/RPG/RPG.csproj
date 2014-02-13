@@ -75,10 +75,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ILevelable.cs" />
-    <Compile Include="Interfaces\IMovable.cs" />
-    <Compile Include="Interfaces\IShootable.cs" />
-    <Compile Include="Interfaces\ISkillable.cs" />
+    <Compile Include="Interfaces\IUpdateable.cs" />
     <Compile Include="Objects\RangedUnits.cs" />
     <Compile Include="RPG.cs" />
     <Compile Include="Screens\ChooseHeroScreen.cs" />

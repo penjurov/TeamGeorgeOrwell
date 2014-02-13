@@ -112,8 +112,7 @@
             if (activeWindow != EnumActiveWindow.MainMenu)
             {
                 this.mainThemeInstance.Stop();
-            }
-         //   base.Update(gameTime);           
+            }         
         }
 
         protected override void Draw(GameTime gameTime)
@@ -133,8 +132,6 @@
             {
                 this.chooseHero.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
-
-           // base.Draw(gameTime);
         }
     }
 }

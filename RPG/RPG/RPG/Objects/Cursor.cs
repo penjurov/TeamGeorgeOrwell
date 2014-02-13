@@ -1,7 +1,5 @@
 ﻿namespace Rpg.Objects
 {
-    using System;
-    using System.Linq;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
     using Microsoft.Xna.Framework.Graphics;

@@ -10,10 +10,6 @@
     {
         private readonly float scale = 0.7f;
 
-        public Obj()
-        {
-        }
-
         public Obj(Vector2 pos)
         {
             this.Position = pos;
@@ -22,7 +18,6 @@
         public Vector2 Position { get; set; }
 
         public Texture2D SpriteIndex { get; set; }
-
                   
         public virtual void LoadContent(ContentManager content, string sprName)
         {
@@ -36,6 +31,5 @@
             spriteBatch.Draw(this.SpriteIndex, this.Position, null, Color.White,
                 MathHelper.ToRadians(rotation), center, this.scale, SpriteEffects.None, 0);
         }
-
     }
 }

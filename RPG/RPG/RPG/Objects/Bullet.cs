@@ -1,12 +1,11 @@
 ﻿namespace Rpg.Objects
 {
     using System;
-    using System.Linq;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Interfaces;
 
-    public class Bullet : Obj, IMovable
+    public class Bullet : Obj, IUpdatable
     {
         private float speed;
 
@@ -33,7 +32,7 @@
             }
         }
       
-        public  void Update()
+        public void Update()
         {
             if (this.Alive)
             {

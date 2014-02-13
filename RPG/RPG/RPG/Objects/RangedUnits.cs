@@ -5,7 +5,7 @@
     using Interfaces;
     using Screens;
 
-    public class RangedUnits : MeleUnits, IShootable
+    public class RangedUnits : Units
     {
         private int firingTimer = 0;
         private float fireRate = 80;
@@ -15,7 +15,7 @@
             //To add stats to the unit: health, attack, defence, skills, experience to give.
         }
 
-        public override float FireRate
+        public  float FireRate
         {
             get
             {
@@ -27,7 +27,7 @@
             }
         }
 
-        public override int FiringTimer
+        public  int FiringTimer
         {
             get
             {
@@ -38,27 +38,32 @@
                 this.firingTimer = value;
             }
         }
-
-        public override void CheckShooting()
+        public override void Update()
         {
-            if (this.FiringTimer > this.FireRate)
+            this.FiringTimer++;
+            if (Math.Abs(GameScreen.CharacterPosition.X - this.Position.X) < 200 &&
+                Math.Abs(GameScreen.CharacterPosition.Y - this.Position.Y) < 200)
             {
-                this.FiringTimer = 0;
+                base.Update();
                 this.Shoot();
             }
         }
 
-        private void Shoot()
+        private  void Shoot()
         {
-            foreach (var bullet in GameScreen.EnemyBullets)
+            if (this.FiringTimer > this.FireRate)
             {
-                if (!bullet.Alive)
+                this.FiringTimer = 0;
+                foreach (var bullet in GameScreen.EnemyBullets)
                 {
-                    bullet.Alive = true;
-                    bullet.Position = this.Position;
-                    bullet.Rotation = this.Rotation;
-                    bullet.Speed = 5;
-                    break;
+                    if (!bullet.Alive)
+                    {
+                        bullet.Alive = true;
+                        bullet.Position = this.Position;
+                        bullet.Rotation = this.Rotation;
+                        bullet.Speed = 5;
+                        break;
+                    }
                 }
             }
         }
