@@ -10,5 +10,7 @@ namespace Rpg.Interfaces
         float Rotation { get; set; }
 
         bool Alive { get; set; }
+
+        void Update();
     }
 }
