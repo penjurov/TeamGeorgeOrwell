@@ -21,7 +21,6 @@
         private Vector2 gameWindowTexturePos;
         private List<Units> units = new List<Units>();
         private Heroes soldier;
-        private Obj something;
         //private MeleUnits meleUnit;
         //private RangedUnits rangedUnit;
         private KeyboardState keyboard;
