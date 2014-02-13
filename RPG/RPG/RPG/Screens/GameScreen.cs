@@ -98,8 +98,8 @@
 
 
             units.Add(this.soldier);
-            AddMeleUnit(content, 900, 700, 0.6f, "male");
-            AddRangeUnit(content, 200, 670, 0, "male");
+            AddMeleUnit(content, 900, 700, "male");
+            AddRangeUnit(content, 200, 670, "male");
           
             this.cursor.LoadContent(content, "crosshair");
 
@@ -196,16 +196,16 @@
             }                          
         }
 
-        private void AddMeleUnit(ContentManager content, int x, int y, float speed, string textureName)
+        private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), speed);
+            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 0.7f);
             meleUnit.LoadContent(content, textureName);
             units.Add(meleUnit);
         }
 
-        private void AddRangeUnit(ContentManager content, int x, int y, float speed, string textureName)
+        private void AddRangeUnit(ContentManager content, int x, int y,  string textureName)
         {
-            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), speed);
+            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0);
             rangedUnit.LoadContent(content, textureName);
             units.Add(rangedUnit);
         }

@@ -5,16 +5,31 @@
     using Interfaces;
     using Screens;
 
-    public class RangedUnits : Units
+    public class RangedUnits : Units,IBoostable
     {
         private int firingTimer = 0;
         private float fireRate = 80;
+        private float exp;
 
         public RangedUnits(Vector2 pos, float speed) : base(pos, speed)
         {
-            //To add stats to the unit: health, attack, defence, skills, experience to give.
+            this.Attack = 0;
+            this.Defence = 0;
+            this.Health = 0;
+            this.ExpGiven = 0;
         }
 
+        public float ExpGiven
+        {
+            get
+            {
+                return this.exp;
+            }
+            private set
+            {
+                this.exp = value;
+            }
+        }
         public  float FireRate
         {
             get
