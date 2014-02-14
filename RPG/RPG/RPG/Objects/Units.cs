@@ -5,12 +5,14 @@
     using Interfaces;
     using Microsoft.Xna.Framework;
     
-    public abstract class Units : Obj, ISkillable, IMovable
+    public abstract class Units : Obj
     {      
         public Units(Vector2 pos, float speed) : base(pos)
         {
             this.Speed = speed;
         }
+
+        public float ExpGiven { get; set; }
 
         public float Speed { get; set; }
 

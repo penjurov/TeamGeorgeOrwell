@@ -1,9 +1,10 @@
 ﻿namespace Rpg.Objects
 {
     using System.Collections.Generic;
-    using Microsoft.Xna.Framework;   
+    using Microsoft.Xna.Framework;
+    using Interfaces;
 
-    public class MeleUnits : Units
+    public class MeleUnits : Units, IMovable
     {
         public MeleUnits(Vector2 pos, float speed)
             : base(pos, speed)
@@ -13,8 +14,6 @@
             this.Health = 0;
             this.ExpGiven = 0;
         }
-
-        public float ExpGiven { get; set; }
 
         public override float FireRate { get; set; }
 

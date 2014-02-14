@@ -5,7 +5,7 @@
     using Microsoft.Xna.Framework;
     using Screens;
     
-    public class RangedUnits : MeleUnits, IShootable
+    public class RangedUnits : Units, IShootable
     {
         private int firingTimer = 0;
         private float fireRate = 80;

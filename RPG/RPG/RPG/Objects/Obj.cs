@@ -16,6 +16,8 @@
 
         public Vector2 Position { get; set; }
 
+        public Rectangle Area { get; set; }
+
         public Texture2D SpriteIndex { get; set; }               
     }
 }

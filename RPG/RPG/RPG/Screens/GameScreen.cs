@@ -13,7 +13,8 @@
     internal class GameScreen
     {
         private readonly Cursor cursor = new Cursor(new Vector2(0, 0));
-
+        
+        private IList<Obstacles> obstacles = new List<Obstacles>();
         private IList<Bullet> bullets = new List<Bullet>();
         private IList<Bullet> enemyBullets = new List<Bullet>();
         private bool loaded = false;          
@@ -21,7 +22,7 @@
           
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;
-        private List<Units> units = new List<Units>();
+        private IList<Units> units = new List<Units>();
         private Heroes hero;
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
@@ -34,6 +35,19 @@
         private SoundEffectInstance walkInstance2;
         private SoundEffect gunShot;
         private SoundEffectInstance gunShotInstance;
+
+        public IList<Obstacles> PObstacles
+        {
+            get
+            {
+                return this.obstacles;
+            }
+
+            set
+            {
+                this.obstacles = value;
+            }
+        }
 
         public IList<Bullet> PBullets
         {
@@ -83,7 +97,8 @@
             this.LoadHero(content);
             this.LoadUnits(content);
             this.LoadCursor(content);
-            this.LoadBullets(content);      
+            this.LoadBullets(content);
+            this.LoadObstacles(content);
         }
           
         public void Draw(SpriteBatch spriteBatch, ContentManager content)
@@ -93,7 +108,8 @@
                 this.DrawUnits(spriteBatch);
                 this.DrawLabels(spriteBatch, content);
                 this.DrawBullets(spriteBatch);
-                this.DrawCursor(spriteBatch);
+                this.DrawObstacles(spriteBatch);
+                this.DrawCursor(spriteBatch);                
             spriteBatch.End();
         }
 
@@ -125,14 +141,31 @@
             for (int i = 0; i < 100; i++)
             {
                 Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
+                o.Area = new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height);
                 this.PBullets.Add(o);
             }
 
             for (int i = 0; i < 100; i++)
             {
                 Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
+                o.Area = new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height);
                 this.EnemyBullets.Add(o);
             }
+        }
+
+        private void LoadObstacles(ContentManager content)
+        {
+            Texture2D wallTexture = content.Load<Texture2D>(@"Textures\Objects\Wall");
+
+            Obstacles o = new Obstacles(new Vector2(400, 405), wallTexture);
+            o.Area = new Rectangle((int)o.Position.X, (int)o.Position.Y, wallTexture.Width, wallTexture.Height);
+            this.PObstacles.Add(o);
+            o = new Obstacles(new Vector2(425, 405), wallTexture);
+            o.Area = new Rectangle((int)o.Position.X, (int)o.Position.Y, wallTexture.Width, wallTexture.Height);
+            this.PObstacles.Add(o);
+            o = new Obstacles(new Vector2(450, 405), wallTexture);
+            o.Area = new Rectangle((int)o.Position.X, (int)o.Position.Y, wallTexture.Width, wallTexture.Height);
+            this.PObstacles.Add(o);
         }
 
         private void LoadCursor(ContentManager content)
@@ -175,6 +208,7 @@
             }
 
             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName));
+            this.hero.Area = new Rectangle(0, 0, this.hero.SpriteIndex.Width, this.hero.SpriteIndex.Height);
             this.units.Add(this.hero);
         }
 
@@ -208,7 +242,7 @@
 
         private void DrawBullets(SpriteBatch spriteBatch)
         {
-            foreach (var bullet in this.bullets)
+            foreach (var bullet in this.PBullets)
             {
                 if (bullet.Alive)
                 {
@@ -216,12 +250,20 @@
                 }
             }
 
-            foreach (var bullet in this.enemyBullets)
+            foreach (var bullet in this.EnemyBullets)
             {
                 if (bullet.Alive)
                 {
                     this.ObjectDraw(spriteBatch, bullet.SpriteIndex, bullet.Position, bullet.Rotation);
                 }
+            }
+        }
+
+        private void DrawObstacles(SpriteBatch spriteBatch)
+        {
+            foreach (var obstacles in this.PObstacles)
+            {
+                this.ObjectDraw(spriteBatch, obstacles.SpriteIndex, obstacles.Position, obstacles.Rotation);
             }
         }
 
@@ -255,8 +297,14 @@
         private void UpdateHero()
         {
             Vector2 oldPos = this.hero.Position;
+            //int x = (int)this.hero.Position.X + hero.SpriteIndex.Width / 2;
+            //int y = (int)this.hero.Position.Y + hero.SpriteIndex.Height / 2;
+            int x = (int)this.hero.Position.X;
+            int y = (int)this.hero.Position.Y; 
+            this.hero.Area = new Rectangle(x, y, hero.Area.Width, hero.Area.Height);
 
-            if (this.keyboard.IsKeyDown(Keys.W))
+
+            if (this.keyboard.IsKeyDown(Keys.W) && !collision(new Vector2(0, -hero.Speed), hero))
             {
                 if (oldPos.Y > this.PRoom.Y + 20)
                 {
@@ -268,7 +316,7 @@
                 }
             }
 
-            if (this.keyboard.IsKeyDown(Keys.A))
+            if (this.keyboard.IsKeyDown(Keys.A) && !collision(new Vector2(-hero.Speed, 0), hero))
             {
                 if (oldPos.X > this.PRoom.X + 20)
                 {
@@ -279,7 +327,7 @@
                 }
             }
 
-            if (this.keyboard.IsKeyDown(Keys.S))
+            if (this.keyboard.IsKeyDown(Keys.S) && !collision(new Vector2(0, hero.Speed), hero))
             {
                 if (oldPos.Y < this.PRoom.Height - 90)
                 {
@@ -290,7 +338,7 @@
                 }
             }
 
-            if (this.keyboard.IsKeyDown(Keys.D))
+            if (this.keyboard.IsKeyDown(Keys.D) && !collision(new Vector2(hero.Speed, 0), hero))
             {
                 if (oldPos.X < this.PRoom.Width - 50)
                 {
@@ -378,6 +426,7 @@
         {
             MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 0.7f);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
+            meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
         }
 
@@ -385,6 +434,7 @@
         {
             RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0);
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
+            rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
             this.units.Add(rangedUnit);
         }
 
@@ -411,6 +461,26 @@
             }
 
             return res;
+        }
+
+        private bool collision(Vector2 pos, Obj obj)
+        {
+            Rectangle newArea = new Rectangle(obj.Area.X, obj.Area.Y, obj.Area.Width, obj.Area.Height);
+            newArea.X += (int)pos.X;
+            newArea.Y += (int)pos.Y;
+
+            foreach (var o in PObstacles)
+            {
+                //if (newArea.X > o.Area.X &&)
+                //{
+                //    return true; 
+                //}
+                //if (newArea.Intersects(o.Area))
+                //{
+                //    return true; 
+                //}                
+            }
+            return false;
         }
     }
 }
