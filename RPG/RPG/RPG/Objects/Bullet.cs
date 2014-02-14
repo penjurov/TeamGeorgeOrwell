@@ -1,11 +1,12 @@
 ﻿namespace Rpg.Objects
 {
     using System;
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
+    using System.Linq; 
     using Interfaces;
-
-    public class Bullet : Obj, IUpdatable
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;   
+    
+    public class Bullet : Obj, IMovable
     {
         private float speed;
 
@@ -46,6 +47,5 @@
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
             this.Position += new Vector2(pix * newX, pix * newY);
         }
-
     }
 }

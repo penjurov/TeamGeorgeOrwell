@@ -1,8 +1,6 @@
 ﻿namespace Rpg.Objects
 {
     using Microsoft.Xna.Framework;
-    using System;
-    using System.Linq;
 
     public class Obstacles : Obj
     {

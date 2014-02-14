@@ -1,22 +1,20 @@
 ﻿namespace Rpg.Objects
 {
     using System;
-    using System.Linq;
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
+    using System.Collections.Generic;
     using Interfaces;
-    using Screens;
-
-    public abstract class Units : Obj, IUpdatable
+    using Microsoft.Xna.Framework;
+    
+    public abstract class Units : Obj, ISkillable, IMovable
     {      
-        public Units(Vector2 pos,float speed) : base(pos)
+        public Units(Vector2 pos, float speed) : base(pos)
         {
             this.Speed = speed;
         }
 
         public float Speed { get; set; }
 
-        public float Rotation {get; set;}      
+        public float Rotation { get; set; }
 
         public Skills Skill { get; set; }
 
@@ -28,34 +26,16 @@
 
         public bool Alive { get; set; }
 
-        public  virtual void Update()
-        {
-            if (Math.Abs(GameScreen.CharacterPosition.X - this.Position.X) < 200 &&
-                    Math.Abs(GameScreen.CharacterPosition.Y - this.Position.Y) < 200)
-            {
-                this.Rotation = this.PointDirecions(this.Position.X, this.Position.Y,
-                GameScreen.CharacterPosition.X, GameScreen.CharacterPosition.Y);
+        public abstract int FiringTimer { get; set; }
 
-                this.PushTo(this.Speed, this.Rotation);
-            }
-            
+        public abstract float FireRate { get; set; }
+
+        public virtual void Update() 
+        {
+            this.PushTo(this.Speed, this.Rotation);
         }
 
-        private float PointDirecions(float x, float y, float x2, float y2)
-        {
-            float divX = x - x2;
-            float divY = y - y2;
-            float adj = divX;
-            float opp = divY;
-            float res = MathHelper.ToDegrees((float)Math.Atan2(opp, adj));
-            res = (res - 180) % 360;
-            if (res < 0)
-            {
-                res += 360;
-            }
-
-            return res;
-        }
+        public abstract void CheckShooting(IList<Bullet> bullets);
 
         private void PushTo(float pix, float dir)
         {
@@ -63,6 +43,5 @@
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
             this.Position += new Vector2(pix * newX, pix * newY);
         }
-      
     }
 }

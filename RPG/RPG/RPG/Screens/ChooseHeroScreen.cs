@@ -1,13 +1,16 @@
 ﻿namespace Rpg.Screens
 {
+    using System;
     using System.Collections.Generic;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Objects;
 
     public class ChooseHeroScreen
     {
+        private static string heroName;
         private static List<MenuItems> chooseHeroList = new List<MenuItems>();
         private readonly List<Texture2D> heroTexture = new List<Texture2D>();
 
@@ -23,8 +26,7 @@
         private MouseState mouse;
         private MouseState previousMouse;
         private bool inMenu = false;
-        private static string heroName;
-
+        
         public static List<MenuItems> PchooseHeroList
         {
             get
@@ -67,7 +69,6 @@
             this.chooseHeroBackgroundPosition = new Vector2(0, 0);
 
             spriteBatch.Begin();
-
  
             if (PchooseHeroList.Count < 3)
             {
@@ -76,11 +77,11 @@
                 PchooseHeroList.Add(new MenuItems(this.heroTexture[0], this.heroPicturesPosition, "ODIN", newFont, false));
                       
                 // Thor
-                this.heroPicturesPosition.X += heroTexture[0].Width + 10;
+                this.heroPicturesPosition.X += this.heroTexture[0].Width + 10;
                 PchooseHeroList.Add(new MenuItems(this.heroTexture[1], this.heroPicturesPosition, "THOR", newFont, false));
 
                 // Eir
-                this.heroPicturesPosition.X += heroTexture[1].Width + 10;
+                this.heroPicturesPosition.X += this.heroTexture[1].Width + 10;
                 PchooseHeroList.Add(new MenuItems(this.heroTexture[2], this.heroPicturesPosition, "EIR", newFont, false));
             }
 
@@ -122,7 +123,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter))
             {
-                if (inMenu)
+                if (this.inMenu)
                 {
                     HeroName = chooseHeroList[this.selectedEntry].ItemText;
                     Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
@@ -144,7 +145,7 @@
 
             this.previousMouse = this.mouse;
             this.previousKeyboard = this.keyboard;
-            inMenu = true;
+            this.inMenu = true;
         }
     }
 }

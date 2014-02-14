@@ -1,12 +1,9 @@
 ﻿namespace Rpg.Objects
 {
-    using System;
-    using System.Linq;
-    using Microsoft.Xna.Framework;
-    using Screens;
-    using Interfaces;
+    using System.Collections.Generic;
+    using Microsoft.Xna.Framework;   
 
-    public class MeleUnits : Units , IBoostable
+    public class MeleUnits : Units
     {
         public MeleUnits(Vector2 pos, float speed)
             : base(pos, speed)
@@ -17,6 +14,14 @@
             this.ExpGiven = 0;
         }
 
-        public float ExpGiven { get; set; }       
+        public float ExpGiven { get; set; }
+
+        public override float FireRate { get; set; }
+
+        public override int FiringTimer { get; set; }
+
+        public override void CheckShooting(IList<Bullet> bullets)
+        {
+        }
     }
 }

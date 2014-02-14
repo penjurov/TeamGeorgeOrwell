@@ -1,7 +1,9 @@
 ﻿namespace Rpg.Objects
 {
+    using System;
+    using System.Linq;
     using Microsoft.Xna.Framework;
-
+    
     public class Bonuses : Obj
     {
         public Bonuses(Vector2 pos) : base(pos)

@@ -1,15 +1,14 @@
 ﻿namespace Rpg.Objects
 {
-    using System;
-    using Microsoft.Xna.Framework;
+    using System.Collections.Generic;
     using Interfaces;
+    using Microsoft.Xna.Framework;
     using Screens;
-
-    public class RangedUnits : Units,IBoostable
+    
+    public class RangedUnits : MeleUnits, IShootable
     {
         private int firingTimer = 0;
         private float fireRate = 80;
-        private float exp;
 
         public RangedUnits(Vector2 pos, float speed) : base(pos, speed)
         {
@@ -19,66 +18,52 @@
             this.ExpGiven = 0;
         }
 
-        public float ExpGiven
-        {
-            get
-            {
-                return this.exp;
-            }
-            private set
-            {
-                this.exp = value;
-            }
-        }
-        public  float FireRate
+        public override float FireRate
         {
             get
             {
                 return this.fireRate;
             }
+
             set
             {
                 this.fireRate = value;
             }
         }
 
-        public  int FiringTimer
+        public override int FiringTimer
         {
             get
             {
                 return this.firingTimer;
             }
+
             set
             {
                 this.firingTimer = value;
             }
         }
-        public override void Update()
-        {
-            this.FiringTimer++;
-            if (Math.Abs(GameScreen.CharacterPosition.X - this.Position.X) < 200 &&
-                Math.Abs(GameScreen.CharacterPosition.Y - this.Position.Y) < 200)
-            {
-                base.Update();
-                this.Shoot();
-            }
-        }
 
-        private  void Shoot()
+        public override void CheckShooting(IList<Bullet> bullets)
         {
             if (this.FiringTimer > this.FireRate)
             {
                 this.FiringTimer = 0;
-                foreach (var bullet in GameScreen.EnemyBullets)
+                this.Shoot(bullets);
+            }
+        }
+
+        private void Shoot(IList<Bullet> bullets)
+        {
+            foreach (var bullet in bullets)
+            {
+                if (!bullet.Alive)
                 {
-                    if (!bullet.Alive)
-                    {
-                        bullet.Alive = true;
-                        bullet.Position = this.Position;
-                        bullet.Rotation = this.Rotation;
-                        bullet.Speed = 5;
-                        break;
-                    }
+                    bullet.Alive = true;
+                    bullet.Position = this.Position;
+                    bullet.Rotation = this.Rotation;
+                    bullet.Speed = 5;
+                    break;
                 }
             }
         }
