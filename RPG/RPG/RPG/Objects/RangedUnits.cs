@@ -1,18 +1,21 @@
 ﻿namespace Rpg.Objects
 {
-    using System;
-    using Microsoft.Xna.Framework;
+    using System.Collections.Generic;
     using Interfaces;
+    using Microsoft.Xna.Framework;
     using Screens;
-
-    public class RangedUnits : MeleUnits, IShootable
+    
+    public class RangedUnits : Units, IShootable
     {
         private int firingTimer = 0;
         private float fireRate = 80;
 
         public RangedUnits(Vector2 pos, float speed) : base(pos, speed)
         {
-            //To add stats to the unit: health, attack, defence, skills, experience to give.
+            this.Attack = 0;
+            this.Defence = 0;
+            this.Health = 0;
+            this.ExpGiven = 0;
         }
 
         public override float FireRate
@@ -21,6 +24,7 @@
             {
                 return this.fireRate;
             }
+
             set
             {
                 this.fireRate = value;
@@ -33,24 +37,25 @@
             {
                 return this.firingTimer;
             }
+
             set
             {
                 this.firingTimer = value;
             }
         }
 
-        public override void CheckShooting()
+        public override void CheckShooting(IList<Bullet> bullets)
         {
             if (this.FiringTimer > this.FireRate)
             {
                 this.FiringTimer = 0;
-                this.Shoot();
+                this.Shoot(bullets);
             }
         }
 
-        private void Shoot()
+        private void Shoot(IList<Bullet> bullets)
         {
-            foreach (var bullet in GameScreen.EnemyBullets)
+            foreach (var bullet in bullets)
             {
                 if (!bullet.Alive)
                 {

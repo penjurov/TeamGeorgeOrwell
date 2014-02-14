@@ -10,9 +10,10 @@
 
     public class ChooseHeroScreen
     {
-        private static List<MenuItems> chooseHeroList = new List<MenuItems>();
-        private readonly List<Texture2D> heroTexture = new List<Texture2D>();
-
+        private static string heroName;
+        private readonly IList<Texture2D> heroTexture = new List<Texture2D>();        
+        private IList<MenuItems> chooseHeroList = new List<MenuItems>();
+        
         private int selectedEntry = 0;
 
         private Texture2D chooseHeroBackgroundTexture;
@@ -25,20 +26,6 @@
         private MouseState mouse;
         private MouseState previousMouse;
         private bool inMenu = false;
-        private static string heroName;
-
-        public static List<MenuItems> PchooseHeroList
-        {
-            get
-            {
-                return chooseHeroList;
-            }
-
-            set
-            {
-                chooseHeroList = value;
-            }
-        }
 
         public static string HeroName
         {
@@ -50,6 +37,19 @@
             private set
             {
                 heroName = value;
+            }
+        }
+
+        public IList<MenuItems> PchooseHeroList
+        {
+            get
+            {
+                return this.chooseHeroList;
+            }
+
+            set
+            {
+                this.chooseHeroList = value;
             }
         }
 
@@ -70,24 +70,23 @@
 
             spriteBatch.Begin();
 
- 
-            if (PchooseHeroList.Count < 3)
+            if (this.PchooseHeroList.Count < 3)
             {
                 // Odin
                 this.heroPicturesPosition = new Vector2(10, 130);
-                PchooseHeroList.Add(new MenuItems(this.heroTexture[0], this.heroPicturesPosition, "ODIN", newFont, false));
+                this.PchooseHeroList.Add(new MenuItems(this.heroTexture[0], this.heroPicturesPosition, "ODIN", newFont, false));
                       
                 // Thor
-                this.heroPicturesPosition.X += heroTexture[0].Width + 10;
-                PchooseHeroList.Add(new MenuItems(this.heroTexture[1], this.heroPicturesPosition, "THOR", newFont, false));
+                this.heroPicturesPosition.X += this.heroTexture[0].Width + 10;
+                this.PchooseHeroList.Add(new MenuItems(this.heroTexture[1], this.heroPicturesPosition, "THOR", newFont, false));
 
                 // Eir
-                this.heroPicturesPosition.X += heroTexture[1].Width + 10;
-                PchooseHeroList.Add(new MenuItems(this.heroTexture[2], this.heroPicturesPosition, "EIR", newFont, false));
+                this.heroPicturesPosition.X += this.heroTexture[1].Width + 10;
+                this.PchooseHeroList.Add(new MenuItems(this.heroTexture[2], this.heroPicturesPosition, "EIR", newFont, false));
             }
 
-            PchooseHeroList[this.selectedEntry].Selected = true;
-            foreach (var item in PchooseHeroList)
+            this.PchooseHeroList[this.selectedEntry].Selected = true;
+            foreach (var item in this.PchooseHeroList)
             {
                 item.Draw(spriteBatch);
             }
@@ -102,38 +101,38 @@
 
             if (this.keyboard.IsKeyDown(Keys.Right) && this.previousKeyboard.IsKeyUp(Keys.Right))
             {
-                chooseHeroList[this.selectedEntry].Selected = false;
-                if (this.selectedEntry < chooseHeroList.Count - 1)
+                this.chooseHeroList[this.selectedEntry].Selected = false;
+                if (this.selectedEntry < this.chooseHeroList.Count - 1)
                 {
                     this.selectedEntry++;
                 }
 
-                chooseHeroList[this.selectedEntry].Selected = true;
+                this.chooseHeroList[this.selectedEntry].Selected = true;
             }
 
             if (this.keyboard.IsKeyDown(Keys.Left) && this.previousKeyboard.IsKeyUp(Keys.Left))
             {
-                chooseHeroList[this.selectedEntry].Selected = false;
+                this.chooseHeroList[this.selectedEntry].Selected = false;
                 if (this.selectedEntry > 0)
                 {
                     this.selectedEntry--;
                 }
 
-                chooseHeroList[this.selectedEntry].Selected = true;
+                this.chooseHeroList[this.selectedEntry].Selected = true;
             }
 
             if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter))
             {
-                if (inMenu)
+                if (this.inMenu)
                 {
-                    HeroName = chooseHeroList[this.selectedEntry].ItemText;
+                    HeroName = this.chooseHeroList[this.selectedEntry].ItemText;
                     Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
                 }              
             }
 
             if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed)
             {
-                foreach (var item in chooseHeroList)
+                foreach (var item in this.chooseHeroList)
                 {
                     if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
                         this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)
@@ -146,7 +145,7 @@
 
             this.previousMouse = this.mouse;
             this.previousKeyboard = this.keyboard;
-            inMenu = true;
+            this.inMenu = true;
         }
     }
 }

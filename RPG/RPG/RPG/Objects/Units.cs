@@ -1,22 +1,22 @@
 ﻿namespace Rpg.Objects
 {
     using System;
-    using System.Linq;
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
+    using System.Collections.Generic;
     using Interfaces;
-    using Screens;
-
-    public abstract class Units : Obj, ISkillable, IMovable, IShootable
+    using Microsoft.Xna.Framework;
+    
+    public abstract class Units : Obj
     {      
-        public Units(Vector2 pos,float speed) : base(pos)
+        public Units(Vector2 pos, float speed) : base(pos)
         {
             this.Speed = speed;
         }
 
+        public float ExpGiven { get; set; }
+
         public float Speed { get; set; }
 
-        public float Rotation {get; set;}      
+        public float Rotation { get; set; }
 
         public Skills Skill { get; set; }
 
@@ -32,9 +32,18 @@
 
         public abstract float FireRate { get; set; }
 
-        public abstract void Update();
+        public virtual void Update() 
+        {
+            this.PushTo(this.Speed, this.Rotation);
+        }
 
-        public abstract void CheckShooting();
-      
+        public abstract void CheckShooting(IList<Bullet> bullets);
+
+        private void PushTo(float pix, float dir)
+        {
+            float newX = (float)Math.Cos(MathHelper.ToRadians(dir));
+            float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
+            this.Position += new Vector2(pix * newX, pix * newY);
+        }
     }
 }

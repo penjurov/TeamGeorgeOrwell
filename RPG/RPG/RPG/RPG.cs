@@ -2,8 +2,8 @@
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;
-    using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Content;
+    using Microsoft.Xna.Framework.Graphics;    
     using Screens;
 
     public class Rpg : Game
@@ -74,15 +74,12 @@
             this.mainMenuScreen.Load(this.Content);
             
             this.chooseHero.Load(this.Content);
-
-
                        
             base.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
-        {
-            
+        {          
             if (activeWindow == EnumActiveWindow.MainMenu)
             {
                 this.IsMouseVisible = true;
@@ -99,10 +96,10 @@
 
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
-                if (!loaded)
+                if (!this.loaded)
                 {
-                    this.gameScreen.Load(this.Content, this.viewport, this.graphics); 
-                    loaded = true;
+                    this.gameScreen.Load(this.Content); 
+                    this.loaded = true;
                 }
 
                 this.IsMouseVisible = true;
@@ -112,13 +109,11 @@
             if (activeWindow != EnumActiveWindow.MainMenu)
             {
                 this.mainThemeInstance.Stop();
-            }
-         //   base.Update(gameTime);           
+            }        
         }
 
         protected override void Draw(GameTime gameTime)
         {
-
             if (activeWindow == EnumActiveWindow.MainMenu)
             {
                 this.mainMenuScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
@@ -126,15 +121,13 @@
 
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
-                this.gameScreen.Draw(this.graphics.GraphicsDevice, this.viewport, this.spriteBatch, this.Content);
+                this.gameScreen.Draw(this.spriteBatch, this.Content);
             }
 
             if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
             {
                 this.chooseHero.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
-
-           // base.Draw(gameTime);
         }
     }
 }

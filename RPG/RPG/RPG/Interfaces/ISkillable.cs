@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
-using Rpg.Objects;
-
-namespace Rpg.Interfaces
+﻿namespace Rpg.Interfaces
 {
+    using Objects;
+
     public interface ISkillable
     {
         Skills Skill { get; set; }

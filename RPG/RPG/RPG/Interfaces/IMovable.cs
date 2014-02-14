@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace Rpg.Interfaces
+﻿namespace Rpg.Interfaces
 {
     public interface IMovable
     {

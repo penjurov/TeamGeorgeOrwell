@@ -1,14 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿namespace Rpg.Interfaces
+{   
+    using System.Collections.Generic;
+    using Objects;
 
-namespace Rpg.Interfaces
-{
     public interface IShootable
     {
         int FiringTimer { get; set; }
 
         float FireRate { get; set; }
 
-        void CheckShooting();
+        void CheckShooting(IList<Bullet> bullets);
     }
 }

@@ -9,9 +9,8 @@
 
     internal class MainMenuScreen
     {
-        private static List<MenuItems> mainMenuItems = new List<MenuItems>();
-
-        private readonly List<Texture2D> planketTexture = new List<Texture2D>();
+        private static IList<MenuItems> mainMenuItems = new List<MenuItems>();
+        private readonly IList<Texture2D> planketTexture = new List<Texture2D>();
         private int selectedEntry = 0;
 
         private Texture2D mainMenuBackgroundTexture;
@@ -23,7 +22,7 @@
         private KeyboardState previousKeyboard;
         private MouseState mouse;
 
-        public static List<MenuItems> PMainMenuItems
+        public static IList<MenuItems> PMainMenuItems
         {
             get
             {
@@ -73,9 +72,6 @@
                 this.planketPosition.Y += 80;
                 PMainMenuItems.Add(new MenuItems(this.planketTexture[0], this.planketPosition, "Exit game", newFont, false));
             }
-
-
-            spriteBatch.DrawString(newFont, this.mouse.X + " " + this.mouse.Y, new Vector2(10, 10), Color.White);
 
             PMainMenuItems[this.selectedEntry].Selected = true;
             foreach (var item in PMainMenuItems)
@@ -136,8 +132,7 @@
                 foreach (var item in PMainMenuItems)
                 {
                     if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
-                        this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)
-                        
+                        this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)                       
                     {
                         if (item.ItemText == "New game")
                         {
