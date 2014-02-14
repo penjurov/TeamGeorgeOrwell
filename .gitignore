@@ -20,5 +20,8 @@
 /RPG/RPG/RPG/obj/x86/Debug/Microsoft.Xna.Framework.RuntimeProfile.txt
 /RPG/RPG/RPG/obj/x86/Debug/RPG.exe
 /RPG/RPG/RPG/obj/x86/Debug/RPG.pdb
-*.suo
+/RPG/*.suo
 *.xnb
+/RPG/RPG/RPG/obj/x86/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/RPG/RPG/RPG/obj/x86/Debug/Rpg.csproj.FileListAbsolute.txt
+/RPG/RPG/RPG/obj/x86/Debug/Rpg.csprojResolveAssemblyReference.cache
