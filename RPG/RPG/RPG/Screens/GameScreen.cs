@@ -155,17 +155,30 @@
 
         private void LoadObstacles(ContentManager content)
         {
-            Texture2D wallTexture = content.Load<Texture2D>(@"Textures\Objects\Wall");
+            Texture2D invisTexture = content.Load<Texture2D>(@"Textures\Objects\invisible");
 
-            Obstacles o = new Obstacles(new Vector2(400, 405), wallTexture);
-            o.Area = new Rectangle((int)o.Position.X, (int)o.Position.Y, wallTexture.Width, wallTexture.Height);
-            this.PObstacles.Add(o);
-            o = new Obstacles(new Vector2(425, 405), wallTexture);
-            o.Area = new Rectangle((int)o.Position.X, (int)o.Position.Y, wallTexture.Width, wallTexture.Height);
-            this.PObstacles.Add(o);
-            o = new Obstacles(new Vector2(450, 405), wallTexture);
-            o.Area = new Rectangle((int)o.Position.X, (int)o.Position.Y, wallTexture.Width, wallTexture.Height);
-            this.PObstacles.Add(o);
+            for (int i = 150; i < 275; i+=25)
+			{
+			    Obstacles invisble = new Obstacles(new Vector2(i, 360), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.PObstacles.Add(invisble);
+			}
+
+            for (int i = 150; i < 275; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Vector2(i, 475), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.PObstacles.Add(invisble);
+            }
+
+            Texture2D pilarTexture = content.Load<Texture2D>(@"Textures\Objects\pillar");
+            Obstacles pillar = new Obstacles(new Vector2(580, 580), pilarTexture, true);
+            pillar.Area = new Rectangle((int)pillar.Position.X, (int)pillar.Position.Y, pilarTexture.Width, pilarTexture.Height);
+            this.PObstacles.Add(pillar);
+
+            pillar = new Obstacles(new Vector2(420, 660), pilarTexture, true);
+            pillar.Area = new Rectangle((int)pillar.Position.X, (int)pillar.Position.Y, pilarTexture.Width, pilarTexture.Height);
+            this.PObstacles.Add(pillar);
         }
 
         private void LoadCursor(ContentManager content)
@@ -209,6 +222,7 @@
 
             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName));
             this.hero.Area = new Rectangle(0, 0, this.hero.SpriteIndex.Width, this.hero.SpriteIndex.Height);
+            this.hero.Position = new Vector2(50, 400);
             this.units.Add(this.hero);
         }
 
@@ -297,8 +311,6 @@
         private void UpdateHero()
         {
             Vector2 oldPos = this.hero.Position;
-            //int x = (int)this.hero.Position.X + hero.SpriteIndex.Width / 2;
-            //int y = (int)this.hero.Position.Y + hero.SpriteIndex.Height / 2;
             int x = (int)this.hero.Position.X;
             int y = (int)this.hero.Position.Y; 
             this.hero.Area = new Rectangle(x, y, hero.Area.Width, hero.Area.Height);
@@ -360,7 +372,9 @@
             {
                 if (bullet.Alive)
                 {
-                    bullet.Update();
+                    bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
+                    bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
+                    
                 }                   
             }
 
@@ -368,7 +382,8 @@
             {
                 if (bullet.Alive)
                 {
-                    bullet.Update();
+                    bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
+                    bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
                 }                 
             }
         }
@@ -377,6 +392,9 @@
         {
             foreach (var unit in this.units)
             {
+                int x = (int)unit.Position.X;
+                int y = (int)unit.Position.Y;
+                unit.Area = new Rectangle(x, y, unit.Area.Width, unit.Area.Height);
                 if (unit is IShootable)
                 {
                     if (unit is ILevelable)
@@ -397,10 +415,10 @@
                     {
                         unit.FiringTimer++;
                         if (Math.Abs(this.hero.Position.X - unit.Position.X) < 200 &&
-                            Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)
+                            Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)                       
                         {
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.CharacterPosition.X, this.CharacterPosition.Y);
-                            unit.Update();
+                            unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
                             unit.CheckShooting(this.EnemyBullets);
                         }
                     }
@@ -411,7 +429,7 @@
                         Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)
                     {
                         unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.CharacterPosition.X, this.CharacterPosition.Y);
-                        unit.Update();
+                        unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
                     }
                 }              
             }
@@ -424,7 +442,7 @@
 
         private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 0.7f);
+            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
@@ -466,21 +484,59 @@
         private bool collision(Vector2 pos, Obj obj)
         {
             Rectangle newArea = new Rectangle(obj.Area.X, obj.Area.Y, obj.Area.Width, obj.Area.Height);
-            newArea.X += (int)pos.X;
-            newArea.Y += (int)pos.Y;
+            if (pos.X < 1)
+            {
+                newArea.X += (int)(pos.X * 3);
+            }
+            else
+            {
+                newArea.X += (int)pos.X;        
+            }
+
+            if (pos.Y < 1)
+            {
+                newArea.Y += (int)(pos.Y * 3); ;
+            }
+            else
+            {
+                newArea.Y += (int)pos.Y;
+            } 
 
             foreach (var o in PObstacles)
             {
-                //if (newArea.X > o.Area.X &&)
-                //{
-                //    return true; 
-                //}
-                //if (newArea.Intersects(o.Area))
-                //{
-                //    return true; 
-                //}                
+                if (obj.GetType() == typeof(Bullet))
+                {
+                    if (o.Visible)
+                    {
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                        {
+                            return true; 
+                        }
+                    }          
+                }
+                else
+                {
+                    if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                    {
+                        return true;
+                    } 
+                }
+                           
             }
             return false;
+        }
+
+        private Vector2 PushTo(float pix, float dir, Obj unit)
+        {
+            float newX = (float)Math.Cos(MathHelper.ToRadians(dir));
+            float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
+
+            if (!collision(new Vector2(newX, newY), unit))
+	        {
+                return new Vector2(pix * newX, pix * newY);
+	        }
+
+            return new Vector2(0, 0);                    
         }
     }
 }

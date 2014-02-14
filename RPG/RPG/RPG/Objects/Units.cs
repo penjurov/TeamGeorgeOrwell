@@ -34,16 +34,10 @@
 
         public virtual void Update() 
         {
-            this.PushTo(this.Speed, this.Rotation);
+            
         }
 
         public abstract void CheckShooting(IList<Bullet> bullets);
 
-        private void PushTo(float pix, float dir)
-        {
-            float newX = (float)Math.Cos(MathHelper.ToRadians(dir));
-            float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
-            this.Position += new Vector2(pix * newX, pix * newY);
-        }
     }
 }
