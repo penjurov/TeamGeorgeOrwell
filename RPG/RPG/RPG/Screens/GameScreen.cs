@@ -36,60 +36,6 @@
         private SoundEffect gunShot;
         private SoundEffectInstance gunShotInstance;
 
-        public IList<Obstacles> PObstacles
-        {
-            get
-            {
-                return this.obstacles;
-            }
-
-            set
-            {
-                this.obstacles = value;
-            }
-        }
-
-        public IList<Bullet> PBullets
-        {
-            get
-            {
-                return this.bullets;
-            }
-
-            set
-            {
-                this.bullets = value;
-            }
-        }
-
-        public IList<Bullet> EnemyBullets
-        {
-            get
-            {
-                return this.enemyBullets;
-            }
-
-            set
-            {
-                this.enemyBullets = value;
-            }
-        }
-
-        public Rectangle PRoom
-        {
-            get
-            {
-                return this.room;
-            }
-
-            private set
-            {
-                this.room = value;
-            }
-        }
-
-        public Vector2 CharacterPosition { get; set; }
-
         public void Load(ContentManager content)
         {
             this.LoadMusic(content);
@@ -142,14 +88,14 @@
             {
                 Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
                 o.Area = new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height);
-                this.PBullets.Add(o);
+                this.bullets.Add(o);
             }
 
             for (int i = 0; i < 100; i++)
             {
                 Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
                 o.Area = new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height);
-                this.EnemyBullets.Add(o);
+                this.enemyBullets.Add(o);
             }
         }
 
@@ -161,24 +107,24 @@
 			{
 			    Obstacles invisble = new Obstacles(new Vector2(i, 360), invisTexture, false);
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
-                this.PObstacles.Add(invisble);
+                this.obstacles.Add(invisble);
 			}
 
             for (int i = 150; i < 275; i += 25)
             {
                 Obstacles invisble = new Obstacles(new Vector2(i, 475), invisTexture, false);
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
-                this.PObstacles.Add(invisble);
+                this.obstacles.Add(invisble);
             }
 
             Texture2D pilarTexture = content.Load<Texture2D>(@"Textures\Objects\pillar");
             Obstacles pillar = new Obstacles(new Vector2(580, 580), pilarTexture, true);
             pillar.Area = new Rectangle((int)pillar.Position.X, (int)pillar.Position.Y, pilarTexture.Width, pilarTexture.Height);
-            this.PObstacles.Add(pillar);
+            this.obstacles.Add(pillar);
 
             pillar = new Obstacles(new Vector2(420, 660), pilarTexture, true);
             pillar.Area = new Rectangle((int)pillar.Position.X, (int)pillar.Position.Y, pilarTexture.Width, pilarTexture.Height);
-            this.PObstacles.Add(pillar);
+            this.obstacles.Add(pillar);
         }
 
         private void LoadCursor(ContentManager content)
@@ -194,25 +140,23 @@
 
         private void LoadHero(ContentManager content)
         {
-            this.CharacterPosition = new Vector2(this.room.Width / 2, this.room.Height / 2);
-
             switch (ChooseHeroScreen.HeroName)
             {
                 case "ODIN":
                     {
-                        this.hero = new Heroes(this.CharacterPosition, 2, 1200, 110, 90);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 1200, 110, 90);
                         break;
                     }
 
                 case "THOR":
                     {
-                        this.hero = new Heroes(this.CharacterPosition, 2, 1500, 130, 100);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 1500, 130, 100);
                         break;
                     }
 
                 case "EIR":
                     {
-                        this.hero = new Heroes(this.CharacterPosition, 2, 1000, 90, 80);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 1000, 90, 80);
                         break;
                     }
 
@@ -256,7 +200,7 @@
 
         private void DrawBullets(SpriteBatch spriteBatch)
         {
-            foreach (var bullet in this.PBullets)
+            foreach (var bullet in this.bullets)
             {
                 if (bullet.Alive)
                 {
@@ -264,7 +208,7 @@
                 }
             }
 
-            foreach (var bullet in this.EnemyBullets)
+            foreach (var bullet in this.enemyBullets)
             {
                 if (bullet.Alive)
                 {
@@ -275,7 +219,7 @@
 
         private void DrawObstacles(SpriteBatch spriteBatch)
         {
-            foreach (var obstacles in this.PObstacles)
+            foreach (var obstacles in this.obstacles)
             {
                 this.ObjectDraw(spriteBatch, obstacles.SpriteIndex, obstacles.Position, obstacles.Rotation);
             }
@@ -318,11 +262,9 @@
 
             if (this.keyboard.IsKeyDown(Keys.W) && !collision(new Vector2(0, -hero.Speed), hero))
             {
-                if (oldPos.Y > this.PRoom.Y + 20)
+                if (oldPos.Y > this.room.Y + 20)
                 {
                     this.hero.Position = new Vector2(oldPos.X, oldPos.Y - this.hero.Speed);
-                    this.CharacterPosition = this.hero.Position;
-
                     this.walkInstance.Play();
                     this.walkInstance2.Play();
                 }
@@ -330,10 +272,9 @@
 
             if (this.keyboard.IsKeyDown(Keys.A) && !collision(new Vector2(-hero.Speed, 0), hero))
             {
-                if (oldPos.X > this.PRoom.X + 20)
+                if (oldPos.X > this.room.X + 20)
                 {
                     this.hero.Position = new Vector2(oldPos.X - this.hero.Speed, oldPos.Y);
-                    this.CharacterPosition = this.hero.Position;
                     this.walkInstance.Play();
                     this.walkInstance2.Play();
                 }
@@ -341,10 +282,9 @@
 
             if (this.keyboard.IsKeyDown(Keys.S) && !collision(new Vector2(0, hero.Speed), hero))
             {
-                if (oldPos.Y < this.PRoom.Height - 90)
+                if (oldPos.Y < this.room.Height - 90)
                 {
                     this.hero.Position = new Vector2(oldPos.X, oldPos.Y + this.hero.Speed);
-                    this.CharacterPosition = this.hero.Position;
                     this.walkInstance.Play();
                     this.walkInstance2.Play();
                 }
@@ -352,10 +292,9 @@
 
             if (this.keyboard.IsKeyDown(Keys.D) && !collision(new Vector2(hero.Speed, 0), hero))
             {
-                if (oldPos.X < this.PRoom.Width - 50)
+                if (oldPos.X < this.room.Width - 50)
                 {
                     this.hero.Position = new Vector2(oldPos.X + this.hero.Speed, oldPos.Y);
-                    this.CharacterPosition = this.hero.Position;
                     this.walkInstance.Play();
                     this.walkInstance2.Play();
                 }
@@ -395,43 +334,32 @@
                 int x = (int)unit.Position.X;
                 int y = (int)unit.Position.Y;
                 unit.Area = new Rectangle(x, y, unit.Area.Width, unit.Area.Height);
-                if (unit is IShootable)
-                {
-                    if (unit is ILevelable)
-                    {
-                        unit.FiringTimer++;
-                        if (this.mouse.LeftButton == ButtonState.Released && this.previousMouse.LeftButton == ButtonState.Pressed)
-                        {
-                            this.hero.CheckShooting(this.PBullets);
-                            if (this.loaded)
-                            {
-                                this.gunShot.Play();
-                            }
 
-                            this.loaded = true;
-                        }
-                    }
-                    else
+                if (unit is ILevelable)
+                {
+                    unit.FiringTimer++;
+                    if (this.mouse.LeftButton == ButtonState.Released && this.previousMouse.LeftButton == ButtonState.Pressed)
                     {
-                        unit.FiringTimer++;
-                        if (Math.Abs(this.hero.Position.X - unit.Position.X) < 200 &&
-                            Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)                       
+                        this.hero.CheckShooting(this.bullets);
+                        if (this.loaded)
                         {
-                            unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.CharacterPosition.X, this.CharacterPosition.Y);
-                            unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
-                            unit.CheckShooting(this.EnemyBullets);
+                            this.gunShot.Play();
                         }
+
+                        this.loaded = true;
                     }
                 }
                 else
                 {
+                    unit.FiringTimer++;
                     if (Math.Abs(this.hero.Position.X - unit.Position.X) < 200 &&
                         Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)
                     {
-                        unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.CharacterPosition.X, this.CharacterPosition.Y);
+                        unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
                         unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
+                        unit.CheckShooting(this.enemyBullets);
                     }
-                }              
+                }
             }
         }
 
@@ -502,7 +430,7 @@
                 newArea.Y += (int)pos.Y;
             } 
 
-            foreach (var o in PObstacles)
+            foreach (var o in obstacles)
             {
                 if (obj.GetType() == typeof(Bullet))
                 {

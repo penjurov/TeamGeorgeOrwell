@@ -24,3 +24,5 @@ D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Rpg.csprojResolveAssem
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\Invisible.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\pillar.xnb
