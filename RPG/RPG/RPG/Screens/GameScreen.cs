@@ -167,6 +167,7 @@
             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName));
             this.hero.Area = new Rectangle(0, 0, this.hero.SpriteIndex.Width, this.hero.SpriteIndex.Height);
             this.hero.Position = new Vector2(50, 400);
+            this.hero.Alive = true;
             this.units.Add(this.hero);
         }
 
@@ -242,7 +243,10 @@
         {
             foreach (var unit in this.units)
             {
-                this.ObjectDraw(spriteBatch, unit.SpriteIndex, unit.Position, unit.Rotation);
+                if (unit.Alive)
+                {
+                    this.ObjectDraw(spriteBatch, unit.SpriteIndex, unit.Position, unit.Rotation);   
+                }
             }
         }
 
@@ -365,7 +369,7 @@
 
         private void UpdateCursor()
         {
-            this.cursor.Position = new Vector2(this.mouse.X - 11, this.mouse.Y - 11);
+            this.cursor.Position = new Vector2(this.mouse.X - this.cursor.SpriteIndex.Width / 2, this.mouse.Y - this.cursor.SpriteIndex.Height / 2);
         }
 
         private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
@@ -373,6 +377,8 @@
             MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
+            meleUnit.Health = 45;
+            meleUnit.Alive = true;
             this.units.Add(meleUnit);
         }
 
@@ -381,6 +387,8 @@
             RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0);
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
+            rangedUnit.Health = 23;
+            rangedUnit.Alive = true;
             this.units.Add(rangedUnit);
         }
 
@@ -450,6 +458,18 @@
                     } 
                 }
                            
+            }
+
+            foreach (var u in units)
+            {
+                if (obj.GetType() == typeof(Bullet))
+                {
+                    u.Health = u.Health - 10;
+                    if (u.Health<0)
+                    {
+                        u.Alive = false;
+                    }
+                }
             }
             return false;
         }
