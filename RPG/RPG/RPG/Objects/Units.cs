@@ -6,7 +6,10 @@
     using Microsoft.Xna.Framework;
     
     public abstract class Units : Obj
-    {      
+    {
+        private int hitRate = 60;
+        private int hitTimer = 0;
+
         public Units(Vector2 pos, float speed) : base(pos)
         {
             this.Speed = speed;
@@ -30,6 +33,30 @@
         public virtual int FiringTimer { get; set; }
 
         public virtual float FireRate { get; set; }
+
+        public int HitRate
+        {
+            get
+            {
+                return this.hitRate;
+            }
+            set
+            {
+                this.hitRate = value;
+            }
+        }
+
+        public int HitTimer
+        {
+            get
+            {
+                return this.hitTimer;
+            }
+            set
+            {
+                this.hitTimer = value;
+            }
+        }
 
         public virtual void CheckShooting(IList<Bullet> bullets)
         {
