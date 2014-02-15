@@ -26,18 +26,14 @@
 
         public float Defence { get; set; }
 
-        public bool Alive { get; set; }
+        public virtual int FiringTimer { get; set; }
 
-        public abstract int FiringTimer { get; set; }
+        public virtual float FireRate { get; set; }
 
-        public abstract float FireRate { get; set; }
-
-        public virtual void Update() 
+        public virtual void CheckShooting(IList<Bullet> bullets)
         {
-            
-        }
 
-        public abstract void CheckShooting(IList<Bullet> bullets);
+        }
 
     }
 }
