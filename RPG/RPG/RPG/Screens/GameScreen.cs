@@ -237,6 +237,9 @@
 
             statsPosition = new Vector2(10, 70);
             spriteBatch.DrawString(font, string.Format("Def :  {0}", this.hero.Defence), statsPosition, Color.Red);
+            
+            statsPosition = new Vector2(10, 100);
+            spriteBatch.DrawString(font, string.Format("Experience :  {0}", this.hero.CurrentExp), statsPosition, Color.Red);    
         }
 
         private void DrawUnits(SpriteBatch spriteBatch)
@@ -314,11 +317,10 @@
             foreach (var bullet in this.bullets)
             {
                 if (bullet.Alive && Math.Abs(this.hero.Position.X - bullet.Position.X) < 200 &&
-                        Math.Abs(this.hero.Position.Y - bullet.Position.Y) < 200)
+                        Math.Abs(this.hero.Position.Y - bullet.Position.Y) < 200) 
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
-                    
                 }    
                 else
                 {
@@ -340,35 +342,48 @@
         {
             foreach (var unit in this.units)
             {
-                int x = (int)unit.Position.X;
-                int y = (int)unit.Position.Y;
-                unit.Area = new Rectangle(x, y, unit.Area.Width, unit.Area.Height);
-
-                if (unit is ILevelable)
+                if (unit.Alive)
                 {
-                    unit.FiringTimer++;
-                    if (this.mouse.LeftButton == ButtonState.Released && this.previousMouse.LeftButton == ButtonState.Pressed)
+                    int x = (int)unit.Position.X;
+                    int y = (int)unit.Position.Y;
+                    unit.Area = new Rectangle(x, y, unit.Area.Width, unit.Area.Height);
+
+                    if (collision(new Vector2(0, 0), unit))
                     {
-                        this.hero.CheckShooting(this.bullets);
-                        if (this.loaded)
+                        unit.Health = unit.Health - 10;
+                        if (unit.Health < 0)
                         {
-                            this.gunShot.Play();
+                            unit.Alive = false;
+                            hero.CurrentExp = hero.CurrentExp + unit.ExpGiven;
                         }
+                    }
 
-                        this.loaded = true;
-                    }
-                }
-                else
-                {
-                    unit.FiringTimer++;
-                    if (Math.Abs(this.hero.Position.X - unit.Position.X) < 200 &&
-                        Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)
+                    if (unit is ILevelable)
                     {
-                        unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
-                        unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
-                        unit.CheckShooting(this.enemyBullets);
+                        unit.FiringTimer++;
+                        if (this.mouse.LeftButton == ButtonState.Released && this.previousMouse.LeftButton == ButtonState.Pressed)
+                        {
+                            this.hero.CheckShooting(this.bullets);
+                            if (this.loaded)
+                            {
+                                this.gunShot.Play();
+                            }
+
+                            this.loaded = true;
+                        }
                     }
-                }
+                    else
+                    {
+                        unit.FiringTimer++;
+                        if (Math.Abs(this.hero.Position.X - unit.Position.X) < 200 &&
+                            Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)
+                        {
+                            unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
+                            unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
+                            unit.CheckShooting(this.enemyBullets);
+                        }
+                    }
+                }              
             }
         }
 
@@ -383,6 +398,7 @@
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             meleUnit.Health = 45;
+            meleUnit.ExpGiven = 230;
             meleUnit.Alive = true;
             this.units.Add(meleUnit);
         }
@@ -393,6 +409,7 @@
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
             rangedUnit.Health = 23;
+            rangedUnit.ExpGiven = 180;
             rangedUnit.Alive = true;
             this.units.Add(rangedUnit);
         }
@@ -441,43 +458,48 @@
             else
             {
                 newArea.Y += (int)pos.Y;
-            } 
+            }
 
             foreach (var o in obstacles)
             {
-                if (obj.GetType() == typeof(Bullet))
-                {
+                if (obj.GetType() == typeof(Bullet))           
+                {             
                     if (o.Visible)
                     {
-                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) 
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width)
                             && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                         {
-                            return true; 
+                            return true;
                         }
-                    }          
+                    }
                 }
                 else
                 {
-                    if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) 
+                    if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width)
                         && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                     {
                         return true;
-                    } 
-                }
-                           
-            }
-
-            foreach (var u in units)
-            {
-                if (obj.GetType() == typeof(Bullet))
-                {
-                    u.Health = u.Health - 10;
-                    if (u.Health<0)
-                    {
-                        u.Alive = false;
                     }
                 }
             }
+
+
+            if (obj.GetType() == typeof(MeleUnits) || obj.GetType() == typeof(RangedUnits))
+            {
+                foreach (var o in bullets)
+                {
+                    if(o.Alive)
+                    {
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width)
+                                && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                        {
+                            o.Alive = false;
+                            return true;                            
+                        } 
+                    }       
+                }
+            }
+           
             return false;
         }
 
@@ -490,10 +512,6 @@
 	        {                
                 return new Vector2(pix * newX, pix * newY);
 	        }
-            else
-            {
-                unit.Alive = false;
-            }
 
             return new Vector2(0, 0);                    
         }

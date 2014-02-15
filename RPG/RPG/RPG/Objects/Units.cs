@@ -10,6 +10,7 @@
         public Units(Vector2 pos, float speed) : base(pos)
         {
             this.Speed = speed;
+            this.Alive = true;
         }
 
         public float ExpGiven { get; set; }

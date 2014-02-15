@@ -77,8 +77,9 @@
             {
                 if (!bullet.Alive)
                 {
-                    bullet.Alive = true;
                     bullet.Position = this.Position;
+                    bullet.Area = this.Area;
+                    bullet.Alive = true;                    
                     bullet.Rotation = this.Rotation;
                     bullet.Speed = 10;
                     break;
