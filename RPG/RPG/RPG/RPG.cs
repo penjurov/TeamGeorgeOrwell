@@ -103,7 +103,7 @@
                 }
 
                 this.IsMouseVisible = true;
-                this.gameScreen.Update();
+                this.gameScreen.Update(this.Content);
             }
 
             if (activeWindow != EnumActiveWindow.MainMenu)

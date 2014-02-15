@@ -10,12 +10,14 @@
         private int firingTimer = 0;
         private float fireRate = 80;
 
-        public RangedUnits(Vector2 pos, float speed) : base(pos, speed)
+        public RangedUnits(Vector2 pos, float speed, float att, float def, float hp, float exp, bool alive)
+            : base(pos, speed)
         {
-            this.Attack = 0;
-            this.Defence = 0;
-            this.Health = 0;
-            this.ExpGiven = 0;
+            this.Attack = att;
+            this.Defence = def;
+            this.Health = hp;
+            this.ExpGiven = exp;
+            this.Alive = alive;
         }
 
         public override float FireRate

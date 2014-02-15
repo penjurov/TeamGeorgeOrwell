@@ -20,6 +20,8 @@
         private bool loaded = false;          
         private Rectangle room;
         private Random rand = new Random();
+        private Rectangle exitSpot = new Rectangle(786, 157 , 160, 80);
+        private int stage = 1;
           
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;
@@ -50,7 +52,7 @@
           
         public void Draw(SpriteBatch spriteBatch, ContentManager content)
         {           
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);  
                 this.DrawBackGround(spriteBatch);
                 this.DrawUnits(spriteBatch);
                 this.DrawLabels(spriteBatch, content);
@@ -60,7 +62,7 @@
             spriteBatch.End();
         }
 
-        public void Update()
+        public void Update(ContentManager content)
         {
             this.keyboard = Keyboard.GetState();
             this.mouse = Mouse.GetState();
@@ -68,7 +70,7 @@
             this.UpdateCursor();
             this.UpdateUnits();
             this.UpdateBullets();
-            this.UpdateHero();
+            this.UpdateHero(content);
 
             // Check for Tab
             if (this.keyboard.IsKeyDown(Keys.Tab))
@@ -135,8 +137,42 @@
 
         private void LoadUnits(ContentManager content)
         {
-            this.AddMeleUnit(content, 900, 700, "male");
-            this.AddRangeUnit(content, 200, 670, "male");
+            
+            if (stage == 1)
+            {
+                // Mele
+                this.AddMeleUnit(content, 360, 580, "mele");
+                this.AddMeleUnit(content, 470, 545, "mele");
+
+                this.AddMeleUnit(content, 760, 620, "mele");
+                this.AddMeleUnit(content, 910, 620, "mele");
+
+                this.AddMeleUnit(content, 710, 310, "mele");
+                this.AddMeleUnit(content, 590, 335, "mele");
+
+                // Range
+                this.AddRangeUnit(content, 200, 660, "range");
+                this.AddRangeUnit(content, 965, 670, "range");
+                this.AddRangeUnit(content, 570, 170, "range");
+            }
+
+            if (stage == 2)
+            {
+                // Mele
+                this.AddMeleUnit(content, 360, 580, "mele");
+                this.AddMeleUnit(content, 470, 545, "mele");
+
+                this.AddMeleUnit(content, 760, 620, "mele");
+                this.AddMeleUnit(content, 910, 620, "mele");
+
+
+                // Range
+                this.AddRangeUnit(content, 200, 660, "range");
+                this.AddRangeUnit(content, 965, 670, "range");
+
+                // Boss
+                this.AddBoss(content, 830, 180, "boss");
+            }                                
         }
 
         private void LoadHero(ContentManager content)
@@ -240,7 +276,12 @@
             spriteBatch.DrawString(font, string.Format("Def :  {0}", this.hero.Defence), statsPosition, Color.Red);
             
             statsPosition = new Vector2(10, 100);
-            spriteBatch.DrawString(font, string.Format("Experience :  {0}", this.hero.CurrentExp), statsPosition, Color.Red);    
+            spriteBatch.DrawString(font, string.Format("Experience :  {0}", this.hero.CurrentExp), statsPosition, Color.Red);
+            
+            statsPosition = new Vector2(10, 130);
+            spriteBatch.DrawString(font, this.mouse.X +" " +this.mouse.Y, statsPosition, Color.Red);    
+        
+
         }
 
         private void DrawUnits(SpriteBatch spriteBatch)
@@ -260,14 +301,13 @@
             spriteBatch.Draw(this.gameWindowTexture, this.gameWindowTexturePos, Color.White);
         }
 
-        private void UpdateHero()
+        private void UpdateHero(ContentManager content)
         {
             Vector2 oldPos = this.hero.Position;
             int x = (int)this.hero.Position.X;
             int y = (int)this.hero.Position.Y; 
             this.hero.Area = new Rectangle(x, y, hero.Area.Width, hero.Area.Height);
-
-
+                      
             if (this.keyboard.IsKeyDown(Keys.W) && !collision(new Vector2(0, -hero.Speed), hero))
             {
                 if (oldPos.Y > this.room.Y + 20)
@@ -311,6 +351,31 @@
             oldPos = this.hero.Position;
 
             this.hero.Rotation = this.PointDirecions(this.hero.Position.X, this.hero.Position.Y, this.mouse.X, this.mouse.Y);
+        
+            bool allDead = true;
+
+            foreach (var unit in units)
+	        {
+                if (unit.GetType() != typeof(Heroes))
+                {
+                    if (unit.Alive)
+                    {
+                        allDead = false;
+                    } 
+                }
+		            
+	        }
+
+            if (allDead)
+            {
+                if (hero.Area.Intersects(exitSpot))
+                {
+                    hero.Position = new Vector2(30, 400);
+                    stage++;
+                    LoadUnits(content);
+                }    
+            }
+            
         }
 
         private void UpdateBullets()
@@ -395,28 +460,26 @@
 
         private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f);
+            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, 70, 40, 260, 230, true);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
-            meleUnit.Health = 260;
-            meleUnit.Defence = 40;
-            meleUnit.Attack = 70;
-            meleUnit.ExpGiven = 230;
-            meleUnit.Alive = true;
             this.units.Add(meleUnit);
         }
 
         private void AddRangeUnit(ContentManager content, int x, int y, string textureName)
         {
-            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0);
+            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0, 80, 30, 210, 180, true);
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
-            rangedUnit.Health = 210;
-            rangedUnit.Defence = 30;
-            rangedUnit.Attack = 80;
-            rangedUnit.ExpGiven = 180;
-            rangedUnit.Alive = true;
             this.units.Add(rangedUnit);
+        }
+
+        private void AddBoss(ContentManager content, int x, int y, string textureName)
+        {
+            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, 200, 100, 2000, 2300, true);
+            meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
+            meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
+            this.units.Add(meleUnit);
         }
 
         private void ObjectDraw(SpriteBatch spriteBatch, Texture2D sprite, Vector2 position, float rotation)
@@ -424,7 +487,8 @@
             Vector2 center = new Vector2(sprite.Width / 2, sprite.Height / 2);
             float scale = 0.7f;
 
-            spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(rotation), center, scale, SpriteEffects.None, 0);
+           // spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(rotation), center, scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(0), center, scale, SpriteEffects.None, 0);        
         }
 
         private float PointDirecions(float x, float y, float x2, float y2)

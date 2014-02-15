@@ -6,13 +6,14 @@
 
     public class MeleUnits : Units, IMovable
     {
-        public MeleUnits(Vector2 pos, float speed)
+        public MeleUnits(Vector2 pos, float speed, float att, float def, float hp, float exp, bool alive)
             : base(pos, speed)
         {
-            this.Attack = 0;
-            this.Defence = 0;
-            this.Health = 0;
-            this.ExpGiven = 0;
+            this.Attack = att;
+            this.Defence = def;
+            this.Health = hp;
+            this.ExpGiven = exp;
+            this.Alive = alive;
         }
     }
 }
