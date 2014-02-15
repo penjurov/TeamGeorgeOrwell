@@ -420,9 +420,9 @@
                     {                      
                         //TO CHECK:
                         if (Collision(new Vector2(0, 0), unit))
-                        {                                                   
-                            this.hero.Health = this.hero.Health - ((RangedUnits.Damage / this.hero.Defence) * 20) +
-                                rand.Next((int)RangedUnits.Damage / 10);
+                        {                 
+                            this.hero.Health = this.hero.Health - (((int)unit.Attack / this.hero.Defence) * 20) +
+                                rand.Next((int)unit.Attack / 10);
 
                             if (this.hero.Health < 0)
                             {
