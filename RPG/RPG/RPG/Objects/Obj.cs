@@ -18,6 +18,8 @@
 
         public Rectangle Area { get; set; }
 
-        public Texture2D SpriteIndex { get; set; }               
+        public Texture2D SpriteIndex { get; set; }
+
+        public bool Alive { get; set; }
     }
 }

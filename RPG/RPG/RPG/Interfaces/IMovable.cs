@@ -5,7 +5,5 @@
         float Speed { get; }
 
         float Rotation { get; set; }
-
-        bool Alive { get; set; }
     }
 }

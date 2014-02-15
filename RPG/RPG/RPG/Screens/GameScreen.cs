@@ -84,14 +84,14 @@
         {
             Texture2D bulletTexture = content.Load<Texture2D>(@"Textures\Objects\bullet");
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
                 o.Area = new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height);
                 this.bullets.Add(o);
             }
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
                 o.Area = new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height);
@@ -313,12 +313,17 @@
         {
             foreach (var bullet in this.bullets)
             {
-                if (bullet.Alive)
+                if (bullet.Alive && Math.Abs(this.hero.Position.X - bullet.Position.X) < 200 &&
+                        Math.Abs(this.hero.Position.Y - bullet.Position.Y) < 200)
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
                     
-                }                   
+                }    
+                else
+                {
+                    bullet.Alive = false;
+                }
             }
 
             foreach (var bullet in this.enemyBullets)
@@ -444,7 +449,8 @@
                 {
                     if (o.Visible)
                     {
-                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) 
+                            && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                         {
                             return true; 
                         }
@@ -452,7 +458,8 @@
                 }
                 else
                 {
-                    if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                    if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) 
+                        && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                     {
                         return true;
                     } 
@@ -480,9 +487,13 @@
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
 
             if (!collision(new Vector2(newX, newY), unit))
-	        {
+	        {                
                 return new Vector2(pix * newX, pix * newY);
 	        }
+            else
+            {
+                unit.Alive = false;
+            }
 
             return new Vector2(0, 0);                    
         }
