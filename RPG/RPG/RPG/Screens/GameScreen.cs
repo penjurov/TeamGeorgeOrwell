@@ -19,6 +19,7 @@
         private IList<Bullet> enemyBullets = new List<Bullet>();
         private bool loaded = false;          
         private Rectangle room;
+        private Random rand = new Random();
           
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;
@@ -144,19 +145,19 @@
             {
                 case "ODIN":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 1200, 110, 90);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70);
                         break;
                     }
 
                 case "THOR":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 1500, 130, 100);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 1000, 130, 90);
                         break;
                     }
 
                 case "EIR":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 1000, 90, 80);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 750, 90, 60);
                         break;
                     }
 
@@ -350,7 +351,7 @@
 
                     if (collision(new Vector2(0, 0), unit))
                     {
-                        unit.Health = unit.Health - 10;
+                        unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack/10);
                         if (unit.Health < 0)
                         {
                             unit.Alive = false;
@@ -397,7 +398,9 @@
             MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
-            meleUnit.Health = 45;
+            meleUnit.Health = 260;
+            meleUnit.Defence = 40;
+            meleUnit.Attack = 70;
             meleUnit.ExpGiven = 230;
             meleUnit.Alive = true;
             this.units.Add(meleUnit);
@@ -408,7 +411,9 @@
             RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0);
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
-            rangedUnit.Health = 23;
+            rangedUnit.Health = 210;
+            rangedUnit.Defence = 30;
+            rangedUnit.Attack = 80;
             rangedUnit.ExpGiven = 180;
             rangedUnit.Alive = true;
             this.units.Add(rangedUnit);
