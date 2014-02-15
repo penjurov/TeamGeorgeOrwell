@@ -212,7 +212,7 @@
 
             foreach (var bullet in this.enemyBullets)
             {
-                if (bullet.Alive)
+                if (bullet.Alive && this.hero.Alive)
                 {
                     this.ObjectDraw(spriteBatch, bullet.SpriteIndex, bullet.Position, bullet.Rotation);
                 }
@@ -231,13 +231,13 @@
         {
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             Vector2 statsPosition = new Vector2(10, 10);
-            spriteBatch.DrawString(font, string.Format("HP :  {0}", this.hero.Health), statsPosition, Color.Red);
+            spriteBatch.DrawString(font, string.Format("HP :  {0}", (int)this.hero.Health), statsPosition, Color.Red);
 
             statsPosition = new Vector2(10, 40);
-            spriteBatch.DrawString(font, string.Format("Att :  {0}", this.hero.Attack), statsPosition, Color.Red);
+            spriteBatch.DrawString(font, string.Format("Att :  {0}", (int)this.hero.Attack), statsPosition, Color.Red);
 
             statsPosition = new Vector2(10, 70);
-            spriteBatch.DrawString(font, string.Format("Def :  {0}", this.hero.Defence), statsPosition, Color.Red);
+            spriteBatch.DrawString(font, string.Format("Def :  {0}", (int)this.hero.Defence), statsPosition, Color.Red);
             
             statsPosition = new Vector2(10, 100);
             spriteBatch.DrawString(font, string.Format("Experience :  {0}", this.hero.CurrentExp), statsPosition, Color.Red);    
@@ -268,7 +268,7 @@
             this.hero.Area = new Rectangle(x, y, hero.Area.Width, hero.Area.Height);
 
 
-            if (this.keyboard.IsKeyDown(Keys.W) && !collision(new Vector2(0, -hero.Speed), hero))
+            if (this.keyboard.IsKeyDown(Keys.W) && !Collision(new Vector2(0, -hero.Speed), hero))
             {
                 if (oldPos.Y > this.room.Y + 20)
                 {
@@ -278,7 +278,7 @@
                 }
             }
 
-            if (this.keyboard.IsKeyDown(Keys.A) && !collision(new Vector2(-hero.Speed, 0), hero))
+            if (this.keyboard.IsKeyDown(Keys.A) && !Collision(new Vector2(-hero.Speed, 0), hero))
             {
                 if (oldPos.X > this.room.X + 20)
                 {
@@ -288,7 +288,7 @@
                 }
             }
 
-            if (this.keyboard.IsKeyDown(Keys.S) && !collision(new Vector2(0, hero.Speed), hero))
+            if (this.keyboard.IsKeyDown(Keys.S) && !Collision(new Vector2(0, hero.Speed), hero))
             {
                 if (oldPos.Y < this.room.Height - 90)
                 {
@@ -298,7 +298,7 @@
                 }
             }
 
-            if (this.keyboard.IsKeyDown(Keys.D) && !collision(new Vector2(hero.Speed, 0), hero))
+            if (this.keyboard.IsKeyDown(Keys.D) && !Collision(new Vector2(hero.Speed, 0), hero))
             {
                 if (oldPos.X < this.room.Width - 50)
                 {
@@ -331,7 +331,7 @@
 
             foreach (var bullet in this.enemyBullets)
             {
-                if (bullet.Alive)
+                if (bullet.Alive && this.hero.Alive)
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
@@ -349,18 +349,39 @@
                     int y = (int)unit.Position.Y;
                     unit.Area = new Rectangle(x, y, unit.Area.Width, unit.Area.Height);
 
-                    if (collision(new Vector2(0, 0), unit))
-                    {
-                        unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack/10);
-                        if (unit.Health < 0)
-                        {
-                            unit.Alive = false;
-                            hero.CurrentExp = hero.CurrentExp + unit.ExpGiven;
-                        }
-                    }
-
+                    unit.HitTimer++;
                     if (unit is ILevelable)
-                    {
+                    {                      
+                        //TO CHECK:
+                        if (Collision(new Vector2(0, 0), unit))
+                        {                                                   
+                            this.hero.Health = this.hero.Health - ((RangedUnits.Damage / this.hero.Defence) * 20) +
+                                rand.Next((int)RangedUnits.Damage / 10);
+
+                            if (this.hero.Health < 0)
+                            {
+                                this.hero.Health = 0;
+                                this.hero.Alive = false;
+                            }                                                 
+                        }
+
+                        foreach (var item in units)
+                        {
+                            if (item.GetType() == typeof(MeleUnits))
+                            {
+                                Rectangle newArea = new Rectangle(item.Area.X, item.Area.Y, item.Area.Width, item.Area.Height);
+
+                                if (item.HitTimer > item.HitRate && ((newArea.X + newArea.Width / 2) > this.hero.Area.X 
+                                && newArea.X < (this.hero.Area.X + this.hero.Area.Width) && (newArea.Y  + newArea.Height / 2) > 
+                                this.hero.Area.Y && newArea.Y < (this.hero.Area.Y + this.hero.Area.Height)))
+                                {
+                                    this.hero.Health = this.hero.Health - ((item.Attack / this.hero.Defence) * 20) +
+                            rand.Next((int)item.Attack / 10);
+                                    item.HitTimer=0;
+                                }
+                            }
+                        }
+
                         unit.FiringTimer++;
                         if (this.mouse.LeftButton == ButtonState.Released && this.previousMouse.LeftButton == ButtonState.Pressed)
                         {
@@ -375,6 +396,15 @@
                     }
                     else
                     {
+                        if (Collision(new Vector2(0, 0), unit))
+                        {
+                            unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack / 10);
+                            if (unit.Health < 0)
+                            {
+                                unit.Alive = false;
+                                hero.CurrentExp = hero.CurrentExp + unit.ExpGiven;
+                            }
+                        }
                         unit.FiringTimer++;
                         if (Math.Abs(this.hero.Position.X - unit.Position.X) < 200 &&
                             Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)
@@ -398,11 +428,6 @@
             MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
-            meleUnit.Health = 260;
-            meleUnit.Defence = 40;
-            meleUnit.Attack = 70;
-            meleUnit.ExpGiven = 230;
-            meleUnit.Alive = true;
             this.units.Add(meleUnit);
         }
 
@@ -411,11 +436,6 @@
             RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0);
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
-            rangedUnit.Health = 210;
-            rangedUnit.Defence = 30;
-            rangedUnit.Attack = 80;
-            rangedUnit.ExpGiven = 180;
-            rangedUnit.Alive = true;
             this.units.Add(rangedUnit);
         }
 
@@ -444,7 +464,7 @@
             return res;
         }
 
-        private bool collision(Vector2 pos, Obj obj)
+        private bool Collision(Vector2 pos, Obj obj)
         {
             Rectangle newArea = new Rectangle(obj.Area.X, obj.Area.Y, obj.Area.Width, obj.Area.Height);
             if (pos.X < 1)
@@ -467,6 +487,7 @@
 
             foreach (var o in obstacles)
             {
+
                 if (obj.GetType() == typeof(Bullet))           
                 {             
                     if (o.Visible)
@@ -505,6 +526,22 @@
                     }       
                 }
             }
+
+            if(obj.GetType()==typeof(Heroes))
+            {
+                foreach (var o in enemyBullets)
+                {
+                    if (o.Alive)
+                    {
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width)
+                                && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                        {
+                            o.Alive = false;
+                            return true;
+                        }
+                    }
+                }
+            }
            
             return false;
         }
@@ -514,7 +551,7 @@
             float newX = (float)Math.Cos(MathHelper.ToRadians(dir));
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
 
-            if (!collision(new Vector2(newX, newY), unit))
+            if (!Collision(new Vector2(newX, newY), unit))
 	        {                
                 return new Vector2(pix * newX, pix * newY);
 	        }

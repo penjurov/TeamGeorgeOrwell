@@ -12,11 +12,14 @@
 
         public RangedUnits(Vector2 pos, float speed) : base(pos, speed)
         {
-            this.Attack = 0;
-            this.Defence = 0;
-            this.Health = 0;
-            this.ExpGiven = 0;
+            this.Health = 210;
+            this.Defence = 30;
+            Damage = 150;
+            this.ExpGiven = 180;
+            this.Alive = true;
         }
+
+        public static float Damage { get; private set; }
 
         public override float FireRate
         {

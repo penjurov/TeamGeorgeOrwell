@@ -102,7 +102,7 @@
                     this.loaded = true;
                 }
 
-                this.IsMouseVisible = true;
+                this.IsMouseVisible = false;
                 this.gameScreen.Update();
             }
 
