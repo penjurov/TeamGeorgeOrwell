@@ -6,6 +6,8 @@
         GameWindow,
         AboutWindow,
         ControlWindow,
-        ChooseHeroWindow
+        ChooseHeroWindow,
+        GameOver,
+        Win
     }
 }

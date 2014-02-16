@@ -371,9 +371,17 @@
             {
                 if (hero.Area.Intersects(exitSpot))
                 {
-                    hero.Position = new Vector2(30, 400);
-                    stage++;
-                    LoadUnits(content);
+                    if (stage == 1)
+                    {
+                        hero.Position = new Vector2(30, 400);
+                        stage++;
+                        LoadUnits(content);   
+                    }
+                    else
+                    {
+                        Rpg.PActiveWindow = EnumActiveWindow.Win;
+                    }
+                    
                 }    
             }
             
@@ -428,6 +436,8 @@
                             {
                                 this.hero.Health = 0;
                                 this.hero.Alive = false;
+                                Rpg.PActiveWindow = EnumActiveWindow.GameOver;
+                                break;
                             }                                                 
                         }
 

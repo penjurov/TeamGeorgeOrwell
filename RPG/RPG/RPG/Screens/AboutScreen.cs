@@ -52,7 +52,7 @@
                 item.Draw(spriteBatch);
             }
 
-            SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
+            SpriteFont font = content.Load<SpriteFont>(@"Fonts/Names");
             Vector2 namePosition = new Vector2(10, 10);
             spriteBatch.DrawString(font, "Iliya Pendzhurov", namePosition, Color.White);
 

@@ -16,6 +16,9 @@
         private readonly ChooseHeroScreen chooseHero = new ChooseHeroScreen();
         private readonly AboutScreen aboutScreen = new AboutScreen();
         private readonly ControlScreen controlScreen = new ControlScreen();
+        private readonly GameOver gameOver = new GameOver();
+        private readonly WinScreen win = new WinScreen();
+
 
         private SpriteBatch spriteBatch;
         private Viewport viewport;
@@ -49,7 +52,7 @@
                 return activeWindow;
             }
 
-            private set
+            set
             {
                 activeWindow = value;
             }
@@ -78,6 +81,10 @@
             this.aboutScreen.Load(this.Content);
 
             this.controlScreen.Load(this.Content);
+
+            this.gameOver.Load(this.Content);
+
+            this.win.Load(this.Content);
                        
             base.LoadContent();
         }
@@ -109,6 +116,20 @@
             {
                 this.IsMouseVisible = true;
                 this.aboutScreen.Update();
+                this.mainThemeInstance.Play();
+            }
+
+            if (activeWindow == EnumActiveWindow.GameOver)
+            {
+                this.IsMouseVisible = false;
+                this.gameOver.Update();
+                this.mainThemeInstance.Play();
+            }
+
+            if (activeWindow == EnumActiveWindow.Win)
+            {
+                this.IsMouseVisible = false;
+                this.win.Update();
                 this.mainThemeInstance.Play();
             }
 
@@ -156,6 +177,16 @@
             if (activeWindow == EnumActiveWindow.ControlWindow)
             {
                 this.controlScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+            }
+
+            if (activeWindow == EnumActiveWindow.GameOver)
+            {
+                this.gameOver.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+            }
+
+            if (activeWindow == EnumActiveWindow.Win)
+            {
+                this.win.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
         }
     }
