@@ -181,19 +181,19 @@
             {
                 case "ODIN":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, true, 900, 110, 70, 200);
                         break;
                     }
 
                 case "THOR":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 1000, 130, 90);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 1.5f, true, 1000, 130, 90, 50);
                         break;
                     }
 
                 case "EIR":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 750, 90, 60);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 3, true, 750, 90, 60, 150);
                         break;
                     }
 
@@ -383,8 +383,8 @@
         {
             foreach (var bullet in this.bullets)
             {
-                if (bullet.Alive && Math.Abs(this.hero.Position.X - bullet.Position.X) < 200 &&
-                        Math.Abs(this.hero.Position.Y - bullet.Position.Y) < 200) 
+                if (bullet.Alive && Math.Abs(this.hero.Position.X - bullet.Position.X) < hero.Range &&
+                        Math.Abs(this.hero.Position.Y - bullet.Position.Y) < hero.Range) 
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
@@ -462,8 +462,22 @@
                     }
                     else
                     {
+                        if (Math.Abs(this.hero.Position.X - unit.Position.X) < unit.Range &&
+                            Math.Abs(this.hero.Position.Y - unit.Position.Y) < unit.Range)
+                        {
+                            unit.Active = true;
+                        }
+                        else
+                        {
+                            if (unit.GetType() == typeof(RangedUnits))
+                            {
+                               unit.Active = false; 
+                            }
+                        }
+                        
                         if (Collision(new Vector2(0, 0), unit))
                         {
+                            unit.Active = true;
                             unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack / 10);
                             if (unit.Health < 0)
                             {
@@ -472,9 +486,8 @@
                             }
                         }
                         unit.FiringTimer++;
-                        if (Math.Abs(this.hero.Position.X - unit.Position.X) < 200 &&
-                            Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)
-                        {
+                        if (unit.Active)
+                        {                           
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
                             unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
                             unit.CheckShooting(this.enemyBullets);
@@ -491,7 +504,7 @@
 
         private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, 70, 40, 260, 230, true);
+            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, false, 70, 40, 260, 230, true, 150);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
@@ -499,7 +512,7 @@
 
         private void AddRangeUnit(ContentManager content, int x, int y, string textureName)
         {
-            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0, 80, 30, 210, 180, true);
+            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0, false, 80, 30, 210, 180, true, 200);
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
             this.units.Add(rangedUnit);
@@ -507,7 +520,7 @@
 
         private void AddBoss(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, 200, 100, 2000, 2300, true);
+            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, false, 200, 100, 2000, 2300, true, 100);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);

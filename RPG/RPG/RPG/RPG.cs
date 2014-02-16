@@ -14,6 +14,8 @@
         private readonly MainMenuScreen mainMenuScreen = new MainMenuScreen();
         private readonly GameScreen gameScreen = new GameScreen();
         private readonly ChooseHeroScreen chooseHero = new ChooseHeroScreen();
+        private readonly AboutScreen aboutScreen = new AboutScreen();
+        private readonly ControlScreen controlScreen = new ControlScreen();
 
         private SpriteBatch spriteBatch;
         private Viewport viewport;
@@ -28,10 +30,8 @@
             this.graphics = new GraphicsDeviceManager(this);
 
             this.graphics.PreferredBackBufferWidth = 1024;
-            this.graphics.PreferredBackBufferHeight = 768;
+            this.graphics.PreferredBackBufferHeight = 715;
 
-            this.graphics.PreferredBackBufferWidth = 1000;
-            this.graphics.PreferredBackBufferHeight = 700;
             this.graphics.IsFullScreen = false;
 
             this.Content.RootDirectory = "Content";
@@ -74,6 +74,10 @@
             this.mainMenuScreen.Load(this.Content);
             
             this.chooseHero.Load(this.Content);
+
+            this.aboutScreen.Load(this.Content);
+
+            this.controlScreen.Load(this.Content);
                        
             base.LoadContent();
         }
@@ -94,6 +98,20 @@
                 this.mainThemeInstance.Play();
             }
 
+            if (activeWindow == EnumActiveWindow.ControlWindow)
+            {
+                this.IsMouseVisible = true;
+                this.controlScreen.Update();
+                this.mainThemeInstance.Play();
+            }
+
+            if (activeWindow == EnumActiveWindow.AboutWindow)
+            {
+                this.IsMouseVisible = true;
+                this.aboutScreen.Update();
+                this.mainThemeInstance.Play();
+            }
+
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
                 if (!this.loaded)
@@ -107,7 +125,7 @@
                 this.gameScreen.Update(this.Content);
             }
 
-            if (activeWindow != EnumActiveWindow.MainMenu)
+            if (activeWindow == EnumActiveWindow.GameWindow)
             {
                 this.mainThemeInstance.Stop();
             }        
@@ -128,6 +146,16 @@
             if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
             {
                 this.chooseHero.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+            }
+
+            if (activeWindow == EnumActiveWindow.AboutWindow)
+            {
+                this.aboutScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+            }
+
+            if (activeWindow == EnumActiveWindow.ControlWindow)
+            {
+                this.controlScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
         }
     }

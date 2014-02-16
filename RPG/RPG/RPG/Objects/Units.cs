@@ -10,11 +10,17 @@
         private int hitRate = 60;
         private int hitTimer = 0;
 
-        public Units(Vector2 pos, float speed) : base(pos)
+        public Units(Vector2 pos, float speed, bool act, float range) : base(pos)
         {
             this.Speed = speed;
             this.Alive = true;
+            this.Active = act;
+            this.Range = range;
         }
+
+        public bool Active { get; set; }
+
+        public float Range { get; set; }
 
         public float ExpGiven { get; set; }
 

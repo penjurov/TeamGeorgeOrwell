@@ -12,8 +12,9 @@
         private int ammo = 0;
         private int firingTimer = 0;
         private float fireRate = 20;
-       
-        public Heroes(Vector2 pos, float speed, float hp, float att, float def) : base(pos, speed)
+
+        public Heroes(Vector2 pos, float speed, bool act, float hp, float att, float def, float range) 
+            : base(pos, speed, act, range)
         {
             this.Health = hp;
             this.Attack = att;

@@ -55,7 +55,7 @@
 
         public void Load(ContentManager content)
         {
-            this.chooseHeroBackgroundTexture = content.Load<Texture2D>(@"Textures\MainMenu\MainMenu");
+            this.chooseHeroBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\MainMenu");
 
             this.heroTexture.Add(content.Load<Texture2D>(@"Textures\ChooseHero\select_odin"));
             this.heroTexture.Add(content.Load<Texture2D>(@"Textures\ChooseHero\select_thor"));
@@ -69,6 +69,9 @@
             this.chooseHeroBackgroundPosition = new Vector2(0, 0);
 
             spriteBatch.Begin();
+
+            spriteBatch.Draw(this.chooseHeroBackgroundTexture, this.chooseHeroBackgroundPosition, Color.White);
+
 
             if (this.PchooseHeroList.Count < 3)
             {
