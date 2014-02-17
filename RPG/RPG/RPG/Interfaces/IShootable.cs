@@ -7,7 +7,7 @@
     {
         int FiringTimer { get; set; }
 
-        float FireRate { get; set; }
+        float FireRate { get; }
 
         void CheckShooting(IList<Bullet> bullets);
     }

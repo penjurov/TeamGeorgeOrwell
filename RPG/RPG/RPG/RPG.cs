@@ -2,7 +2,6 @@
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;
-    using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;    
     using Screens;
 
@@ -14,6 +13,11 @@
         private readonly MainMenuScreen mainMenuScreen = new MainMenuScreen();
         private readonly GameScreen gameScreen = new GameScreen();
         private readonly ChooseHeroScreen chooseHero = new ChooseHeroScreen();
+        private readonly AboutScreen aboutScreen = new AboutScreen();
+        private readonly ControlScreen controlScreen = new ControlScreen();
+        private readonly GameOver gameOver = new GameOver();
+        private readonly WinScreen win = new WinScreen();
+
 
         private SpriteBatch spriteBatch;
         private Viewport viewport;
@@ -28,10 +32,8 @@
             this.graphics = new GraphicsDeviceManager(this);
 
             this.graphics.PreferredBackBufferWidth = 1024;
-            this.graphics.PreferredBackBufferHeight = 768;
+            this.graphics.PreferredBackBufferHeight = 715;
 
-            this.graphics.PreferredBackBufferWidth = 1000;
-            this.graphics.PreferredBackBufferHeight = 700;
             this.graphics.IsFullScreen = false;
 
             this.Content.RootDirectory = "Content";
@@ -49,7 +51,7 @@
                 return activeWindow;
             }
 
-            private set
+            set
             {
                 activeWindow = value;
             }
@@ -74,6 +76,14 @@
             this.mainMenuScreen.Load(this.Content);
             
             this.chooseHero.Load(this.Content);
+
+            this.aboutScreen.Load(this.Content);
+
+            this.controlScreen.Load(this.Content);
+
+            this.gameOver.Load(this.Content);
+
+            this.win.Load(this.Content);
                        
             base.LoadContent();
         }
@@ -94,6 +104,34 @@
                 this.mainThemeInstance.Play();
             }
 
+            if (activeWindow == EnumActiveWindow.ControlWindow)
+            {
+                this.IsMouseVisible = true;
+                this.controlScreen.Update();
+                this.mainThemeInstance.Play();
+            }
+
+            if (activeWindow == EnumActiveWindow.AboutWindow)
+            {
+                this.IsMouseVisible = true;
+                this.aboutScreen.Update();
+                this.mainThemeInstance.Play();
+            }
+
+            if (activeWindow == EnumActiveWindow.GameOver)
+            {
+                this.IsMouseVisible = false;
+                this.gameOver.Update();
+                this.mainThemeInstance.Play();
+            }
+
+            if (activeWindow == EnumActiveWindow.Win)
+            {
+                this.IsMouseVisible = false;
+                this.win.Update();
+                this.mainThemeInstance.Play();
+            }
+
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
                 if (!this.loaded)
@@ -107,7 +145,7 @@
                 this.gameScreen.Update(this.Content);
             }
 
-            if (activeWindow != EnumActiveWindow.MainMenu)
+            if (activeWindow == EnumActiveWindow.GameWindow)
             {
                 this.mainThemeInstance.Stop();
             }        
@@ -128,6 +166,26 @@
             if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
             {
                 this.chooseHero.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+            }
+
+            if (activeWindow == EnumActiveWindow.AboutWindow)
+            {
+                this.aboutScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+            }
+
+            if (activeWindow == EnumActiveWindow.ControlWindow)
+            {
+                this.controlScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+            }
+
+            if (activeWindow == EnumActiveWindow.GameOver)
+            {
+                this.gameOver.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+            }
+
+            if (activeWindow == EnumActiveWindow.Win)
+            {
+                this.win.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
         }
     }

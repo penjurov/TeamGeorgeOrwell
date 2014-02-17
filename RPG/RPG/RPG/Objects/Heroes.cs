@@ -1,19 +1,16 @@
 ﻿namespace Rpg.Objects
 {
-    using System.Collections;
-    using System.Collections.Generic;
     using Interfaces;
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-    using Screens;
+    using System.Collections.Generic;
 
-    public class Heroes : Units, IShootable, ILevelable, IMovable
+    public class Heroes : Units, IShootable, ILevelable
     {
-        private int ammo = 0;
         private int firingTimer = 0;
         private float fireRate = 20;
-       
-        public Heroes(Vector2 pos, float speed, float hp, float att, float def) : base(pos, speed)
+
+        public Heroes(Vector2 pos, float speed, bool act, float hp, float att, float def, float range) 
+            : base(pos, speed, act, range)
         {
             this.Health = hp;
             this.Attack = att;
@@ -27,8 +24,12 @@
                 return this.fireRate;
             }
 
-            set
+            protected set
             {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The fire rate of unit cannot be a negative number!", (int)value);
+                }
                 this.fireRate = value;
             }
         }
@@ -36,19 +37,6 @@
         public float CurrentExp { get; set; }
 
         public int Level { get; set; }
-
-        public int Ammo 
-        {
-            get
-            {
-                return this.ammo;
-            }
-
-            set
-            {
-                this.ammo = value;
-            }
-        }
 
         public override int FiringTimer
         {
@@ -59,6 +47,10 @@
 
             set
             {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The firing timer of unit cannot be a negative number!", value);
+                }
                 this.firingTimer = value;
             }
         }

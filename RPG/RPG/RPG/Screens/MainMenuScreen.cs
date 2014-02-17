@@ -21,6 +21,8 @@
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
         private MouseState mouse;
+        private MouseState previousMouse;
+
 
         public static IList<MenuItems> PMainMenuItems
         {
@@ -37,11 +39,11 @@
 
         public void Load(ContentManager content)
         {
-            this.mainMenuBackgroundTexture = content.Load<Texture2D>(@"Textures\MainMenu\MainMenu");
+            this.mainMenuBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\MainMenu");
 
-            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\MainMenu\MainMenuPlank"));
-            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\MainMenu\MainMenuPlank02"));
-            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\MainMenu\MainMenuPlank03"));
+            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\GameScreens\MainMenuPlank"));
+            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\GameScreens\MainMenuPlank02"));
+            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\GameScreens\MainMenuPlank03"));
         }
 
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
@@ -57,7 +59,7 @@
             if (PMainMenuItems.Count < 4)
             {
                 // New game planket and text;
-                this.planketPosition = new Vector2(700, 260);
+                this.planketPosition = new Vector2(700, 360);
                 PMainMenuItems.Add(new MenuItems(this.planketTexture[2], this.planketPosition, "New game", newFont, false));
 
                 // Control planket and text
@@ -78,6 +80,11 @@
             {
                 item.Draw(spriteBatch);                
             }
+
+            SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
+            Vector2 statsPosition = new Vector2(10, 10);
+            spriteBatch.DrawString(font, "Battle for Jotunheimr", statsPosition, Color.White);
+
 
             spriteBatch.End();
         }
@@ -121,13 +128,23 @@
                     Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
                 }
 
+                if (PMainMenuItems[this.selectedEntry].ItemText == "Controls")
+                {
+                    Rpg.ActiveWindowSet(EnumActiveWindow.ControlWindow);
+                }
+
+                if (PMainMenuItems[this.selectedEntry].ItemText == "About")
+                {
+                    Rpg.ActiveWindowSet(EnumActiveWindow.AboutWindow);
+                }
+
                 if (PMainMenuItems[this.selectedEntry].ItemText == "Exit game")
                 {
                     Environment.Exit(1);
                 }
             }
 
-            if (this.mouse.LeftButton == ButtonState.Pressed)
+            if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed)
             {
                 foreach (var item in PMainMenuItems)
                 {
@@ -146,6 +163,18 @@
                             break;
                         }
 
+                        if (item.ItemText == "Controls")
+                        {
+                            Rpg.ActiveWindowSet(EnumActiveWindow.ControlWindow);
+                            break;
+                        }
+
+                        if (item.ItemText == "About")
+                        {
+                            Rpg.ActiveWindowSet(EnumActiveWindow.AboutWindow);
+                            break;
+                        }
+
                         if (item.ItemText == "Exit game")
                         {
                             Environment.Exit(1);
@@ -155,6 +184,7 @@
             }
 
             this.previousKeyboard = this.keyboard;
+            this.previousMouse = this.mouse;
         }
     }
 }

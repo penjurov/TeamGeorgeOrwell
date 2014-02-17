@@ -1,24 +1,26 @@
 ﻿namespace Rpg.Objects
 {
-    using System.Collections.Generic;
     using Interfaces;
     using Microsoft.Xna.Framework;
-    using Screens;
-    
+    using System.Collections.Generic;
+
     public class RangedUnits : Units, IShootable
     {
         private int firingTimer = 0;
         private float fireRate = 80;
 
-        public RangedUnits(Vector2 pos, float speed, float att, float def, float hp, float exp, bool alive)
-            : base(pos, speed)
+        public RangedUnits(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range)
+            : base(pos, speed, act, range)
         {
             this.Attack = att;
+            RangeAtk = this.Attack;
             this.Defence = def;
             this.Health = hp;
             this.ExpGiven = exp;
             this.Alive = alive;
         }
+
+        public static float RangeAtk { get; private set; }
 
         public override float FireRate
         {
@@ -27,8 +29,12 @@
                 return this.fireRate;
             }
 
-            set
+            protected set
             {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The fire rate of unit cannot be a negative number!", (int)value);
+                }
                 this.fireRate = value;
             }
         }
@@ -42,9 +48,15 @@
 
             set
             {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The firing timer of unit cannot be a negative number!", value);
+                }
                 this.firingTimer = value;
             }
         }
+
+
 
         public override void CheckShooting(IList<Bullet> bullets)
         {

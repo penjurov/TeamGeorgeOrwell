@@ -1,14 +1,15 @@
 ﻿namespace Rpg.Screens
 {
-    using System;
-    using System.Collections.Generic;
-    using Interfaces;    
+    using Interfaces;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;    
+    using Microsoft.Xna.Framework.Input;
     using Objects;
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
 
     internal class GameScreen
     {
@@ -181,19 +182,19 @@
             {
                 case "ODIN":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, true, 900, 110, 70, 200);
                         break;
                     }
 
                 case "THOR":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 1000, 130, 90);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 1.5f, true, 1000, 130, 90, 50);
                         break;
                     }
 
                 case "EIR":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 750, 90, 60);
+                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 3, true, 750, 90, 60, 150);
                         break;
                     }
 
@@ -371,9 +372,17 @@
             {
                 if (hero.Area.Intersects(exitSpot))
                 {
-                    hero.Position = new Vector2(30, 400);
-                    stage++;
-                    LoadUnits(content);
+                    if (stage == 1)
+                    {
+                        hero.Position = new Vector2(30, 400);
+                        stage++;
+                        LoadUnits(content);   
+                    }
+                    else
+                    {
+                        Rpg.PActiveWindow = EnumActiveWindow.Win;
+                    }
+                    
                 }    
             }
             
@@ -383,8 +392,8 @@
         {
             foreach (var bullet in this.bullets)
             {
-                if (bullet.Alive && Math.Abs(this.hero.Position.X - bullet.Position.X) < 200 &&
-                        Math.Abs(this.hero.Position.Y - bullet.Position.Y) < 200) 
+                if (bullet.Alive && Math.Abs(this.hero.Position.X - bullet.Position.X) < hero.Range &&
+                        Math.Abs(this.hero.Position.Y - bullet.Position.Y) < hero.Range) 
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
@@ -418,33 +427,41 @@
                     unit.HitTimer++;
                     if (unit is ILevelable)
                     {                      
-                        //TO CHECK:
                         if (Collision(new Vector2(0, 0), unit))
+<<<<<<< HEAD
                         {                 
                             this.hero.Health = this.hero.Health - (((int)unit.Attack / this.hero.Defence) * 20) +
                                 rand.Next((int)unit.Attack / 10);
 
                             if (this.hero.Health < 0)
+=======
+                        {
+                            try
+                            {
+                                this.hero.Health = this.hero.Health - (((int)RangedUnits.RangeAtk / this.hero.Defence) * 20) +
+                                    rand.Next((int)RangedUnits.RangeAtk / 10);
+                            }
+                            catch (NegativeDataException)
+>>>>>>> 904c3b4f07c5ad97fe6732e65d07861175198980
                             {
                                 this.hero.Health = 0;
                                 this.hero.Alive = false;
+                                Rpg.PActiveWindow = EnumActiveWindow.GameOver;
+                                break;
                             }                                                 
                         }
 
-                        foreach (var item in units)
+                        foreach (var mob in units.Where(creep => creep.GetType() == typeof(MeleUnits)))
                         {
-                            if (item.GetType() == typeof(MeleUnits))
-                            {
-                                Rectangle newArea = new Rectangle(item.Area.X, item.Area.Y, item.Area.Width, item.Area.Height);
+                            Rectangle newArea = new Rectangle(mob.Area.X, mob.Area.Y, mob.Area.Width, mob.Area.Height);
 
-                                if (item.HitTimer > item.HitRate && ((newArea.X + newArea.Width / 2) > this.hero.Area.X 
-                                && newArea.X < (this.hero.Area.X + this.hero.Area.Width) && (newArea.Y  + newArea.Height / 2) > 
-                                this.hero.Area.Y && newArea.Y < (this.hero.Area.Y + this.hero.Area.Height)))
-                                {
-                                    this.hero.Health = this.hero.Health - ((item.Attack / this.hero.Defence) * 20) +
-                            rand.Next((int)item.Attack / 10);
-                                    item.HitTimer=0;
-                                }
+                            if (mob.HitTimer > mob.HitRate && ((newArea.X + newArea.Width / 2) > this.hero.Area.X
+                            && newArea.X < (this.hero.Area.X + this.hero.Area.Width) && (newArea.Y + newArea.Height / 2) >
+                            this.hero.Area.Y && newArea.Y < (this.hero.Area.Y + this.hero.Area.Height)))
+                            {
+                                this.hero.Health = this.hero.Health - ((mob.Attack / this.hero.Defence) * 20) +
+                        rand.Next((int)mob.Attack / 10);
+                                mob.HitTimer = 0;
                             }
                         }
 
@@ -462,19 +479,36 @@
                     }
                     else
                     {
+                        if (Math.Abs(this.hero.Position.X - unit.Position.X) < unit.Range &&
+                            Math.Abs(this.hero.Position.Y - unit.Position.Y) < unit.Range)
+                        {
+                            unit.Active = true;
+                        }
+                        else
+                        {
+                            if (unit.GetType() == typeof(RangedUnits))
+                            {
+                               unit.Active = false; 
+                            }
+                        }
+                        
                         if (Collision(new Vector2(0, 0), unit))
                         {
-                            unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack / 10);
-                            if (unit.Health < 0)
+                            try
+                            {
+                                unit.Active = true;
+                                unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack / 10);
+                            }
+                            catch (NegativeDataException)
                             {
                                 unit.Alive = false;
                                 hero.CurrentExp = hero.CurrentExp + unit.ExpGiven;
                             }
                         }
+
                         unit.FiringTimer++;
-                        if (Math.Abs(this.hero.Position.X - unit.Position.X) < 200 &&
-                            Math.Abs(this.hero.Position.Y - unit.Position.Y) < 200)
-                        {
+                        if (unit.Active)
+                        {                           
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
                             unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
                             unit.CheckShooting(this.enemyBullets);
@@ -491,7 +525,7 @@
 
         private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, 70, 40, 260, 230, true);
+            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.8f, false, 150, 40, 260, 230, true, 150);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
@@ -499,7 +533,7 @@
 
         private void AddRangeUnit(ContentManager content, int x, int y, string textureName)
         {
-            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0, 80, 30, 210, 180, true);
+            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0, false, 400, 30, 210, 180, true, 200);
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
             this.units.Add(rangedUnit);
@@ -507,7 +541,7 @@
 
         private void AddBoss(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, 200, 100, 2000, 2300, true);
+            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, false, 200, 100, 2000, 2300, true, 100);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
