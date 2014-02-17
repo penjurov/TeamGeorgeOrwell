@@ -1,8 +1,9 @@
 ﻿namespace Rpg.Objects
 {
     using Microsoft.Xna.Framework;
+    using Interfaces;
 
-    public class MeleUnits : Units
+    public class MeleUnits : Units, IMovable
     {
         private int hitRate = 60;
         private int hitTimer = 0;

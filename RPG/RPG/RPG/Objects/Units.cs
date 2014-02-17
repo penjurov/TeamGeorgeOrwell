@@ -4,7 +4,7 @@
     using Microsoft.Xna.Framework;
     using System.Collections.Generic;
     
-    public abstract class Units : Obj, IMovable
+    public abstract class Units : Obj, ISkillable
     {
         private float range;
         private float expGiven;
@@ -133,7 +133,7 @@
                 return this.defence;
             }
 
-            set
+            protected set
             {
                 if (value < 0)
                 {
@@ -152,6 +152,5 @@
         public virtual int HitRate { get; protected set; }
 
         public virtual int HitTimer { get; set; }
-
     }
 }
