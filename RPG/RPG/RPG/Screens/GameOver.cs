@@ -22,7 +22,6 @@
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.CornflowerBlue);
-            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             this.gameOverScreenBackgroundPosition = new Vector2(0, 0);
 
             spriteBatch.Begin();

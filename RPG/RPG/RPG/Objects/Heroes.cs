@@ -9,14 +9,13 @@
         private int firingTimer = 0;
         private float fireRate = 20;
 
-        public Heroes(Vector2 pos, float speed, bool act, float hp, float att, float def, float range) 
-            : base(pos, speed, act, range)
+        public Heroes(Vector2 pos, float speed, bool act, float hp, float att, float def, float range) : base(pos, speed, act, range)
         {
             this.Health = hp;
             this.Attack = att;
             this.Defence = def;
         }
-
+        
         public override float FireRate
         {
             get

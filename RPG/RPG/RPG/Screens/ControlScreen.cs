@@ -8,10 +8,10 @@
 
     class ControlScreen
     {
-        private IList<MenuItems> controlScreenItems = new List<MenuItems>();
+        private readonly IList<MenuItems> controlScreenItems = new List<MenuItems>();
         private readonly IList<Texture2D> planketTexture = new List<Texture2D>();
-        private int selectedEntry = 0;
-
+        private readonly int selectedEntry = 0;
+        
         private Texture2D controlScreenBackgroundTexture;
         private Vector2 controlScreenBackgroundPosition;
         private Texture2D keyboardTexture;
@@ -71,8 +71,8 @@
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();
 
-            if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter)
-                && this.controlScreenItems.Count != 0)
+            if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter) &&
+                this.controlScreenItems.Count != 0)
             {
                 if (controlScreenItems[this.selectedEntry].ItemText == "Back")
                 {

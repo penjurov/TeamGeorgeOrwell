@@ -9,8 +9,7 @@
         private int firingTimer = 0;
         private float fireRate = 80;
 
-        public RangedUnits(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range)
-            : base(pos, speed, act, range)
+        public RangedUnits(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, act, range)
         {
             this.Attack = att;
             RangeAtk = this.Attack;
@@ -55,8 +54,6 @@
                 this.firingTimer = value;
             }
         }
-
-
 
         public override void CheckShooting(IList<Bullet> bullets)
         {

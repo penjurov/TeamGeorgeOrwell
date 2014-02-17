@@ -18,7 +18,6 @@
         private readonly GameOver gameOver = new GameOver();
         private readonly WinScreen win = new WinScreen();
 
-
         private SpriteBatch spriteBatch;
         private Viewport viewport;
 
@@ -89,7 +88,7 @@
         }
 
         protected override void Update(GameTime gameTime)
-        {          
+        { 
             if (activeWindow == EnumActiveWindow.MainMenu)
             {
                 this.IsMouseVisible = true;
@@ -148,7 +147,7 @@
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
                 this.mainThemeInstance.Stop();
-            }        
+            }
         }
 
         protected override void Draw(GameTime gameTime)

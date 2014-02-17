@@ -9,20 +9,18 @@
 
     internal class MainMenuScreen
     {
-        private static IList<MenuItems> mainMenuItems = new List<MenuItems>();
         private readonly IList<Texture2D> planketTexture = new List<Texture2D>();
-        private int selectedEntry = 0;
 
+        private static IList<MenuItems> mainMenuItems = new List<MenuItems>();
+       
+        private int selectedEntry = 0;
         private Texture2D mainMenuBackgroundTexture;
         private Vector2 mainMenuBackgroundPosition;
-
         private Vector2 planketPosition;
-
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
         private MouseState mouse;
         private MouseState previousMouse;
-
 
         public static IList<MenuItems> PMainMenuItems
         {
@@ -47,7 +45,7 @@
         }
 
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
-        {          
+        { 
             graphicDevice.Clear(Color.CornflowerBlue);
             SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             this.mainMenuBackgroundPosition = new Vector2(0, 0);
@@ -84,7 +82,6 @@
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
             Vector2 statsPosition = new Vector2(10, 10);
             spriteBatch.DrawString(font, "Battle for Jotunheimr", statsPosition, Color.White);
-
 
             spriteBatch.End();
         }

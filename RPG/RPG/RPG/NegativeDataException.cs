@@ -4,10 +4,8 @@
 
     public class NegativeDataException : ApplicationException
     {
-        public NegativeDataException(string msg, int value)
-            : base(msg + ": " + value)
+        public NegativeDataException(string msg, int value) : base(msg + ": " + value)
         {
-
         }
     }
 }

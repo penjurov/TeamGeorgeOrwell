@@ -1,5 +1,5 @@
 ﻿namespace Rpg.Interfaces
-{   
+{ 
     using System.Collections.Generic;
     using Objects;
 

@@ -70,7 +70,6 @@
 
             spriteBatch.Draw(this.chooseHeroBackgroundTexture, this.chooseHeroBackgroundPosition, Color.White);
 
-
             if (this.PchooseHeroList.Count < 3)
             {
                 // Odin
@@ -128,7 +127,7 @@
                 {
                     HeroName = this.chooseHeroList[this.selectedEntry].ItemText;
                     Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
-                }              
+                }
             }
 
             if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed)

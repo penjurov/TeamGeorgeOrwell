@@ -5,7 +5,7 @@
 
     public class MeleUnits : Units, IMovable
     {
-        private int hitRate = 60;
+        private readonly int hitRate = 60;
         private int hitTimer = 0;
 
         public MeleUnits(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range)

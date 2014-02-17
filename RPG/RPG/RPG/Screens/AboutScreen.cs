@@ -1,16 +1,16 @@
 ﻿namespace Rpg.Screens
 {
+    using System.Collections.Generic;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    using System.Collections.Generic;
 
     class AboutScreen
     {
-        private IList<MenuItems> aboutScreenItems = new List<MenuItems>();
+        private readonly IList<MenuItems> aboutScreenItems = new List<MenuItems>();
         private readonly IList<Texture2D> planketTexture = new List<Texture2D>();
-        private int selectedEntry = 0;
+        private readonly int selectedEntry = 0;
 
         private Texture2D aboutScreenBackgroundTexture;
         private Vector2 aboutScreenBackgroundPosition;
@@ -20,6 +20,7 @@
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
         private MouseState mouse;
+
 
         public void Load(ContentManager content)
         {

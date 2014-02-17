@@ -13,26 +13,23 @@
 
     internal class GameScreen
     {
-        private readonly Cursor cursor = new Cursor(new Vector2(0, 0));
-        
-        private IList<Obstacles> obstacles = new List<Obstacles>();
-        private IList<Bullet> bullets = new List<Bullet>();
-        private IList<Bullet> enemyBullets = new List<Bullet>();
-        private bool loaded = false;          
-        private Rectangle room;
-        private Random rand = new Random();
-        private Rectangle exitSpot = new Rectangle(786, 157 , 160, 80);
+        private readonly Cursor cursor = new Cursor(new Vector2(0, 0));       
+        private readonly IList<Obstacles> obstacles = new List<Obstacles>();
+        private readonly IList<Bullet> bullets = new List<Bullet>();
+        private readonly IList<Bullet> enemyBullets = new List<Bullet>();     
+        private readonly Random rand = new Random();
+        private readonly IList<Units> units = new List<Units>();       
+        private readonly Rectangle exitSpot = new Rectangle(786, 157 , 160, 80);
+
         private int stage = 1;
-          
+        private bool loaded = false;
+        private Rectangle room;
         private Texture2D gameWindowTexture;
-        private Vector2 gameWindowTexturePos;
-        private IList<Units> units = new List<Units>();
+        private Vector2 gameWindowTexturePos;       
         private Heroes hero;
         private KeyboardState keyboard;
-        private KeyboardState previousKeyboard;
         private MouseState mouse;
         private MouseState previousMouse;
-
         private SoundEffect walk;
         private SoundEffectInstance walkInstance;
         private SoundEffect walk2;
@@ -52,14 +49,14 @@
         }
           
         public void Draw(SpriteBatch spriteBatch, ContentManager content)
-        {           
+        { 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);  
-                this.DrawBackGround(spriteBatch);
-                this.DrawUnits(spriteBatch);
-                this.DrawLabels(spriteBatch, content);
-                this.DrawBullets(spriteBatch);
-                this.DrawObstacles(spriteBatch);
-                this.DrawCursor(spriteBatch);                
+            this.DrawBackGround(spriteBatch);
+            this.DrawUnits(spriteBatch);
+            this.DrawLabels(spriteBatch, content);
+            this.DrawBullets(spriteBatch);
+            this.DrawObstacles(spriteBatch);
+            this.DrawCursor(spriteBatch);                
             spriteBatch.End();
         }
 
@@ -73,14 +70,12 @@
             this.UpdateBullets();
             this.UpdateHero(content);
 
-            // Check for Tab
             if (this.keyboard.IsKeyDown(Keys.Tab))
             {
                 MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
                 Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
             }
 
-            this.previousKeyboard = this.keyboard;
             this.previousMouse = this.mouse; 
         }
 
@@ -107,12 +102,12 @@
         {
             Texture2D invisTexture = content.Load<Texture2D>(@"Textures\Objects\invisible");
 
-            for (int i = 150; i < 275; i+=25)
-			{
-			    Obstacles invisble = new Obstacles(new Vector2(i, 360), invisTexture, false);
+            for (int i = 150; i < 275; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Vector2(i, 360), invisTexture, false);
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
-			}
+            }
 
             for (int i = 150; i < 275; i += 25)
             {
@@ -138,7 +133,6 @@
 
         private void LoadUnits(ContentManager content)
         {
-            
             if (stage == 1)
             {
                 // Mele
@@ -166,14 +160,13 @@
                 this.AddMeleUnit(content, 760, 620, "mele");
                 this.AddMeleUnit(content, 910, 620, "mele");
 
-
                 // Range
                 this.AddRangeUnit(content, 200, 660, "range");
                 this.AddRangeUnit(content, 965, 670, "range");
 
                 // Boss
                 this.AddBoss(content, 830, 180, "boss");
-            }                                
+            }
         }
 
         private void LoadHero(ContentManager content)
@@ -281,9 +274,7 @@
             spriteBatch.DrawString(font, string.Format("Experience :  {0}", this.hero.CurrentExp), statsPosition, Color.Red);
             
             statsPosition = new Vector2(10, 130);
-            spriteBatch.DrawString(font, this.mouse.X +" " +this.mouse.Y, statsPosition, Color.Red);    
-        
-
+            spriteBatch.DrawString(font, this.mouse.X + " " + this.mouse.Y, statsPosition, Color.Red);    
         }
 
         private void DrawUnits(SpriteBatch spriteBatch)
@@ -357,16 +348,15 @@
             bool allDead = true;
 
             foreach (var unit in units)
-	        {
+            {
                 if (unit.GetType() != typeof(Heroes))
                 {
                     if (unit.Alive)
                     {
                         allDead = false;
-                    } 
+                    }
                 }
-		            
-	        }
+            }
 
             if (allDead)
             {
@@ -382,10 +372,8 @@
                     {
                         Rpg.PActiveWindow = EnumActiveWindow.Win;
                     }
-                    
-                }    
+                }
             }
-            
         }
 
         private void UpdateBullets()
@@ -393,11 +381,11 @@
             foreach (var bullet in this.bullets)
             {
                 if (bullet.Alive && Math.Abs(this.hero.Position.X - bullet.Position.X) < hero.Range &&
-                        Math.Abs(this.hero.Position.Y - bullet.Position.Y) < hero.Range) 
+                    Math.Abs(this.hero.Position.Y - bullet.Position.Y) < hero.Range) 
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
-                }    
+                }
                 else
                 {
                     bullet.Alive = false;
@@ -426,13 +414,13 @@
 
                     unit.HitTimer++;
                     if (unit is ILevelable)
-                    {                      
+                    { 
                         if (Collision(new Vector2(0, 0), unit))
                         {
                             try
                             {
                                 this.hero.Health = this.hero.Health - (((int)RangedUnits.RangeAtk / this.hero.Defence) * 20) +
-                                    rand.Next((int)RangedUnits.RangeAtk / 10);
+                                                   rand.Next((int)RangedUnits.RangeAtk / 10);
                             }
                             catch (NegativeDataException)
                             {
@@ -440,19 +428,19 @@
                                 this.hero.Alive = false;
                                 Rpg.PActiveWindow = EnumActiveWindow.GameOver;
                                 break;
-                            }                                                 
+                            }
                         }
 
                         foreach (var mob in units.Where(creep => creep.GetType() == typeof(MeleUnits)))
                         {
                             Rectangle newArea = new Rectangle(mob.Area.X, mob.Area.Y, mob.Area.Width, mob.Area.Height);
 
-                            if (mob.HitTimer > mob.HitRate && ((newArea.X + newArea.Width / 2) > this.hero.Area.X
-                            && newArea.X < (this.hero.Area.X + this.hero.Area.Width) && (newArea.Y + newArea.Height / 2) >
-                            this.hero.Area.Y && newArea.Y < (this.hero.Area.Y + this.hero.Area.Height)))
+                            if (mob.HitTimer > mob.HitRate && ((newArea.X + newArea.Width / 2) > this.hero.Area.X &&
+                                                               newArea.X < (this.hero.Area.X + this.hero.Area.Width) && (newArea.Y + newArea.Height / 2) >
+                                                               this.hero.Area.Y && newArea.Y < (this.hero.Area.Y + this.hero.Area.Height)))
                             {
                                 this.hero.Health = this.hero.Health - ((mob.Attack / this.hero.Defence) * 20) +
-                        rand.Next((int)mob.Attack / 10);
+                                                   rand.Next((int)mob.Attack / 10);
                                 mob.HitTimer = 0;
                             }
                         }
@@ -480,7 +468,7 @@
                         {
                             if (unit.GetType() == typeof(RangedUnits))
                             {
-                               unit.Active = false; 
+                                unit.Active = false; 
                             }
                         }
                         
@@ -500,13 +488,13 @@
 
                         unit.FiringTimer++;
                         if (unit.Active)
-                        {                           
+                        { 
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
                             unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
                             unit.CheckShooting(this.enemyBullets);
                         }
                     }
-                }              
+                }
             }
         }
 
@@ -544,7 +532,7 @@
             Vector2 center = new Vector2(sprite.Width / 2, sprite.Height / 2);
             float scale = 0.7f;
 
-           // spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(rotation), center, scale, SpriteEffects.None, 0);
+            // spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(rotation), center, scale, SpriteEffects.None, 0);
             spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(0), center, scale, SpriteEffects.None, 0);        
         }
 
@@ -579,7 +567,8 @@
 
             if (pos.Y < 1)
             {
-                newArea.Y += (int)(pos.Y * 3); ;
+                newArea.Y += (int)(pos.Y * 3);
+                ;
             }
             else
             {
@@ -588,13 +577,12 @@
 
             foreach (var o in obstacles)
             {
-
                 if (obj.GetType() == typeof(Bullet))           
-                {             
+                { 
                     if (o.Visible)
                     {
-                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width)
-                            && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
+                            (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                         {
                             obj.Alive = false;
                             return true;
@@ -603,39 +591,38 @@
                 }
                 else
                 {
-                    if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width)
-                        && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                    if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
+                        (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                     {
                         return true;
                     }
                 }
             }
 
-
             if (obj.GetType() == typeof(MeleUnits) || obj.GetType() == typeof(RangedUnits))
             {
                 foreach (var o in bullets)
                 {
-                    if(o.Alive)
+                    if (o.Alive)
                     {
-                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width)
-                                && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
+                            (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                         {
                             o.Alive = false;
                             return true;                            
-                        } 
-                    }       
+                        }
+                    }
                 }
             }
 
-            if(obj.GetType()==typeof(Heroes))
+            if (obj.GetType() == typeof(Heroes))
             {
                 foreach (var o in enemyBullets)
                 {
                     if (o.Alive)
                     {
-                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width)
-                                && (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
+                            (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                         {
                             o.Alive = false;
                             return true;
@@ -653,9 +640,9 @@
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
 
             if (!Collision(new Vector2(newX, newY), unit))
-	        {                
+            { 
                 return new Vector2(pix * newX, pix * newY);
-	        }
+            }
 
             return new Vector2(0, 0);                    
         }

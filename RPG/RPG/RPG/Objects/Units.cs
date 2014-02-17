@@ -32,7 +32,7 @@
             }
             protected set
             {
-                if(value<0)
+                if (value < 0)
                 {
                     throw new NegativeDataException("Enemy range cannot be a negative number!",(int)value);
                 }
@@ -49,7 +49,7 @@
             }
             protected set
             {
-                if(value<0)
+                if (value < 0)
                 {
                     throw new NegativeDataException("Enemies' experience given cannot be a negative number!",(int)value);
                 }
@@ -82,7 +82,7 @@
 
             set
             {
-                if(value<0)
+                if (value < 0)
                 {
                     throw new NegativeDataException("The rotation of unit cannot be a negative number!",(int)value);
                 }
@@ -147,7 +147,9 @@
 
         public virtual float FireRate { get; protected set; }
 
-        public virtual void CheckShooting(IList<Bullet> bullets) { }
+        public virtual void CheckShooting(IList<Bullet> bullets)
+        {
+        }
 
         public virtual int HitRate { get; protected set; }
 

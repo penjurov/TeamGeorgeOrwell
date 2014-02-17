@@ -10,7 +10,6 @@
     {
         private Texture2D winScreenBackgroundTexture;
         private Vector2 winScreenBackgroundPosition;
-
         private KeyboardState keyboard;
         private MouseState mouse;
 
@@ -22,7 +21,6 @@
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.Black);
-            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             this.winScreenBackgroundPosition = new Vector2(0, 0);
 
             spriteBatch.Begin();

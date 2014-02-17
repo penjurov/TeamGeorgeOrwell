@@ -1,5 +1,5 @@
 ﻿namespace Rpg
-{   
+{ 
     public abstract class GameStarter
     {
         static void Main()
