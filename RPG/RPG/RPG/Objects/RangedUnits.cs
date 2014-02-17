@@ -1,10 +1,9 @@
 ﻿namespace Rpg.Objects
 {
-    using System.Collections.Generic;
     using Interfaces;
     using Microsoft.Xna.Framework;
-    using Screens;
-    
+    using System.Collections.Generic;
+
     public class RangedUnits : Units, IShootable
     {
         private int firingTimer = 0;
@@ -27,8 +26,12 @@
                 return this.fireRate;
             }
 
-            set
+            protected set
             {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The fire rate of unit cannot be a negative number!", (int)value);
+                }
                 this.fireRate = value;
             }
         }
@@ -42,6 +45,10 @@
 
             set
             {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The firing timer of unit cannot be a negative number!", value);
+                }
                 this.firingTimer = value;
             }
         }

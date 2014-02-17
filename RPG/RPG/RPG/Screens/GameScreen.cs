@@ -1,14 +1,14 @@
 ﻿namespace Rpg.Screens
 {
-    using System;
-    using System.Collections.Generic;
-    using Interfaces;    
+    using Interfaces;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;    
+    using Microsoft.Xna.Framework.Input;
     using Objects;
+    using System;
+    using System.Collections.Generic;
 
     internal class GameScreen
     {
@@ -426,13 +426,14 @@
                     unit.HitTimer++;
                     if (unit is ILevelable)
                     {                      
-                        //TO CHECK:
                         if (Collision(new Vector2(0, 0), unit))
-                        {                 
-                            this.hero.Health = this.hero.Health - (((int)unit.Attack / this.hero.Defence) * 20) +
-                                rand.Next((int)unit.Attack / 10);
-
-                            if (this.hero.Health < 0)
+                        {
+                            try
+                            {
+                                this.hero.Health = this.hero.Health - (((int)unit.Attack / this.hero.Defence) * 20) +
+                                    rand.Next((int)unit.Attack / 10);
+                            }
+                            catch (NegativeDataException)
                             {
                                 this.hero.Health = 0;
                                 this.hero.Alive = false;
@@ -487,14 +488,18 @@
                         
                         if (Collision(new Vector2(0, 0), unit))
                         {
-                            unit.Active = true;
-                            unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack / 10);
-                            if (unit.Health < 0)
+                            try
+                            {
+                                unit.Active = true;
+                                unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack / 10);
+                            }
+                            catch (NegativeDataException)
                             {
                                 unit.Alive = false;
                                 hero.CurrentExp = hero.CurrentExp + unit.ExpGiven;
                             }
                         }
+
                         unit.FiringTimer++;
                         if (unit.Active)
                         {                           

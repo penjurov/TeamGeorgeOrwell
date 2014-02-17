@@ -5,10 +5,6 @@
 
     public abstract class Obj
     {
-        public Obj()
-        {
-        }
-
         public Obj(Vector2 pos)
         {
             this.Position = pos;

@@ -12,13 +12,8 @@
             this.SpriteIndex = texture;
             this.Visible = vis;
         }
-
-        public int Length { get; set; }
-
         public bool Visible { get; set; }
 
         public int Rotation { get; set; }
-
-        public float Angle { get; set; }
     }
 }

@@ -79,6 +79,7 @@
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Interfaces\IShootable.cs" />
     <Compile Include="Interfaces\ISkillable.cs" />
+    <Compile Include="NegativeDataException.cs" />
     <Compile Include="Objects\RangedUnits.cs" />
     <Compile Include="RPG.cs" />
     <Compile Include="Screens\AboutScreen.cs" />
