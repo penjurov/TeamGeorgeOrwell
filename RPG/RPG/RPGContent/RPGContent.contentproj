@@ -125,8 +125,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
     <Compile Include="Textures\GameScreens\GameOver.jpg">
       <Name>GameOver</Name>
       <Importer>TextureImporter</Importer>
@@ -190,41 +188,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
->>>>>>> 904c3b4f07c5ad97fe6732e65d07861175198980
     <Compile Include="Textures\Objects\boss.png">
       <Name>boss</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-<<<<<<< HEAD
-=======
   </ItemGroup>
   <ItemGroup>
->>>>>>> 904c3b4f07c5ad97fe6732e65d07861175198980
     <Compile Include="Textures\Objects\Eir.png">
       <Name>Eir</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-<<<<<<< HEAD
-=======
   </ItemGroup>
   <ItemGroup>
->>>>>>> 904c3b4f07c5ad97fe6732e65d07861175198980
     <Compile Include="Textures\Objects\mele.png">
       <Name>mele</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Textures\Objects\OdinBig.png">
-      <Name>OdinBig</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Objects\range.png">
-      <Name>range</Name>
-=======
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Textures\Objects\range.png">
@@ -292,7 +274,6 @@
   <ItemGroup>
     <Compile Include="Textures\Objects\male.png">
       <Name>male</Name>
->>>>>>> 904c3b4f07c5ad97fe6732e65d07861175198980
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
