@@ -23,14 +23,6 @@
             {
                 return this.hitRate;
             }
-            protected set
-            {
-                if (value < 0)
-                {
-                    throw new NegativeDataException("The hit rate of unit cannot be a negative number!", value);
-                }
-                this.hitRate = value;
-            }
         }
 
         public override int HitTimer

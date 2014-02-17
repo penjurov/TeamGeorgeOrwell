@@ -13,11 +13,14 @@
             : base(pos, speed, act, range)
         {
             this.Attack = att;
+            RangeAtk = this.Attack;
             this.Defence = def;
             this.Health = hp;
             this.ExpGiven = exp;
             this.Alive = alive;
         }
+
+        public static float RangeAtk { get; private set; }
 
         public override float FireRate
         {
@@ -52,6 +55,8 @@
                 this.firingTimer = value;
             }
         }
+
+
 
         public override void CheckShooting(IList<Bullet> bullets)
         {
