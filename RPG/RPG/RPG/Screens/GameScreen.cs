@@ -36,6 +36,10 @@
         private SoundEffectInstance walkInstance2;
         private SoundEffect gunShot;
         private SoundEffectInstance gunShotInstance;
+        private SoundEffect pain1;
+        private SoundEffectInstance pain1Instance;
+        private SoundEffect pain2;
+        private SoundEffectInstance pain2Instance;
 
         public void Load(ContentManager content)
         {
@@ -214,6 +218,8 @@
             this.walk = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt1");
             this.walk2 = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt2");
             this.gunShot = content.Load<SoundEffect>(@"Textures\Sounds\gunShot");
+            this.pain1 = content.Load<SoundEffect>(@"Textures\Sounds\pain1");
+            this.pain2 = content.Load<SoundEffect>(@"Textures\Sounds\pain2");
             this.walkInstance = this.walk.CreateInstance();
             this.walkInstance.IsLooped = false;
             this.walkInstance.Volume = 0.1f;
@@ -223,6 +229,12 @@
             this.gunShotInstance = this.gunShot.CreateInstance();
             this.gunShotInstance.IsLooped = false;
             this.gunShotInstance.Volume = 0.1f;
+            this.pain1Instance = this.pain1.CreateInstance();
+            this.pain1Instance.IsLooped = false;
+            this.pain1Instance.Volume = 0.2f;
+            this.pain2Instance = this.pain2.CreateInstance();
+            this.pain2Instance.IsLooped = false;
+            this.pain2Instance.Volume = 0.2f;
         }
 
         private void DrawCursor(SpriteBatch spriteBatch)
@@ -404,6 +416,7 @@
 
         private void UpdateUnits()
         {
+            int n = rand.Next(0, 101);
             foreach (var unit in this.units)
             {
                 if (unit.Alive)
@@ -421,6 +434,14 @@
                             {
                                 this.hero.Health = this.hero.Health - (((int)RangedUnits.RangeAtk / this.hero.Defence) * 20) +
                                                    rand.Next((int)RangedUnits.RangeAtk / 10);
+                                if (n < 50)
+                                {
+                                    this.pain1Instance.Play();
+                                }
+                                else
+                                {
+                                    this.pain2Instance.Play();
+                                }
                             }
                             catch (NegativeDataException)
                             {
@@ -441,6 +462,14 @@
                             {
                                 this.hero.Health = this.hero.Health - ((mob.Attack / this.hero.Defence) * 20) +
                                                    rand.Next((int)mob.Attack / 10);
+                                if (n < 50)
+                                {
+                                    this.pain1Instance.Play();
+                                }
+                                else
+                                {
+                                    this.pain2Instance.Play();
+                                }
                                 mob.HitTimer = 0;
                             }
                         }
@@ -477,7 +506,7 @@
                             try
                             {
                                 unit.Active = true;
-                                unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack / 10);
+                                unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack / 10);                                
                             }
                             catch (NegativeDataException)
                             {
