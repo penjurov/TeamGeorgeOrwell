@@ -460,17 +460,27 @@
                                                                newArea.X < (this.hero.Area.X + this.hero.Area.Width) && (newArea.Y + newArea.Height / 2) >
                                                                this.hero.Area.Y && newArea.Y < (this.hero.Area.Y + this.hero.Area.Height)))
                             {
-                                this.hero.Health = this.hero.Health - ((mob.Attack / this.hero.Defence) * 20) +
-                                                   rand.Next((int)mob.Attack / 10);
-                                if (n < 50)
+                                try
                                 {
-                                    this.pain1Instance.Play();
+                                    this.hero.Health = this.hero.Health - ((mob.Attack / this.hero.Defence) * 20) +
+                                                       rand.Next((int)mob.Attack / 10);
+                                    if (n < 50)
+                                    {
+                                        this.pain1Instance.Play();
+                                    }
+                                    else
+                                    {
+                                        this.pain2Instance.Play();
+                                    }
+                                    mob.HitTimer = 0;
                                 }
-                                else
+                                catch (NegativeDataException)
                                 {
-                                    this.pain2Instance.Play();
+                                    this.hero.Health = 0;
+                                    this.hero.Alive = false;
+                                    Rpg.PActiveWindow = EnumActiveWindow.GameOver;
+                                    break;
                                 }
-                                mob.HitTimer = 0;
                             }
                         }
 
