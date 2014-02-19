@@ -79,6 +79,7 @@
             if (this.keyboard.IsKeyDown(Keys.Tab))
             {
                 MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
+                this.gameSongInstance.Stop();
                 Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
             }
 
