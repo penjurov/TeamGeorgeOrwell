@@ -179,19 +179,19 @@
             {
                 case "ODIN":
                     {
-                        this.hero = new Hero(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, true, 900, 110, 70, 200);
+                        this.hero = new Hero(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70, 200);
                         break;
                     }
 
                 case "THOR":
                     {
-                        this.hero = new Hero(new Vector2(this.room.Width / 2, this.room.Height / 2), 1.5f, true, 1000, 130, 90, 50);
+                        this.hero = new Hero(new Vector2(this.room.Width / 2, this.room.Height / 2), 1.5f, 1000, 130, 90, 50);
                         break;
                     }
 
                 case "EIR":
                     {
-                        this.hero = new Hero(new Vector2(this.room.Width / 2, this.room.Height / 2), 3, true, 750, 90, 60, 150);
+                        this.hero = new Hero(new Vector2(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150);
                         break;
                     }
 
@@ -587,7 +587,6 @@
             float divY = y - y2;
             float adj = divX;
             float opp = divY;
-            float tan = opp / adj;
             float res = MathHelper.ToDegrees((float)Math.Atan2(opp, adj));
             res = (res - 180) % 360;
             if (res < 0)
@@ -613,7 +612,6 @@
             if (pos.Y < 1)
             {
                 newArea.Y += (int)(pos.Y * 3);
-                ;
             }
             else
             {

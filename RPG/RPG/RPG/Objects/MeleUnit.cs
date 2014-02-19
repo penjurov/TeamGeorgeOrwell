@@ -9,13 +9,14 @@
         private int hitTimer = 0;
         private float expGiven;
 
-        public MeleUnit(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, act, range)
+        public MeleUnit(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, range)
         {
             this.Attack = att;
             this.Defence = def;
             this.Health = hp;
             this.ExpGiven = exp;
             this.Alive = alive;
+            this.Active = act;
         }
 
         public float ExpGiven

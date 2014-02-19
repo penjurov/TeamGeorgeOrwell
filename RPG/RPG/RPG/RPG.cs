@@ -17,12 +17,10 @@
         private readonly ControlScreen controlScreen = new ControlScreen();
         private readonly GameOver gameOver = new GameOver();
         private readonly WinScreen win = new WinScreen();
+        private readonly SoundEffect mainTheme;
+        private readonly SoundEffectInstance mainThemeInstance;
 
-        private SpriteBatch spriteBatch;
-        private Viewport viewport;
-
-        private SoundEffect mainTheme;
-        private SoundEffectInstance mainThemeInstance;
+        private SpriteBatch spriteBatch;        
 
         private bool loaded = false;
 
@@ -70,7 +68,6 @@
         protected override void LoadContent()
         {
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
-            this.viewport = this.GraphicsDevice.Viewport;
             
             this.mainMenuScreen.Load(this.Content);
             

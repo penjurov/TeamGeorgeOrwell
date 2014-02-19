@@ -2,8 +2,7 @@
 {
     using Interfaces;
     using Microsoft.Xna.Framework;
-    using System.Collections.Generic;
-    
+
     public abstract class Units : Obj, IUnit, IMovable
     {
         private float range;
@@ -13,7 +12,7 @@
         private float attack;
         private float defence;
 
-        public Units(Vector2 pos, float speed, bool act, float range) : base(pos)
+        public Units(Vector2 pos, float speed, float range) : base(pos)
         {
             this.Speed = speed;
             this.Alive = true;

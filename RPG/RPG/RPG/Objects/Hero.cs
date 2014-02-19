@@ -9,21 +9,25 @@
         private int firingTimer = 0;
         private float fireRate = 20;
 
-        public Hero(Vector2 pos, float speed, bool act, float hp, float att, float def, float range) : base(pos, speed, act, range)
+        public Hero(Vector2 pos, float speed, float hp, float att, float def, float range) : base(pos, speed, range)
         {
             this.Health = hp;
             this.Attack = att;
             this.Defence = def;
         }
         
-        public float FireRate
+        public float CurrentExp { get; set; }
+
+        public int Level { get; set; }
+
+        protected float FireRate
         {
             get
             {
                 return this.fireRate;
             }
 
-            protected set
+            private set
             {
                 if (value < 0)
                 {
@@ -32,10 +36,6 @@
                 this.fireRate = value;
             }
         }
-
-        public float CurrentExp { get; set; }
-
-        public int Level { get; set; }
 
         public int FiringTimer
         {

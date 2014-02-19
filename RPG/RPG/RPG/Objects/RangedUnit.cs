@@ -10,7 +10,7 @@
         private float fireRate = 80;
         private float expGiven;
 
-        public RangedUnit(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, act, range)
+        public RangedUnit(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, range)
         {
             this.Attack = att;
             RangeAtk = this.Attack;
@@ -18,6 +18,7 @@
             this.Health = hp;
             this.ExpGiven = exp;
             this.Alive = alive;
+            this.Active = act;
         }
 
         public float ExpGiven
@@ -40,14 +41,14 @@
 
         public bool Active { get; set; }
 
-        public float FireRate
+        protected float FireRate
         {
             get
             {
                 return this.fireRate;
             }
 
-            protected set
+            private set
             {
                 if (value < 0)
                 {
