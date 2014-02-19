@@ -26,7 +26,7 @@
         private Rectangle room;
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;       
-        private Heroes hero;
+        private Hero hero;
         private KeyboardState keyboard;
         private MouseState mouse;
         private MouseState previousMouse;
@@ -179,19 +179,19 @@
             {
                 case "ODIN":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, true, 900, 110, 70, 200);
+                        this.hero = new Hero(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, true, 900, 110, 70, 200);
                         break;
                     }
 
                 case "THOR":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 1.5f, true, 1000, 130, 90, 50);
+                        this.hero = new Hero(new Vector2(this.room.Width / 2, this.room.Height / 2), 1.5f, true, 1000, 130, 90, 50);
                         break;
                     }
 
                 case "EIR":
                     {
-                        this.hero = new Heroes(new Vector2(this.room.Width / 2, this.room.Height / 2), 3, true, 750, 90, 60, 150);
+                        this.hero = new Hero(new Vector2(this.room.Width / 2, this.room.Height / 2), 3, true, 750, 90, 60, 150);
                         break;
                     }
 
@@ -361,7 +361,7 @@
 
             foreach (var unit in units)
             {
-                if (unit.GetType() != typeof(Heroes))
+                if (unit.GetType() != typeof(Hero))
                 {
                     if (unit.Alive)
                     {
@@ -426,14 +426,14 @@
                     unit.Area = new Rectangle(x, y, unit.Area.Width, unit.Area.Height);
 
                     unit.HitTimer++;
-                    if (unit is ILevelable)
-                    { 
+                    if (unit is IPlayer)
+                    {
                         if (Collision(new Vector2(0, 0), unit))
                         {
                             try
                             {
-                                this.hero.Health = this.hero.Health - (((int)RangedUnits.RangeAtk / this.hero.Defence) * 20) +
-                                                   rand.Next((int)RangedUnits.RangeAtk / 10);
+                                this.hero.Health = this.hero.Health - (((int)RangedUnit.RangeAtk / this.hero.Defence) * 20) +
+                                                   rand.Next((int)RangedUnit.RangeAtk / 10);
                                 if (n < 50)
                                 {
                                     this.pain1Instance.Play();
@@ -452,13 +452,13 @@
                             }
                         }
 
-                        foreach (var mob in units.Where(creep => creep.GetType() == typeof(MeleUnits)))
+                        foreach (var mob in units.Where(creep => creep is MeleUnit))
                         {
                             Rectangle newArea = new Rectangle(mob.Area.X, mob.Area.Y, mob.Area.Width, mob.Area.Height);
 
                             if (mob.HitTimer > mob.HitRate && ((newArea.X + newArea.Width / 2) > this.hero.Area.X &&
-                                                               newArea.X < (this.hero.Area.X + this.hero.Area.Width) && (newArea.Y + newArea.Height / 2) >
-                                                               this.hero.Area.Y && newArea.Y < (this.hero.Area.Y + this.hero.Area.Height)))
+                                                               newArea.X < (this.hero.Area.X + this.hero.Area.Width) && (newArea.Y + newArea.Height / 2) > this.hero.Area.Y &&
+                                                               newArea.Y < (this.hero.Area.Y + this.hero.Area.Height)))
                             {
                                 try
                                 {
@@ -484,10 +484,10 @@
                             }
                         }
 
-                        unit.FiringTimer++;
+                        (unit as IShootable).FiringTimer++;
                         if (this.mouse.LeftButton == ButtonState.Released && this.previousMouse.LeftButton == ButtonState.Pressed)
                         {
-                            this.hero.CheckShooting(this.bullets);
+                            (unit as IShootable).CheckShooting(this.bullets);
                             if (this.loaded)
                             {
                                 this.gunShot.Play();
@@ -496,18 +496,18 @@
                             this.loaded = true;
                         }
                     }
-                    else
+                    else if (unit is IMonster)
                     {
                         if (Math.Abs(this.hero.Position.X - unit.Position.X) < unit.Range &&
                             Math.Abs(this.hero.Position.Y - unit.Position.Y) < unit.Range)
                         {
-                            unit.Active = true;
+                            (unit as IMonster).Active = true;
                         }
                         else
                         {
-                            if (unit.GetType() == typeof(RangedUnits))
+                            if (unit is RangedUnit)
                             {
-                                unit.Active = false; 
+                                (unit as IMonster).Active = false; 
                             }
                         }
                         
@@ -515,22 +515,28 @@
                         {
                             try
                             {
-                                unit.Active = true;
+                                (unit as IMonster).Active = true;
                                 unit.Health = unit.Health - ((hero.Attack / unit.Defence) * 20) + rand.Next((int)hero.Attack / 10);                                
                             }
                             catch (NegativeDataException)
                             {
                                 unit.Alive = false;
-                                hero.CurrentExp = hero.CurrentExp + unit.ExpGiven;
+                                hero.CurrentExp = hero.CurrentExp + (unit as IMonster).ExpGiven;
                             }
                         }
 
-                        unit.FiringTimer++;
-                        if (unit.Active)
+                        if (unit is IShootable)
+                        {
+                            (unit as IShootable).FiringTimer++;
+                        }
+                        if ((unit as IMonster).Active)
                         { 
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
                             unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
-                            unit.CheckShooting(this.enemyBullets);
+                            if (unit is IShootable)
+                            {
+                                (unit as IShootable).CheckShooting(this.enemyBullets);
+                            }
                         }
                     }
                 }
@@ -544,7 +550,7 @@
 
         private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.8f, false, 150, 40, 260, 230, true, 150);
+            MeleUnit meleUnit = new MeleUnit(new Vector2(x, y), 1.8f, false, 150, 40, 260, 230, true, 150);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
@@ -552,7 +558,7 @@
 
         private void AddRangeUnit(ContentManager content, int x, int y, string textureName)
         {
-            RangedUnits rangedUnit = new RangedUnits(new Vector2(x, y), 0, false, 400, 30, 210, 180, true, 200);
+            RangedUnit rangedUnit = new RangedUnit(new Vector2(x, y), 0, false, 400, 30, 210, 180, true, 200);
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
             this.units.Add(rangedUnit);
@@ -560,7 +566,7 @@
 
         private void AddBoss(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnits meleUnit = new MeleUnits(new Vector2(x, y), 1.3f, false, 200, 100, 2000, 2300, true, 100);
+            MeleUnit meleUnit = new MeleUnit(new Vector2(x, y), 1.3f, false, 200, 100, 2000, 2300, true, 100);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
@@ -638,7 +644,7 @@
                 }
             }
 
-            if (obj.GetType() == typeof(MeleUnits) || obj.GetType() == typeof(RangedUnits))
+            if (obj.GetType() == typeof(MeleUnit) || obj.GetType() == typeof(RangedUnit))
             {
                 foreach (var o in bullets)
                 {
@@ -654,7 +660,7 @@
                 }
             }
 
-            if (obj.GetType() == typeof(Heroes))
+            if (obj.GetType() == typeof(Hero))
             {
                 foreach (var o in enemyBullets)
                 {

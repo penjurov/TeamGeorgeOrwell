@@ -5,5 +5,6 @@
         float Speed { get; }
 
         float Rotation { get; set; }
+
     }
 }

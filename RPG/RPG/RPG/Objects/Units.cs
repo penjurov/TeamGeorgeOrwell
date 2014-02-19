@@ -4,10 +4,9 @@
     using Microsoft.Xna.Framework;
     using System.Collections.Generic;
     
-    public abstract class Units : Obj, ISkillable
+    public abstract class Units : Obj, IUnit, IMovable
     {
         private float range;
-        private float expGiven;
         private float speed;
         private float rotation;
         private float health;
@@ -18,11 +17,8 @@
         {
             this.Speed = speed;
             this.Alive = true;
-            this.Active = act;
             this.Range = range;
         }
-
-        public bool Active { get; set; }
 
         public float Range
         {
@@ -30,7 +26,7 @@
             {
                 return this.range;
             }
-            protected set
+            private set
             {
                 if (value < 0)
                 {
@@ -38,22 +34,6 @@
                 }
 
                 this.range = value;
-            }
-        }
-
-        public float ExpGiven
-        {
-            get
-            {
-                return this.expGiven;
-            }
-            protected set
-            {
-                if (value < 0)
-                {
-                    throw new NegativeDataException("Enemies' experience given cannot be a negative number!",(int)value);
-                }
-                this.expGiven = value;
             }
         }
 
@@ -141,14 +121,6 @@
                 }
                 this.defence = value;
             }
-        }
-
-        public virtual int FiringTimer { get; set; }
-
-        public virtual float FireRate { get; protected set; }
-
-        public virtual void CheckShooting(IList<Bullet> bullets)
-        {
         }
 
         public virtual int HitRate { get; protected set; }

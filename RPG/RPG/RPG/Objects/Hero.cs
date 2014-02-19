@@ -4,19 +4,19 @@
     using Microsoft.Xna.Framework;
     using System.Collections.Generic;
 
-    public class Heroes : Units, IShootable, ILevelable
+    public class Hero : Units, IShootable, IPlayer
     {
         private int firingTimer = 0;
         private float fireRate = 20;
 
-        public Heroes(Vector2 pos, float speed, bool act, float hp, float att, float def, float range) : base(pos, speed, act, range)
+        public Hero(Vector2 pos, float speed, bool act, float hp, float att, float def, float range) : base(pos, speed, act, range)
         {
             this.Health = hp;
             this.Attack = att;
             this.Defence = def;
         }
         
-        public override float FireRate
+        public float FireRate
         {
             get
             {
@@ -37,7 +37,7 @@
 
         public int Level { get; set; }
 
-        public override int FiringTimer
+        public int FiringTimer
         {
             get
             {
@@ -53,7 +53,7 @@
                 this.firingTimer = value;
             }
         }
-        public override void CheckShooting(IList<Bullet> bullets)
+        public void CheckShooting(IList<Bullet> bullets)
         {
             if (this.FiringTimer > this.FireRate)
             {

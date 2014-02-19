@@ -1,7 +1,9 @@
 ﻿namespace Rpg.Interfaces
 {
-    public interface ILevelable
+    public interface IPlayer
     {
         int Level { get; set; }
+
+        float CurrentExp { get; set; }
     }
 }

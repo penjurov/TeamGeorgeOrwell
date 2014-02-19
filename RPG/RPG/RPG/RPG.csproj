@@ -75,12 +75,13 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ILevelable.cs" />
+    <Compile Include="Interfaces\IMonster.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Interfaces\IShootable.cs" />
-    <Compile Include="Interfaces\ISkillable.cs" />
+    <Compile Include="Interfaces\IUnit.cs" />
     <Compile Include="NegativeDataException.cs" />
-    <Compile Include="Objects\RangedUnits.cs" />
+    <Compile Include="Objects\RangedUnit.cs" />
     <Compile Include="RPG.cs" />
     <Compile Include="Screens\AboutScreen.cs" />
     <Compile Include="Screens\ChooseHeroScreen.cs" />
@@ -92,8 +93,8 @@
     <Compile Include="Objects\Bullet.cs" />
     <Compile Include="Objects\Units.cs" />
     <Compile Include="Objects\Cursor.cs" />
-    <Compile Include="Objects\MeleUnits.cs" />
-    <Compile Include="Objects\Heroes.cs" />
+    <Compile Include="Objects\MeleUnit.cs" />
+    <Compile Include="Objects\Hero.cs" />
     <Compile Include="Objects\Obj.cs" />
     <Compile Include="Objects\Obstacles.cs" />
     <Compile Include="Objects\Skills.cs" />

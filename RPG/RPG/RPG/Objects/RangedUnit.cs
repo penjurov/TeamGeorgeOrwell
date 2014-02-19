@@ -4,12 +4,13 @@
     using Microsoft.Xna.Framework;
     using System.Collections.Generic;
 
-    public class RangedUnits : Units, IShootable
+    public class RangedUnit : Units, IMonster, IShootable
     {
         private int firingTimer = 0;
         private float fireRate = 80;
+        private float expGiven;
 
-        public RangedUnits(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, act, range)
+        public RangedUnit(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, act, range)
         {
             this.Attack = att;
             RangeAtk = this.Attack;
@@ -19,9 +20,27 @@
             this.Alive = alive;
         }
 
+        public float ExpGiven
+        {
+            get
+            {
+                return this.expGiven;
+            }
+            protected set
+            {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("Enemies' experience given cannot be a negative number!",(int)value);
+                }
+                this.expGiven = value;
+            }
+        }
+
         public static float RangeAtk { get; private set; }
 
-        public override float FireRate
+        public bool Active { get; set; }
+
+        public float FireRate
         {
             get
             {
@@ -38,7 +57,7 @@
             }
         }
 
-        public override int FiringTimer
+        public int FiringTimer
         {
             get
             {
@@ -55,7 +74,7 @@
             }
         }
 
-        public override void CheckShooting(IList<Bullet> bullets)
+        public void CheckShooting(IList<Bullet> bullets)
         {
             if (this.FiringTimer > this.FireRate)
             {
