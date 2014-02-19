@@ -40,6 +40,8 @@
         private SoundEffectInstance pain1Instance;
         private SoundEffect pain2;
         private SoundEffectInstance pain2Instance;
+        private SoundEffect gameSong;
+        private SoundEffectInstance gameSongInstance;
 
         public void Load(ContentManager content)
         {
@@ -220,6 +222,7 @@
             this.gunShot = content.Load<SoundEffect>(@"Textures\Sounds\gunShot");
             this.pain1 = content.Load<SoundEffect>(@"Textures\Sounds\pain1");
             this.pain2 = content.Load<SoundEffect>(@"Textures\Sounds\pain2");
+            this.gameSong = content.Load<SoundEffect>(@"Textures\Sounds\gameSong");
             this.walkInstance = this.walk.CreateInstance();
             this.walkInstance.IsLooped = false;
             this.walkInstance.Volume = 0.1f;
@@ -235,6 +238,9 @@
             this.pain2Instance = this.pain2.CreateInstance();
             this.pain2Instance.IsLooped = false;
             this.pain2Instance.Volume = 0.2f;
+            this.gameSongInstance = this.gameSong.CreateInstance();
+            this.gameSongInstance.IsLooped = false;
+            this.gameSongInstance.Volume = 0.2f;
         }
 
         private void DrawCursor(SpriteBatch spriteBatch)
@@ -312,7 +318,7 @@
             int x = (int)this.hero.Position.X;
             int y = (int)this.hero.Position.Y; 
             this.hero.Area = new Rectangle(x, y, hero.Area.Width, hero.Area.Height);
-                      
+            this.gameSongInstance.Play();
             if (this.keyboard.IsKeyDown(Keys.W) && !Collision(new Vector2(0, -hero.Speed), hero))
             {
                 if (oldPos.Y > this.room.Y + 20)
@@ -383,6 +389,7 @@
                     else
                     {
                         Rpg.PActiveWindow = EnumActiveWindow.Win;
+                        this.gameSongInstance.Stop();
                     }
                 }
             }
@@ -478,6 +485,7 @@
                                 {
                                     this.hero.Health = 0;
                                     this.hero.Alive = false;
+                                    this.gameSongInstance.Stop();
                                     Rpg.PActiveWindow = EnumActiveWindow.GameOver;
                                     break;
                                 }
