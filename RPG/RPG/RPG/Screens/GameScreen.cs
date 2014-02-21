@@ -13,8 +13,7 @@
     
     internal class GameScreen
     {
-        private static IList<MenuItems> levelUpItems = new List<MenuItems>();
-
+        private readonly IList<MenuItems> levelUpItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Vector2(0, 0));       
         private readonly IList<Obstacles> obstacles = new List<Obstacles>();
         private readonly IList<Bullet> bullets = new List<Bullet>();
@@ -714,6 +713,12 @@
 
                         if (item.ItemText == "Confirm")
                         {
+                            this.currentMaxHp = this.hero.MaxHP;
+                            this.currentMaxMp = this.hero.MaxMP;
+                            this.currentSpeed = this.hero.Speed;
+                            this.currentRange = this.hero.Range;
+                            this.currentAttack = this.hero.Attack;
+                            this.currentDefence = this.hero.Defence;
                             this.levelUp = false;
                         }
                     }
