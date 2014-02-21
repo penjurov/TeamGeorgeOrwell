@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
-
-namespace Rpg.Interfaces
+﻿namespace Rpg.Interfaces
 {
+    using System;
+    using System.Linq;
+
     public interface IMonster
     {
         bool Active { get; set; }

@@ -2,14 +2,17 @@
 {
     using Microsoft.Xna.Framework;
 
-    public enum SkillType { Heal, CollateralDamage, Hit };
+    public enum SkillType 
+    { 
+        Heal, CollateralDamage, Hit 
+    }
 
     public class Skills : Obj
     {
+        private readonly SkillType skillType;
         private int skillLevel;
         private int skillCost;
-        private readonly SkillType skillType;
-
+        
         public Skills(Vector2 pos, SkillType skillType)
             : base(pos)
         {
@@ -17,6 +20,32 @@
             this.SkillLevel = 1;
             this.SkillCost = 50;
             this.skillType = skillType;
+        }
+    
+        public int SkillLevel 
+        {
+            get
+            {
+                return this.skillLevel;
+            }
+
+            set
+            {
+                this.skillLevel = value;
+            }
+        }
+
+        public int SkillCost 
+        {
+            get
+            {
+                return this.skillCost;
+            }
+
+            set
+            {
+                this.skillCost = value;
+            }
         }
 
         public void UseSkill()
@@ -37,30 +66,6 @@
         public void LevelUp()
         {
             this.SkillLevel++;
-        }
-
-        public int SkillLevel 
-        {
-            get
-            {
-                return this.skillLevel;
-            }
-            set
-            {
-                this.skillLevel = value;
-            }
-        }
-
-        public int SkillCost 
-        {
-            get
-            {
-                return this.skillCost;
-            }
-            set
-            {
-                this.skillCost = value;
-            }
         }
     }
 }

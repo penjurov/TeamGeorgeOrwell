@@ -1,11 +1,11 @@
 ﻿namespace Rpg.Screens
 {
+    using System.Collections.Generic;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-    using System.Collections.Generic;
-
+    
     class ControlScreen
     {
         private readonly IList<MenuItems> controlScreenItems = new List<MenuItems>();
@@ -43,16 +43,16 @@
             
             this.controlScreenBackgroundPosition = new Vector2(0, 0);
             spriteBatch.Draw(this.controlScreenBackgroundTexture, this.controlScreenBackgroundPosition, Color.White);
-                
-            if (controlScreenItems.Count < 1)
+
+            if (this.controlScreenItems.Count < 1)
             {
                 // Back planket and text;
                 this.planketPosition = new Vector2(700, 600);
-                controlScreenItems.Add(new MenuItems(this.planketTexture[0], this.planketPosition, "Back", newFont, false));
+                this.controlScreenItems.Add(new MenuItems(this.planketTexture[0], this.planketPosition, "Back", newFont, false));
             }
 
-            controlScreenItems[this.selectedEntry].Selected = true;
-            foreach (var item in controlScreenItems)
+            this.controlScreenItems[this.selectedEntry].Selected = true;
+            foreach (var item in this.controlScreenItems)
             {
                 item.Draw(spriteBatch);
             }
@@ -74,7 +74,7 @@
             if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter) &&
                 this.controlScreenItems.Count != 0)
             {
-                if (controlScreenItems[this.selectedEntry].ItemText == "Back")
+                if (this.controlScreenItems[this.selectedEntry].ItemText == "Back")
                 {
                     Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
                 }
@@ -82,7 +82,7 @@
 
             if (this.mouse.LeftButton == ButtonState.Pressed)
             {
-                foreach (var item in controlScreenItems)
+                foreach (var item in this.controlScreenItems)
                 {
                     if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
                         this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)

@@ -1,8 +1,8 @@
 ﻿namespace Rpg.Objects
 {
-    using Interfaces;
-    using Microsoft.Xna.Framework;
     using System.Collections.Generic;
+    using Interfaces;
+    using Microsoft.Xna.Framework;  
 
     public class RangedUnit : Units, IMonster, IShootable
     {
@@ -21,42 +21,27 @@
             this.Active = act;
         }
 
+        public static float RangeAtk { get; private set; }
+
         public float ExpGiven
         {
             get
             {
                 return this.expGiven;
             }
+
             protected set
             {
                 if (value < 0)
                 {
-                    throw new NegativeDataException("Enemies' experience given cannot be a negative number!",(int)value);
+                    throw new NegativeDataException("Enemies' experience given cannot be a negative number!", (int)value);
                 }
+
                 this.expGiven = value;
             }
         }
 
-        public static float RangeAtk { get; private set; }
-
         public bool Active { get; set; }
-
-        protected float FireRate
-        {
-            get
-            {
-                return this.fireRate;
-            }
-
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new NegativeDataException("The fire rate of unit cannot be a negative number!", (int)value);
-                }
-                this.fireRate = value;
-            }
-        }
 
         public int FiringTimer
         {
@@ -71,7 +56,26 @@
                 {
                     throw new NegativeDataException("The firing timer of unit cannot be a negative number!", value);
                 }
+
                 this.firingTimer = value;
+            }
+        }
+
+        protected float FireRate
+        {
+            get
+            {
+                return this.fireRate;
+            }
+
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The fire rate of unit cannot be a negative number!", (int)value);
+                }
+
+                this.fireRate = value;
             }
         }
 

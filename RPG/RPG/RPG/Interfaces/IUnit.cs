@@ -13,6 +13,5 @@
         float Attack { get; }
 
         float Defence { get; }
-
     }
 }

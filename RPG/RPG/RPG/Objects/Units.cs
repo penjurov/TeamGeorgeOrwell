@@ -25,11 +25,12 @@
             {
                 return this.range;
             }
-            private set
+
+            set
             {
                 if (value < 0)
                 {
-                    throw new NegativeDataException("Enemy range cannot be a negative number!",(int)value);
+                    throw new NegativeDataException("Enemy range cannot be a negative number!", (int)value);
                 }
 
                 this.range = value;
@@ -42,12 +43,14 @@
             {
                 return this.speed;
             }
-            protected set
+
+            set
             {
                 if (value < 0)
                 {
                     throw new NegativeDataException("Speed of the unit cannot be a negative number!", (int)value);
                 }
+
                 this.speed = value;
             }
         }
@@ -63,8 +66,9 @@
             {
                 if (value < 0)
                 {
-                    throw new NegativeDataException("The rotation of unit cannot be a negative number!",(int)value);
+                    throw new NegativeDataException("The rotation of unit cannot be a negative number!", (int)value);
                 }
+
                 this.rotation = value;
             }
         }
@@ -84,6 +88,7 @@
                 {
                     throw new NegativeDataException("Unit's health cannot be a negative number!", (int)value);
                 }
+
                 this.health = value;
             }
         }
@@ -95,12 +100,13 @@
                 return this.attack;
             }
 
-            protected set
+            set
             {
                 if (value < 0)
                 {
                     throw new NegativeDataException("The attack of unit cannot be a negative number!", (int)value);
                 }
+
                 this.attack = value;
             }
         }
@@ -112,12 +118,13 @@
                 return this.defence;
             }
 
-            protected set
+            set
             {
                 if (value < 0)
                 {
                     throw new NegativeDataException("The defence of unit cannot be a negative number!", (int)value);
                 }
+
                 this.defence = value;
             }
         }

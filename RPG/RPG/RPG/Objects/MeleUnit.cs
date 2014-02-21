@@ -1,7 +1,7 @@
 ﻿namespace Rpg.Objects
-{
-    using Microsoft.Xna.Framework;
+{   
     using Interfaces;
+    using Microsoft.Xna.Framework;
 
     public class MeleUnit : Units, IMonster
     {
@@ -25,12 +25,14 @@
             {
                 return this.expGiven;
             }
+
             protected set
             {
                 if (value < 0)
                 {
-                    throw new NegativeDataException("Enemies' experience given cannot be a negative number!",(int)value);
+                    throw new NegativeDataException("Enemies' experience given cannot be a negative number!", (int)value);
                 }
+
                 this.expGiven = value;
             }
         }
@@ -51,12 +53,14 @@
             {
                 return this.hitTimer;
             }
+
             set
             {
                 if (value < 0)
                 {
                     throw new NegativeDataException("Units hit timer cannot be a negative number!", value);
                 }
+
                 this.hitTimer = value;
             }
         }

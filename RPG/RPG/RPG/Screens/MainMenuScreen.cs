@@ -9,10 +9,10 @@
 
     internal class MainMenuScreen
     {
-        private readonly IList<Texture2D> planketTexture = new List<Texture2D>();
-
         private static IList<MenuItems> mainMenuItems = new List<MenuItems>();
-       
+
+        private readonly IList<Texture2D> planketTexture = new List<Texture2D>();
+     
         private int selectedEntry = 0;
         private Texture2D mainMenuBackgroundTexture;
         private Vector2 mainMenuBackgroundPosition;

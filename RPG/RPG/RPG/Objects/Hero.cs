@@ -1,39 +1,50 @@
 ﻿namespace Rpg.Objects
 {
+    using System.Collections.Generic;
     using Interfaces;
     using Microsoft.Xna.Framework;
-    using System.Collections.Generic;
-
+    
     public class Hero : Units, IShootable, IPlayer
     {
+        // Singleton
+        private static Hero instance;
+
         private int firingTimer = 0;
         private float fireRate = 20;
+        private float mana;
+        private float maxHP;
+        private float maxMP;      
 
-        public Hero(Vector2 pos, float speed, float hp, float att, float def, float range) : base(pos, speed, range)
+        private Hero(Vector2 pos, float speed, float hp, float att, float def, float range, float mp) : base(pos, speed, range)
         {
             this.Health = hp;
+            this.MaxHP = hp;
             this.Attack = att;
             this.Defence = def;
+            this.mana = mp;
+            this.maxMP = mp;
+            this.Level = 1;
         }
-        
+     
         public float CurrentExp { get; set; }
 
         public int Level { get; set; }
 
-        protected float FireRate
+        public float MaxHP
         {
             get
             {
-                return this.fireRate;
+                return this.maxHP;
             }
 
-            private set
+            set
             {
                 if (value < 0)
                 {
-                    throw new NegativeDataException("The fire rate of unit cannot be a negative number!", (int)value);
+                    throw new NegativeDataException("Hero's maximum health cannot be a negative number!", (int)value);
                 }
-                this.fireRate = value;
+
+                this.maxHP = value;
             }
         }
 
@@ -50,9 +61,76 @@
                 {
                     throw new NegativeDataException("The firing timer of unit cannot be a negative number!", value);
                 }
+
                 this.firingTimer = value;
             }
-        }
+        }
+
+        public float Mana
+        {
+            get
+            {
+                return this.mana;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("Hero's mana cannot be a negative number!", (int)value);
+                }
+
+                this.mana = value;
+            }
+        }
+
+        public float MaxMP
+        {
+            get
+            {
+                return this.maxMP;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("Hero's maximum mana cannot be a negative number!", (int)value);
+                }
+
+                this.maxMP = value;
+            }
+        }
+
+        protected float FireRate
+        {
+            get
+            {
+                return this.fireRate;
+            }
+
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The fire rate of unit cannot be a negative number!", (int)value);
+                }
+
+                this.fireRate = value;
+            }
+        }
+
+        // Singleton
+        public static Hero Instance(Vector2 pos, float speed, float hp, float att, float def, float range, float mp)
+        {
+            if (instance == null)
+            {
+                instance = new Hero(pos, speed, hp, att, def, range, mp);
+            }
+
+            return instance;
+        }
+
         public void CheckShooting(IList<Bullet> bullets)
         {
             if (this.FiringTimer > this.FireRate)

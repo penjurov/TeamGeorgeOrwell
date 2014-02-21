@@ -1,15 +1,24 @@
 ﻿namespace Rpg.Objects
 {
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics; 
     
     public class Bonuses : Obj
     {
-        public Bonuses(Vector2 pos) : base(pos)
+        const int Spawn = 500;
+
+        public Bonuses(Vector2 pos, Texture2D texture, string type, Rectangle area)
+            : base(pos)
         {
             this.Position = pos;
+            this.SpriteIndex = texture;
+            this.Type = type;
+            this.Area = area;
+            this.SpawnTime = Spawn;
+            this.Alive = true;
         }
 
-        public int Quantity { get; set; }
+        public string Type { get; set; }
 
         public int SpawnTime { get; set; }
     }

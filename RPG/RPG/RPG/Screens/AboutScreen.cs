@@ -21,7 +21,6 @@
         private KeyboardState previousKeyboard;
         private MouseState mouse;
 
-
         public void Load(ContentManager content)
         {
             this.aboutScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\MainMenu");
@@ -39,15 +38,15 @@
 
             spriteBatch.Draw(this.aboutScreenBackgroundTexture, this.aboutScreenBackgroundPosition, Color.White);
 
-            if (aboutScreenItems.Count < 1)
+            if (this.aboutScreenItems.Count < 1)
             {
                 // Back planket and text;
                 this.planketPosition = new Vector2(700, 600);
-                aboutScreenItems.Add(new MenuItems(this.planketTexture[0], this.planketPosition, "Back", newFont, false));
+                this.aboutScreenItems.Add(new MenuItems(this.planketTexture[0], this.planketPosition, "Back", newFont, false));
             }
 
-            aboutScreenItems[this.selectedEntry].Selected = true;
-            foreach (var item in aboutScreenItems)
+            this.aboutScreenItems[this.selectedEntry].Selected = true;
+            foreach (var item in this.aboutScreenItems)
             {
                 item.Draw(spriteBatch);
             }
@@ -82,7 +81,7 @@
             if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter) 
                 && this.aboutScreenItems.Count != 0)
             {
-                if (aboutScreenItems[this.selectedEntry].ItemText == "Back")
+                if (this.aboutScreenItems[this.selectedEntry].ItemText == "Back")
                 {
                     Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
                 }
@@ -90,7 +89,7 @@
 
             if (this.mouse.LeftButton == ButtonState.Pressed)
             {
-                foreach (var item in aboutScreenItems)
+                foreach (var item in this.aboutScreenItems)
                 {
                     if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
                         this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)

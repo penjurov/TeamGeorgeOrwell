@@ -8,6 +8,7 @@
         ControlWindow,
         ChooseHeroWindow,
         GameOver,
-        Win
+        Win,
+        LevelUp
     }
 }

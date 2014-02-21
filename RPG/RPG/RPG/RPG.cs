@@ -8,7 +8,7 @@
     public class Rpg : Game
     {
         private static EnumActiveWindow activeWindow;
-
+        
         private readonly GraphicsDeviceManager graphics;
         private readonly MainMenuScreen mainMenuScreen = new MainMenuScreen();
         private readonly GameScreen gameScreen = new GameScreen();
