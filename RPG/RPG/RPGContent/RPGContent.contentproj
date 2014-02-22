@@ -51,11 +51,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Sounds\gunShot.wav">
-      <Name>gunShot</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-    </Compile>
     <Compile Include="Textures\Sounds\mainTheme.wav">
       <Name>mainTheme</Name>
       <Importer>WavImporter</Importer>
