@@ -35,7 +35,7 @@
 
             this.Content.RootDirectory = "Content";
 
-            this.mainTheme = Content.Load<SoundEffect>(@"Textures\Sounds\mainTheme");
+            this.mainTheme = this.Content.Load<SoundEffect>(@"Textures\Sounds\mainTheme");
             this.mainThemeInstance = this.mainTheme.CreateInstance();
             this.mainThemeInstance.IsLooped = false;
             this.mainThemeInstance.Volume = 0.2f;

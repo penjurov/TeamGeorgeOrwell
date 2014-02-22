@@ -5,11 +5,8 @@
     public class Skills : Obj
     {
         private readonly SkillType skillType;
-        private int skillLevel;
-        private int skillCost;
 
-        public Skills(Position pos, SkillType skillType)
-            : base(pos)
+        public Skills(Position pos, SkillType skillType) : base(pos)
         {
             this.Position = pos;
             this.SkillLevel = 1;
@@ -17,31 +14,9 @@
             this.skillType = skillType;
         }
 
-        public int SkillLevel
-        {
-            get
-            {
-                return this.skillLevel;
-            }
+        public int SkillLevel { get; set; }
 
-            set
-            {
-                this.skillLevel = value;
-            }
-        }
-
-        public int SkillCost
-        {
-            get
-            {
-                return this.skillCost;
-            }
-
-            set
-            {
-                this.skillCost = value;
-            }
-        }
+        public int SkillCost { get; set; }
 
         public void UseSkill()
         {

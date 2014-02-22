@@ -1,5 +1,5 @@
 ﻿namespace Rpg.Objects
-{   
+{ 
     using Interfaces;
 
     public class MeleUnit : Units, IMonster

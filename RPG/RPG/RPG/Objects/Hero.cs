@@ -13,7 +13,6 @@
         private float mana;
         private float maxHP;
         private float maxMP;
-        private Skills heroSkill;
 
         private Hero(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skill) : base(pos, speed, range)
         {
@@ -103,6 +102,8 @@
             }
         }
 
+        public Skills HeroSkill { get; set; }
+
         protected float FireRate
         {
             get
@@ -118,18 +119,6 @@
                 }
 
                 this.fireRate = value;
-            }
-        }
-
-        public Skills HeroSkill
-        {
-            get
-            {
-                return this.heroSkill;
-            }
-            set
-            {
-                this.heroSkill = value;
             }
         }
 

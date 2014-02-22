@@ -3,12 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Interfaces;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Interfaces;
     using Objects;
 
     internal class GameScreen
@@ -39,7 +39,6 @@
         private Texture2D heroHealthBar;
         private Texture2D heroManaBar;
         private Texture2D heroBulletTexture;
-
 
         private Hero hero;
         private float currentMaxHp;
@@ -161,8 +160,8 @@
         {
             for (int i = 0; i < 10; i++)
             {
-                Bullet o = new Bullet(new Position(0, 0), heroBulletTexture);
-                o.Area = new Rectangle(0, 0, heroBulletTexture.Width, heroBulletTexture.Height);
+                Bullet o = new Bullet(new Position(0, 0), this.heroBulletTexture);
+                o.Area = new Rectangle(0, 0, this.heroBulletTexture.Width, this.heroBulletTexture.Height);
                 this.bullets.Add(o);
             }
 
@@ -198,16 +197,15 @@
 
         private void LoadCursor(ContentManager content)
         {
-            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "crosshair"));
-            this.cursorMenu.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "cursor"));
-
+            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "crosshair"));
+            this.cursorMenu.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "cursor"));
         }
 
         private void LoadHeroStats(ContentManager content)
         {
-            heroBarHolder = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "bar_holder"));
-            heroHealthBar = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "life_bar"));
-            heroManaBar = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "energy_bar"));
+            this.heroBarHolder = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "bar_holder"));
+            this.heroHealthBar = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "life_bar"));
+            this.heroManaBar = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "energy_bar"));
         }
 
         private void LoadUnits(ContentManager content)
@@ -255,7 +253,7 @@
             {
                 case "ODIN":
                     {
-                        heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\odinbullet");
+                        this.heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\odinbullet");
                         // Singleton                                         
                         this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70, 200, 800, SkillType.CollateralDamage);
                         break;
@@ -263,7 +261,7 @@
 
                 case "THOR":
                     {
-                        heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\thorbullet");
+                        this.heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\thorbullet");
                         // Singleton
                         this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Hit);
                         break;
@@ -271,7 +269,7 @@
 
                 case "EIR":
                     {
-                        heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\eirbullet");
+                        this.heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\eirbullet");
                         // Singleton
                         this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal);
                         break;
@@ -288,7 +286,7 @@
             this.currentAttack = this.hero.Attack;
             this.currentDefence = this.hero.Defence;
 
-            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "FrontRight"));
+            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}FrontRight", ChooseHeroScreen.HeroName));
             this.hero.Area = new Rectangle(0, 0, this.hero.SpriteIndex.Width, this.hero.SpriteIndex.Height);
             this.hero.Position = new Position(50, 400);
             this.hero.Alive = true;
@@ -304,7 +302,7 @@
 
         private void LoadMusic(ContentManager content)
         {
-            this.gunShot = content.Load<SoundEffect>(@"Textures\Sounds\" + ChooseHeroScreen.HeroName + "Shot");
+            this.gunShot = content.Load<SoundEffect>(string.Format("{0}{1}Shot", @"Textures\Sounds\", ChooseHeroScreen.HeroName));
             this.walk = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt1");
             this.walk2 = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt2");
             this.pain1 = content.Load<SoundEffect>(@"Textures\Sounds\pain1");
@@ -347,7 +345,7 @@
 
         private void DrawCursor(SpriteBatch spriteBatch)
         {
-            if (levelUp || paused)
+            if (this.levelUp || this.paused)
             {
                 Vector2 cursPos = new Vector2(this.cursorMenu.Position.X, this.cursorMenu.Position.Y);
                 spriteBatch.Draw(this.cursorMenu.SpriteIndex, cursPos, Color.White);
@@ -373,7 +371,7 @@
 
         private void DrawBullets(SpriteBatch spriteBatch)
         {
-            bulletShooted = true;
+            this.bulletShooted = true;
             foreach (var bullet in this.bullets)
             {
                 if (bullet.Alive)
@@ -418,7 +416,7 @@
 
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             position = new Vector2(170, 28);
-            spriteBatch.DrawString(font, "" + (int)this.hero.Health, position, Color.White);
+            spriteBatch.DrawString(font, string.Format("{0}", (int)this.hero.Health), position, Color.White);
 
             //Mana
             visibleWidth = ((float)this.heroManaBar.Width * this.hero.Mana) / this.hero.MaxMP;
@@ -430,7 +428,7 @@
             spriteBatch.Draw(this.heroManaBar, manaRectangle, Color.White);
 
             position = new Vector2(130, 61);
-            spriteBatch.DrawString(font, "" + (int)this.hero.Mana, position, Color.White);
+            spriteBatch.DrawString(font, string.Format("{0}", (int)this.hero.Mana), position, Color.White);
         }
 
         private void DrawUnits(SpriteBatch spriteBatch, ContentManager content)
@@ -457,24 +455,24 @@
                     else
                     {
                         // Hero Animations
-                        if (this.mouse.X > hero.Position.X && this.mouse.Y > hero.Position.Y)
+                        if (this.mouse.X > this.hero.Position.X && this.mouse.Y > this.hero.Position.Y)
                         {
-                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "FrontRight"));
+                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}FrontRight", ChooseHeroScreen.HeroName));
                         }
-                        else if (this.mouse.X <= hero.Position.X && this.mouse.Y > hero.Position.Y)
+                        else if (this.mouse.X <= this.hero.Position.X && this.mouse.Y > this.hero.Position.Y)
                         {
-                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "FrontLeft"));
+                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}FrontLeft", ChooseHeroScreen.HeroName));
                         }
-                        else if (this.mouse.X > hero.Position.X && this.mouse.Y <= hero.Position.Y)
+                        else if (this.mouse.X > this.hero.Position.X && this.mouse.Y <= this.hero.Position.Y)
                         {
-                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "BackRight"));
+                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}BackRight", ChooseHeroScreen.HeroName));
                         }
-                        else if (this.mouse.X <= hero.Position.X && this.mouse.Y <= hero.Position.Y)
+                        else if (this.mouse.X <= this.hero.Position.X && this.mouse.Y <= this.hero.Position.Y)
                         {
-                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "BackLeft"));
+                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}BackLeft", ChooseHeroScreen.HeroName));
                         }
 
-                        this.ObjectDraw(spriteBatch, hero.SpriteIndex, new Vector2(hero.Position.X, hero.Position.Y), hero.Rotation);
+                        this.ObjectDraw(spriteBatch, this.hero.SpriteIndex, new Vector2(this.hero.Position.X, this.hero.Position.Y), this.hero.Rotation);
                     }
                 }
             }
@@ -509,16 +507,16 @@
             // Health
             position = new Vector2(360, 150);
             spriteBatch.Draw(this.leftButton, position, Color.White);
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.leftButton, position, "Health-", font, false));
+                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Health-", font, false));
             }
 
             position = new Vector2(605, 150);
             spriteBatch.Draw(this.rightButton, position, Color.White);
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.rightButton, position, "Health+", font, false));
+                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Health+", font, false));
             }
 
             position = new Vector2(465, 170);
@@ -528,17 +526,17 @@
             position = new Vector2(360, 210);
             spriteBatch.Draw(this.leftButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.leftButton, position, "Mana-", font, false));
+                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Mana-", font, false));
             }
 
             position = new Vector2(605, 210);
             spriteBatch.Draw(this.rightButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.rightButton, position, "Mana+", font, false));
+                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Mana+", font, false));
             }
 
             position = new Vector2(465, 230);
@@ -548,17 +546,17 @@
             position = new Vector2(360, 270);
             spriteBatch.Draw(this.leftButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.leftButton, position, "Attack-", font, false));
+                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Attack-", font, false));
             }
 
             position = new Vector2(605, 270);
             spriteBatch.Draw(this.rightButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.rightButton, position, "Attack+", font, false));
+                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Attack+", font, false));
             }
 
             position = new Vector2(465, 290);
@@ -568,17 +566,17 @@
             position = new Vector2(360, 330);
             spriteBatch.Draw(this.leftButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.leftButton, position, "Defence-", font, false));
+                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Defence-", font, false));
             }
 
             position = new Vector2(605, 330);
             spriteBatch.Draw(this.rightButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.rightButton, position, "Defence+", font, false));
+                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Defence+", font, false));
             }
 
             position = new Vector2(465, 350);
@@ -588,17 +586,17 @@
             position = new Vector2(360, 390);
             spriteBatch.Draw(this.leftButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.leftButton, position, "Speed-", font, false));
+                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Speed-", font, false));
             }
 
             position = new Vector2(605, 390);
             spriteBatch.Draw(this.rightButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.rightButton, position, "Speed+", font, false));
+                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Speed+", font, false));
             }
 
             position = new Vector2(465, 410);
@@ -608,17 +606,17 @@
             position = new Vector2(360, 450);
             spriteBatch.Draw(this.leftButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.leftButton, position, "Range-", font, false));
+                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Range-", font, false));
             }
 
             position = new Vector2(605, 450);
             spriteBatch.Draw(this.rightButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.rightButton, position, "Range+", font, false));
+                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Range+", font, false));
             }
 
             position = new Vector2(465, 470);
@@ -628,9 +626,9 @@
             position = new Vector2(434, 530);
             spriteBatch.Draw(this.okButton, position, Color.White);
 
-            if (levelUpItems.Count < 13)
+            if (this.levelUpItems.Count < 13)
             {
-                levelUpItems.Add(new MenuItems(this.okButton, position, "Confirm", font, false));
+                this.levelUpItems.Add(new MenuItems(this.okButton, position, "Confirm", font, false));
             }
 
             Color color = new Color(248, 218, 127);
@@ -650,7 +648,7 @@
 
             if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed)
             {
-                foreach (var item in levelUpItems)
+                foreach (var item in this.levelUpItems)
                 {
                     if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
                         this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)
@@ -771,7 +769,7 @@
                             }
                         }
 
-                        if (item.ItemText == "Confirm" && points == 0)
+                        if (item.ItemText == "Confirm" && this.points == 0)
                         {
                             this.currentMaxHp = this.hero.MaxHP;
                             this.currentMaxMp = this.hero.MaxMP;
@@ -1091,7 +1089,7 @@
         private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
         {
             MeleUnit meleUnit = new MeleUnit(new Position(x, y), 1.8f, false, 150, 40, 260, 230, true, 150);
-            meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
+            meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
         }
@@ -1099,7 +1097,7 @@
         private void AddRangeUnit(ContentManager content, float x, float y, string textureName)
         {
             RangedUnit rangedUnit = new RangedUnit(new Position(x, y), 0, false, 400, 30, 210, 180, true, 200);
-            rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
+            rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
             this.units.Add(rangedUnit);
         }
@@ -1107,7 +1105,7 @@
         private void AddBoss(ContentManager content, float x, float y, string textureName)
         {
             MeleUnit meleUnit = new MeleUnit(new Position(x, y), 1.3f, false, 200, 100, 1000, 2300, true, 100);
-            meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
+            meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
         }
@@ -1117,10 +1115,10 @@
             Vector2 center = new Vector2(sprite.Width / 2, sprite.Height / 2);
             float scale = 0.7f;
 
-            if (bulletShooted)
+            if (this.bulletShooted)
             {
                 spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(rotation), center, scale, SpriteEffects.None, 0);
-                bulletShooted = false;
+                this.bulletShooted = false;
             }
             else
             {

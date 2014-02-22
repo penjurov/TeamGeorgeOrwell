@@ -1,12 +1,10 @@
 ﻿namespace Rpg.Objects
 {
+    using Microsoft.Xna.Framework.Graphics;
     using Interfaces;
-    using Microsoft.Xna.Framework.Graphics;   
-    
+
     public class Bullet : Obj, IMovable
     {
-        private float speed;
-
         public Bullet(Position pos, Texture2D texture) : base(pos)
         {
             this.Position = pos;
@@ -15,17 +13,6 @@
 
         public float Rotation { get; set; }
  
-        public float Speed
-        {
-            get
-            {
-                return this.speed;
-            }
-
-            set
-            {
-                this.speed = value;
-            }
-        }
+        public float Speed { get; set; }
     }
 }

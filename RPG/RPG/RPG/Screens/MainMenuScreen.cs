@@ -13,7 +13,7 @@
         private static IList<MenuItems> mainMenuItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
 
-        private IList<Texture2D> buttons = new List<Texture2D>();
+        private readonly IList<Texture2D> buttons = new List<Texture2D>();
      
         private int selectedEntry = 0;
         private Texture2D mainMenuBackgroundTexture;
@@ -194,7 +194,7 @@
 
         private void LoadCursor(ContentManager content)
         {
-            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "cursor"));
+            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "cursor"));
         }
 
         private void DrawCursor(SpriteBatch spriteBatch)

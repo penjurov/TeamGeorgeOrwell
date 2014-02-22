@@ -58,7 +58,7 @@
 
         private void LoadCursor(ContentManager content)
         {
-            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "cursor"));
+            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "cursor"));
         }
 
         private void DrawCursor(SpriteBatch spriteBatch)
