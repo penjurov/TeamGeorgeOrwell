@@ -24,6 +24,7 @@
         private readonly IList<Bonuses> bonuses = new List<Bonuses>();
         private readonly Rectangle exitSpot = new Rectangle(786, 157, 160, 80);
 
+        private bool bulletShooted = false;
         private bool paused = false;
         private bool levelUp = false;
         private int stage = 1;
@@ -37,6 +38,7 @@
         private Texture2D heroBarHolder;
         private Texture2D heroHealthBar;
         private Texture2D heroManaBar;
+        private Texture2D heroBulletTexture;
 
 
         private Hero hero;
@@ -157,14 +159,14 @@
 
         private void LoadBullets(ContentManager content)
         {
-            Texture2D bulletTexture = content.Load<Texture2D>(@"Textures\Objects\bullet");
-
             for (int i = 0; i < 10; i++)
             {
-                Bullet o = new Bullet(new Position(0, 0), bulletTexture);
-                o.Area = new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height);
+                Bullet o = new Bullet(new Position(0, 0), heroBulletTexture);
+                o.Area = new Rectangle(0, 0, heroBulletTexture.Width, heroBulletTexture.Height);
                 this.bullets.Add(o);
             }
+
+            Texture2D bulletTexture = content.Load<Texture2D>(@"Textures\Objects\bullet");
 
             for (int i = 0; i < 10; i++)
             {
@@ -253,20 +255,23 @@
             {
                 case "ODIN":
                     {
-                        // Singleton
+                        heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\odinbullet");
+                        // Singleton                                         
                         this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70, 200, 800, SkillType.CollateralDamage);
                         break;
                     }
 
                 case "THOR":
                     {
+                        heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\thorbullet");
                         // Singleton
-                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 50, 600, SkillType.Hit);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Hit);
                         break;
                     }
 
                 case "EIR":
                     {
+                        heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\eirbullet");
                         // Singleton
                         this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal);
                         break;
@@ -368,10 +373,14 @@
 
         private void DrawBullets(SpriteBatch spriteBatch)
         {
+            bulletShooted = true;
             foreach (var bullet in this.bullets)
             {
                 if (bullet.Alive)
                 {
+                    bullet.Rotation = this.PointDirecions(this.hero.Position.X, this.hero.Position.Y, this.mouse.X, this.mouse.Y);
+
+                    //this.ObjectDraw(bullet.SpriteIndex, bullet.Position, null, Color.White, MathHelper.ToRadians(bullet.Rotation), center, scale, SpriteEffects.None, 0));
                     this.ObjectDraw(spriteBatch, bullet.SpriteIndex, new Vector2(bullet.Position.X, bullet.Position.Y), bullet.Rotation);
                 }
             }
@@ -769,7 +778,7 @@
                             }
                         }
 
-                        if (item.ItemText == "Confirm")
+                        if (item.ItemText == "Confirm" && points == 0)
                         {
                             this.currentMaxHp = this.hero.MaxHP;
                             this.currentMaxMp = this.hero.MaxMP;
@@ -1012,6 +1021,7 @@
                             catch (NegativeDataException)
                             {
                                 unit.Alive = false;
+                                
                                 int bonusType = this.rand.Next(0, 4001);
 
                                 switch (bonusType % 2)
@@ -1028,6 +1038,8 @@
                                             break;
                                         }
                                 }
+
+                                unit.Area = new Rectangle(-10, -10, 0, 0);
 
                                 this.hero.CurrentExp = this.hero.CurrentExp + (unit as IMonster).ExpGiven;
                                 if (this.hero.CurrentExp - (this.hero.Level * 500) > 0)
@@ -1112,8 +1124,15 @@
             Vector2 center = new Vector2(sprite.Width / 2, sprite.Height / 2);
             float scale = 0.7f;
 
-            // spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(rotation), center, scale, SpriteEffects.None, 0);
-            spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(0), center, scale, SpriteEffects.None, 0);
+            if (bulletShooted)
+            {
+                spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(rotation), center, scale, SpriteEffects.None, 0);
+                bulletShooted = false;
+            }
+            else
+            {
+                spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(0), center, scale, SpriteEffects.None, 0);
+            }
         }
 
         private float PointDirecions(float x, float y, float x2, float y2)
