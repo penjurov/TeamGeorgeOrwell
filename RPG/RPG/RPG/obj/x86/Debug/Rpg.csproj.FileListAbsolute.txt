@@ -100,7 +100,6 @@ D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Te
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_thor.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\Thor.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\Invisible.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\pillar.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\gunShot.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\mainTheme.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt1.xnb
@@ -112,13 +111,7 @@ D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Te
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Names.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Title.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameOver.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\keyboard.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenu.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenuPlank.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenuPlank01.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenuPlank02.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenuPlank03.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\mouse.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Win.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pain1.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pain2.xnb
@@ -141,3 +134,12 @@ D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Cont
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Button_last.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\about.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\control_screen.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Button.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\Cursor.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bar_holder.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\energy_bar.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\life_bar.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Button_First.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Button_last.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\about.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\control_screen.xnb
