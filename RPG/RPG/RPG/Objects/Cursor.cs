@@ -4,7 +4,7 @@
 
     public class Cursor : Obj
     {
-        public Cursor(Vector2 pos) : base(pos)
+        public Cursor(Position pos) : base(pos)
         {
             this.Position = pos;
         }

@@ -14,7 +14,7 @@
     internal class GameScreen
     {
         private readonly IList<MenuItems> levelUpItems = new List<MenuItems>();
-        private readonly Cursor cursor = new Cursor(new Vector2(0, 0));       
+        private readonly Cursor cursor = new Cursor(new Position(0, 0));       
         private readonly IList<Obstacles> obstacles = new List<Obstacles>();
         private readonly IList<Bullet> bullets = new List<Bullet>();
         private readonly IList<Bullet> enemyBullets = new List<Bullet>();     
@@ -154,14 +154,14 @@
 
             for (int i = 0; i < 10; i++)
             {
-                Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
+                Bullet o = new Bullet(new Position(0, 0), bulletTexture);
                 o.Area = new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height);
                 this.bullets.Add(o);
             }
 
             for (int i = 0; i < 10; i++)
             {
-                Bullet o = new Bullet(new Vector2(0, 0), bulletTexture);
+                Bullet o = new Bullet(new Position(0, 0), bulletTexture);
                 o.Area = new Rectangle(0, 0, bulletTexture.Width, bulletTexture.Height);
                 this.enemyBullets.Add(o);
             }
@@ -173,24 +173,25 @@
 
             for (int i = 150; i < 275; i += 25)
             {
-                Obstacles invisble = new Obstacles(new Vector2(i, 360), invisTexture, false);
+                Vector2 obstPos = new Vector2(i, 360);
+                Obstacles invisble = new Obstacles(new Position(i, 360), invisTexture, false);
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
 
             for (int i = 150; i < 275; i += 25)
             {
-                Obstacles invisble = new Obstacles(new Vector2(i, 475), invisTexture, false);
+                Obstacles invisble = new Obstacles(new Position(i, 475), invisTexture, false);
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
 
             Texture2D pilarTexture = content.Load<Texture2D>(@"Textures\Objects\pillar");
-            Obstacles pillar = new Obstacles(new Vector2(580, 580), pilarTexture, true);
+            Obstacles pillar = new Obstacles(new Position(580, 580), pilarTexture, true);
             pillar.Area = new Rectangle((int)pillar.Position.X, (int)pillar.Position.Y, pilarTexture.Width, pilarTexture.Height);
             this.obstacles.Add(pillar);
 
-            pillar = new Obstacles(new Vector2(420, 660), pilarTexture, true);
+            pillar = new Obstacles(new Position(420, 660), pilarTexture, true);
             pillar.Area = new Rectangle((int)pillar.Position.X, (int)pillar.Position.Y, pilarTexture.Width, pilarTexture.Height);
             this.obstacles.Add(pillar);
         }
@@ -246,21 +247,21 @@
                 case "ODIN":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Vector2(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70, 200, 800);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70, 200, 800);
                         break;
                     }
 
                 case "THOR":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Vector2(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 50, 600);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 50, 600);
                         break;
                     }
 
                 case "EIR":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Vector2(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000);
                         break;
                     }
 
@@ -277,7 +278,7 @@
 
             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName));
             this.hero.Area = new Rectangle(0, 0, this.hero.SpriteIndex.Width, this.hero.SpriteIndex.Height);
-            this.hero.Position = new Vector2(50, 400);
+            this.hero.Position = new Position(50, 400);
             this.hero.Alive = true;
             this.units.Add(this.hero);
         }
@@ -334,7 +335,8 @@
 
         private void DrawCursor(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.cursor.SpriteIndex, this.cursor.Position, Color.White);
+            Vector2 cursPos = new Vector2(this.cursor.Position.X, this.cursor.Position.Y);
+            spriteBatch.Draw(this.cursor.SpriteIndex, cursPos, Color.White);
         }
 
         private void DrawBonusses(SpriteBatch spriteBatch)
@@ -343,7 +345,8 @@
             {
                 if (bonus.Alive)
                 {
-                    spriteBatch.Draw(bonus.SpriteIndex, bonus.Position, Color.White);
+                    Vector2 bonusPos = new Vector2(bonus.Position.X, bonus.Position.Y);
+                    spriteBatch.Draw(bonus.SpriteIndex, bonusPos, Color.White);
                 }
             }
         }
@@ -354,7 +357,7 @@
             {
                 if (bullet.Alive)
                 {
-                    this.ObjectDraw(spriteBatch, bullet.SpriteIndex, bullet.Position, bullet.Rotation);
+                    this.ObjectDraw(spriteBatch, bullet.SpriteIndex, new Vector2(bullet.Position.X, bullet.Position.Y), bullet.Rotation);
                 }
             }
 
@@ -362,7 +365,7 @@
             {
                 if (bullet.Alive && this.hero.Alive)
                 {
-                    this.ObjectDraw(spriteBatch, bullet.SpriteIndex, bullet.Position, bullet.Rotation);
+                    this.ObjectDraw(spriteBatch, bullet.SpriteIndex, new Vector2(bullet.Position.X, bullet.Position.Y), bullet.Rotation);
                 }
             }
         }
@@ -371,7 +374,7 @@
         {
             foreach (var obstacles in this.obstacles)
             {
-                this.ObjectDraw(spriteBatch, obstacles.SpriteIndex, obstacles.Position, obstacles.Rotation);
+                this.ObjectDraw(spriteBatch, obstacles.SpriteIndex, new Vector2(obstacles.Position.X, obstacles.Position.Y), obstacles.Rotation);
             }
         }
 
@@ -414,8 +417,8 @@
 
                         spriteBatch.Draw(this.enemyHealthBars, healthRectangle, Color.Red);
                     }
-                    
-                    this.ObjectDraw(spriteBatch, unit.SpriteIndex, unit.Position, unit.Rotation);   
+
+                    this.ObjectDraw(spriteBatch, unit.SpriteIndex, new Vector2(unit.Position.X, unit.Position.Y), unit.Rotation);   
                 }
             }
         }
@@ -731,7 +734,7 @@
 
         private void UpdateHero(ContentManager content)
         {
-            Vector2 oldPos = this.hero.Position;
+            Vector2 oldPos = new Vector2(this.hero.Position.X, this.hero.Position.Y);
             int x = (int)this.hero.Position.X;
             int y = (int)this.hero.Position.Y;
             this.hero.Area = new Rectangle(x, y, this.hero.Area.Width, this.hero.Area.Height);
@@ -740,7 +743,7 @@
             {
                 if (oldPos.Y > this.room.Y + 20)
                 {
-                    this.hero.Position = new Vector2(oldPos.X, oldPos.Y - this.hero.Speed);
+                    this.hero.Position = new Position(oldPos.X, oldPos.Y - this.hero.Speed);
                     this.walkInstance.Play();
                     this.walkInstance2.Play();
                 }
@@ -750,7 +753,7 @@
             {
                 if (oldPos.X > this.room.X + 20)
                 {
-                    this.hero.Position = new Vector2(oldPos.X - this.hero.Speed, oldPos.Y);
+                    this.hero.Position = new Position(oldPos.X - this.hero.Speed, oldPos.Y);
                     this.walkInstance.Play();
                     this.walkInstance2.Play();
                 }
@@ -760,7 +763,7 @@
             {
                 if (oldPos.Y < this.room.Height - 90)
                 {
-                    this.hero.Position = new Vector2(oldPos.X, oldPos.Y + this.hero.Speed);
+                    this.hero.Position = new Position(oldPos.X, oldPos.Y + this.hero.Speed);
                     this.walkInstance.Play();
                     this.walkInstance2.Play();
                 }
@@ -770,13 +773,13 @@
             {
                 if (oldPos.X < this.room.Width - 50)
                 {
-                    this.hero.Position = new Vector2(oldPos.X + this.hero.Speed, oldPos.Y);
+                    this.hero.Position = new Position(oldPos.X + this.hero.Speed, oldPos.Y);
                     this.walkInstance.Play();
                     this.walkInstance2.Play();
                 }
             }
 
-            oldPos = this.hero.Position;
+            oldPos = new Vector2(this.hero.Position.X, this.hero.Position.Y);
 
             this.hero.Rotation = this.PointDirecions(this.hero.Position.X, this.hero.Position.Y, this.mouse.X, this.mouse.Y);
         
@@ -799,7 +802,7 @@
                 {
                     if (this.stage == 1)
                     {
-                        this.hero.Position = new Vector2(30, 400);
+                        this.hero.Position = new Position(30, 480);
                         this.stage++;
                         this.LoadUnits(content);   
                     }
@@ -820,7 +823,9 @@
                     Math.Abs(this.hero.Position.Y - bullet.Position.Y) < this.hero.Range) 
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
-                    bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
+                    Vector2 bulletPos = new Vector2(bullet.Position.X, bullet.Position.Y);
+                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
+                    bullet.Position = new Position(bulletPos.X, bulletPos.Y);
                 }
                 else
                 {
@@ -833,7 +838,9 @@
                 if (bullet.Alive && this.hero.Alive)
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
-                    bullet.Position += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
+                    Vector2 bulletPos = new Vector2(bullet.Position.X, bullet.Position.Y);
+                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
+                    bullet.Position = new Position(bulletPos.X, bulletPos.Y);
                 }
             }
         }
@@ -988,7 +995,10 @@
                         if ((unit as IMonster).Active)
                         { 
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
-                            unit.Position += this.PushTo(unit.Speed, unit.Rotation, unit);
+
+                            Vector2 unitPos = new Vector2(unit.Position.X, unit.Position.Y);
+                            unitPos += this.PushTo(unit.Speed, unit.Rotation, unit);
+                            unit.Position = new Position(unitPos.X, unitPos.Y);
                             if (unit is IShootable)
                             {
                                 (unit as IShootable).CheckShooting(this.enemyBullets);
@@ -1001,7 +1011,7 @@
 
         private void UpdateCursor()
         {
-            this.cursor.Position = new Vector2(this.mouse.X - this.cursor.SpriteIndex.Width / 2, this.mouse.Y - this.cursor.SpriteIndex.Height / 2);
+            this.cursor.Position = new Position(this.mouse.X - this.cursor.SpriteIndex.Width / 2, this.mouse.Y - this.cursor.SpriteIndex.Height / 2);
         }
 
         private void UpdateBonusses()
@@ -1019,23 +1029,23 @@
 
         private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnit meleUnit = new MeleUnit(new Vector2(x, y), 1.8f, false, 150, 40, 260, 230, true, 150);
+            MeleUnit meleUnit = new MeleUnit(new Position(x, y), 1.8f, false, 150, 40, 260, 230, true, 150);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
         }
 
-        private void AddRangeUnit(ContentManager content, int x, int y, string textureName)
+        private void AddRangeUnit(ContentManager content, float x, float y, string textureName)
         {
-            RangedUnit rangedUnit = new RangedUnit(new Vector2(x, y), 0, false, 400, 30, 210, 180, true, 200);
+            RangedUnit rangedUnit = new RangedUnit(new Position(x, y), 0, false, 400, 30, 210, 180, true, 200);
             rangedUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             rangedUnit.Area = new Rectangle(0, 0, rangedUnit.SpriteIndex.Width, rangedUnit.SpriteIndex.Height);
             this.units.Add(rangedUnit);
         }
 
-        private void AddBoss(ContentManager content, int x, int y, string textureName)
+        private void AddBoss(ContentManager content, float x, float y, string textureName)
         {
-            MeleUnit meleUnit = new MeleUnit(new Vector2(x, y), 1.3f, false, 200, 100, 1000, 2300, true, 100);
+            MeleUnit meleUnit = new MeleUnit(new Position(x, y), 1.3f, false, 200, 100, 1000, 2300, true, 100);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);

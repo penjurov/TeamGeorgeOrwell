@@ -12,7 +12,7 @@
         private float attack;
         private float defence;
 
-        public Units(Vector2 pos, float speed, float range) : base(pos)
+        public Units(Position pos, float speed, float range) : base(pos)
         {
             this.Speed = speed;
             this.Alive = true;

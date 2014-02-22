@@ -8,7 +8,7 @@
     {
         private float speed;
 
-        public Bullet(Vector2 pos, Texture2D texture) : base(pos)
+        public Bullet(Position pos, Texture2D texture) : base(pos)
         {
             this.Position = pos;
             this.SpriteIndex = texture;

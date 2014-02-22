@@ -13,7 +13,7 @@
         private int skillLevel;
         private int skillCost;
         
-        public Skills(Vector2 pos, SkillType skillType)
+        public Skills(Position pos, SkillType skillType)
             : base(pos)
         {
             this.Position = pos;

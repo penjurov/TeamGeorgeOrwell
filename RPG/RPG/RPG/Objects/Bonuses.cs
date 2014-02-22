@@ -7,7 +7,7 @@
     {
         const int Spawn = 500;
 
-        public Bonuses(Vector2 pos, Texture2D texture, string type, Rectangle area)
+        public Bonuses(Position pos, Texture2D texture, string type, Rectangle area)
             : base(pos)
         {
             this.Position = pos;

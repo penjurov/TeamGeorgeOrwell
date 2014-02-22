@@ -105,6 +105,7 @@
     <Compile Include="GameStarter.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
+    <Compile Include="Objects\Position.cs" />
     <Compile Include="Screens\WinScreen.cs" />
   </ItemGroup>
   <ItemGroup>

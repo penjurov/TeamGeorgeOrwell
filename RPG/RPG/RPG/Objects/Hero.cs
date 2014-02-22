@@ -15,7 +15,7 @@
         private float maxHP;
         private float maxMP;      
 
-        private Hero(Vector2 pos, float speed, float hp, float att, float def, float range, float mp) : base(pos, speed, range)
+        private Hero(Position pos, float speed, float hp, float att, float def, float range, float mp) : base(pos, speed, range)
         {
             this.Health = hp;
             this.MaxHP = hp;
@@ -121,7 +121,7 @@
         }
 
         // Singleton
-        public static Hero Instance(Vector2 pos, float speed, float hp, float att, float def, float range, float mp)
+        public static Hero Instance(Position pos, float speed, float hp, float att, float def, float range, float mp)
         {
             if (instance == null)
             {

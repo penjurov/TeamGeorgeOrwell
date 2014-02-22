@@ -5,12 +5,12 @@
 
     public abstract class Obj
     {
-        public Obj(Vector2 pos)
+        public Obj(Position pos)
         {
             this.Position = pos;
         }
 
-        public Vector2 Position { get; set; }
+        public Position Position { get; set; }
 
         public Rectangle Area { get; set; }
 

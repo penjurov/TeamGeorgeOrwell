@@ -10,7 +10,7 @@
         private float fireRate = 80;
         private float expGiven;
 
-        public RangedUnit(Vector2 pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, range)
+        public RangedUnit(Position pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, range)
         {
             this.Attack = att;
             RangeAtk = this.Attack;

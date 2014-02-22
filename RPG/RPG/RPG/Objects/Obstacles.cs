@@ -5,7 +5,7 @@
 
     public class Obstacles : Obj
     {
-        public Obstacles(Vector2 pos, Texture2D texture, bool vis) : base(pos)
+        public Obstacles(Position pos, Texture2D texture, bool vis) : base(pos)
         {
             this.Position = pos;
             this.SpriteIndex = texture;
