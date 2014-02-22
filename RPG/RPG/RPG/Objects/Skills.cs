@@ -2,11 +2,6 @@
 {
     using Microsoft.Xna.Framework;
 
-    public enum SkillType 
-    { 
-        Heal, CollateralDamage, Hit 
-    }
-
     public class Skills : Obj
     {
         private readonly SkillType skillType;
