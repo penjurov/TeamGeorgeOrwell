@@ -1,6 +1,6 @@
 ﻿namespace Rpg.Objects
 {
-    using Microsoft.Xna.Framework;
+    using System;
 
     public class Cursor : Obj
     {

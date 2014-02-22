@@ -1,4 +1,9 @@
-﻿public enum SkillType 
-{ 
-    Heal, CollateralDamage, Hit 
+﻿namespace Rpg.Objects
+{
+    public enum SkillType 
+    { 
+        Heal,
+        CollateralDamage,
+        Hit 
+    }
 }

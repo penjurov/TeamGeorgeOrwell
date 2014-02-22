@@ -1,7 +1,6 @@
 ﻿namespace Rpg.Objects
 {   
     using Interfaces;
-    using Microsoft.Xna.Framework;
 
     public class MeleUnit : Units, IMonster
     {

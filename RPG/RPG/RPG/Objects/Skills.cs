@@ -1,13 +1,13 @@
 ﻿namespace Rpg.Objects
 {
-    using Microsoft.Xna.Framework;
+    using System;
 
     public class Skills : Obj
     {
         private readonly SkillType skillType;
         private int skillLevel;
         private int skillCost;
-        
+
         public Skills(Position pos, SkillType skillType)
             : base(pos)
         {
@@ -16,8 +16,8 @@
             this.SkillCost = 50;
             this.skillType = skillType;
         }
-    
-        public int SkillLevel 
+
+        public int SkillLevel
         {
             get
             {
@@ -30,7 +30,7 @@
             }
         }
 
-        public int SkillCost 
+        public int SkillCost
         {
             get
             {

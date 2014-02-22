@@ -1,6 +1,5 @@
 ﻿namespace Rpg.Objects
 {
-    using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;  
 
     public class Obstacles : Obj

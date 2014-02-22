@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using Interfaces;
-    using Microsoft.Xna.Framework;
     
     public class Hero : Units, IShootable, IPlayer
     {
