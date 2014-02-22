@@ -4,18 +4,20 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;   
+    using Microsoft.Xna.Framework.Input;
+    using Objects;
 
     class GameOver
     {
         private Texture2D gameOverScreenBackgroundTexture;
         private Vector2 gameOverScreenBackgroundPosition;
-
+        private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
         private KeyboardState keyboard;
         private MouseState mouse;
 
         public void Load(ContentManager content)
         {
+            this.LoadCursor(content);
             this.gameOverScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\GameOver");
         }
 
@@ -31,7 +33,8 @@
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
             Vector2 namePosition = new Vector2(400, 300);
             spriteBatch.DrawString(font, "Game Over", namePosition, Color.White);
-          
+
+            this.DrawCursor(spriteBatch);
             spriteBatch.End();
         }
 
@@ -39,6 +42,8 @@
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();
+
+            this.UpdateCursor();
 
             if (this.keyboard.IsKeyDown(Keys.Space))
             {
@@ -49,6 +54,22 @@
             {
                 Environment.Exit(1);
             }
+        }
+
+        private void LoadCursor(ContentManager content)
+        {
+            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "cursor"));
+        }
+
+        private void DrawCursor(SpriteBatch spriteBatch)
+        {
+            Vector2 cursPos = new Vector2(this.cursor.Position.X, this.cursor.Position.Y);
+            spriteBatch.Draw(this.cursor.SpriteIndex, cursPos, Color.White);
+        }
+
+        private void UpdateCursor()
+        {
+            this.cursor.Position = new Position(this.mouse.X, this.mouse.Y);
         }
     }
 }

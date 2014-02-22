@@ -5,21 +5,19 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Objects;
     
     class ControlScreen
     {
         private readonly IList<MenuItems> controlScreenItems = new List<MenuItems>();
-        private readonly IList<Texture2D> planketTexture = new List<Texture2D>();
+        private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
+        private Texture2D button;
         private readonly int selectedEntry = 0;
         
         private Texture2D controlScreenBackgroundTexture;
         private Vector2 controlScreenBackgroundPosition;
-        private Texture2D keyboardTexture;
-        private Vector2 keyboardPosition;
-        private Texture2D mouseTexture;
-        private Vector2 mousePosition;
 
-        private Vector2 planketPosition;
+        private Vector2 buttonPosition;
 
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
@@ -27,11 +25,13 @@
 
         public void Load(ContentManager content)
         {
-            this.controlScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\MainMenu");
-            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\GameScreens\MainMenuPlank"));  
+            this.controlScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\control_screen");
+            this.button = content.Load<Texture2D>(@"Textures\GameScreens\Button");  
          
-            this.keyboardTexture = content.Load<Texture2D>(@"Textures\GameScreens\keyboard");
-            this.mouseTexture = content.Load<Texture2D>(@"Textures\GameScreens\mouse");
+            //this.keyboardTexture = content.Load<Texture2D>(@"Textures\GameScreens\keyboard");
+            //this.mouseTexture = content.Load<Texture2D>(@"Textures\GameScreens\mouse");
+
+            this.LoadCursor(content);
         }
 
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
@@ -47,8 +47,8 @@
             if (this.controlScreenItems.Count < 1)
             {
                 // Back planket and text;
-                this.planketPosition = new Vector2(700, 600);
-                this.controlScreenItems.Add(new MenuItems(this.planketTexture[0], this.planketPosition, "Back", newFont, false));
+                this.buttonPosition = new Vector2(840, 660);
+                this.controlScreenItems.Add(new MenuItems(this.button, this.buttonPosition, "Back", newFont, false));
             }
 
             this.controlScreenItems[this.selectedEntry].Selected = true;
@@ -57,12 +57,7 @@
                 item.Draw(spriteBatch);
             }
 
-            this.keyboardPosition = new Vector2(100, 300);
-            spriteBatch.Draw(this.keyboardTexture, this.keyboardPosition, Color.White);
-
-            this.mousePosition = new Vector2(600, 300);
-            spriteBatch.Draw(this.mouseTexture, this.mousePosition, Color.White);
-
+            this.DrawCursor(spriteBatch);
             spriteBatch.End();
         }
 
@@ -70,6 +65,8 @@
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();
+
+            this.UpdateCursor();
 
             if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter) &&
                 this.controlScreenItems.Count != 0)
@@ -97,6 +94,22 @@
             }
 
             this.previousKeyboard = this.keyboard;
+        }
+
+        private void LoadCursor(ContentManager content)
+        {
+            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "cursor"));
+        }
+
+        private void DrawCursor(SpriteBatch spriteBatch)
+        {
+            Vector2 cursPos = new Vector2(this.cursor.Position.X, this.cursor.Position.Y);
+            spriteBatch.Draw(this.cursor.SpriteIndex, cursPos, Color.White);
+        }
+
+        private void UpdateCursor()
+        {
+            this.cursor.Position = new Position(this.mouse.X, this.mouse.Y);
         }
     }
 }

@@ -6,17 +6,19 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Objects;
 
     internal class MainMenuScreen
     {
         private static IList<MenuItems> mainMenuItems = new List<MenuItems>();
+        private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
 
-        private readonly IList<Texture2D> planketTexture = new List<Texture2D>();
+        private IList<Texture2D> buttons = new List<Texture2D>();
      
         private int selectedEntry = 0;
         private Texture2D mainMenuBackgroundTexture;
         private Vector2 mainMenuBackgroundPosition;
-        private Vector2 planketPosition;
+        private Vector2 buttonPosition;
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
         private MouseState mouse;
@@ -39,9 +41,11 @@
         {
             this.mainMenuBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\MainMenu");
 
-            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\GameScreens\MainMenuPlank"));
-            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\GameScreens\MainMenuPlank02"));
-            this.planketTexture.Add(content.Load<Texture2D>(@"Textures\GameScreens\MainMenuPlank03"));
+            this.buttons.Add(content.Load<Texture2D>(@"Textures\GameScreens\Button"));
+            this.buttons.Add(content.Load<Texture2D>(@"Textures\GameScreens\Button_first"));
+            this.buttons.Add(content.Load<Texture2D>(@"Textures\GameScreens\Button_last"));
+
+            this.LoadCursor(content);
         }
 
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
@@ -57,32 +61,34 @@
             if (PMainMenuItems.Count < 4)
             {
                 // New game planket and text;
-                this.planketPosition = new Vector2(700, 360);
-                PMainMenuItems.Add(new MenuItems(this.planketTexture[2], this.planketPosition, "New game", newFont, false));
+                this.buttonPosition = new Vector2(392, 224);
+                PMainMenuItems.Add(new MenuItems(this.buttons[1], this.buttonPosition, "NEW GAME", newFont, false));
 
                 // Control planket and text
-                this.planketPosition.Y += 80;
-                PMainMenuItems.Add(new MenuItems(this.planketTexture[1], this.planketPosition, "Controls", newFont, false));
+                this.buttonPosition.X = 453;
+
+                this.buttonPosition.Y += 50;
+                PMainMenuItems.Add(new MenuItems(this.buttons[0], this.buttonPosition, "CONTROLS", newFont, false));
 
                 // About planket and text
-                this.planketPosition.Y += 80;
-                PMainMenuItems.Add(new MenuItems(this.planketTexture[2], this.planketPosition, "About", newFont, false));
+                this.buttonPosition.X = 453;
+                this.buttonPosition.Y += 50;
+                PMainMenuItems.Add(new MenuItems(this.buttons[0], this.buttonPosition, "ABOUT", newFont, false));
 
                 // Exit game planket and text
-                this.planketPosition.Y += 80;
-                PMainMenuItems.Add(new MenuItems(this.planketTexture[0], this.planketPosition, "Exit game", newFont, false));
+                this.buttonPosition.X = 392;
+                this.buttonPosition.Y += 50;
+                PMainMenuItems.Add(new MenuItems(this.buttons[2], this.buttonPosition, "EXIT GAME", newFont, false));
             }
 
             PMainMenuItems[this.selectedEntry].Selected = true;
             foreach (var item in PMainMenuItems)
             {
-                item.Draw(spriteBatch);                
+                item.Draw(spriteBatch);
             }
 
-            SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
-            Vector2 statsPosition = new Vector2(10, 10);
-            spriteBatch.DrawString(font, "Battle for Jotunheimr", statsPosition, Color.White);
-
+            this.DrawCursor(spriteBatch);
+            
             spriteBatch.End();
         }
         
@@ -90,6 +96,8 @@
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();
+
+            this.UpdateCursor();
 
             if (this.keyboard.IsKeyDown(Keys.Down) && this.previousKeyboard.IsKeyUp(Keys.Down))
             {
@@ -115,27 +123,27 @@
 
             if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter))
             {
-                if (PMainMenuItems[this.selectedEntry].ItemText == "New game")
+                if (PMainMenuItems[this.selectedEntry].ItemText == "NEW GAME")
                 {
                     Rpg.ActiveWindowSet(EnumActiveWindow.ChooseHeroWindow);
                 }
 
-                if (PMainMenuItems[this.selectedEntry].ItemText == "Resume game")
+                if (PMainMenuItems[this.selectedEntry].ItemText == "RESUME GAME")
                 {
                     Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
                 }
 
-                if (PMainMenuItems[this.selectedEntry].ItemText == "Controls")
+                if (PMainMenuItems[this.selectedEntry].ItemText == "CONTROLS")
                 {
                     Rpg.ActiveWindowSet(EnumActiveWindow.ControlWindow);
                 }
 
-                if (PMainMenuItems[this.selectedEntry].ItemText == "About")
+                if (PMainMenuItems[this.selectedEntry].ItemText == "ABOUT")
                 {
                     Rpg.ActiveWindowSet(EnumActiveWindow.AboutWindow);
                 }
 
-                if (PMainMenuItems[this.selectedEntry].ItemText == "Exit game")
+                if (PMainMenuItems[this.selectedEntry].ItemText == "EXIT GAME")
                 {
                     Environment.Exit(1);
                 }
@@ -148,31 +156,31 @@
                     if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
                         this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)                       
                     {
-                        if (item.ItemText == "New game")
+                        if (item.ItemText == "NEW GAME")
                         {
                             Rpg.ActiveWindowSet(EnumActiveWindow.ChooseHeroWindow);
                             break;
                         }
 
-                        if (item.ItemText == "Resume game")
+                        if (item.ItemText == "RESUME GAME")
                         {
                             Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
                             break;
                         }
 
-                        if (item.ItemText == "Controls")
+                        if (item.ItemText == "CONTROLS")
                         {
                             Rpg.ActiveWindowSet(EnumActiveWindow.ControlWindow);
                             break;
                         }
 
-                        if (item.ItemText == "About")
+                        if (item.ItemText == "ABOUT")
                         {
                             Rpg.ActiveWindowSet(EnumActiveWindow.AboutWindow);
                             break;
                         }
 
-                        if (item.ItemText == "Exit game")
+                        if (item.ItemText == "EXIT GAME")
                         {
                             Environment.Exit(1);
                         }
@@ -182,6 +190,22 @@
 
             this.previousKeyboard = this.keyboard;
             this.previousMouse = this.mouse;
+        }
+
+        private void LoadCursor(ContentManager content)
+        {
+            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "cursor"));
+        }
+
+        private void DrawCursor(SpriteBatch spriteBatch)
+        {
+            Vector2 cursPos = new Vector2(this.cursor.Position.X, this.cursor.Position.Y);
+            spriteBatch.Draw(this.cursor.SpriteIndex, cursPos, Color.White);
+        }
+
+        private void UpdateCursor()
+        {
+            this.cursor.Position = new Position(this.mouse.X, this.mouse.Y);
         }
     }
 }

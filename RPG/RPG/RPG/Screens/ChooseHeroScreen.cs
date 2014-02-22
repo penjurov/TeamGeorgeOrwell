@@ -5,10 +5,12 @@
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Objects;
     
     public class ChooseHeroScreen
     {
         private static string heroName;
+        private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
         private readonly IList<Texture2D> heroTexture = new List<Texture2D>();        
         private IList<MenuItems> chooseHeroList = new List<MenuItems>();
         
@@ -58,6 +60,8 @@
             this.heroTexture.Add(content.Load<Texture2D>(@"Textures\ChooseHero\select_odin"));
             this.heroTexture.Add(content.Load<Texture2D>(@"Textures\ChooseHero\select_thor"));
             this.heroTexture.Add(content.Load<Texture2D>(@"Textures\ChooseHero\select_eir"));
+
+            this.LoadCursor(content);
         }
 
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
@@ -91,6 +95,7 @@
                 item.Draw(spriteBatch);
             }
 
+            this.DrawCursor(spriteBatch);
             spriteBatch.End();
         }
 
@@ -98,6 +103,8 @@
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();
+
+            this.UpdateCursor();
 
             if (this.keyboard.IsKeyDown(Keys.Right) && this.previousKeyboard.IsKeyUp(Keys.Right))
             {
@@ -146,6 +153,22 @@
             this.previousMouse = this.mouse;
             this.previousKeyboard = this.keyboard;
             this.inMenu = true;
+        }
+
+        private void LoadCursor(ContentManager content)
+        {
+            this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "cursor"));
+        }
+
+        private void DrawCursor(SpriteBatch spriteBatch)
+        {
+            Vector2 cursPos = new Vector2(this.cursor.Position.X, this.cursor.Position.Y);
+            spriteBatch.Draw(this.cursor.SpriteIndex, cursPos, Color.White);
+        }
+
+        private void UpdateCursor()
+        {
+            this.cursor.Position = new Position(this.mouse.X, this.mouse.Y);
         }
     }
 }

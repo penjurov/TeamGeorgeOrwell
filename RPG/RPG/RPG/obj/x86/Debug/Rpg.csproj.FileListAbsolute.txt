@@ -55,7 +55,6 @@ D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Cont
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\ChooseHero\select_thor.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\Thor.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\Invisible.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\pillar.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\gunShot.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\mainTheme.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt1.xnb
@@ -66,10 +65,6 @@ D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Cont
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\Eir.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\keyboard.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenu.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenuPlank.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenuPlank01.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenuPlank02.xnb
-D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\MainMenuPlank03.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\mouse.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\GameOver.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Win.xnb
@@ -137,3 +132,12 @@ D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Te
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.exe
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\RPG.pdb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Button.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\Cursor.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bar_holder.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\energy_bar.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\life_bar.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Button_First.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\Button_last.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\about.xnb
+D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\control_screen.xnb

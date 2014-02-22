@@ -14,7 +14,8 @@
     internal class GameScreen
     {
         private readonly IList<MenuItems> levelUpItems = new List<MenuItems>();
-        private readonly Cursor cursor = new Cursor(new Position(0, 0));       
+        private readonly Cursor cursor = new Cursor(new Position(0, 0));
+        private readonly Cursor cursorMenu = new Cursor(new Position(0, 0)); 
         private readonly IList<Obstacles> obstacles = new List<Obstacles>();
         private readonly IList<Bullet> bullets = new List<Bullet>();
         private readonly IList<Bullet> enemyBullets = new List<Bullet>();     
@@ -32,6 +33,11 @@
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;
         private Texture2D enemyHealthBars;
+
+        private Texture2D heroBarHolder;
+        private Texture2D heroHealthBar;
+        private Texture2D heroManaBar;
+
 
         private Hero hero;
         private float currentMaxHp;
@@ -72,6 +78,7 @@
             this.LoadMusic(content);
             this.LoadLevel(content);
             this.LoadHero(content);
+            this.LoadHeroStats(content);
             this.LoadUnits(content);
             this.LoadCursor(content);
             this.LoadBullets(content);
@@ -87,7 +94,7 @@
             this.DrawBackGround(spriteBatch);
             this.DrawBonusses(spriteBatch);
             this.DrawUnits(spriteBatch);
-            this.DrawLabels(spriteBatch, content);
+            this.DrawHeroStats(spriteBatch, content);
             this.DrawBullets(spriteBatch);
             this.DrawObstacles(spriteBatch);
 
@@ -127,7 +134,7 @@
             if (this.keyboard.IsKeyDown(Keys.Tab))
             {
                 this.paused = true;
-                MainMenuScreen.PMainMenuItems[0].ItemText = "Resume game";
+                MainMenuScreen.PMainMenuItems[0].ItemText = "RESUME GAME";
                 this.gameSongInstance.Stop();
                 Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
             }
@@ -146,7 +153,7 @@
 
             this.previousMouse = this.mouse;
             this.previousKeyboard = this.keyboard;
-        }
+        }       
 
         private void LoadBullets(ContentManager content)
         {
@@ -185,20 +192,20 @@
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
-
-            Texture2D pilarTexture = content.Load<Texture2D>(@"Textures\Objects\pillar");
-            Obstacles pillar = new Obstacles(new Position(580, 580), pilarTexture, true);
-            pillar.Area = new Rectangle((int)pillar.Position.X, (int)pillar.Position.Y, pilarTexture.Width, pilarTexture.Height);
-            this.obstacles.Add(pillar);
-
-            pillar = new Obstacles(new Position(420, 660), pilarTexture, true);
-            pillar.Area = new Rectangle((int)pillar.Position.X, (int)pillar.Position.Y, pilarTexture.Width, pilarTexture.Height);
-            this.obstacles.Add(pillar);
         }
 
         private void LoadCursor(ContentManager content)
         {
             this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "crosshair"));
+            this.cursorMenu.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "cursor"));
+
+        }
+
+        private void LoadHeroStats(ContentManager content)
+        {
+            heroBarHolder = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "bar_holder"));
+            heroHealthBar = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "life_bar"));
+            heroManaBar = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", "energy_bar"));
         }
 
         private void LoadUnits(ContentManager content)
@@ -330,13 +337,22 @@
             this.levelUpRect = new Rectangle(0, 0, this.levelUpTexture.Width, this.levelUpTexture.Height);
             this.leftButton = content.Load<Texture2D>(@"Textures\GameScreens\LevelUpLeft");
             this.rightButton = content.Load<Texture2D>(@"Textures\GameScreens\LevelUpRight");
-            this.okButton = content.Load<Texture2D>(@"Textures\GameScreens\MainMenuPlank");
+            this.okButton = content.Load<Texture2D>(@"Textures\GameScreens\Button");
         }
 
         private void DrawCursor(SpriteBatch spriteBatch)
         {
-            Vector2 cursPos = new Vector2(this.cursor.Position.X, this.cursor.Position.Y);
-            spriteBatch.Draw(this.cursor.SpriteIndex, cursPos, Color.White);
+            if (levelUp || paused)
+            {
+                Vector2 cursPos = new Vector2(this.cursorMenu.Position.X, this.cursorMenu.Position.Y);
+                spriteBatch.Draw(this.cursorMenu.SpriteIndex, cursPos, Color.White);
+            }
+            else
+            {
+                Vector2 cursPos = new Vector2(this.cursor.Position.X, this.cursor.Position.Y);
+                spriteBatch.Draw(this.cursor.SpriteIndex, cursPos, Color.White);
+            }
+            
         }
 
         private void DrawBonusses(SpriteBatch spriteBatch)
@@ -378,24 +394,35 @@
             }
         }
 
-        private void DrawLabels(SpriteBatch spriteBatch, ContentManager content)
+        private void DrawHeroStats(SpriteBatch spriteBatch, ContentManager content)
         {
+            Vector2 position = new Vector2(10, 10);
+            spriteBatch.Draw(this.heroBarHolder, position, Color.White);
+
+            // Health
+            float visibleWidth = ((float)this.heroHealthBar.Width * this.hero.Health) / this.hero.MaxHP;
+
+            Rectangle healthRectangle = new Rectangle(12, 10,
+                (int)visibleWidth,
+                this.heroHealthBar.Height);
+
+            spriteBatch.Draw(this.heroHealthBar, healthRectangle, Color.White);
+
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
-            Vector2 statsPosition = new Vector2(10, 10);
-            spriteBatch.DrawString(font, string.Format("HP :  {0}", (int)this.hero.Health), statsPosition, Color.Red);
+            position = new Vector2(170, 28);
+            spriteBatch.DrawString(font, "" + (int)this.hero.Health, position, Color.White);
 
-            statsPosition = new Vector2(10, 40);
-            spriteBatch.DrawString(font, string.Format("Att :  {0}", (int)this.hero.Attack), statsPosition, Color.Red);
+            //Mana
+            visibleWidth = ((float)this.heroManaBar.Width * this.hero.Mana) / this.hero.MaxMP;
 
-            statsPosition = new Vector2(10, 70);
-            spriteBatch.DrawString(font, string.Format("Def :  {0}", (int)this.hero.Defence), statsPosition, Color.Red);
-            
-            statsPosition = new Vector2(10, 100);
-            spriteBatch.DrawString(font, string.Format("Experience :  {0}", this.hero.CurrentExp), statsPosition, Color.Red);    
-            spriteBatch.DrawString(font, string.Format("Experience :  {0}", this.hero.CurrentExp), statsPosition, Color.Red);
-            
-            statsPosition = new Vector2(10, 130);
-            spriteBatch.DrawString(font, this.mouse.X + " " + this.mouse.Y, statsPosition, Color.Red);    
+            Rectangle manaRectangle = new Rectangle(12, 10,
+                (int)visibleWidth,
+                this.heroManaBar.Height);
+
+            spriteBatch.Draw(this.heroManaBar, manaRectangle, Color.White);
+
+            position = new Vector2(130, 61);
+            spriteBatch.DrawString(font, "" + (int)this.hero.Mana, position, Color.White);
         }
 
         private void DrawUnits(SpriteBatch spriteBatch)
@@ -442,7 +469,7 @@
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
             SpriteFont title = content.Load<SpriteFont>(@"Fonts/Title");
 
-            Vector2 position = new Vector2(360, 30);
+            Vector2 position = new Vector2(386, 30);
 
             spriteBatch.DrawString(title, string.Format("Level Up!!!"), position, Color.Red);
 
@@ -568,7 +595,7 @@
             spriteBatch.DrawString(font, string.Format("Range: {0}", this.hero.Range), position, Color.Red);
             
             // OK button
-            position = new Vector2(360, 530);
+            position = new Vector2(434, 530);
             spriteBatch.Draw(this.okButton, position, Color.White);
 
             if (levelUpItems.Count < 13)
@@ -1011,6 +1038,7 @@
 
         private void UpdateCursor()
         {
+            this.cursorMenu.Position = new Position(this.mouse.X, this.mouse.Y);
             this.cursor.Position = new Position(this.mouse.X - this.cursor.SpriteIndex.Width / 2, this.mouse.Y - this.cursor.SpriteIndex.Height / 2);
         }
 

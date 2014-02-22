@@ -62,7 +62,8 @@
         protected override void Initialize()
         {
             base.Initialize();
-            PActiveWindow = EnumActiveWindow.MainMenu;           
+            PActiveWindow = EnumActiveWindow.MainMenu;
+            this.IsMouseVisible = false;
         }
 
         protected override void LoadContent()
@@ -88,42 +89,36 @@
         { 
             if (activeWindow == EnumActiveWindow.MainMenu)
             {
-                this.IsMouseVisible = true;
                 this.mainMenuScreen.Update();
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
             {
-                this.IsMouseVisible = true;
                 this.chooseHero.Update();
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.ControlWindow)
             {
-                this.IsMouseVisible = true;
                 this.controlScreen.Update();
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.AboutWindow)
             {
-                this.IsMouseVisible = true;
                 this.aboutScreen.Update();
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.GameOver)
             {
-                this.IsMouseVisible = false;
                 this.gameOver.Update();
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.Win)
             {
-                this.IsMouseVisible = false;
                 this.win.Update();
                 this.mainThemeInstance.Play();
             }
@@ -136,8 +131,6 @@
                     this.loaded = true;
                 }
 
-                this.IsMouseVisible = true;
-                this.IsMouseVisible = false;
                 this.gameScreen.Update(this.Content);
             }
 
