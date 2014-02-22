@@ -14,9 +14,9 @@
         private float mana;
         private float maxHP;
         private float maxMP;
-        private SkillType heroSkill;
+        private Skills heroSkill;
 
-        private Hero(Vector2 pos, float speed, float hp, float att, float def, float range, float mp, SkillType skill) : base(pos, speed, range)
+        private Hero(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skill) : base(pos, speed, range)
         {
             this.Health = hp;
             this.MaxHP = hp;
@@ -122,7 +122,7 @@
             }
         }
 
-        public SkillType HeroSkill
+        public Skills HeroSkill
         {
             get
             {
@@ -135,7 +135,7 @@
         }
 
         // Singleton
-        public static Hero Instance(Vector2 pos, float speed, float hp, float att, float def, float range, float mp, SkillType skill)
+        public static Hero Instance(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skill)
         {
             if (instance == null)
             {

@@ -85,6 +85,7 @@
     <Compile Include="Interfaces\IUnit.cs" />
     <Compile Include="NegativeDataException.cs" />
     <Compile Include="Objects\RangedUnit.cs" />
+    <Compile Include="Objects\SkillType.cs" />
     <Compile Include="Rpg.cs" />
     <Compile Include="Screens\AboutScreen.cs" />
     <Compile Include="Screens\ChooseHeroScreen.cs" />

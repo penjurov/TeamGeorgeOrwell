@@ -247,21 +247,21 @@
                 case "ODIN":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Vector2(this.room.Width/2,this.room.Height/2),2,900,110,70,200,800, SkillType.CollateralDamage);
+                        this.hero = Hero.Instance(new Position(this.room.Width/2,this.room.Height/2),2,900,110,70,200,800, SkillType.CollateralDamage);
                         break;
                     }
 
                 case "THOR":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Vector2(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 50, 600,SkillType.Hit);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 50, 600, SkillType.Hit);
                         break;
                     }
 
                 case "EIR":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Vector2(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal);
                         break;
                     }
 
