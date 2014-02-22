@@ -13,9 +13,10 @@
         private float fireRate = 20;
         private float mana;
         private float maxHP;
-        private float maxMP;      
+        private float maxMP;
+        private SkillType heroSkill;
 
-        private Hero(Position pos, float speed, float hp, float att, float def, float range, float mp) : base(pos, speed, range)
+        private Hero(Vector2 pos, float speed, float hp, float att, float def, float range, float mp, SkillType skill) : base(pos, speed, range)
         {
             this.Health = hp;
             this.MaxHP = hp;
@@ -24,6 +25,7 @@
             this.mana = mp;
             this.maxMP = mp;
             this.Level = 1;
+            this.HeroSkill = new Skills(pos, skill);
         }
      
         public float CurrentExp { get; set; }
@@ -120,12 +122,24 @@
             }
         }
 
+        public SkillType HeroSkill
+        {
+            get
+            {
+                return this.heroSkill;
+            }
+            set
+            {
+                this.heroSkill = value;
+            }
+        }
+
         // Singleton
-        public static Hero Instance(Position pos, float speed, float hp, float att, float def, float range, float mp)
+        public static Hero Instance(Vector2 pos, float speed, float hp, float att, float def, float range, float mp, SkillType skill)
         {
             if (instance == null)
             {
-                instance = new Hero(pos, speed, hp, att, def, range, mp);
+                instance = new Hero(pos, speed, hp, att, def, range, mp, skill);
             }
 
             return instance;
