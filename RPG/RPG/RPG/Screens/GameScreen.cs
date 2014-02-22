@@ -304,9 +304,9 @@
 
         private void LoadMusic(ContentManager content)
         {
+            this.gunShot = content.Load<SoundEffect>(@"Textures\Sounds\" + ChooseHeroScreen.HeroName + "Shot");
             this.walk = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt1");
             this.walk2 = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt2");
-            this.gunShot = content.Load<SoundEffect>(@"Textures\Sounds\gunShot");
             this.pain1 = content.Load<SoundEffect>(@"Textures\Sounds\pain1");
             this.pain2 = content.Load<SoundEffect>(@"Textures\Sounds\pain2");
             this.gameSong = content.Load<SoundEffect>(@"Textures\Sounds\gameSong");
@@ -1014,7 +1014,7 @@
                             catch (NegativeDataException)
                             {
                                 unit.Alive = false;
-                                
+
                                 int bonusType = this.rand.Next(0, 4001);
 
                                 switch (bonusType % 2)
