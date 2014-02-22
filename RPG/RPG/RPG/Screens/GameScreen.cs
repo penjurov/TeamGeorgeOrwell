@@ -1,6 +1,6 @@
 ﻿namespace Rpg.Screens
 {
-    using System;   
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Interfaces;
@@ -10,15 +10,15 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Objects;
-    
+
     internal class GameScreen
     {
         private readonly IList<MenuItems> levelUpItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0));
-        private readonly Cursor cursorMenu = new Cursor(new Position(0, 0)); 
+        private readonly Cursor cursorMenu = new Cursor(new Position(0, 0));
         private readonly IList<Obstacles> obstacles = new List<Obstacles>();
         private readonly IList<Bullet> bullets = new List<Bullet>();
-        private readonly IList<Bullet> enemyBullets = new List<Bullet>();     
+        private readonly IList<Bullet> enemyBullets = new List<Bullet>();
         private readonly Random rand = new Random();
         private readonly IList<Units> units = new List<Units>();
         private readonly IList<Bonuses> bonuses = new List<Bonuses>();
@@ -49,7 +49,7 @@
 
         private Texture2D bonusHPTexture;
         private Texture2D bonusMPTexture;
-        
+
         private Texture2D levelUpTexture;
         private Rectangle levelUpRect;
         private Texture2D leftButton;
@@ -86,14 +86,14 @@
             this.LoadBonusses(content);
             this.LoadLevelUp(content);
         }
-          
+
         public void Draw(SpriteBatch spriteBatch, ContentManager content)
-        { 
+        {
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
-            
+
             this.DrawBackGround(spriteBatch);
             this.DrawBonusses(spriteBatch);
-            this.DrawUnits(spriteBatch);
+            this.DrawUnits(spriteBatch, content);
             this.DrawHeroStats(spriteBatch, content);
             this.DrawBullets(spriteBatch);
             this.DrawObstacles(spriteBatch);
@@ -109,7 +109,7 @@
             }
 
             this.DrawCursor(spriteBatch);
-                       
+
             spriteBatch.End();
         }
 
@@ -120,17 +120,17 @@
             this.UpdateCursor();
 
             if (!this.paused && !this.levelUp)
-            { 
+            {
                 this.UpdateUnits();
                 this.UpdateBullets();
                 this.UpdateHero(content);
-                this.UpdateBonusses();   
+                this.UpdateBonusses();
             }
             else if (this.levelUp)
             {
                 this.UpdateLevelUp();
             }
-            
+
             if (this.keyboard.IsKeyDown(Keys.Tab))
             {
                 this.paused = true;
@@ -153,7 +153,7 @@
 
             this.previousMouse = this.mouse;
             this.previousKeyboard = this.keyboard;
-        }       
+        }
 
         private void LoadBullets(ContentManager content)
         {
@@ -254,7 +254,7 @@
                 case "ODIN":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Position(this.room.Width/2,this.room.Height/2),2,900,110,70,200,800, SkillType.CollateralDamage);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70, 200, 800, SkillType.CollateralDamage);
                         break;
                     }
 
@@ -283,7 +283,7 @@
             this.currentAttack = this.hero.Attack;
             this.currentDefence = this.hero.Defence;
 
-            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName));
+            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "FrontRight"));
             this.hero.Area = new Rectangle(0, 0, this.hero.SpriteIndex.Width, this.hero.SpriteIndex.Height);
             this.hero.Position = new Position(50, 400);
             this.hero.Alive = true;
@@ -352,7 +352,6 @@
                 Vector2 cursPos = new Vector2(this.cursor.Position.X, this.cursor.Position.Y);
                 spriteBatch.Draw(this.cursor.SpriteIndex, cursPos, Color.White);
             }
-            
         }
 
         private void DrawBonusses(SpriteBatch spriteBatch)
@@ -425,7 +424,7 @@
             spriteBatch.DrawString(font, "" + (int)this.hero.Mana, position, Color.White);
         }
 
-        private void DrawUnits(SpriteBatch spriteBatch)
+        private void DrawUnits(SpriteBatch spriteBatch, ContentManager content)
         {
             foreach (var unit in this.units)
             {
@@ -443,9 +442,38 @@
                             this.enemyHealthBars.Height);
 
                         spriteBatch.Draw(this.enemyHealthBars, healthRectangle, Color.Red);
+
+                        this.ObjectDraw(spriteBatch, unit.SpriteIndex, new Vector2(unit.Position.X, unit.Position.Y), unit.Rotation);
+                    }
+                    else
+                    {
+                        if (this.mouse.X > hero.Position.X && this.mouse.Y > hero.Position.Y)
+                        {
+                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "FrontRight"));
+                        }
+                        else if (this.mouse.X <= hero.Position.X && this.mouse.Y > hero.Position.Y)
+                        {
+                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "FrontLeft"));
+                        }
+                        else if (this.mouse.X > hero.Position.X && this.mouse.Y <= hero.Position.Y)
+                        {
+                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "BackRight"));
+                        }
+                        else if (this.mouse.X <= hero.Position.X && this.mouse.Y <= hero.Position.Y)
+                        {
+                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "BackLeft"));
+                        }
+
+                        this.ObjectDraw(spriteBatch, hero.SpriteIndex, new Vector2(hero.Position.X, hero.Position.Y), hero.Rotation);
                     }
 
-                    this.ObjectDraw(spriteBatch, unit.SpriteIndex, new Vector2(unit.Position.X, unit.Position.Y), unit.Rotation);   
+
+
+                    // this.hero.SpriteIndex
+                    // this.hero.Area = new 
+                    // this.hero.Position = 
+                    // this.hero.Alive = tru
+                    // this.units.Add(this.h
                 }
             }
         }
@@ -483,17 +511,17 @@
             {
                 levelUpItems.Add(new MenuItems(this.leftButton, position, "Health-", font, false));
             }
-            
+
             position = new Vector2(605, 150);
             spriteBatch.Draw(this.rightButton, position, Color.White);
             if (levelUpItems.Count < 13)
             {
                 levelUpItems.Add(new MenuItems(this.rightButton, position, "Health+", font, false));
             }
-                      
+
             position = new Vector2(465, 170);
             spriteBatch.DrawString(font, string.Format("Health: {0}", this.hero.MaxHP), position, Color.Red);
-            
+
             // Mana
             position = new Vector2(360, 210);
             spriteBatch.Draw(this.leftButton, position, Color.White);
@@ -513,7 +541,7 @@
 
             position = new Vector2(465, 230);
             spriteBatch.DrawString(font, string.Format("Mana: {0}", this.hero.MaxMP), position, Color.Red);
-            
+
             // Attack
             position = new Vector2(360, 270);
             spriteBatch.Draw(this.leftButton, position, Color.White);
@@ -533,7 +561,7 @@
 
             position = new Vector2(465, 290);
             spriteBatch.DrawString(font, string.Format("Attack: {0}", this.hero.Attack), position, Color.Red);
-            
+
             // Defence
             position = new Vector2(360, 330);
             spriteBatch.Draw(this.leftButton, position, Color.White);
@@ -553,7 +581,7 @@
 
             position = new Vector2(465, 350);
             spriteBatch.DrawString(font, string.Format("Defence: {0}", this.hero.Defence), position, Color.Red);
-            
+
             // Speed
             position = new Vector2(360, 390);
             spriteBatch.Draw(this.leftButton, position, Color.White);
@@ -573,7 +601,7 @@
 
             position = new Vector2(465, 410);
             spriteBatch.DrawString(font, string.Format("Speed: {0}", this.hero.Speed), position, Color.Red);
-            
+
             // Range
             position = new Vector2(360, 450);
             spriteBatch.Draw(this.leftButton, position, Color.White);
@@ -593,7 +621,7 @@
 
             position = new Vector2(465, 470);
             spriteBatch.DrawString(font, string.Format("Range: {0}", this.hero.Range), position, Color.Red);
-            
+
             // OK button
             position = new Vector2(434, 530);
             spriteBatch.Draw(this.okButton, position, Color.White);
@@ -617,7 +645,7 @@
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();
-            
+
             if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed)
             {
                 foreach (var item in levelUpItems)
@@ -630,7 +658,7 @@
                             if (this.points > 0)
                             {
                                 this.hero.MaxHP += 100;
-                                this.points--;  
+                                this.points--;
                             }
 
                             this.hero.Health = this.hero.MaxHP;
@@ -809,7 +837,7 @@
             oldPos = new Vector2(this.hero.Position.X, this.hero.Position.Y);
 
             this.hero.Rotation = this.PointDirecions(this.hero.Position.X, this.hero.Position.Y, this.mouse.X, this.mouse.Y);
-        
+
             bool allDead = true;
 
             foreach (var unit in this.units)
@@ -831,7 +859,7 @@
                     {
                         this.hero.Position = new Position(30, 480);
                         this.stage++;
-                        this.LoadUnits(content);   
+                        this.LoadUnits(content);
                     }
                     else
                     {
@@ -847,7 +875,7 @@
             foreach (var bullet in this.bullets)
             {
                 if (bullet.Alive && Math.Abs(this.hero.Position.X - bullet.Position.X) < this.hero.Range &&
-                    Math.Abs(this.hero.Position.Y - bullet.Position.Y) < this.hero.Range) 
+                    Math.Abs(this.hero.Position.Y - bullet.Position.Y) < this.hero.Range)
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     Vector2 bulletPos = new Vector2(bullet.Position.X, bullet.Position.Y);
@@ -970,7 +998,7 @@
                         {
                             if (unit is RangedUnit)
                             {
-                                (unit as IMonster).Active = false; 
+                                (unit as IMonster).Active = false;
                             }
                         }
 
@@ -979,7 +1007,7 @@
                             try
                             {
                                 (unit as IMonster).Active = true;
-                                unit.Health = unit.Health - ((this.hero.Attack / unit.Defence) * 20) + this.rand.Next((int)this.hero.Attack / 10);                                
+                                unit.Health = unit.Health - ((this.hero.Attack / unit.Defence) * 20) + this.rand.Next((int)this.hero.Attack / 10);
                             }
                             catch (NegativeDataException)
                             {
@@ -1020,7 +1048,7 @@
                         }
 
                         if ((unit as IMonster).Active)
-                        { 
+                        {
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
 
                             Vector2 unitPos = new Vector2(unit.Position.X, unit.Position.Y);
@@ -1085,7 +1113,7 @@
             float scale = 0.7f;
 
             // spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(rotation), center, scale, SpriteEffects.None, 0);
-            spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(0), center, scale, SpriteEffects.None, 0);        
+            spriteBatch.Draw(sprite, position, null, Color.White, MathHelper.ToRadians(0), center, scale, SpriteEffects.None, 0);
         }
 
         private float PointDirecions(float x, float y, float x2, float y2)
@@ -1113,7 +1141,7 @@
             }
             else
             {
-                newArea.X += (int)pos.X;        
+                newArea.X += (int)pos.X;
             }
 
             if (pos.Y < 1)
@@ -1127,7 +1155,7 @@
 
             foreach (var o in this.bonuses)
             {
-                if (obj.GetType() == typeof(Hero)) 
+                if (obj.GetType() == typeof(Hero))
                 {
                     if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
                         (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
@@ -1142,7 +1170,7 @@
                             {
                                 (obj as Hero).Health = (obj as Hero).MaxHP;
                             }
-                            
+
                             o.Alive = false;
                         }
                         else if (o.Alive && o.Type == "mp")
@@ -1164,8 +1192,8 @@
 
             foreach (var o in this.obstacles)
             {
-                if (obj.GetType() == typeof(Bullet))           
-                { 
+                if (obj.GetType() == typeof(Bullet))
+                {
                     if (o.Visible)
                     {
                         if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
@@ -1196,7 +1224,7 @@
                             (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                         {
                             o.Alive = false;
-                            return true;                            
+                            return true;
                         }
                     }
                 }
@@ -1217,7 +1245,7 @@
                     }
                 }
             }
-           
+
             return false;
         }
 
@@ -1227,11 +1255,11 @@
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
 
             if (!this.Collision(new Vector2(newX, newY), unit))
-            { 
+            {
                 return new Vector2(pix * newX, pix * newY);
             }
 
-            return new Vector2(0, 0);                    
+            return new Vector2(0, 0);
         }
     }
 }
