@@ -447,6 +447,7 @@
                     }
                     else
                     {
+                        // Hero Animations
                         if (this.mouse.X > hero.Position.X && this.mouse.Y > hero.Position.Y)
                         {
                             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\", ChooseHeroScreen.HeroName + "FrontRight"));
@@ -466,14 +467,6 @@
 
                         this.ObjectDraw(spriteBatch, hero.SpriteIndex, new Vector2(hero.Position.X, hero.Position.Y), hero.Rotation);
                     }
-
-
-
-                    // this.hero.SpriteIndex
-                    // this.hero.Area = new 
-                    // this.hero.Position = 
-                    // this.hero.Alive = tru
-                    // this.units.Add(this.h
                 }
             }
         }
