@@ -13,7 +13,8 @@
         private float fireRate = 20;
         private float mana;
         private float maxHP;
-        private float maxMP;      
+        private float maxMP;
+        private SkillType heroSkill;
 
         private Hero(Vector2 pos, float speed, float hp, float att, float def, float range, float mp, SkillType skill) : base(pos, speed, range)
         {
@@ -24,6 +25,7 @@
             this.mana = mp;
             this.maxMP = mp;
             this.Level = 1;
+            this.HeroSkill = new Skills(pos, skill);
         }
      
         public float CurrentExp { get; set; }
@@ -117,6 +119,18 @@
                 }
 
                 this.fireRate = value;
+            }
+        }
+
+        public SkillType HeroSkill
+        {
+            get
+            {
+                return this.heroSkill;
+            }
+            set
+            {
+                this.heroSkill = value;
             }
         }
 
