@@ -92,7 +92,7 @@
             this.PchooseHeroList[this.selectedEntry].Selected = true;
             foreach (var item in this.PchooseHeroList)
             {
-                item.Draw(spriteBatch, Color.DarkCyan);
+                item.Draw(spriteBatch, Color.DeepSkyBlue);
             }
 
             this.DrawCursor(spriteBatch);
