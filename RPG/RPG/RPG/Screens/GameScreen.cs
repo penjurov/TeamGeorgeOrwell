@@ -335,6 +335,62 @@
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
+
+            for (int i = 375; i < 450; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(840, i), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 450; i < 475; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(850, i), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 475; i < 500; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(880, i), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 75; i < 650; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(980, i), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 920; i < 1000; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(i, 510), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 900; i < 1000; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(i, 340), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 950; i < 1000; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(i, 670), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 700; i < 1000; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(i, 195), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
         }
 
         private void LoadCursor(ContentManager content)
