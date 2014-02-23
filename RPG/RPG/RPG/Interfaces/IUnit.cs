@@ -11,5 +11,9 @@
         float Attack { get; }
 
         float Defence { get; }
+        
+        int HitRate { get; }
+
+        int HitTimer { get; set; }
     }
 }

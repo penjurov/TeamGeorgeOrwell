@@ -160,7 +160,6 @@
 
         private void LoadBullets(ContentManager content)
         {
-
             Texture2D heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\bullet" + ChooseHeroScreen.HeroName);
             for (int i = 0; i < 10; i++)
             {
@@ -202,7 +201,6 @@
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
-
         }
 
         private void LoadCursor(ContentManager content)
@@ -218,7 +216,6 @@
             this.heroManaBar = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "energy_bar"));
             this.heroExpBar = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "exp_bar"));
             this.heroBarHolderReversed = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "bar_holder_reversed"));
-
         }
 
         private void LoadUnits(ContentManager content)
@@ -279,7 +276,7 @@
                     }
 
                 case "EIR":
-                    {                       
+                    { 
                         // Singleton
                         this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal, 50, 100);
                         break;
@@ -412,7 +409,6 @@
 
         private void DrawHeroStats(SpriteBatch spriteBatch, ContentManager content)
         {
-            
             // Health
             float visibleWidth = ((float)this.heroHealthBar.Width * this.hero.Health) / this.hero.MaxHP;
 
@@ -463,7 +459,7 @@
             position = new Vector2(900, 600);
             spriteBatch.DrawString(font, this.mouse.X + " " + this.mouse.Y, position, Color.White);
 
-            if (skillTimer !=0)
+            if (skillTimer != 0)
             {
                 string skillname = this.hero.Skill.Type.ToString() + " On!!!";
                 font = font = content.Load<SpriteFont>(@"Fonts/Title");
@@ -920,10 +916,10 @@
                 }
             }
 
-            if (this.keyboard.IsKeyUp(Keys.Space) 
-                && this.previousKeyboard.IsKeyDown(Keys.Space)
-                && this.hero.Mana >= this.hero.Skill.Cost
-                && skillTimer == 0)
+            if (this.keyboard.IsKeyUp(Keys.Space) &&
+                this.previousKeyboard.IsKeyDown(Keys.Space) &&
+                this.hero.Mana >= this.hero.Skill.Cost &&
+                skillTimer == 0)
             {
                 switch (this.hero.Skill.Type)
                 {
@@ -1057,6 +1053,7 @@
         private void UpdateUnits()
         {
             int n = this.rand.Next(0, 101);
+
             foreach (var unit in this.units)
             {
                 if (unit.Alive)
@@ -1066,6 +1063,7 @@
                     unit.Area = new Rectangle(x, y, unit.Area.Width, unit.Area.Height);
 
                     unit.HitTimer++;
+                    
                     if (unit is IPlayer)
                     {
                         if (this.Collision(new Vector2(0, 0), unit))
@@ -1074,6 +1072,7 @@
                             {
                                 this.hero.Health = this.hero.Health - (((int)RangedUnit.RangeAtk / this.hero.Defence) * 20) +
                                                    this.rand.Next((int)RangedUnit.RangeAtk / 10);
+                                
                                 if (n < 50)
                                 {
                                     this.pain1Instance.Play();

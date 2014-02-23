@@ -10,6 +10,8 @@
         private float health;
         private float attack;
         private float defence;
+        private int hitRate;
+        private int hitTimer;
 
         public Units(Position pos, float speed, float range) : base(pos)
         {
@@ -126,8 +128,41 @@
             }
         }
 
-        public virtual int HitRate { get; protected set; }
+        public  int HitRate
+        {
+            get
+            {
+                return this.hitRate;
+            }
+            protected set
+            {
+                
+                if (value < 0)
+                {
+                    throw new NegativeDataException("Units hit timer cannot be a negative number!", value);
+                }
 
-        public virtual int HitTimer { get; set; }
+                this.hitRate = value;
+            }
+        }
+
+        public  int HitTimer
+        {
+            get
+            {
+                return this.hitTimer;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("Units hit timer cannot be a negative number!", value);
+                }
+
+                this.hitTimer = value;
+            }
+        }
+
     }
 }

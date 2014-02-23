@@ -4,8 +4,6 @@
 
     public class MeleUnit : Units, IMonster
     {
-        private readonly int hitRate = 60;
-        private int hitTimer = 0;
         private float expGiven;
 
         public MeleUnit(Position pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, range)
@@ -16,6 +14,7 @@
             this.ExpGiven = exp;
             this.Alive = alive;
             this.Active = act;
+            this.HitRate = 60;
         }
 
         public float ExpGiven
@@ -37,31 +36,5 @@
         }
 
         public bool Active { get; set; }
-
-        public override int HitRate
-        {
-            get
-            {
-                return this.hitRate;
-            }
-        }
-
-        public override int HitTimer
-        {
-            get
-            {
-                return this.hitTimer;
-            }
-
-            set
-            {
-                if (value < 0)
-                {
-                    throw new NegativeDataException("Units hit timer cannot be a negative number!", value);
-                }
-
-                this.hitTimer = value;
-            }
-        }
     }
 }
