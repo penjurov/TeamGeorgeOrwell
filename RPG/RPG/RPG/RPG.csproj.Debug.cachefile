@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 Content\Fonts\Text.xnb
+=======
+>>>>>>> 2c2aff9af5eb2629416658341583ce0c54306c01
 Content\Fonts\Names.xnb
 Content\Fonts\Title.xnb
 Content\Textures\Objects\crosshair.xnb
@@ -41,11 +44,25 @@ Content\Textures\Objects\OdinBackLeft.xnb
 Content\Textures\Objects\OdinBackRight.xnb
 Content\Textures\Objects\OdinFrontLeft.xnb
 Content\Textures\Objects\OdinFrontRight.xnb
+<<<<<<< HEAD
+=======
+Content\Textures\Sounds\mainTheme.xnb
+Content\Textures\Sounds\pl_dirt1.xnb
+Content\Textures\Sounds\pl_dirt2.xnb
+Content\Textures\Sounds\pain1.xnb
+Content\Textures\Sounds\pain2.xnb
+Content\Textures\Sounds\gameSong.xnb
+Content\Textures\Sounds\EirShot.xnb
+Content\Textures\Sounds\OdinShot.xnb
+Content\Textures\Sounds\ThorShot.xnb
+Content\Fonts\Text.xnb
+>>>>>>> 2c2aff9af5eb2629416658341583ce0c54306c01
 Content\Textures\Objects\bulleteir.xnb
 Content\Textures\Objects\bulletodin.xnb
 Content\Textures\Objects\bulletthor.xnb
 Content\Textures\Objects\bar_holder_reversed.xnb
 Content\Textures\Objects\exp_bar.xnb
+<<<<<<< HEAD
 Content\Textures\Sounds\mainTheme.xnb
 Content\Textures\Sounds\pl_dirt1.xnb
 Content\Textures\Sounds\pl_dirt2.xnb
@@ -56,3 +73,5 @@ Content\Textures\Sounds\EirShot.xnb
 Content\Textures\Sounds\OdinShot.xnb
 Content\Textures\Sounds\ThorShot.xnb
 Content\Textures\Objects\snow1.xnb
+=======
+>>>>>>> 2c2aff9af5eb2629416658341583ce0c54306c01

@@ -1,3 +1,7 @@
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
+=======
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
+>>>>>>> 2c2aff9af5eb2629416658341583ce0c54306c01

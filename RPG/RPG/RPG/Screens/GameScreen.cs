@@ -279,7 +279,7 @@
                     }
 
                 case "EIR":
-                    {                       
+                    {
                         // Singleton
                         this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal, 50, 100);
                         break;
@@ -312,7 +312,7 @@
 
         private void LoadMusic(ContentManager content)
         {
-            this.gunShot = content.Load<SoundEffect>(string.Format("{0}{1}Shot", @"Textures\Sounds\", ChooseHeroScreen.HeroName));
+            this.gunShot = content.Load<SoundEffect>(string.Format(@"Textures\Sounds\{0}Shot", ChooseHeroScreen.HeroName));
             this.walk = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt1");
             this.walk2 = content.Load<SoundEffect>(@"Textures\Sounds\pl_dirt2");
             this.pain1 = content.Load<SoundEffect>(@"Textures\Sounds\pain1");
@@ -412,7 +412,7 @@
 
         private void DrawHeroStats(SpriteBatch spriteBatch, ContentManager content)
         {
-            
+
             // Health
             float visibleWidth = ((float)this.heroHealthBar.Width * this.hero.Health) / this.hero.MaxHP;
 
@@ -463,12 +463,12 @@
             position = new Vector2(900, 600);
             spriteBatch.DrawString(font, this.mouse.X + " " + this.mouse.Y, position, Color.White);
 
-            if (skillTimer !=0)
+            if (skillTimer != 0)
             {
                 string skillname = this.hero.Skill.Type.ToString() + " On!!!";
                 font = font = content.Load<SpriteFont>(@"Fonts/Title");
                 Vector2 textSize = font.MeasureString(skillname);
-                
+
                 position = new Vector2(510 - ((float)Math.Floor(textSize.X) / 2), 20);
 
                 spriteBatch.DrawString(font, skillname, position, Color.DeepSkyBlue);
@@ -499,19 +499,19 @@
                     else
                     {
                         // Hero Animations
-                        if (this.mouse.X > this.hero.Position.X && this.mouse.Y > this.hero.Position.Y)
+                        if (0 <= hero.Rotation && hero.Rotation < 90)
                         {
                             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}FrontRight", ChooseHeroScreen.HeroName));
                         }
-                        else if (this.mouse.X <= this.hero.Position.X && this.mouse.Y > this.hero.Position.Y)
+                        else if (90 <= hero.Rotation && hero.Rotation < 180)
                         {
                             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}FrontLeft", ChooseHeroScreen.HeroName));
                         }
-                        else if (this.mouse.X > this.hero.Position.X && this.mouse.Y <= this.hero.Position.Y)
+                        else if (270 <= hero.Rotation && hero.Rotation < 360)
                         {
                             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}BackRight", ChooseHeroScreen.HeroName));
                         }
-                        else if (this.mouse.X <= this.hero.Position.X && this.mouse.Y <= this.hero.Position.Y)
+                        else if (180 <= hero.Rotation && hero.Rotation < 270)
                         {
                             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}BackLeft", ChooseHeroScreen.HeroName));
                         }
@@ -536,7 +536,7 @@
             Vector2 textSize = font.MeasureString(itemText);
             Vector2 position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 300);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
-            
+
             font = content.Load<SpriteFont>(@"Fonts/Text");
 
             itemText = "Hero Attack : " + this.hero.Attack;
@@ -563,7 +563,7 @@
         private void DrawLevelUp(SpriteBatch spriteBatch, ContentManager content)
         {
             spriteBatch.Draw(this.levelUpTexture, this.levelUpRect, Color.White);
-            
+
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
 
             string itemText = "Level Up!!!";
@@ -920,7 +920,7 @@
                 }
             }
 
-            if (this.keyboard.IsKeyUp(Keys.Space) 
+            if (this.keyboard.IsKeyUp(Keys.Space)
                 && this.previousKeyboard.IsKeyDown(Keys.Space)
                 && this.hero.Mana >= this.hero.Skill.Cost
                 && skillTimer == 0)
@@ -931,7 +931,7 @@
                         {
                             if (this.hero.Health + this.hero.Skill.Power <= this.hero.MaxHP)
                             {
-                                this.hero.Health += this.hero.Skill.Power;                                
+                                this.hero.Health += this.hero.Skill.Power;
                             }
                             else
                             {
