@@ -183,9 +183,9 @@
         {
             Texture2D invisTexture = content.Load<Texture2D>(@"Textures\Objects\invisible");
 
-            for (int i = 150; i < 275; i += 25)
+            for (int i = 0; i < 275; i += 25)
             {
-                Obstacles invisble = new Obstacles(new Position(i, 360), invisTexture, false);
+                Obstacles invisble = new Obstacles(new Position(i, 350), invisTexture, false);
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
@@ -196,6 +196,13 @@
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
+            for (int i = 275; i < 550; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(i, 340), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
         }
 
         private void LoadCursor(ContentManager content)
