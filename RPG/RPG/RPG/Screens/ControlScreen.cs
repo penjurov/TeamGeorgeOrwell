@@ -37,7 +37,7 @@
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.CornflowerBlue);
-            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
+            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
             
             spriteBatch.Begin();
             
@@ -54,7 +54,7 @@
             this.controlScreenItems[this.selectedEntry].Selected = true;
             foreach (var item in this.controlScreenItems)
             {
-                item.Draw(spriteBatch);
+                item.Draw(spriteBatch, new Color(248, 218, 127));
             }
 
             this.DrawCursor(spriteBatch);

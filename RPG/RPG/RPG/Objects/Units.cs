@@ -72,8 +72,6 @@
             }
         }
 
-        public Skills Skill { get; set; }
-
         public float Health
         {
             get

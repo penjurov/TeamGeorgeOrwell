@@ -4,38 +4,67 @@
 
     public class Skills : Obj
     {
-        private readonly SkillType skillType;
+        private SkillType type;
+        private int level = 1;
+        private int cost = 100;
+        private int power;
 
-        public Skills(Position pos, SkillType skillType) : base(pos)
+
+        public Skills(Position pos, SkillType type, int power, int cost) : base(pos)
         {
             this.Position = pos;
-            this.SkillLevel = 1;
-            this.SkillCost = 50;
-            this.skillType = skillType;
+            this.Level = 1;
+            this.Cost = cost;
+            this.Type = type;
+            this.Power = power;
         }
 
-        public int SkillLevel { get; set; }
-
-        public int SkillCost { get; set; }
-
-        public void UseSkill()
-        {
-            switch (this.skillType)
+        public int Level 
+        { 
+            get
             {
-                case SkillType.Heal:
-                    break;
-                case SkillType.CollateralDamage:
-                    break;
-                case SkillType.Hit:
-                    break;
-                default:
-                    break;
+                return this.level;
+            }
+            set
+            {
+                this.level = value;
             }
         }
 
-        public void LevelUp()
+        public int Cost
         {
-            this.SkillLevel++;
+            get
+            {
+                return this.cost;
+            }
+            set
+            {
+                this.cost = value;
+            }
+        }
+
+        public int Power
+        {
+            get
+            {
+                return this.power;
+            }
+            set
+            {
+                this.power = value;
+            }
+        }
+
+        public SkillType Type
+        {
+            get
+            {
+                return this.type;
+            }
+            set
+            {
+                this.type = value;
+            }
         }
     }
 }

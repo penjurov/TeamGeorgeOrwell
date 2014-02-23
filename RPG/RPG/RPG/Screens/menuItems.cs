@@ -25,9 +25,10 @@
 
         public bool Selected { get; set; }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch, Color menuColor)
         {
-            Color color = this.Selected ? new Color(248, 218, 127) : Color.Black;
+            Color color = this.Selected ? menuColor : Color.Black;
+            
             spriteBatch.Draw(this.ItemTexture, this.ItemPosition, Color.White);
 
             Vector2 textSize = this.ItemFont.MeasureString(this.ItemText);

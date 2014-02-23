@@ -30,8 +30,8 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fonts\Comic Sans MS.spritefont">
-      <Name>Comic Sans MS</Name>
+    <Compile Include="Fonts\Text.spritefont">
+      <Name>Text</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
@@ -331,18 +331,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Objects\eirbullet.png">
-      <Name>eirbullet</Name>
+    <Compile Include="Textures\Objects\bulleteir.png">
+      <Name>bulleteir</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Objects\odinbullet.png">
-      <Name>odinbullet</Name>
+    <Compile Include="Textures\Objects\bulletodin.png">
+      <Name>bulletodin</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Objects\thorbullet.png">
-      <Name>thorbullet</Name>
+    <Compile Include="Textures\Objects\bulletthor.png">
+      <Name>bulletthor</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -362,6 +362,18 @@
       <Name>ThorShot</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Objects\bar_holder_reversed.png">
+      <Name>bar_holder_reversed</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Objects\exp_bar.png">
+      <Name>exp_bar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

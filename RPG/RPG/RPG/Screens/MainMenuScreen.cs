@@ -51,7 +51,7 @@
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         { 
             graphicDevice.Clear(Color.CornflowerBlue);
-            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
+            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
             this.mainMenuBackgroundPosition = new Vector2(0, 0);
 
             spriteBatch.Begin();
@@ -84,7 +84,7 @@
             PMainMenuItems[this.selectedEntry].Selected = true;
             foreach (var item in PMainMenuItems)
             {
-                item.Draw(spriteBatch);
+                item.Draw(spriteBatch, new Color(248, 218, 127));
             }
 
             this.DrawCursor(spriteBatch);

@@ -35,7 +35,7 @@
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.CornflowerBlue);
-            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
+            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
             this.aboutScreenBackgroundPosition = new Vector2(0, 0);
 
             spriteBatch.Begin();
@@ -52,7 +52,7 @@
             this.aboutScreenItems[this.selectedEntry].Selected = true;
             foreach (var item in this.aboutScreenItems)
             {
-                item.Draw(spriteBatch);
+                item.Draw(spriteBatch, new Color(248, 218, 127));
             }
 
             this.DrawCursor(spriteBatch);

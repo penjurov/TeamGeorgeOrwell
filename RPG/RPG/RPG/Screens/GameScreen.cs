@@ -29,6 +29,7 @@
         private bool levelUp = false;
         private int stage = 1;
         private bool loaded = false;
+        private int skillTimer = 0;
         private int points = 5;
         private Rectangle room;
         private Texture2D gameWindowTexture;
@@ -36,9 +37,10 @@
         private Texture2D enemyHealthBars;
 
         private Texture2D heroBarHolder;
+        private Texture2D heroBarHolderReversed;
         private Texture2D heroHealthBar;
         private Texture2D heroManaBar;
-        private Texture2D heroBulletTexture;
+        private Texture2D heroExpBar;
 
         private Hero hero;
         private float currentMaxHp;
@@ -158,10 +160,12 @@
 
         private void LoadBullets(ContentManager content)
         {
+
+            Texture2D heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\bullet" + ChooseHeroScreen.HeroName);
             for (int i = 0; i < 10; i++)
             {
-                Bullet o = new Bullet(new Position(0, 0), this.heroBulletTexture);
-                o.Area = new Rectangle(0, 0, this.heroBulletTexture.Width, this.heroBulletTexture.Height);
+                Bullet o = new Bullet(new Position(0, 0), heroBulletTexture);
+                o.Area = new Rectangle(0, 0, heroBulletTexture.Width, heroBulletTexture.Height);
                 this.bullets.Add(o);
             }
 
@@ -181,7 +185,6 @@
 
             for (int i = 150; i < 275; i += 25)
             {
-                Vector2 obstPos = new Vector2(i, 360);
                 Obstacles invisble = new Obstacles(new Position(i, 360), invisTexture, false);
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
@@ -206,6 +209,9 @@
             this.heroBarHolder = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "bar_holder"));
             this.heroHealthBar = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "life_bar"));
             this.heroManaBar = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "energy_bar"));
+            this.heroExpBar = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "exp_bar"));
+            this.heroBarHolderReversed = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "bar_holder_reversed"));
+
         }
 
         private void LoadUnits(ContentManager content)
@@ -253,25 +259,22 @@
             {
                 case "ODIN":
                     {
-                        this.heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\odinbullet");
                         // Singleton                                         
-                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70, 200, 800, SkillType.CollateralDamage);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70, 200, 800, SkillType.Defence, 5, 100);
                         break;
                     }
 
                 case "THOR":
                     {
-                        this.heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\thorbullet");
                         // Singleton
-                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Hit);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Rage, 3, 100);
                         break;
                     }
 
                 case "EIR":
-                    {
-                        this.heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\eirbullet");
+                    {                       
                         // Singleton
-                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal);
+                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal, 50, 100);
                         break;
                     }
 
@@ -402,9 +405,7 @@
 
         private void DrawHeroStats(SpriteBatch spriteBatch, ContentManager content)
         {
-            Vector2 position = new Vector2(10, 10);
-            spriteBatch.Draw(this.heroBarHolder, position, Color.White);
-
+            
             // Health
             float visibleWidth = ((float)this.heroHealthBar.Width * this.hero.Health) / this.hero.MaxHP;
 
@@ -414,11 +415,11 @@
 
             spriteBatch.Draw(this.heroHealthBar, healthRectangle, Color.White);
 
-            SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
-            position = new Vector2(170, 28);
+            SpriteFont font = content.Load<SpriteFont>(@"Fonts/Text");
+            Vector2 position = new Vector2(170, 27);
             spriteBatch.DrawString(font, string.Format("{0}", (int)this.hero.Health), position, Color.White);
 
-            //Mana
+            // Mana
             visibleWidth = ((float)this.heroManaBar.Width * this.hero.Mana) / this.hero.MaxMP;
 
             Rectangle manaRectangle = new Rectangle(12, 10,
@@ -427,8 +428,44 @@
 
             spriteBatch.Draw(this.heroManaBar, manaRectangle, Color.White);
 
-            position = new Vector2(130, 61);
+            position = new Vector2(130, 62);
             spriteBatch.DrawString(font, string.Format("{0}", (int)this.hero.Mana), position, Color.White);
+
+            position = new Vector2(10, 10);
+            spriteBatch.Draw(this.heroBarHolder, position, Color.White);
+
+            // Experience
+            visibleWidth = ((float)this.heroExpBar.Width * this.hero.CurrentExp) / (this.hero.Level * 500);
+
+            Rectangle expRectangle = new Rectangle(994 - (int)visibleWidth, 23,
+                (int)visibleWidth,
+                this.heroExpBar.Height);
+
+            spriteBatch.Draw(this.heroExpBar, expRectangle, Color.White);
+
+            position = new Vector2(840, 27);
+            spriteBatch.DrawString(font, string.Format("{0}", (int)this.hero.CurrentExp), position, Color.White);
+
+            // Level
+            position = new Vector2(840, 62);
+            spriteBatch.DrawString(font, string.Format("Level {0}", this.hero.Level), position, Color.White);
+
+            position = new Vector2(640, 10);
+            spriteBatch.Draw(this.heroBarHolderReversed, position, Color.White);
+
+            position = new Vector2(900, 600);
+            spriteBatch.DrawString(font, this.mouse.X + " " + this.mouse.Y, position, Color.White);
+
+            if (skillTimer !=0)
+            {
+                string skillname = this.hero.Skill.Type.ToString() + " On!!!";
+                font = font = content.Load<SpriteFont>(@"Fonts/Title");
+                Vector2 textSize = font.MeasureString(skillname);
+                
+                position = new Vector2(510 - ((float)Math.Floor(textSize.X) / 2), 20);
+
+                spriteBatch.DrawString(font, skillname, position, Color.DeepSkyBlue);
+            }
         }
 
         private void DrawUnits(SpriteBatch spriteBatch, ContentManager content)
@@ -487,22 +524,52 @@
         private void DrawPaused(SpriteBatch spriteBatch, ContentManager content)
         {
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
-            Vector2 statsPosition = new Vector2(460, 300);
-            spriteBatch.DrawString(font, string.Format("Pause"), statsPosition, Color.Red);
+            string itemText = "Pause";
+
+            Vector2 textSize = font.MeasureString(itemText);
+            Vector2 position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 300);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            
+            font = content.Load<SpriteFont>(@"Fonts/Text");
+
+            itemText = "Hero Attack : " + this.hero.Attack;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 350);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+
+            itemText = "Hero Defence : " + this.hero.Defence;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 400);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+
+            itemText = "Hero Speed : " + this.hero.Speed;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 450);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+
+            itemText = "Hero Range : " + this.hero.Range;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 500);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
         }
 
         private void DrawLevelUp(SpriteBatch spriteBatch, ContentManager content)
         {
             spriteBatch.Draw(this.levelUpTexture, this.levelUpRect, Color.White);
-            SpriteFont font = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
-            SpriteFont title = content.Load<SpriteFont>(@"Fonts/Title");
+            
+            SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
 
-            Vector2 position = new Vector2(386, 30);
+            string itemText = "Level Up!!!";
+            Vector2 textSize = font.MeasureString(itemText);
+            Vector2 position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 30);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
-            spriteBatch.DrawString(title, string.Format("Level Up!!!"), position, Color.Red);
+            font = content.Load<SpriteFont>(@"Fonts/Text");
 
-            position = new Vector2(450, 110);
-            spriteBatch.DrawString(font, string.Format("{0} points to spent", this.points), position, Color.Red);
+            itemText = this.points + " points to spent";
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 100);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
             // Health
             position = new Vector2(360, 150);
@@ -519,8 +586,10 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Health+", font, false));
             }
 
-            position = new Vector2(465, 170);
-            spriteBatch.DrawString(font, string.Format("Health: {0}", this.hero.MaxHP), position, Color.Red);
+            itemText = "Health: " + this.hero.MaxHP;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 170);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
             // Mana
             position = new Vector2(360, 210);
@@ -539,8 +608,10 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Mana+", font, false));
             }
 
-            position = new Vector2(465, 230);
-            spriteBatch.DrawString(font, string.Format("Mana: {0}", this.hero.MaxMP), position, Color.Red);
+            itemText = "Mana: " + this.hero.MaxMP;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 230);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
             // Attack
             position = new Vector2(360, 270);
@@ -559,8 +630,10 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Attack+", font, false));
             }
 
-            position = new Vector2(465, 290);
-            spriteBatch.DrawString(font, string.Format("Attack: {0}", this.hero.Attack), position, Color.Red);
+            itemText = "Attack: " + this.hero.Attack;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 290);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
             // Defence
             position = new Vector2(360, 330);
@@ -579,8 +652,10 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Defence+", font, false));
             }
 
-            position = new Vector2(465, 350);
-            spriteBatch.DrawString(font, string.Format("Defence: {0}", this.hero.Defence), position, Color.Red);
+            itemText = "Defence: " + this.hero.Defence;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 350);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
             // Speed
             position = new Vector2(360, 390);
@@ -599,8 +674,10 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Speed+", font, false));
             }
 
-            position = new Vector2(465, 410);
-            spriteBatch.DrawString(font, string.Format("Speed: {0}", this.hero.Speed), position, Color.Red);
+            itemText = "Speed: " + this.hero.Speed;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 410);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
             // Range
             position = new Vector2(360, 450);
@@ -619,8 +696,10 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Range+", font, false));
             }
 
-            position = new Vector2(465, 470);
-            spriteBatch.DrawString(font, string.Format("Range: {0}", this.hero.Range), position, Color.Red);
+            itemText = "Range: " + this.hero.Range;
+            textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 470);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
             // OK button
             position = new Vector2(434, 530);
@@ -633,8 +712,8 @@
 
             Color color = new Color(248, 218, 127);
 
-            string itemText = "Confirm";
-            Vector2 textSize = font.MeasureString(itemText);
+            itemText = "Confirm";
+            textSize = font.MeasureString(itemText);
             Vector2 textPosition = position + new Vector2(
                 (float)Math.Floor((this.okButton.Width - textSize.X) / 2),
                 (float)Math.Floor((this.okButton.Height - textSize.Y) / 2));
@@ -834,6 +913,74 @@
                 }
             }
 
+            if (this.keyboard.IsKeyUp(Keys.Space) 
+                && this.previousKeyboard.IsKeyDown(Keys.Space)
+                && this.hero.Mana >= this.hero.Skill.Cost
+                && skillTimer == 0)
+            {
+                switch (this.hero.Skill.Type)
+                {
+                    case SkillType.Heal:
+                        {
+                            if (this.hero.Health + this.hero.Skill.Power <= this.hero.MaxHP)
+                            {
+                                this.hero.Health += this.hero.Skill.Power;                                
+                            }
+                            else
+                            {
+                                this.hero.Health = this.hero.MaxHP;
+                            }
+                            this.hero.Mana -= this.hero.Skill.Cost;
+                            break;
+                        }
+                    case SkillType.Rage:
+                        {
+                            this.hero.Attack *= this.hero.Skill.Power;
+                            this.hero.Range *= this.hero.Skill.Power;
+                            this.hero.Speed *= this.hero.Skill.Power;
+                            this.hero.Defence /= this.hero.Skill.Power;
+                            this.hero.Mana -= this.hero.Skill.Cost;
+                            break;
+                        }
+                    case SkillType.Defence:
+                        {
+                            this.hero.Defence *= this.hero.Skill.Power;
+                            this.hero.Mana -= this.hero.Skill.Cost;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                skillTimer = 1;
+            }
+
+            if (skillTimer > 0)
+            {
+                skillTimer++;
+            }
+
+            if (skillTimer > 300)
+            {
+                switch (this.hero.Skill.Type)
+                {
+                    case SkillType.Rage:
+                        {
+                            this.hero.Attack /= this.hero.Skill.Power;
+                            this.hero.Range /= this.hero.Skill.Power;
+                            this.hero.Speed /= this.hero.Skill.Power;
+                            this.hero.Defence *= this.hero.Skill.Power;
+                            break;
+                        }
+                    case SkillType.Defence:
+                        {
+                            this.hero.Defence /= this.hero.Skill.Power;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                skillTimer = 0;
+            }
             oldPos = new Vector2(this.hero.Position.X, this.hero.Position.Y);
 
             this.hero.Rotation = this.PointDirecions(this.hero.Position.X, this.hero.Position.Y, this.mouse.X, this.mouse.Y);
@@ -981,6 +1128,7 @@
                                 if (!this.paused && !this.levelUp)
                                 {
                                     this.gunShot.Play();
+                                    this.hero.Mana -= 1;
                                 }
                             }
 
@@ -1013,7 +1161,7 @@
                             {
                                 unit.Alive = false;
 
-                                int bonusType = this.rand.Next(0, 4001);
+                                int bonusType = this.rand.Next(0, 3);
 
                                 switch (bonusType % 2)
                                 {
@@ -1172,9 +1320,9 @@
                     {
                         if (o.Alive && o.Type == "hp")
                         {
-                            if (((obj as Hero).Health + 100) < (obj as Hero).MaxHP)
+                            if (((obj as Hero).Health + 50) < (obj as Hero).MaxHP)
                             {
-                                (obj as Hero).Health += 100;
+                                (obj as Hero).Health += 50;
                             }
                             else
                             {
@@ -1185,9 +1333,9 @@
                         }
                         else if (o.Alive && o.Type == "mp")
                         {
-                            if (((obj as Hero).Mana + 100) < (obj as Hero).MaxMP)
+                            if (((obj as Hero).Mana + 50) < (obj as Hero).MaxMP)
                             {
-                                (obj as Hero).Mana += 100;
+                                (obj as Hero).Mana += 50;
                             }
                             else
                             {

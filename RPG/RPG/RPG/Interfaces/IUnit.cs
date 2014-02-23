@@ -4,8 +4,6 @@
 
     public interface IUnit
     {
-        Skills Skill { get; set; }
-
         float Range { get; }
         
         float Health { get; set; }

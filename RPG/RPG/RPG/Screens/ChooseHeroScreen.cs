@@ -67,7 +67,7 @@
         public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.CornflowerBlue);
-            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Comic Sans MS");
+            SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
             this.chooseHeroBackgroundPosition = new Vector2(0, 0);
 
             spriteBatch.Begin();
@@ -92,7 +92,7 @@
             this.PchooseHeroList[this.selectedEntry].Selected = true;
             foreach (var item in this.PchooseHeroList)
             {
-                item.Draw(spriteBatch);
+                item.Draw(spriteBatch, Color.DeepSkyBlue);
             }
 
             this.DrawCursor(spriteBatch);
