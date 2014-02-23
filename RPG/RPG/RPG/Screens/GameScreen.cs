@@ -266,6 +266,41 @@
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
+
+            for (int i = 550; i < 600; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(600, i), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 625; i < 725; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(i, 620), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 550; i < 600; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(725, i), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 450; i < 600; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(i, 230), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
+
+            for (int i = 600; i < 750; i += 25)
+            {
+                Obstacles invisble = new Obstacles(new Position(i, 230), invisTexture, false);
+                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+                this.obstacles.Add(invisble);
+            }
         }
 
         private void LoadCursor(ContentManager content)
