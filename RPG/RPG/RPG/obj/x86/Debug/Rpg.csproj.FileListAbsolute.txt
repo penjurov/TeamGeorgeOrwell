@@ -231,7 +231,6 @@ F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Rpg.c
 F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
 F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
-F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\snow1.xnb
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Text.xnb
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Names.xnb
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Title.xnb
@@ -295,3 +294,4 @@ C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f2
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
+F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\visible.xnb
