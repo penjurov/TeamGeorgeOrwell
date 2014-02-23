@@ -273,9 +273,6 @@ C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f2
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
-<<<<<<< HEAD
-F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\visible.xnb
-=======
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\HealthPotion.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\ManaPotion.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\GameScreens\LevelUp.xnb
@@ -313,4 +310,4 @@ D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objec
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bulletthor.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bar_holder_reversed.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\exp_bar.xnb
->>>>>>> 64237ebdd55310ebd9d641848b10c3830ac22aa0
+F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\visible.xnb
