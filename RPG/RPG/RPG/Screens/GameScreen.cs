@@ -180,7 +180,7 @@
 
         private void LoadObstacles(ContentManager content)
         {
-            Texture2D invisTexture = content.Load<Texture2D>(@"Textures\Objects\visible");
+            Texture2D invisTexture = content.Load<Texture2D>(@"Textures\Objects\invisible");
 
             for (int i = 0; i < 275; i += 25)
             {
