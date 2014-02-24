@@ -5,12 +5,12 @@
     using System.Collections.Generic;
     using System.Linq;
     
-    public abstract class ShootingUnits : Units, IShooting
+    public abstract class ShootingUnit : Units, IShooting
     {
         private int firingTimer;
         private float fireRate;
 
-        protected ShootingUnits(Position pos, float speed, float range):base(pos,speed,range)
+        protected ShootingUnit(Position pos, float speed, float range):base(pos,speed,range)
         {
 
         }
@@ -60,19 +60,19 @@
             }
         }
 
-        private void Shoot(IList<Bullet> bullets)
-        {
-            foreach (var bullet in bullets)
-            {
-                if (!bullet.Alive)
-                {
-                    bullet.Alive = true;
-                    bullet.Position = this.Position;
-                    bullet.Rotation = this.Rotation;
-                    bullet.Speed = 5;
-                    break;
-                }
-            }
-        }
+        protected abstract void Shoot(IList<Bullet> bullets);
+        //{
+        //    foreach (var bullet in bullets)
+        //    {
+        //        if (!bullet.Alive)
+        //        {
+        //            bullet.Alive = true;
+        //            bullet.Position = this.Position;
+        //            bullet.Rotation = this.Rotation;
+        //            bullet.Speed = 5;
+        //            break;
+        //        }
+        //    }
+        //}
     }
 }

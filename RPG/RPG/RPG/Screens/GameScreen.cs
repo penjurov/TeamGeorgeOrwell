@@ -1450,7 +1450,7 @@
 
         private void AddBoss(ContentManager content, float x, float y, string textureName)
         {
-            MeleUnit meleUnit = new MeleUnit(new Position(x, y), 1.3f, false, 400, 100, 1000, 2300, true, 120);
+            MeleUnit meleUnit = new MeleUnit(new Position(x, y), 2, false, 400, 100, 1000, 2300, true, 150);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);

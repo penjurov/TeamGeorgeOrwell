@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Interfaces;
     
-    public class Hero : ShootingUnits, IPlayer
+    public class Hero : ShootingUnit, IPlayer
     {
         // Singleton
         private static Hero instance;
@@ -100,5 +100,20 @@
 
             return instance;
         }
+         protected  override void Shoot(IList<Bullet> bullets)
+        {
+            foreach (var bullet in bullets)
+            {
+                if (!bullet.Alive)
+                {
+                    bullet.Alive = true;
+                    bullet.Position = this.Position;
+                    bullet.Rotation = this.Rotation;
+                    bullet.Speed = 5;
+                    break;
+                }
+            }
+        }
+
     }
 }

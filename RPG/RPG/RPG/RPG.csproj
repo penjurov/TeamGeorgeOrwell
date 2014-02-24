@@ -79,13 +79,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IMonster.cs" />
-    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\IHero.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Interfaces\IShooting.cs" />
     <Compile Include="Interfaces\IUnit.cs" />
     <Compile Include="NegativeDataException.cs" />
     <Compile Include="Objects\RangedUnit.cs" />
-    <Compile Include="Objects\ShootingUnits.cs" />
+    <Compile Include="Objects\ShootingUnit.cs" />
     <Compile Include="Objects\SkillType.cs" />
     <Compile Include="Rpg.cs" />
     <Compile Include="Screens\AboutScreen.cs" />
