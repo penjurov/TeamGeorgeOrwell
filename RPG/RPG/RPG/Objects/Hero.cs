@@ -3,13 +3,13 @@
     using System.Collections.Generic;
     using Interfaces;
     
-    public class Hero : Units, IShootable, IPlayer
+    public class Hero : ShootingUnits, IPlayer
     {
         // Singleton
         private static Hero instance;
 
-        private int firingTimer = 0;
-        private readonly float fireRate = 20;
+        private const int Timer = 0;
+        private const float Rate = 40;
         private float mana;
         private float maxHP;
         private float maxMP;
@@ -23,6 +23,8 @@
             this.mana = mp;
             this.maxMP = mp;
             this.Level = 1;
+            this.FireRate = Rate;
+            this.FiringTimer = Timer;
             this.Skill = new Skills(pos, skillType, skillPower);
         }
      
@@ -48,23 +50,6 @@
             }
         }
 
-        public int FiringTimer
-        {
-            get
-            {
-                return this.firingTimer;
-            }
-
-            set
-            {
-                if (value < 0)
-                {
-                    throw new NegativeDataException("The firing timer of unit cannot be a negative number!", value);
-                }
-
-                this.firingTimer = value;
-            }
-        }
 
         public float Mana
         {
@@ -114,31 +99,6 @@
             }
 
             return instance;
-        }
-
-        public void CheckShooting(IList<Bullet> bullets)
-        {
-            if (this.FiringTimer > this.fireRate)
-            {
-                this.FiringTimer = 0;
-                this.Shoot(bullets);                
-            }
-        }
-
-        private void Shoot(IList<Bullet> bullets)
-        {
-            foreach (var bullet in bullets)
-            {
-                if (!bullet.Alive)
-                {
-                    bullet.Position = this.Position;
-                    bullet.Area = this.Area;
-                    bullet.Alive = true;                    
-                    bullet.Rotation = this.Rotation;
-                    bullet.Speed = 10;
-                    break;
-                }
-            }
         }
     }
 }

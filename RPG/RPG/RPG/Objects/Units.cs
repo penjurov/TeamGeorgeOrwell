@@ -13,7 +13,7 @@
         private int hitRate;
         private int hitTimer;
 
-        public Units(Position pos, float speed, float range) : base(pos)
+        protected Units(Position pos, float speed, float range) : base(pos)
         {
             this.Speed = speed;
             this.Alive = true;

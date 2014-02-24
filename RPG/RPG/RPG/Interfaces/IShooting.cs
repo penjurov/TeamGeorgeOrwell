@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Objects;
 
-    public interface IShootable
+    public interface IShooting
     {
         int FiringTimer { get; set; }
 

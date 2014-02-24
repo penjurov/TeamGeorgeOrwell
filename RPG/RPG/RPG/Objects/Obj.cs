@@ -5,7 +5,8 @@
 
     public abstract class Obj
     {
-        public Obj(Position pos)
+
+        protected Obj(Position pos)
         {
             this.Position = pos;
         }

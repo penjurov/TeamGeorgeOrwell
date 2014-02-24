@@ -31,7 +31,7 @@
             this.graphics.PreferredBackBufferWidth = 1024;
             this.graphics.PreferredBackBufferHeight = 715;
 
-            this.graphics.IsFullScreen = false;
+            this.graphics.IsFullScreen = true;
 
             this.Content.RootDirectory = "Content";
 

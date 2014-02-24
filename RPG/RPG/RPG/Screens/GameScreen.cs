@@ -1317,10 +1317,10 @@
                             }
                         }
 
-                        (unit as IShootable).FiringTimer++;
+                        (unit as IShooting).FiringTimer++;
                         if (this.mouse.LeftButton == ButtonState.Released && this.previousMouse.LeftButton == ButtonState.Pressed)
                         {
-                            (unit as IShootable).CheckShooting(this.bullets);
+                            (unit as IShooting).CheckShooting(this.bullets);
                             if (this.loaded)
                             {
                                 if (!this.paused && !this.levelUp)
@@ -1342,7 +1342,7 @@
                         }
                         else
                         {
-                            if (unit is IShootable)
+                            if (unit is IShooting)
                             {
                                 (unit as IMonster).Active = false;
                             }
@@ -1391,9 +1391,9 @@
                             }
                         }
 
-                        if (unit is IShootable)
+                        if (unit is IShooting)
                         {
-                            (unit as IShootable).FiringTimer++;
+                            (unit as IShooting).FiringTimer++;
                         }
 
                         if ((unit as IMonster).Active)
@@ -1403,9 +1403,9 @@
                             Vector2 unitPos = new Vector2(unit.Position.X, unit.Position.Y);
                             unitPos += this.PushTo(unit.Speed, unit.Rotation, unit);
                             unit.Position = new Position(unitPos.X, unitPos.Y);
-                            if (unit is IShootable)
+                            if (unit is IShooting)
                             {
-                                (unit as IShootable).CheckShooting(this.enemyBullets);
+                                (unit as IShooting).CheckShooting(this.enemyBullets);
                             }
                         }
                     }
