@@ -24,7 +24,7 @@
                 return this.expGiven;
             }
 
-            protected set
+            private set
             {
                 if (value < 0)
                 {

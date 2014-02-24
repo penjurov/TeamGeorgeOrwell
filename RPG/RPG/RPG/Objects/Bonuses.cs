@@ -5,7 +5,7 @@
     
     public class Bonuses : Obj
     {
-        const int Spawn = 500;
+        private const int Spawn = 500;
 
         public Bonuses(Position pos, Texture2D texture, string type, Rectangle area)
             : base(pos)

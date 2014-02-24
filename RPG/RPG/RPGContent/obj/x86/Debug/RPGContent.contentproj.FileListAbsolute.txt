@@ -2,3 +2,4 @@ D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Deb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
 F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
 C:\Users\XReelZ\Desktop\TeamGeorgeOrwell-6f1303abf1c1883995463ae818756df303660f22\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
+C:\Users\ShOnZi\Desktop\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache

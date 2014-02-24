@@ -287,14 +287,14 @@
                 this.obstacles.Add(invisble);
             }
 
-            for (int i = 450; i < 600; i += 25)
+            for (int i = 450; i < 500; i += 25)
             {
                 Obstacles invisble = new Obstacles(new Position(i, 230), invisTexture, false);
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
 
-            for (int i = 600; i < 750; i += 25)
+            for (int i = 650; i < 750; i += 25)
             {
                 Obstacles invisble = new Obstacles(new Position(i, 230), invisTexture, false);
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
@@ -385,12 +385,12 @@
                 this.obstacles.Add(invisble);
             }
 
-            for (int i = 700; i < 1000; i += 25)
-            {
-                Obstacles invisble = new Obstacles(new Position(i, 195), invisTexture, false);
-                invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
-                this.obstacles.Add(invisble);
-            }
+            //for (int i = 700; i < 1000; i += 25)
+            //{
+            //    Obstacles invisble = new Obstacles(new Position(i, 195), invisTexture, false);
+            //    invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
+            //    this.obstacles.Add(invisble);
+            //}
         }
 
         private void LoadCursor(ContentManager content)
@@ -454,21 +454,23 @@
                 case "ODIN":
                     {
                         // Singleton                                         
-                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 2, 900, 110, 70, 200, 800, SkillType.Defence, 5, 100);
+                        this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 2, 900, 110, 70, 200, 800, SkillType.Defence, 5);
                         break;
                     }
 
                 case "THOR":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Rage, 3, 100);
+                        this.hero = Hero.Instance(new Position(this.room.Width , this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Rage, 3);
                         break;
                     }
+
+
 
                 case "EIR":
                     { 
                         // Singleton
-                        this.hero = Hero.Instance(new Position(this.room.Width / 2, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal, 50, 100);
+                        this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal, 50);
                         break;
                     }
 
@@ -667,7 +669,7 @@
             {
                 if (unit.Alive)
                 {
-                    if (!(unit is Hero))
+                    if (!(unit is IPlayer))
                     {
                         float healthPercentage = unit.Health / 250;
                         float visibleWidth = (float)this.enemyHealthBars.Width * healthPercentage;
@@ -1182,7 +1184,7 @@
 
             foreach (var unit in this.units)
             {
-                if (unit.GetType() != typeof(Hero))
+                if (!(unit is IPlayer))
                 {
                     if (unit.Alive)
                     {
@@ -1197,7 +1199,7 @@
                 {
                     if (this.stage == 1)
                     {
-                        this.hero.Position = new Position(30, 480);
+                        this.hero.Position = new Position(35,room.Height/2);
                         this.stage++;
                         this.LoadUnits(content);
                     }
@@ -1340,10 +1342,11 @@
                         }
                         else
                         {
-                            if (unit is RangedUnit)
+                            if (unit is IShootable)
                             {
                                 (unit as IMonster).Active = false;
                             }
+                            
                         }
 
                         if (this.Collision(new Vector2(0, 0), unit))
@@ -1374,7 +1377,6 @@
                                         }
                                 }
 
-                                unit.Area = new Rectangle(-10, -10, 0, 0);
 
                                 this.hero.CurrentExp = this.hero.CurrentExp + (unit as IMonster).ExpGiven;
                                 if (this.hero.CurrentExp - (this.hero.Level * 500) > 0)
@@ -1432,7 +1434,7 @@
 
         private void AddMeleUnit(ContentManager content, int x, int y, string textureName)
         {
-            MeleUnit meleUnit = new MeleUnit(new Position(x, y), 1.8f, false, 150, 40, 260, 230, true, 150);
+            MeleUnit meleUnit = new MeleUnit(new Position(x, y), 1.8f, false, 150, 40, 260, 230, true, 100);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
@@ -1448,7 +1450,7 @@
 
         private void AddBoss(ContentManager content, float x, float y, string textureName)
         {
-            MeleUnit meleUnit = new MeleUnit(new Position(x, y), 1.3f, false, 200, 100, 1000, 2300, true, 100);
+            MeleUnit meleUnit = new MeleUnit(new Position(x, y), 1.3f, false, 400, 100, 1000, 2300, true, 120);
             meleUnit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
             meleUnit.Area = new Rectangle(0, 0, meleUnit.SpriteIndex.Width, meleUnit.SpriteIndex.Height);
             this.units.Add(meleUnit);
@@ -1509,33 +1511,33 @@
 
             foreach (var o in this.bonuses)
             {
-                if (obj.GetType() == typeof(Hero))
+                if (obj is IPlayer)
                 {
                     if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
                         (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                     {
                         if (o.Alive && o.Type == "hp")
                         {
-                            if (((obj as Hero).Health + 50) < (obj as Hero).MaxHP)
+                            if (((obj as IUnit).Health + 50) < (obj as IPlayer).MaxHP)
                             {
-                                (obj as Hero).Health += 50;
+                                (obj as IUnit).Health += 50;
                             }
                             else
                             {
-                                (obj as Hero).Health = (obj as Hero).MaxHP;
+                                (obj as IUnit).Health = (obj as IPlayer).MaxHP;
                             }
 
                             o.Alive = false;
                         }
                         else if (o.Alive && o.Type == "mp")
                         {
-                            if (((obj as Hero).Mana + 50) < (obj as Hero).MaxMP)
+                            if (((obj as IPlayer).Mana + 50) < (obj as IPlayer).MaxMP)
                             {
-                                (obj as Hero).Mana += 50;
+                                (obj as IPlayer).Mana += 50;
                             }
                             else
                             {
-                                (obj as Hero).Mana = (obj as Hero).MaxMP;
+                                (obj as IPlayer).Mana = (obj as IPlayer).MaxMP;
                             }
 
                             o.Alive = false;
@@ -1546,29 +1548,27 @@
 
             foreach (var o in this.obstacles)
             {
-                if (obj.GetType() == typeof(Bullet))
+                if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
+                    (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                 {
-                    if (o.Visible)
+                    if (obj is IPlayer)
                     {
-                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
-                            (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
-                        {
-                            obj.Alive = false;
-                            return true;
-                        }
+                        return true;
                     }
-                }
-                else
-                {
-                    if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
-                        (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                    else if(obj is Bullet && bullets.Contains(obj))
                     {
+                        obj.Alive = false;
+                        return true;
+                    }
+                    else if(obj is MeleUnit)
+                    {
+                        (obj as MeleUnit).Active = false;
                         return true;
                     }
                 }
             }
 
-            if (obj.GetType() == typeof(MeleUnit) || obj.GetType() == typeof(RangedUnit))
+            if (obj is IMonster)
             {
                 foreach (var o in this.bullets)
                 {
@@ -1584,7 +1584,7 @@
                 }
             }
 
-            if (obj.GetType() == typeof(Hero))
+            if (obj is IPlayer)
             {
                 foreach (var o in this.enemyBullets)
                 {

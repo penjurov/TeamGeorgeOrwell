@@ -9,12 +9,12 @@
         private static Hero instance;
 
         private int firingTimer = 0;
-        private float fireRate = 20;
+        private readonly float fireRate = 20;
         private float mana;
         private float maxHP;
         private float maxMP;
 
-        private Hero(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skillType, int skillPower, int skillCost) : base(pos, speed, range)
+        private Hero(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skillType, int skillPower) : base(pos, speed, range)
         {
             this.Health = hp;
             this.MaxHP = hp;
@@ -23,7 +23,7 @@
             this.mana = mp;
             this.maxMP = mp;
             this.Level = 1;
-            this.Skill = new Skills(pos, skillType, skillPower, skillCost);
+            this.Skill = new Skills(pos, skillType, skillPower);
         }
      
         public float CurrentExp { get; set; }
@@ -104,30 +104,13 @@
 
         public Skills Skill { get; set; }
 
-        protected float FireRate
-        {
-            get
-            {
-                return this.fireRate;
-            }
-
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new NegativeDataException("The fire rate of unit cannot be a negative number!", (int)value);
-                }
-
-                this.fireRate = value;
-            }
-        }
 
         // Singleton
-        public static Hero Instance(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skillType, int skillPower, int skillCost)
+        public static Hero Instance(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skillType, int skillPower)
         {
             if (instance == null)
             {
-                instance = new Hero(pos, speed, hp, att, def, range, mp, skillType, skillPower, skillCost);
+                instance = new Hero(pos, speed, hp, att, def, range, mp, skillType, skillPower);
             }
 
             return instance;
@@ -135,7 +118,7 @@
 
         public void CheckShooting(IList<Bullet> bullets)
         {
-            if (this.FiringTimer > this.FireRate)
+            if (this.FiringTimer > this.fireRate)
             {
                 this.FiringTimer = 0;
                 this.Shoot(bullets);                
