@@ -1,7 +1,5 @@
 ﻿namespace Rpg.Interfaces
 {
-    using Objects;
-
     public interface IUnit
     {
         float Range { get; }
