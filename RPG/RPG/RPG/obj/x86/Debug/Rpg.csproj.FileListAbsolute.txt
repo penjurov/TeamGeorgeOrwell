@@ -78,7 +78,6 @@ D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Cont
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\OdinBackRight.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\OdinFrontLeft.xnb
 D:\Dropbox\Телерик\GitHub\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\OdinFrontRight.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Comic Sans MS.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Names.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Title.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\crosshair.xnb
@@ -121,9 +120,6 @@ D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Te
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\OdinBackRight.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\OdinFrontLeft.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\OdinFrontRight.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\eirbullet.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\odinbullet.xnb
-D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\thorbullet.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\mainTheme.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt1.xnb
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Sounds\pl_dirt2.xnb
@@ -311,6 +307,7 @@ D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objec
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bar_holder_reversed.xnb
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\exp_bar.xnb
 F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\visible.xnb
+<<<<<<< HEAD
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\visible.xnb
 C:\Users\ShOnZi\Desktop\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Text.xnb
 C:\Users\ShOnZi\Desktop\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Names.xnb
@@ -376,3 +373,13 @@ C:\Users\ShOnZi\Desktop\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Rpg.csprojRes
 C:\Users\ShOnZi\Desktop\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\ShOnZi\Desktop\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
 C:\Users\ShOnZi\Desktop\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
+=======
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Fonts\Text.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bulleteir.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bulletodin.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bulletthor.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\bar_holder_reversed.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\exp_bar.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\visible.xnb
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Rpg.csprojResolveAssemblyReference.cache
+>>>>>>> 91268a48ae37fcc560b4f0a6c40bb8a1c0a7867e
