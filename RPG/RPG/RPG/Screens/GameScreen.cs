@@ -204,7 +204,7 @@
             }
 
         }
-
+        
         private void LoadCursor(ContentManager content)
         {
             this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "crosshair"));
