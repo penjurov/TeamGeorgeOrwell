@@ -3,13 +3,13 @@
     using System.Collections.Generic;
     using Interfaces;
     
-    public class Hero : ShootingUnit, IPlayer
+    public class Hero : Units, IShooting, IPlayer
     {
         // Singleton
         private static Hero instance;
 
-        private const int Timer = 0;
-        private const float Rate = 40;
+        private int firingTimer = 0;
+        private readonly float fireRate = 20;
         private float mana;
         private float maxHP;
         private float maxMP;
@@ -23,8 +23,6 @@
             this.mana = mp;
             this.maxMP = mp;
             this.Level = 1;
-            this.FireRate = Rate;
-            this.FiringTimer = Timer;
             this.Skill = new Skills(pos, skillType, skillPower);
         }
      
@@ -50,6 +48,23 @@
             }
         }
 
+        public int FiringTimer
+        {
+            get
+            {
+                return this.firingTimer;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The firing timer of unit cannot be a negative number!", value);
+                }
+
+                this.firingTimer = value;
+            }
+        }
 
         public float Mana
         {
@@ -100,20 +115,30 @@
 
             return instance;
         }
-         protected  override void Shoot(IList<Bullet> bullets)
+
+        public void CheckShooting(IList<Bullet> bullets)
+        {
+            if (this.FiringTimer > this.fireRate)
+            {
+                this.FiringTimer = 0;
+                this.Shoot(bullets);
+            }
+        }
+
+        private void Shoot(IList<Bullet> bullets)
         {
             foreach (var bullet in bullets)
             {
                 if (!bullet.Alive)
                 {
-                    bullet.Alive = true;
                     bullet.Position = this.Position;
+                    bullet.Area = this.Area;
+                    bullet.Alive = true;
                     bullet.Rotation = this.Rotation;
-                    bullet.Speed = 5;
+                    bullet.Speed = 10;
                     break;
                 }
             }
         }
-
     }
 }

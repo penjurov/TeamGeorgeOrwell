@@ -1,12 +1,12 @@
 ﻿namespace Rpg.Objects
 {
-    using Interfaces;
     using System.Collections.Generic;
+    using Interfaces;
 
-    public class RangedUnit : ShootingUnit, IMonster
+    public class RangedUnit : Units, IMonster, IShooting
     {
-        public const int Timer=0;
-        public const float Rate=60;
+        private int firingTimer = 0;
+        private readonly float fireRate = 80;
         private float expGiven;
 
         public RangedUnit(Position pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, range)
@@ -18,8 +18,6 @@
             this.ExpGiven = exp;
             this.Alive = alive;
             this.Active = act;
-            this.FireRate= Rate;
-            this.FiringTimer = Timer;
         }
 
         public static float RangeAtk { get; private set; }
@@ -44,7 +42,36 @@
 
         public bool Active { get; set; }
 
-        protected  override void Shoot(IList<Bullet> bullets)
+        public int FiringTimer
+        {
+            get
+            {
+                return this.firingTimer;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new NegativeDataException("The firing timer of unit cannot be a negative number!", value);
+                }
+
+                this.firingTimer = value;
+            }
+        }
+
+
+
+        public void CheckShooting(IList<Bullet> bullets)
+        {
+            if (this.FiringTimer > this.fireRate)
+            {
+                this.FiringTimer = 0;
+                this.Shoot(bullets);
+            }
+        }
+
+        private void Shoot(IList<Bullet> bullets)
         {
             foreach (var bullet in bullets)
             {
