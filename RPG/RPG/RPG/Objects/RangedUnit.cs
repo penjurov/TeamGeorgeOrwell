@@ -6,7 +6,7 @@
     public class RangedUnit : Units, IMonster, IShootable
     {
         private int firingTimer = 0;
-        private float fireRate = 80;
+        private readonly float fireRate = 80;
         private float expGiven;
 
         public RangedUnit(Position pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, range)
@@ -60,27 +60,11 @@
             }
         }
 
-        protected float FireRate
-        {
-            get
-            {
-                return this.fireRate;
-            }
 
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new NegativeDataException("The fire rate of unit cannot be a negative number!", (int)value);
-                }
-
-                this.fireRate = value;
-            }
-        }
 
         public void CheckShooting(IList<Bullet> bullets)
         {
-            if (this.FiringTimer > this.FireRate)
+            if (this.FiringTimer > this.fireRate)
             {
                 this.FiringTimer = 0;
                 this.Shoot(bullets);

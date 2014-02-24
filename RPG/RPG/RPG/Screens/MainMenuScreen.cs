@@ -10,9 +10,8 @@
 
     internal class MainMenuScreen
     {
-        private static IList<MenuItems> mainMenuItems = new List<MenuItems>();
+        private static readonly IList<MenuItems> mainMenuItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
-
         private readonly IList<Texture2D> buttons = new List<Texture2D>();
      
         private int selectedEntry = 0;
@@ -29,11 +28,6 @@
             get
             {
                 return mainMenuItems;
-            }
-
-            set
-            {
-                mainMenuItems = value;
             }
         }
 

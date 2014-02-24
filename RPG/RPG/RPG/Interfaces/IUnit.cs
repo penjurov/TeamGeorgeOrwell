@@ -1,6 +1,5 @@
 ﻿namespace Rpg.Interfaces
 {
-    using Objects;
 
     public interface IUnit
     {

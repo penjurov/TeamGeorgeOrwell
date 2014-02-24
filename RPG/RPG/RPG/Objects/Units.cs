@@ -128,7 +128,7 @@
             }
         }
 
-        public  int HitRate
+        public int HitRate
         {
             get
             {
@@ -136,7 +136,6 @@
             }
             protected set
             {
-                
                 if (value < 0)
                 {
                     throw new NegativeDataException("Units hit timer cannot be a negative number!", value);
@@ -146,7 +145,7 @@
             }
         }
 
-        public  int HitTimer
+        public int HitTimer
         {
             get
             {
@@ -163,6 +162,5 @@
                 this.hitTimer = value;
             }
         }
-
     }
 }
