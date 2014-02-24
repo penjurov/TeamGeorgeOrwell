@@ -178,6 +178,7 @@
             }
         }
 
+        //Obsticles
         private void LoadObstacles(ContentManager content)
         {
             Texture2D invisTexture = content.Load<Texture2D>(@"Textures\Objects\invisible");
@@ -384,14 +385,8 @@
                 invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
                 this.obstacles.Add(invisble);
             }
-
-            //for (int i = 700; i < 1000; i += 25)
-            //{
-            //    Obstacles invisble = new Obstacles(new Position(i, 195), invisTexture, false);
-            //    invisble.Area = new Rectangle((int)invisble.Position.X, (int)invisble.Position.Y, invisTexture.Width, invisTexture.Height);
-            //    this.obstacles.Add(invisble);
-            //}
         }
+        //end obsticles
         
         private void LoadCursor(ContentManager content)
         {
@@ -414,11 +409,11 @@
             if (this.stage == 1)
             {
                 // Mele
-                this.AddMeleUnit(content, 360, 580, "mele");
+                this.AddMeleUnit(content, 390, 580, "mele");
                 this.AddMeleUnit(content, 470, 545, "mele");
 
-                this.AddMeleUnit(content, 760, 620, "mele");
-                this.AddMeleUnit(content, 910, 620, "mele");
+                this.AddMeleUnit(content, 710, 680, "mele");
+                this.AddMeleUnit(content, 860, 650, "mele");
 
                 this.AddMeleUnit(content, 710, 310, "mele");
                 this.AddMeleUnit(content, 590, 335, "mele");
@@ -432,11 +427,11 @@
             if (this.stage == 2)
             {
                 // Mele
-                this.AddMeleUnit(content, 360, 580, "mele");
+                this.AddMeleUnit(content, 390, 580, "mele");
                 this.AddMeleUnit(content, 470, 545, "mele");
 
-                this.AddMeleUnit(content, 760, 620, "mele");
-                this.AddMeleUnit(content, 910, 620, "mele");
+                this.AddMeleUnit(content, 710, 680, "mele");
+                this.AddMeleUnit(content, 860, 650, "mele");
 
                 // Range
                 this.AddRangeUnit(content, 200, 660, "range");
