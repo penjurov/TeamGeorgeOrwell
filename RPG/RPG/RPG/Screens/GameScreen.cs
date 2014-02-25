@@ -1605,7 +1605,7 @@
             {
                 if (obj is MeleUnit)
                 {
-                    this.Animation(obj, content, "mele", 8);
+                    this.Animation(obj, content, (obj as MeleUnit).SpriteIndex.ToString(), 8);
                 }
 
                 if (obj is RangedUnit)
