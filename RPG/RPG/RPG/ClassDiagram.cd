@@ -1,4 +1,227 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Rpg.Objects.Skills" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAERAAABAQAAAAAAAAA=</HashCode>
+      <FileName>Objects\Skills.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Objects.Bonuses" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAQQAAAAAAAA=</HashCode>
+      <FileName>Objects\Bonuses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Objects.Bullet" Collapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Bullet.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Rpg.Objects.Cursor" Collapsed="true">
+    <Position X="9.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Cursor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Objects.Hero" Collapsed="true">
+    <Position X="14.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAIABAAAAACAEQAAgBBBAABBQAAAIQAAACA=</HashCode>
+      <FileName>Objects\Hero.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Rpg.Objects.MeleUnit" Collapsed="true">
+    <Position X="16.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\MeleUnit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Rpg.Objects.Obj" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAgAAAAAAAAAAAAAAQAAAAAAQAAAAA=</HashCode>
+      <FileName>Objects\Obj.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Objects.Obstacles" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Obstacles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Objects.RangedUnit" Collapsed="true">
+    <Position X="12" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIABAAQAAAAEQAAAAAABABgAAAAAQAAAAA=</HashCode>
+      <FileName>Objects\RangedUnit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Rpg.Objects.Units" Collapsed="true">
+    <Position X="14.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAIAAgACIAAAICAAAABAIgAAQCAAIAAAgAAAAo=</HashCode>
+      <FileName>Objects\Units.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Rpg.Screens.AboutScreen" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQEAgABIAAAAAIEAAMAAgkAAAAAAAAAAAAAAAABIAEA=</HashCode>
+      <FileName>Screens\AboutScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Screens.ChooseHeroScreen" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQEggEAIAABAAAEABNCAAkAAAAABAAAAAAAQAABgAIA=</HashCode>
+      <FileName>Screens\ChooseHeroScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Screens.ControlScreen" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQFAgABIAACAAIEAAMAAAkAAAAAAAAAAAAgAAABAAAA=</HashCode>
+      <FileName>Screens\ControlScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Screens.GameOver" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAIAAAQAAEAAMAAAkAQAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Screens\GameOver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Screens.GameScreen" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>cYPwzICo4OEToZkRqNAAAkAUACIaHVBQASAHAA7QYIM=</HashCode>
+      <FileName>Screens\GameScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Screens.MainMenuScreen" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CQEAgAAIAAAAAIEAINAQAkAAAAAgAAAAAAAAAQBAAAA=</HashCode>
+      <FileName>Screens\MainMenuScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Screens.MenuItems" Collapsed="true">
+    <Position X="20.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAQAAAAAAAAAAAACQAAAAAAAQAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Screens\MenuItems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Screens.Screen" Collapsed="true">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Screens\Screen.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Rpg.Screens.WinScreen" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAIAAAAAAEBAMAAAkAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Screens\WinScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.NegativeDataException" Collapsed="true">
+    <Position X="22.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>NegativeDataException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.Rpg" Collapsed="true">
+    <Position X="19" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEAYAAAAQzABAAEAAAAAAAAAQAkAAAAYAAAAAMQ=</HashCode>
+      <FileName>Rpg.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rpg.GameStarter" Collapsed="true">
+    <Position X="19" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>GameStarter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Rpg.Objects.Position" Collapsed="true">
+    <Position X="19" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Objects\Position.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Interface Name="Rpg.Interfaces.IPlayer" Collapsed="true">
+    <Position X="22.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAACAEAAAAAABAAABAAAAIAAAAAA=</HashCode>
+      <FileName>Interfaces\IHero.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rpg.Interfaces.IMonster" Collapsed="true">
+    <Position X="19" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMonster.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rpg.Interfaces.IMovable" Collapsed="true">
+    <Position X="20.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IMovable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rpg.Interfaces.IScreen" Collapsed="true">
+    <Position X="19" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Interfaces\IScreen.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rpg.Interfaces.IShooting" Collapsed="true">
+    <Position X="20.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IShooting.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Rpg.Interfaces.IUnit" Collapsed="true">
+    <Position X="22.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAACAAAAAAAAAAAAIgAAAAAAIAAAgAAAAA=</HashCode>
+      <FileName>Interfaces\IUnit.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Rpg.Objects.SkillType" Collapsed="true">
+    <Position X="20.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Objects\SkillType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Rpg.Screens.EnumActiveWindow" Collapsed="true">
+    <Position X="19" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAgAAAIBAAEAAAAARAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Screens\EnumActiveWindow.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
