@@ -1,11 +1,11 @@
 ﻿namespace Rpg
-{ 
+{
     public abstract class GameStarter
     {
-        static void Main()
+        private static void Main()
         {
-            Rpg game = new Rpg();           
-            game.Run();            
+            Rpg game = new Rpg();
+            game.Run();
         }
     }
 }

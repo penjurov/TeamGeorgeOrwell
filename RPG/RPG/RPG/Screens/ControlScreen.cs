@@ -6,14 +6,14 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Objects;
-    
-    internal class ControlScreen :Screen
+
+    internal class ControlScreen : Screen
     {
         private readonly IList<MenuItems> controlScreenItems = new List<MenuItems>();
-        private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
-        private Texture2D button;
+        private readonly Cursor cursor = new Cursor(new Position(0, 0));
         private readonly int selectedEntry = 0;
-        
+
+        private Texture2D button;
         private Texture2D controlScreenBackgroundTexture;
         private Vector2 controlScreenBackgroundPosition;
 
@@ -21,16 +21,12 @@
 
         private KeyboardState keyboard;
         private KeyboardState previousKeyboard;
-        private MouseState mouse;    
+        private MouseState mouse;
 
         public override void LoadObjects(ContentManager content)
         {
             this.controlScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\control_screen");
-            this.button = content.Load<Texture2D>(@"Textures\GameScreens\Button");  
-         
-            //this.keyboardTexture = content.LoadObjects<Texture2D>(@"Textures\GameScreens\keyboard");
-            //this.mouseTexture = content.LoadObjects<Texture2D>(@"Textures\GameScreens\mouse");
-
+            this.button = content.Load<Texture2D>(@"Textures\GameScreens\Button");
             this.LoadCursor(content);
         }
 
@@ -38,9 +34,9 @@
         {
             graphicDevice.Clear(Color.CornflowerBlue);
             SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
-            
+
             spriteBatch.Begin();
-            
+
             this.controlScreenBackgroundPosition = new Vector2(0, 0);
             spriteBatch.Draw(this.controlScreenBackgroundTexture, this.controlScreenBackgroundPosition, Color.White);
 

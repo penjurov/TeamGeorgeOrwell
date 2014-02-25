@@ -6,14 +6,14 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Objects;
-    
-    internal class ChooseHeroScreen :Screen
+
+    internal class ChooseHeroScreen : Screen
     {
         private static string heroName;
-        private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
-        private readonly IList<Texture2D> heroTexture = new List<Texture2D>();        
+        private readonly Cursor cursor = new Cursor(new Position(0, 0));
+        private readonly IList<Texture2D> heroTexture = new List<Texture2D>();
         private IList<MenuItems> chooseHeroList = new List<MenuItems>();
-        
+
         private int selectedEntry = 0;
 
         private Texture2D chooseHeroBackgroundTexture;
@@ -79,7 +79,7 @@
                 // Odin
                 this.heroPicturesPosition = new Vector2(10, 130);
                 this.PchooseHeroList.Add(new MenuItems(this.heroTexture[0], this.heroPicturesPosition, "ODIN", newFont, false));
-                      
+
                 // Thor
                 this.heroPicturesPosition.X += this.heroTexture[0].Width + 10;
                 this.PchooseHeroList.Add(new MenuItems(this.heroTexture[1], this.heroPicturesPosition, "THOR", newFont, false));
