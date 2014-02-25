@@ -1607,6 +1607,10 @@
                 {
                     this.Animation(obj, content, "mele");
                 }
+                else if(obj is RangedUnit)
+                {
+                    this.Animation(obj, content, "range");
+                }
                 return new Vector2(pix * newX, pix * newY);
             }
 
@@ -1615,21 +1619,25 @@
 
         private void Animation(Obj unit,ContentManager content,string textureName)
         {
-            switch (numberOfFrames)
+            switch (numberOfFrames )
             {
                 case 1:
                 case 2:
                 case 3:
+                case 4:
+                case 5:
                     unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}1", textureName));
                     numberOfFrames++;
                     break;
-                case 4:
-                case 5:
                 case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
                     unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}2", textureName));
                     numberOfFrames++;
                     break;
-                case 7:
+                case 11:
                     unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}3", textureName));
                     numberOfFrames = 1;
                     break;
