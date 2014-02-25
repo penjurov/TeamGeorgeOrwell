@@ -6,7 +6,7 @@
     public class RangedUnit : Units, IMonster, IShooting
     {
         private int firingTimer = 0;
-        private readonly float fireRate = 80;
+        private readonly float fireRate = 60;
         private float expGiven;
 
         public RangedUnit(Position pos, float speed, bool act, float att, float def, float hp, float exp, bool alive, float range) : base(pos, speed, range)

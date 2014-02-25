@@ -1217,7 +1217,7 @@
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     Vector2 bulletPos = new Vector2(bullet.Position.X, bullet.Position.Y);
-                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet,content);
+                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet, content);
                     bullet.Position = new Position(bulletPos.X, bulletPos.Y);
                 }
                 else
@@ -1232,7 +1232,7 @@
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     Vector2 bulletPos = new Vector2(bullet.Position.X, bullet.Position.Y);
-                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet,content);
+                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet, content);
                     bullet.Position = new Position(bulletPos.X, bulletPos.Y);
                 }
             }
@@ -1394,7 +1394,7 @@
                         {
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
                             Vector2 unitPos = new Vector2(unit.Position.X, unit.Position.Y);
-                            unitPos += this.PushTo(unit.Speed, unit.Rotation, unit,content);
+                            unitPos += this.PushTo(unit.Speed, unit.Rotation, unit, content);
                             unit.Position = new Position(unitPos.X, unitPos.Y);
                             if (unit is IShooting)
                             {
@@ -1596,54 +1596,49 @@
             return false;
         }
 
-        private Vector2 PushTo(float pix, float dir, Obj obj,ContentManager content)
+        private Vector2 PushTo(float pix, float dir, Obj obj, ContentManager content)
         {
             float newX = (float)Math.Cos(MathHelper.ToRadians(dir));
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
 
             if (!this.Collision(new Vector2(newX, newY), obj))
             {
-                if(obj is MeleUnit)
+                if (obj is MeleUnit)
                 {
-                    this.Animation(obj, content, "mele");
+                    this.Animation(obj, content, "mele", 8);
                 }
-                else if(obj is RangedUnit)
+
+                if (obj is RangedUnit)
                 {
-                    this.Animation(obj, content, "range");
+                    this.Animation(obj, content, "range", 55);
                 }
                 return new Vector2(pix * newX, pix * newY);
             }
 
             return new Vector2(0, 0);
         }
-
-        private void Animation(Obj unit,ContentManager content,string textureName)
+        
+        private void Animation(Obj unit, ContentManager content, string textureName, int number)
         {
-            switch (numberOfFrames )
+            if (numberOfFrames < 5)
             {
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                    unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}1", textureName));
-                    numberOfFrames++;
-                    break;
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                case 10:
-                    unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}2", textureName));
-                    numberOfFrames++;
-                    break;
-                case 11:
-                    unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}3", textureName));
-                    numberOfFrames = 1;
-                    break;
-                default:
-                    unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
-                    break;
+                unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}1", textureName));
+                numberOfFrames++;
+            }
+            else if (numberOfFrames >= 5 && numberOfFrames < 10)
+            {
+                unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}2", textureName));
+                numberOfFrames++;
+            }
+            else if (numberOfFrames >= 10 && numberOfFrames < number)
+            {
+                unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}3", textureName));
+                numberOfFrames++;
+            }
+            else
+            {
+                unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
+                numberOfFrames = 1;
             }
         }
     }
