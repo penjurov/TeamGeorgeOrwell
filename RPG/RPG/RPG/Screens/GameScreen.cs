@@ -683,23 +683,15 @@
                     else
                     {
                         // Hero Animations
-                        if (this.mouse.X > this.hero.Position.X && this.mouse.Y > this.hero.Position.Y)
+                        if (this.mouse.X > this.hero.Position.X)
                         {
                             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}FrontRight", ChooseHeroScreen.HeroName));
                         }
-                        else if (this.mouse.X <= this.hero.Position.X && this.mouse.Y > this.hero.Position.Y)
+                        else if (this.mouse.X <= this.hero.Position.X)
                         {
                             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}FrontLeft", ChooseHeroScreen.HeroName));
                         }
-                        else if (this.mouse.X > this.hero.Position.X && this.mouse.Y <= this.hero.Position.Y)
-                        {
-                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}BackRight", ChooseHeroScreen.HeroName));
-                        }
-                        else if (this.mouse.X <= this.hero.Position.X && this.mouse.Y <= this.hero.Position.Y)
-                        {
-                            this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}BackLeft", ChooseHeroScreen.HeroName));
-                        }
-
+                       
                         this.ObjectDraw(spriteBatch, this.hero.SpriteIndex, new Vector2(this.hero.Position.X, this.hero.Position.Y), this.hero.Rotation);
                     }
                 }
@@ -1603,7 +1595,7 @@
 
             if (!this.Collision(new Vector2(newX, newY), obj))
             {
-                if (obj is MeleUnit)
+                if (obj is MeleUnit && (obj as MeleUnit).Speed != 2)
                 {
                     this.Animation(obj, content, "mele", 8);
                 }
@@ -1617,7 +1609,7 @@
 
             return new Vector2(0, 0);
         }
-        
+
         private void Animation(Obj unit, ContentManager content, string textureName, int number)
         {
             if (numberOfFrames < 5)

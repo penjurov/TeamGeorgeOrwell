@@ -238,16 +238,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Objects\ThorBackLeft.png">
-      <Name>ThorBackLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Objects\ThorBackRight.png">
-      <Name>ThorBackRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Textures\Objects\ThorFrontLeft.png">
       <Name>ThorFrontLeft</Name>
       <Importer>TextureImporter</Importer>
@@ -260,16 +250,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Objects\EirBackLeft.png">
-      <Name>EirBackLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Objects\EirBackRight.png">
-      <Name>EirBackRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Textures\Objects\EirFrontLeft.png">
       <Name>EirFrontLeft</Name>
       <Importer>TextureImporter</Importer>
@@ -277,16 +257,6 @@
     </Compile>
     <Compile Include="Textures\Objects\EirFrontRight.png">
       <Name>EirFrontRight</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Objects\OdinBackLeft.png">
-      <Name>OdinBackLeft</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Textures\Objects\OdinBackRight.png">
-      <Name>OdinBackRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
