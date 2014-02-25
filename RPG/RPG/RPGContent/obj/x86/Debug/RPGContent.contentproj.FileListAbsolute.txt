@@ -1,2 +1,3 @@
 D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
 F:\proekti\VisualStudioProjects\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache
+D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPGContent\obj\x86\Debug\RPGContent.contentprojResolveAssemblyReference.cache

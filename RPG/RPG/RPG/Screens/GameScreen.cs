@@ -11,7 +11,7 @@
     using Interfaces;
     using Objects;
 
-    internal class GameScreen :Screen
+    internal class GameScreen : Screen
     {
         private readonly IList<MenuItems> levelUpItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0));
@@ -31,6 +31,7 @@
         private bool loaded = false;
         private int skillTimer = 0;
         private int points = 5;
+        private int numberOfFrames = 1;
         private Rectangle room;
         private Texture2D gameWindowTexture;
         private Vector2 gameWindowTexturePos;
@@ -388,7 +389,7 @@
             }
         }
         //end obsticles
-        
+
         private void LoadCursor(ContentManager content)
         {
             this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "crosshair"));
@@ -457,14 +458,14 @@
                 case "THOR":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Position(this.room.Width , this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Rage, 3);
+                        this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Rage, 3);
                         break;
                     }
 
 
 
                 case "EIR":
-                    { 
+                    {
                         // Singleton
                         this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal, 50);
                         break;
@@ -652,7 +653,7 @@
                 string skillname = this.hero.Skill.Type.ToString() + " On!!!";
                 font = font = content.Load<SpriteFont>(@"Fonts/Title");
                 Vector2 textSize = font.MeasureString(skillname);
-                
+
                 position = new Vector2(510 - ((float)Math.Floor(textSize.X) / 2), 20);
 
                 spriteBatch.DrawString(font, skillname, position, Color.DeepSkyBlue);
@@ -720,7 +721,7 @@
             Vector2 textSize = font.MeasureString(itemText);
             Vector2 position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 300);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
-            
+
             font = content.Load<SpriteFont>(@"Fonts/Text");
 
             itemText = "Hero Attack : " + this.hero.Attack;
@@ -747,7 +748,7 @@
         private void DrawLevelUp(SpriteBatch spriteBatch, ContentManager content)
         {
             spriteBatch.Draw(this.levelUpTexture, this.levelUpRect, Color.White);
-            
+
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
 
             string itemText = "Level Up!!!";
@@ -1115,7 +1116,7 @@
                         {
                             if (this.hero.Health + this.hero.Skill.Power <= this.hero.MaxHP)
                             {
-                                this.hero.Health += this.hero.Skill.Power;                                
+                                this.hero.Health += this.hero.Skill.Power;
                             }
                             else
                             {
@@ -1195,7 +1196,7 @@
                 {
                     if (this.stage == 1)
                     {
-                        this.hero.Position = new Position(35,room.Height/2);
+                        this.hero.Position = new Position(35, room.Height / 2);
                         this.stage++;
                         this.LoadUnits(content);
                     }
@@ -1251,7 +1252,7 @@
                     unit.Area = new Rectangle(x, y, unit.Area.Width, unit.Area.Height);
 
                     unit.HitTimer++;
-                    
+
                     if (unit is IPlayer)
                     {
                         if (this.Collision(new Vector2(0, 0), unit))
@@ -1260,7 +1261,7 @@
                             {
                                 this.hero.Health = this.hero.Health - (((int)RangedUnit.RangeAtk / this.hero.Defence) * 20) +
                                                    this.rand.Next((int)RangedUnit.RangeAtk / 10);
-                                
+
                                 if (n < 50)
                                 {
                                     this.pain1Instance.Play();
@@ -1342,7 +1343,7 @@
                             {
                                 (unit as IMonster).Active = false;
                             }
-                            
+
                         }
 
                         if (this.Collision(new Vector2(0, 0), unit))
@@ -1395,7 +1396,6 @@
                         if ((unit as IMonster).Active)
                         {
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
-
                             Vector2 unitPos = new Vector2(unit.Position.X, unit.Position.Y);
                             unitPos += this.PushTo(unit.Speed, unit.Rotation, unit);
                             unit.Position = new Position(unitPos.X, unitPos.Y);
@@ -1551,12 +1551,12 @@
                     {
                         return true;
                     }
-                    else if(obj is Bullet && bullets.Contains(obj))
+                    else if (obj is Bullet && bullets.Contains(obj))
                     {
                         obj.Alive = false;
                         return true;
                     }
-                    else if(obj is MeleUnit)
+                    else if (obj is MeleUnit)
                     {
                         (obj as MeleUnit).Active = false;
                         return true;
