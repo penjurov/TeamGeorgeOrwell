@@ -7,7 +7,7 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
     
-    public class ChooseHeroScreen
+    internal class ChooseHeroScreen :Screen
     {
         private static string heroName;
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
@@ -53,7 +53,7 @@
             }
         }
 
-        public void Load(ContentManager content)
+        public override void LoadObjects(ContentManager content)
         {
             this.chooseHeroBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\MainMenu");
 
@@ -64,7 +64,7 @@
             this.LoadCursor(content);
         }
 
-        public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
+        public override void DrawObjects(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.CornflowerBlue);
             SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
@@ -92,14 +92,14 @@
             this.PchooseHeroList[this.selectedEntry].Selected = true;
             foreach (var item in this.PchooseHeroList)
             {
-                item.Draw(spriteBatch, Color.DeepSkyBlue);
+                item.DrawMenuItems(spriteBatch, Color.DeepSkyBlue);
             }
 
             this.DrawCursor(spriteBatch);
             spriteBatch.End();
         }
 
-        public void Update()
+        public override void UpdateObjects(ContentManager content)
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();

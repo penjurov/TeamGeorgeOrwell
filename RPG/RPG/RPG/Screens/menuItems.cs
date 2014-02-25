@@ -25,7 +25,7 @@
 
         public bool Selected { get; set; }
 
-        public virtual void Draw(SpriteBatch spriteBatch, Color menuColor)
+        public void DrawMenuItems(SpriteBatch spriteBatch, Color menuColor)
         {
             Color color = this.Selected ? menuColor : Color.Black;
             

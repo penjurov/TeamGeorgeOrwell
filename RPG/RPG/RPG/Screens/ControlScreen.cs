@@ -7,7 +7,7 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
     
-    class ControlScreen
+    internal class ControlScreen :Screen
     {
         private readonly IList<MenuItems> controlScreenItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
@@ -23,18 +23,18 @@
         private KeyboardState previousKeyboard;
         private MouseState mouse;    
 
-        public void Load(ContentManager content)
+        public override void LoadObjects(ContentManager content)
         {
             this.controlScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\control_screen");
             this.button = content.Load<Texture2D>(@"Textures\GameScreens\Button");  
          
-            //this.keyboardTexture = content.Load<Texture2D>(@"Textures\GameScreens\keyboard");
-            //this.mouseTexture = content.Load<Texture2D>(@"Textures\GameScreens\mouse");
+            //this.keyboardTexture = content.LoadObjects<Texture2D>(@"Textures\GameScreens\keyboard");
+            //this.mouseTexture = content.LoadObjects<Texture2D>(@"Textures\GameScreens\mouse");
 
             this.LoadCursor(content);
         }
 
-        public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
+        public override void DrawObjects(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.CornflowerBlue);
             SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
@@ -54,14 +54,14 @@
             this.controlScreenItems[this.selectedEntry].Selected = true;
             foreach (var item in this.controlScreenItems)
             {
-                item.Draw(spriteBatch, new Color(248, 218, 127));
+                item.DrawMenuItems(spriteBatch, new Color(248, 218, 127));
             }
 
             this.DrawCursor(spriteBatch);
             spriteBatch.End();
         }
 
-        public void Update()
+        public override void UpdateObjects(ContentManager content)
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();

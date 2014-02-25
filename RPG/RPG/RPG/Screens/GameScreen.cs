@@ -11,7 +11,7 @@
     using Interfaces;
     using Objects;
 
-    internal class GameScreen
+    internal class GameScreen :Screen
     {
         private readonly IList<MenuItems> levelUpItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0));
@@ -76,7 +76,7 @@
         private SoundEffect gameSong;
         private SoundEffectInstance gameSongInstance;
 
-        public void Load(ContentManager content)
+        public override void LoadObjects(ContentManager content)
         {
             this.LoadMusic(content);
             this.LoadLevel(content);
@@ -90,8 +90,9 @@
             this.LoadLevelUp(content);
         }
 
-        public void Draw(SpriteBatch spriteBatch, ContentManager content)
+        public override void DrawObjects(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
+            graphicDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null);
 
             this.DrawBackGround(spriteBatch);
@@ -116,7 +117,7 @@
             spriteBatch.End();
         }
 
-        public void Update(ContentManager content)
+        public override void UpdateObjects(ContentManager content)
         {
             this.keyboard = Keyboard.GetState();
             this.mouse = Mouse.GetState();

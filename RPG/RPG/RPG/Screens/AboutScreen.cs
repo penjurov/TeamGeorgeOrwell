@@ -7,7 +7,7 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
 
-    class AboutScreen 
+    internal class AboutScreen : Screen
     {
         private readonly IList<MenuItems> aboutScreenItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
@@ -23,7 +23,7 @@
         private KeyboardState previousKeyboard;
         private MouseState mouse;
 
-        public void Load(ContentManager content)
+        public override void LoadObjects(ContentManager content)
         {
             this.aboutScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\About");
 
@@ -32,7 +32,7 @@
             this.LoadCursor(content);
         }
 
-        public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
+        public override void DrawObjects(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.CornflowerBlue);
             SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
@@ -52,14 +52,14 @@
             this.aboutScreenItems[this.selectedEntry].Selected = true;
             foreach (var item in this.aboutScreenItems)
             {
-                item.Draw(spriteBatch, new Color(248, 218, 127));
+                item.DrawMenuItems(spriteBatch, new Color(248, 218, 127));
             }
 
             this.DrawCursor(spriteBatch);
             spriteBatch.End();
         }
 
-        public void Update()
+        public override void UpdateObjects(ContentManager content)
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();

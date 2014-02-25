@@ -7,7 +7,7 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
 
-    class GameOver
+    internal class GameOver :Screen
     {
         private Texture2D gameOverScreenBackgroundTexture;
         private Vector2 gameOverScreenBackgroundPosition;
@@ -15,13 +15,13 @@
         private KeyboardState keyboard;
         private MouseState mouse;
 
-        public void Load(ContentManager content)
+        public override void LoadObjects(ContentManager content)
         {
             this.LoadCursor(content);
             this.gameOverScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\GameOver");
         }
 
-        public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
+        public override void DrawObjects(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.CornflowerBlue);
             this.gameOverScreenBackgroundPosition = new Vector2(0, 0);
@@ -38,7 +38,7 @@
             spriteBatch.End();
         }
 
-        public void Update()
+        public override void UpdateObjects(ContentManager content)
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();

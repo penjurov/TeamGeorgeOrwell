@@ -70,17 +70,17 @@
         {
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
             
-            this.mainMenuScreen.Load(this.Content);
+            this.mainMenuScreen.LoadObjects(this.Content);
             
-            this.chooseHero.Load(this.Content);
+            this.chooseHero.LoadObjects(this.Content);
 
-            this.aboutScreen.Load(this.Content);
+            this.aboutScreen.LoadObjects(this.Content);
 
-            this.controlScreen.Load(this.Content);
+            this.controlScreen.LoadObjects(this.Content);
 
-            this.gameOver.Load(this.Content);
+            this.gameOver.LoadObjects(this.Content);
 
-            this.win.Load(this.Content);
+            this.win.LoadObjects(this.Content);
                        
             base.LoadContent();
         }
@@ -89,54 +89,51 @@
         { 
             if (activeWindow == EnumActiveWindow.MainMenu)
             {
-                this.mainMenuScreen.Update();
+                this.mainMenuScreen.UpdateObjects(this.Content);
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
             {
-                this.chooseHero.Update();
+                this.chooseHero.UpdateObjects(this.Content);
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.ControlWindow)
             {
-                this.controlScreen.Update();
+                this.controlScreen.UpdateObjects(this.Content);
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.AboutWindow)
             {
-                this.aboutScreen.Update();
+                this.aboutScreen.UpdateObjects(this.Content);
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.GameOver)
             {
-                this.gameOver.Update();
+                this.gameOver.UpdateObjects(this.Content);
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.Win)
             {
-                this.win.Update();
+                this.win.UpdateObjects(this.Content);
                 this.mainThemeInstance.Play();
             }
 
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
+                this.mainThemeInstance.Stop();
+
                 if (!this.loaded)
                 {
-                    this.gameScreen.Load(this.Content); 
+                    this.gameScreen.LoadObjects(this.Content); 
                     this.loaded = true;
                 }
 
-                this.gameScreen.Update(this.Content);
-            }
-
-            if (activeWindow == EnumActiveWindow.GameWindow)
-            {
-                this.mainThemeInstance.Stop();
+                this.gameScreen.UpdateObjects(this.Content);
             }
         }
 
@@ -144,37 +141,37 @@
         {
             if (activeWindow == EnumActiveWindow.MainMenu)
             {
-                this.mainMenuScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+                this.mainMenuScreen.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
 
             if (activeWindow == EnumActiveWindow.GameWindow)
             {
-                this.gameScreen.Draw(this.spriteBatch, this.Content);
+                this.gameScreen.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
 
             if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
             {
-                this.chooseHero.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+                this.chooseHero.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
 
             if (activeWindow == EnumActiveWindow.AboutWindow)
             {
-                this.aboutScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+                this.aboutScreen.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
 
             if (activeWindow == EnumActiveWindow.ControlWindow)
             {
-                this.controlScreen.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+                this.controlScreen.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
 
             if (activeWindow == EnumActiveWindow.GameOver)
             {
-                this.gameOver.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+                this.gameOver.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
 
             if (activeWindow == EnumActiveWindow.Win)
             {
-                this.win.Draw(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+                this.win.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
         }
     }

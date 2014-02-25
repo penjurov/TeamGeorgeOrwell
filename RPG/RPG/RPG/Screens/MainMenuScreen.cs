@@ -8,7 +8,7 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
 
-    internal class MainMenuScreen
+    internal class MainMenuScreen :Screen
     {
         private static readonly IList<MenuItems> mainMenuItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
@@ -31,7 +31,7 @@
             }
         }
 
-        public void Load(ContentManager content)
+        public override void LoadObjects(ContentManager content)
         {
             this.mainMenuBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\MainMenu");
 
@@ -42,7 +42,7 @@
             this.LoadCursor(content);
         }
 
-        public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
+        public override void DrawObjects(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         { 
             graphicDevice.Clear(Color.CornflowerBlue);
             SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
@@ -78,7 +78,7 @@
             PMainMenuItems[this.selectedEntry].Selected = true;
             foreach (var item in PMainMenuItems)
             {
-                item.Draw(spriteBatch, new Color(248, 218, 127));
+                item.DrawMenuItems(spriteBatch, new Color(248, 218, 127));
             }
 
             this.DrawCursor(spriteBatch);
@@ -86,7 +86,7 @@
             spriteBatch.End();
         }
         
-        public void Update()
+        public override void UpdateObjects(ContentManager content)
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();

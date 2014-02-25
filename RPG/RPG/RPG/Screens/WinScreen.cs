@@ -7,7 +7,7 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
     
-    class WinScreen
+    internal class WinScreen :Screen
     {
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
 
@@ -16,13 +16,13 @@
         private KeyboardState keyboard;
         private MouseState mouse;
 
-        public void Load(ContentManager content)
+        public override void LoadObjects(ContentManager content)
         {
             this.LoadCursor(content);
             this.winScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\Win");
         }
 
-        public void Draw(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
+        public override void DrawObjects(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
         {
             graphicDevice.Clear(Color.Black);
             this.winScreenBackgroundPosition = new Vector2(0, 0);
@@ -39,7 +39,7 @@
             spriteBatch.End();
         }
 
-        public void Update()
+        public override void UpdateObjects(ContentManager content)
         {
             this.mouse = Mouse.GetState();
             this.keyboard = Keyboard.GetState();
