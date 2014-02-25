@@ -196,3 +196,9 @@ D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Rpg.csproj
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.exe
 D:\Projects\OOPGitTeamWork\TeamGeorgeOrwell\RPG\RPG\RPG\obj\x86\Debug\RPG.pdb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\mele1.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\mele2.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\mele3.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\range1.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\range2.xnb
+D:\Programming\TeamGeorgeOrwell\RPG\RPG\RPG\bin\x86\Debug\Content\Textures\Objects\range3.xnb

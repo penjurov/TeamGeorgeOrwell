@@ -126,8 +126,8 @@
 
             if (!this.paused && !this.levelUp)
             {
-                this.UpdateUnits();
-                this.UpdateBullets();
+                this.UpdateUnits(content);
+                this.UpdateBullets(content);
                 this.UpdateHero(content);
                 this.UpdateBonusses();
             }
@@ -388,6 +388,7 @@
                 this.obstacles.Add(invisble);
             }
         }
+
         //end obsticles
 
         private void LoadCursor(ContentManager content)
@@ -461,8 +462,6 @@
                         this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Rage, 3);
                         break;
                     }
-
-
 
                 case "EIR":
                     {
@@ -1209,7 +1208,7 @@
             }
         }
 
-        private void UpdateBullets()
+        private void UpdateBullets(ContentManager content)
         {
             foreach (var bullet in this.bullets)
             {
@@ -1218,7 +1217,7 @@
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     Vector2 bulletPos = new Vector2(bullet.Position.X, bullet.Position.Y);
-                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
+                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet,content);
                     bullet.Position = new Position(bulletPos.X, bulletPos.Y);
                 }
                 else
@@ -1233,13 +1232,13 @@
                 {
                     bullet.Area = new Rectangle((int)bullet.Position.X, (int)bullet.Position.Y, bullet.SpriteIndex.Width, bullet.SpriteIndex.Height);
                     Vector2 bulletPos = new Vector2(bullet.Position.X, bullet.Position.Y);
-                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet);
+                    bulletPos += this.PushTo(bullet.Speed, bullet.Rotation, bullet,content);
                     bullet.Position = new Position(bulletPos.X, bulletPos.Y);
                 }
             }
         }
 
-        private void UpdateUnits()
+        private void UpdateUnits(ContentManager content)
         {
             int n = this.rand.Next(0, 101);
 
@@ -1343,7 +1342,6 @@
                             {
                                 (unit as IMonster).Active = false;
                             }
-
                         }
 
                         if (this.Collision(new Vector2(0, 0), unit))
@@ -1374,7 +1372,6 @@
                                         }
                                 }
 
-
                                 this.hero.CurrentExp = this.hero.CurrentExp + (unit as IMonster).ExpGiven;
                                 if (this.hero.CurrentExp - (this.hero.Level * 500) > 0)
                                 {
@@ -1397,7 +1394,7 @@
                         {
                             unit.Rotation = this.PointDirecions(unit.Position.X, unit.Position.Y, this.hero.Position.X, this.hero.Position.Y);
                             Vector2 unitPos = new Vector2(unit.Position.X, unit.Position.Y);
-                            unitPos += this.PushTo(unit.Speed, unit.Rotation, unit);
+                            unitPos += this.PushTo(unit.Speed, unit.Rotation, unit,content);
                             unit.Position = new Position(unitPos.X, unitPos.Y);
                             if (unit is IShooting)
                             {
@@ -1599,17 +1596,47 @@
             return false;
         }
 
-        private Vector2 PushTo(float pix, float dir, Obj unit)
+        private Vector2 PushTo(float pix, float dir, Obj obj,ContentManager content)
         {
             float newX = (float)Math.Cos(MathHelper.ToRadians(dir));
             float newY = (float)Math.Sin(MathHelper.ToRadians(dir));
 
-            if (!this.Collision(new Vector2(newX, newY), unit))
+            if (!this.Collision(new Vector2(newX, newY), obj))
             {
+                if(obj is MeleUnit)
+                {
+                    this.Animation(obj, content, "mele");
+                }
                 return new Vector2(pix * newX, pix * newY);
             }
 
             return new Vector2(0, 0);
+        }
+
+        private void Animation(Obj unit,ContentManager content,string textureName)
+        {
+            switch (numberOfFrames)
+            {
+                case 1:
+                case 2:
+                case 3:
+                    unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}1", textureName));
+                    numberOfFrames++;
+                    break;
+                case 4:
+                case 5:
+                case 6:
+                    unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}2", textureName));
+                    numberOfFrames++;
+                    break;
+                case 7:
+                    unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}3", textureName));
+                    numberOfFrames = 1;
+                    break;
+                default:
+                    unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
+                    break;
+            }
         }
     }
 }
