@@ -54,6 +54,7 @@
         private Texture2D bonusHPTexture;
         private Texture2D bonusMPTexture;
 
+        private Texture2D levelUpBg;
         private Texture2D levelUpTexture;
         private Rectangle levelUpRect;
         private Texture2D leftButton;
@@ -531,6 +532,7 @@
 
         private void LoadLevelUp(ContentManager content)
         {
+            this.levelUpBg = content.Load<Texture2D>(@"Textures\GameScreens\level_select_screen");
             this.levelUpTexture = content.Load<Texture2D>(@"Textures\GameScreens\LevelUp");
             this.levelUpRect = new Rectangle(0, 0, this.levelUpTexture.Width, this.levelUpTexture.Height);
             this.leftButton = content.Load<Texture2D>(@"Textures\GameScreens\LevelUpLeft");
@@ -740,11 +742,17 @@
         {
             spriteBatch.Draw(this.levelUpTexture, this.levelUpRect, Color.White);
 
+            // Background
+            Vector2 positionbg = new Vector2(275, 0);
+            spriteBatch.Draw(this.levelUpBg, positionbg, Color.White);
+            // End Background
+
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
 
             string itemText = "Level Up!!!";
             Vector2 textSize = font.MeasureString(itemText);
             Vector2 position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 30);
+
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
             font = content.Load<SpriteFont>(@"Fonts/Text");
