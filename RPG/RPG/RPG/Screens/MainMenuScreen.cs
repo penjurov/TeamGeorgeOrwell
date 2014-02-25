@@ -8,12 +8,12 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
 
-    internal class MainMenuScreen : Screen
+    internal class MainMenuScreen :Screen
     {
-        private static readonly IList<MenuItems> MainMenuItems = new List<MenuItems>();
-        private readonly Cursor cursor = new Cursor(new Position(0, 0));
+        private static readonly IList<MenuItems> mainMenuItems = new List<MenuItems>();
+        private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
         private readonly IList<Texture2D> buttons = new List<Texture2D>();
-
+     
         private int selectedEntry = 0;
         private Texture2D mainMenuBackgroundTexture;
         private Vector2 mainMenuBackgroundPosition;
@@ -27,7 +27,7 @@
         {
             get
             {
-                return MainMenuItems;
+                return mainMenuItems;
             }
         }
 
@@ -43,7 +43,7 @@
         }
 
         public override void DrawObjects(GraphicsDevice graphicDevice, SpriteBatch spriteBatch, ContentManager content)
-        {
+        { 
             graphicDevice.Clear(Color.CornflowerBlue);
             SpriteFont newFont = content.Load<SpriteFont>(@"Fonts/Text");
             this.mainMenuBackgroundPosition = new Vector2(0, 0);
@@ -82,10 +82,10 @@
             }
 
             this.DrawCursor(spriteBatch);
-
+            
             spriteBatch.End();
         }
-
+        
         public override void UpdateObjects(ContentManager content)
         {
             this.mouse = Mouse.GetState();
@@ -148,7 +148,7 @@
                 foreach (var item in PMainMenuItems)
                 {
                     if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
-                        this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)
+                        this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)                       
                     {
                         if (item.ItemText == "NEW GAME")
                         {

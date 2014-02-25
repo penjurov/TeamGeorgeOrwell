@@ -2,20 +2,19 @@
 {
     using System.Collections.Generic;
     using Interfaces;
-
+    
     public class Hero : Units, IShooting, IPlayer
     {
         // Singleton
         private static Hero instance;
 
-        private readonly float fireRate = 20;
         private int firingTimer = 0;
+        private readonly float fireRate = 20;
         private float mana;
         private float maxHP;
         private float maxMP;
 
-        private Hero(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skillType, int skillPower)
-            : base(pos, speed, range)
+        private Hero(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skillType, int skillPower) : base(pos, speed, range)
         {
             this.Health = hp;
             this.MaxHP = hp;
@@ -26,7 +25,7 @@
             this.Level = 1;
             this.Skill = new Skills(pos, skillType, skillPower);
         }
-
+     
         public float CurrentExp { get; set; }
 
         public int Level { get; set; }
@@ -104,6 +103,7 @@
         }
 
         public Skills Skill { get; set; }
+
 
         // Singleton
         public static Hero Instance(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skillType, int skillPower)

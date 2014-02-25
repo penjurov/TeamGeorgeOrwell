@@ -6,10 +6,10 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using Objects;
-
-    internal class WinScreen : Screen
+    
+    internal class WinScreen :Screen
     {
-        private readonly Cursor cursor = new Cursor(new Position(0, 0));
+        private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
 
         private Texture2D winScreenBackgroundTexture;
         private Vector2 winScreenBackgroundPosition;

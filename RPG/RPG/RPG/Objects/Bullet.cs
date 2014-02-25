@@ -1,7 +1,7 @@
 ﻿namespace Rpg.Objects
 {
-    using Interfaces;
     using Microsoft.Xna.Framework.Graphics;
+    using Interfaces;
 
     public class Bullet : Obj, IMovable
     {

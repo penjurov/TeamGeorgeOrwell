@@ -3,12 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Interfaces;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using Interfaces;
     using Objects;
 
     internal class GameScreen : Screen
@@ -163,7 +163,7 @@
 
         private void LoadBullets(ContentManager content)
         {
-            Texture2D heroBulletTexture = content.Load<Texture2D>(string.Format("{0}{1}", @"Textures\Objects\bullet", ChooseHeroScreen.HeroName));
+            Texture2D heroBulletTexture = content.Load<Texture2D>(@"Textures\Objects\bullet" + ChooseHeroScreen.HeroName);
             for (int i = 0; i < 10; i++)
             {
                 Bullet o = new Bullet(new Position(0, 0), heroBulletTexture);
@@ -181,7 +181,7 @@
             }
         }
 
-        // Obsticles
+        //Obsticles
         private void LoadObstacles(ContentManager content)
         {
             Texture2D invisTexture = content.Load<Texture2D>(@"Textures\Objects\invisible");
@@ -390,7 +390,8 @@
             }
         }
 
-        // end obsticles
+        //end obsticles
+
         private void LoadCursor(ContentManager content)
         {
             this.cursor.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", "crosshair"));
@@ -573,6 +574,8 @@
                 if (bullet.Alive)
                 {
                     bullet.Rotation = this.PointDirecions(this.hero.Position.X, this.hero.Position.Y, this.mouse.X, this.mouse.Y);
+
+                    //this.ObjectDraw(bullet.SpriteIndex, bullet.Position, null, Color.White, MathHelper.ToRadians(bullet.Rotation), center, scale, SpriteEffects.None, 0));
                     this.ObjectDraw(spriteBatch, bullet.SpriteIndex, new Vector2(bullet.Position.X, bullet.Position.Y), bullet.Rotation);
                 }
             }
@@ -599,7 +602,9 @@
             // Health
             float visibleWidth = ((float)this.heroHealthBar.Width * this.hero.Health) / this.hero.MaxHP;
 
-            Rectangle healthRectangle = new Rectangle(12, 10, (int)visibleWidth, this.heroHealthBar.Height);
+            Rectangle healthRectangle = new Rectangle(12, 10,
+                (int)visibleWidth,
+                this.heroHealthBar.Height);
 
             spriteBatch.Draw(this.heroHealthBar, healthRectangle, Color.White);
 
@@ -610,7 +615,9 @@
             // Mana
             visibleWidth = ((float)this.heroManaBar.Width * this.hero.Mana) / this.hero.MaxMP;
 
-            Rectangle manaRectangle = new Rectangle(12, 10, (int)visibleWidth, this.heroManaBar.Height);
+            Rectangle manaRectangle = new Rectangle(12, 10,
+                (int)visibleWidth,
+                this.heroManaBar.Height);
 
             spriteBatch.Draw(this.heroManaBar, manaRectangle, Color.White);
 
@@ -623,9 +630,12 @@
             // Experience
             visibleWidth = ((float)this.heroExpBar.Width * this.hero.CurrentExp) / (this.hero.Level * 500);
 
-            Rectangle expRectangle = new Rectangle(994 - (int)visibleWidth, 23, (int)visibleWidth, this.heroExpBar.Height);
+            Rectangle expRectangle = new Rectangle(994 - (int)visibleWidth, 23,
+                (int)visibleWidth,
+                this.heroExpBar.Height);
 
             spriteBatch.Draw(this.heroExpBar, expRectangle, Color.White);
+
             position = new Vector2(840, 27);
             spriteBatch.DrawString(font, string.Format("{0}", (int)this.hero.CurrentExp), position, Color.White);
 
@@ -637,11 +647,11 @@
             spriteBatch.Draw(this.heroBarHolderReversed, position, Color.White);
 
             position = new Vector2(900, 600);
-            spriteBatch.DrawString(font, string.Format("{0} {1}", this.mouse.X, this.mouse.Y), position, Color.White);
+            spriteBatch.DrawString(font, this.mouse.X + " " + this.mouse.Y, position, Color.White);
 
-            if (this.skillTimer != 0)
+            if (skillTimer != 0)
             {
-                string skillname = string.Format("{0} On!!!", this.hero.Skill.Type.ToString());
+                string skillname = this.hero.Skill.Type.ToString() + " On!!!";
                 font = font = content.Load<SpriteFont>(@"Fonts/Title");
                 Vector2 textSize = font.MeasureString(skillname);
 
@@ -683,7 +693,7 @@
                         {
                             this.hero.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}FrontLeft", ChooseHeroScreen.HeroName));
                         }
-
+                       
                         this.ObjectDraw(spriteBatch, this.hero.SpriteIndex, new Vector2(this.hero.Position.X, this.hero.Position.Y), this.hero.Rotation);
                     }
                 }
@@ -707,22 +717,22 @@
 
             font = content.Load<SpriteFont>(@"Fonts/Text");
 
-            itemText = string.Format("Hero Attack : {0}", this.hero.Attack);
+            itemText = "Hero Attack : " + this.hero.Attack;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 350);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
-            itemText = string.Format("Hero Defence : {0}", this.hero.Defence);
+            itemText = "Hero Defence : " + this.hero.Defence;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 400);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
-            itemText = string.Format("Hero Speed : {0}", this.hero.Speed);
+            itemText = "Hero Speed : " + this.hero.Speed;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 450);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
-            itemText = string.Format("Hero Range : {0}", this.hero.Range);
+            itemText = "Hero Range : " + this.hero.Range;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 500);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
@@ -735,6 +745,7 @@
             // Background
             Vector2 positionbg = new Vector2(275, 0);
             spriteBatch.Draw(this.levelUpBg, positionbg, Color.White);
+            // End Background
 
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
 
@@ -746,7 +757,7 @@
 
             font = content.Load<SpriteFont>(@"Fonts/Text");
 
-            itemText = string.Format("{0} points to spent", this.points);
+            itemText = this.points + " points to spent";
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 100);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
@@ -766,7 +777,7 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Health+", font, false));
             }
 
-            itemText = string.Format("Health: {0}", this.hero.MaxHP);
+            itemText = "Health: " + this.hero.MaxHP;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 170);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
@@ -788,7 +799,7 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Mana+", font, false));
             }
 
-            itemText = string.Format("Mana: {0}", this.hero.MaxMP);
+            itemText = "Mana: " + this.hero.MaxMP;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 230);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
@@ -810,7 +821,7 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Attack+", font, false));
             }
 
-            itemText = string.Format("Attack: {0}", this.hero.Attack);
+            itemText = "Attack: " + this.hero.Attack;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 290);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
@@ -832,7 +843,7 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Defence+", font, false));
             }
 
-            itemText = string.Format("Defence: {0}", this.hero.Defence);
+            itemText = "Defence: " + this.hero.Defence;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 350);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
@@ -854,7 +865,7 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Speed+", font, false));
             }
 
-            itemText = string.Format("Speed: {0}", this.hero.Speed);
+            itemText = "Speed: " + this.hero.Speed;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 410);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
@@ -876,7 +887,7 @@
                 this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Range+", font, false));
             }
 
-            itemText = string.Format("Range: {0}", this.hero.Range);
+            itemText = "Range: " + this.hero.Range;
             textSize = font.MeasureString(itemText);
             position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 470);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
@@ -1096,7 +1107,7 @@
             if (this.keyboard.IsKeyUp(Keys.Space) &&
                 this.previousKeyboard.IsKeyDown(Keys.Space) &&
                 this.hero.Mana >= this.hero.Skill.Cost &&
-                this.skillTimer == 0)
+                skillTimer == 0)
             {
                 switch (this.hero.Skill.Type)
                 {
@@ -1110,11 +1121,9 @@
                             {
                                 this.hero.Health = this.hero.MaxHP;
                             }
-
                             this.hero.Mana -= this.hero.Skill.Cost;
                             break;
                         }
-
                     case SkillType.Rage:
                         {
                             this.hero.Attack *= this.hero.Skill.Power;
@@ -1124,27 +1133,24 @@
                             this.hero.Mana -= this.hero.Skill.Cost;
                             break;
                         }
-
                     case SkillType.Defence:
                         {
                             this.hero.Defence *= this.hero.Skill.Power;
                             this.hero.Mana -= this.hero.Skill.Cost;
                             break;
                         }
-
                     default:
                         break;
                 }
-
-                this.skillTimer = 1;
+                skillTimer = 1;
             }
 
-            if (this.skillTimer > 0)
+            if (skillTimer > 0)
             {
-                this.skillTimer++;
+                skillTimer++;
             }
 
-            if (this.skillTimer > 300)
+            if (skillTimer > 300)
             {
                 switch (this.hero.Skill.Type)
                 {
@@ -1156,20 +1162,16 @@
                             this.hero.Defence *= this.hero.Skill.Power;
                             break;
                         }
-
                     case SkillType.Defence:
                         {
                             this.hero.Defence /= this.hero.Skill.Power;
                             break;
                         }
-
                     default:
                         break;
                 }
-
-                this.skillTimer = 0;
+                skillTimer = 0;
             }
-
             oldPos = new Vector2(this.hero.Position.X, this.hero.Position.Y);
 
             this.hero.Rotation = this.PointDirecions(this.hero.Position.X, this.hero.Position.Y, this.mouse.X, this.mouse.Y);
@@ -1193,7 +1195,7 @@
                 {
                     if (this.stage == 1)
                     {
-                        this.hero.Position = new Position(35, this.room.Height / 2);
+                        this.hero.Position = new Position(35, room.Height / 2);
                         this.stage++;
                         this.LoadUnits(content);
                     }
@@ -1281,12 +1283,9 @@
                         {
                             Rectangle newArea = new Rectangle(mob.Area.X, mob.Area.Y, mob.Area.Width, mob.Area.Height);
 
-                            if (
-                                (mob.HitTimer > mob.HitRate) &&
-                                ((((newArea.X + newArea.Width) / 2) > this.hero.Area.X) &&
-                                (newArea.X < (this.hero.Area.X + this.hero.Area.Width)) &&
-                                (((newArea.Y + newArea.Height) / 2) > this.hero.Area.Y) &&
-                                (newArea.Y < (this.hero.Area.Y + this.hero.Area.Height))))
+                            if ((mob.HitTimer > mob.HitRate) && (((newArea.X + newArea.Width / 2) > this.hero.Area.X) &&
+                                                                 (newArea.X < (this.hero.Area.X + this.hero.Area.Width)) && ((newArea.Y + newArea.Height / 2) > this.hero.Area.Y) &&
+                                                                 (newArea.Y < (this.hero.Area.Y + this.hero.Area.Height))))
                             {
                                 try
                                 {
@@ -1410,7 +1409,7 @@
         private void UpdateCursor()
         {
             this.cursorMenu.Position = new Position(this.mouse.X, this.mouse.Y);
-            this.cursor.Position = new Position((this.mouse.X - this.cursor.SpriteIndex.Width) / 2, (this.mouse.Y - this.cursor.SpriteIndex.Height) / 2);
+            this.cursor.Position = new Position(this.mouse.X - this.cursor.SpriteIndex.Width / 2, this.mouse.Y - this.cursor.SpriteIndex.Height / 2);
         }
 
         private void UpdateBonusses()
@@ -1507,8 +1506,8 @@
             {
                 if (obj is IPlayer)
                 {
-                    if (((newArea.X + pos.X + newArea.Width) / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
-                        ((newArea.Y + pos.Y + newArea.Height) / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                    if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
+                        (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                     {
                         if (o.Alive && o.Type == "hp")
                         {
@@ -1542,14 +1541,14 @@
 
             foreach (var o in this.obstacles)
             {
-                if (((newArea.X + pos.X + newArea.Width) / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
-                    ((newArea.Y + pos.Y + newArea.Height) / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
+                    (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                 {
                     if (obj is IPlayer)
                     {
                         return true;
                     }
-                    else if (obj is Bullet && this.bullets.Contains(obj))
+                    else if (obj is Bullet && bullets.Contains(obj))
                     {
                         obj.Alive = false;
                         return true;
@@ -1568,8 +1567,8 @@
                 {
                     if (o.Alive)
                     {
-                        if (((newArea.X + pos.X + newArea.Width) / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
-                            ((newArea.Y + pos.Y + newArea.Height) / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
+                            (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                         {
                             o.Alive = false;
                             return true;
@@ -1584,8 +1583,8 @@
                 {
                     if (o.Alive)
                     {
-                        if (((newArea.X + pos.X + newArea.Width) / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
-                            ((newArea.Y + pos.Y + newArea.Height) / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
+                        if ((newArea.X + pos.X + newArea.Width / 2) > o.Area.X && newArea.X < (o.Area.X + o.Area.Width) &&
+                            (newArea.Y + pos.Y + newArea.Height / 2) > o.Area.Y && newArea.Y < (o.Area.Y + o.Area.Height))
                         {
                             o.Alive = false;
                             return true;
@@ -1613,7 +1612,6 @@
                 {
                     this.Animation(obj, content, "range", 55);
                 }
-
                 return new Vector2(pix * newX, pix * newY);
             }
 
@@ -1622,25 +1620,25 @@
 
         private void Animation(Obj unit, ContentManager content, string textureName, int number)
         {
-            if (this.numberOfFrames < 5)
+            if (numberOfFrames < 5)
             {
                 unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}1", textureName));
-                this.numberOfFrames++;
+                numberOfFrames++;
             }
-            else if (this.numberOfFrames >= 5 && this.numberOfFrames < 10)
+            else if (numberOfFrames >= 5 && numberOfFrames < 10)
             {
                 unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}2", textureName));
-                this.numberOfFrames++;
+                numberOfFrames++;
             }
-            else if (this.numberOfFrames >= 10 && this.numberOfFrames < number)
+            else if (numberOfFrames >= 10 && numberOfFrames < number)
             {
                 unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}3", textureName));
-                this.numberOfFrames++;
+                numberOfFrames++;
             }
             else
             {
                 unit.SpriteIndex = content.Load<Texture2D>(string.Format(@"Textures\Objects\{0}", textureName));
-                this.numberOfFrames = 1;
+                numberOfFrames = 1;
             }
         }
     }

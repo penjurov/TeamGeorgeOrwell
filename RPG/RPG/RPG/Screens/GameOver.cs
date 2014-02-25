@@ -7,11 +7,11 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
 
-    internal class GameOver : Screen
+    internal class GameOver :Screen
     {
-        private readonly Cursor cursor = new Cursor(new Position(0, 0));
         private Texture2D gameOverScreenBackgroundTexture;
         private Vector2 gameOverScreenBackgroundPosition;
+        private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
         private KeyboardState keyboard;
         private MouseState mouse;
 
