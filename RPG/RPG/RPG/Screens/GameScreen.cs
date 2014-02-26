@@ -185,7 +185,9 @@
         private void LoadObstacles(ContentManager content)
         {
             Texture2D texture = content.Load<Texture2D>(@"Textures\Objects\visible");
-            this.AddObstacle(100, 100, 25, new Position(0, 25), texture);
+            this.AddObstacle(100, 100, 25, new Position(0, 25), texture); 
+            this.AddObstacle(75, 275, 25, new Position(25, 125), texture);
+            this.AddObstacle(50, 100, 25, new Position(100, 50), texture);
         }
 
         // end obsticles
