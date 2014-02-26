@@ -142,7 +142,7 @@
                 this.paused = true;
                 MainMenuScreen.PMainMenuItems[0].ItemText = "RESUME GAME";
                 this.gameSongInstance.Stop();
-                Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
+                Rpg.PActiveWindow=EnumActiveWindow.MainMenu;
             }
 
             if (this.keyboard.IsKeyUp(Keys.P) && this.previousKeyboard.IsKeyDown(Keys.P))

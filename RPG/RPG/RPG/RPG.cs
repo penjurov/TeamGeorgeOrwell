@@ -54,11 +54,6 @@
             }
         }
 
-        public static void ActiveWindowSet(EnumActiveWindow input)
-        {
-            PActiveWindow = input;
-        }
-
         protected override void Initialize()
         {
             base.Initialize();

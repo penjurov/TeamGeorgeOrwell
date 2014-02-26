@@ -133,7 +133,7 @@
                 if (this.inMenu)
                 {
                     HeroName = this.chooseHeroList[this.selectedEntry].ItemText;
-                    Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
+                    Rpg.PActiveWindow=EnumActiveWindow.GameWindow;
                 }
             }
 
@@ -145,7 +145,7 @@
                         this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)
                     {
                         HeroName = item.ItemText;
-                        Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
+                        Rpg.PActiveWindow=EnumActiveWindow.GameWindow;
                     }
                 }
             }

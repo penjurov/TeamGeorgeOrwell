@@ -71,7 +71,7 @@
             {
                 if (this.aboutScreenItems[this.selectedEntry].ItemText == "Back")
                 {
-                    Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
+                    Rpg.PActiveWindow=EnumActiveWindow.MainMenu;
                 }
             }
 
@@ -84,7 +84,7 @@
                     {
                         if (item.ItemText == "Back")
                         {
-                            Rpg.ActiveWindowSet(EnumActiveWindow.MainMenu);
+                            Rpg.PActiveWindow=EnumActiveWindow.MainMenu;
                             break;
                         }
                     }

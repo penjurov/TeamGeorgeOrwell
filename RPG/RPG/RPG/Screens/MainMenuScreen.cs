@@ -115,70 +115,32 @@
                 PMainMenuItems[this.selectedEntry].Selected = true;
             }
 
-            if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter))
+            if ((this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter)) || 
+                (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed))
             {
                 if (PMainMenuItems[this.selectedEntry].ItemText == "NEW GAME")
                 {
-                    Rpg.ActiveWindowSet(EnumActiveWindow.ChooseHeroWindow);
+                    Rpg.PActiveWindow=EnumActiveWindow.ChooseHeroWindow;
                 }
 
                 if (PMainMenuItems[this.selectedEntry].ItemText == "RESUME GAME")
                 {
-                    Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
+                    Rpg.PActiveWindow=EnumActiveWindow.GameWindow;
                 }
 
                 if (PMainMenuItems[this.selectedEntry].ItemText == "CONTROLS")
                 {
-                    Rpg.ActiveWindowSet(EnumActiveWindow.ControlWindow);
+                    Rpg.PActiveWindow=EnumActiveWindow.ControlWindow;
                 }
 
                 if (PMainMenuItems[this.selectedEntry].ItemText == "ABOUT")
                 {
-                    Rpg.ActiveWindowSet(EnumActiveWindow.AboutWindow);
+                    Rpg.PActiveWindow=EnumActiveWindow.AboutWindow;
                 }
 
                 if (PMainMenuItems[this.selectedEntry].ItemText == "EXIT GAME")
                 {
                     Environment.Exit(1);
-                }
-            }
-
-            if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed)
-            {
-                foreach (var item in PMainMenuItems)
-                {
-                    if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
-                        this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)                       
-                    {
-                        if (item.ItemText == "NEW GAME")
-                        {
-                            Rpg.ActiveWindowSet(EnumActiveWindow.ChooseHeroWindow);
-                            break;
-                        }
-
-                        if (item.ItemText == "RESUME GAME")
-                        {
-                            Rpg.ActiveWindowSet(EnumActiveWindow.GameWindow);
-                            break;
-                        }
-
-                        if (item.ItemText == "CONTROLS")
-                        {
-                            Rpg.ActiveWindowSet(EnumActiveWindow.ControlWindow);
-                            break;
-                        }
-
-                        if (item.ItemText == "ABOUT")
-                        {
-                            Rpg.ActiveWindowSet(EnumActiveWindow.AboutWindow);
-                            break;
-                        }
-
-                        if (item.ItemText == "EXIT GAME")
-                        {
-                            Environment.Exit(1);
-                        }
-                    }
                 }
             }
 
