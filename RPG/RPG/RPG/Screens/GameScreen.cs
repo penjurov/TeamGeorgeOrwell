@@ -185,9 +185,77 @@
         private void LoadObstacles(ContentManager content)
         {
             Texture2D texture = content.Load<Texture2D>(@"Textures\Objects\visible");
-            this.AddObstacle(100, 100, 25, new Position(0, 25), texture); 
+            this.AddObstacle(100, 100, 25, new Position(0, 25), texture);
             this.AddObstacle(75, 275, 25, new Position(25, 125), texture);
-            this.AddObstacle(50, 100, 25, new Position(100, 50), texture);
+            this.AddObstacle(20, 80, 20, new Position(100, 60), texture);
+
+            //STAIRS UPPER PART
+            this.AddObstacle(20, 18, 25, new Position(270, 12), texture);
+            this.AddObstacle(20, 30, 25, new Position(290, 20), texture);
+            this.AddObstacle(20, 30, 25, new Position(315, 20), texture);
+
+            //STAIRS DOWN PART
+            this.AddObstacle(20, 30, 25, new Position(480, 10), texture);
+            this.AddObstacle(20, 30, 25, new Position(500, 7), texture);
+
+            
+            this.AddObstacle(20, 60, 20, new Position(120, 80), texture);           
+            this.AddObstacle(20, 60, 20, new Position(140, 80), texture);           
+            this.AddObstacle(20, 80, 22, new Position(160, 80), texture);           
+            this.AddObstacle(20, 80, 22, new Position(180, 86), texture);
+            this.AddObstacle(20, 135, 23, new Position(198, 90), texture);
+            this.AddObstacle(20, 120, 25, new Position(218, 110), texture);         
+            this.AddObstacle(20, 110, 22, new Position(238, 125), texture);
+            this.AddObstacle(20, 70, 22, new Position(258, 135), texture);
+            this.AddObstacle(20, 44, 22, new Position(278, 150), texture);
+            this.AddObstacle(20, 50, 22, new Position(298, 145), texture);
+            this.AddObstacle(20, 50, 22, new Position(318, 150), texture);          
+            this.AddObstacle(20, 90, 22, new Position(338, 160), texture);              
+
+            //down the bridge
+            this.AddObstacle(20, 90, 25, new Position(480, 165), texture);
+            this.AddObstacle(20, 120, 25, new Position(500, 155), texture);
+            this.AddObstacle(20, 130, 25, new Position(520, 135), texture);
+            this.AddObstacle(20, 130, 25, new Position(540, 135), texture);
+            this.AddObstacle(20, 152, 23, new Position(560, 145), texture);
+            this.AddObstacle(20, 155, 25, new Position(580, 140), texture);
+            this.AddObstacle(20, 150, 22, new Position(600, 148), texture);
+            this.AddObstacle(20, 155, 22, new Position(620, 160), texture);
+            this.AddObstacle(20, 100, 22, new Position(640, 260), texture);
+            this.AddObstacle(20, 70, 22, new Position(660, 285), texture);
+
+            //second row obstacles            
+            this.AddObstacle(20, 120, 20, new Position(100, 330), texture);
+            this.AddObstacle(20, 135, 20, new Position(120, 335), texture);
+            this.AddObstacle(20, 120, 20, new Position(140, 344), texture);
+            this.AddObstacle(20, 100, 20, new Position(160, 365), texture);
+            this.AddObstacle(20, 80, 20, new Position(180, 380), texture);
+            this.AddObstacle(20, 65, 20, new Position(200, 390), texture);
+            this.AddObstacle(20, 65, 20, new Position(220, 390), texture);
+            this.AddObstacle(20, 90, 20, new Position(240, 400), texture);
+            this.AddObstacle(20, 90, 20, new Position(260, 410), texture);
+            this.AddObstacle(20, 100, 20, new Position(280, 410), texture);
+            this.AddObstacle(20, 125, 20, new Position(300, 410), texture);
+            this.AddObstacle(20, 143, 20, new Position(320, 420), texture);
+            this.AddObstacle(20, 115, 20, new Position(340, 425), texture);
+            this.AddObstacle(20, 100, 20, new Position(360, 445), texture);
+            this.AddObstacle(20, 70, 20, new Position(380, 460), texture);
+            this.AddObstacle(20, 60, 20, new Position(400, 480), texture);
+            this.AddObstacle(20, 60, 20, new Position(420, 480), texture);
+            this.AddObstacle(20, 90, 20, new Position(440, 500), texture);
+            this.AddObstacle(20, 90, 20, new Position(460, 495), texture);
+            this.AddObstacle(20, 90, 20, new Position(480, 500), texture);
+            this.AddObstacle(20, 110, 20, new Position(500, 490), texture);
+            this.AddObstacle(20, 120, 20, new Position(520, 500), texture);
+            this.AddObstacle(20, 100, 34, new Position(540, 530), texture);
+            this.AddObstacle(20, 60, 22, new Position(560, 590), texture);
+            this.AddObstacle(20, 65, 22, new Position(580, 620), texture);
+            this.AddObstacle(20, 65, 26, new Position(610, 620), texture);
+
+            //CAVE
+            // височина, дължина, разстояние      вертикала, хоризонтала
+            this.AddObstacle(20, 900, 25, new Position(80, 650), texture);
+            this.AddObstacle(20, 900, 25, new Position(80, 650), texture);
         }
 
         // end obsticles
