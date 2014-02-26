@@ -184,7 +184,7 @@
         // Obsticles
         private void LoadObstacles(ContentManager content)
         {
-            Texture2D texture = content.Load<Texture2D>(@"Textures\Objects\visible");
+            Texture2D texture = content.Load<Texture2D>(@"Textures\Objects\invisible");
             this.AddObstacle(100, 100, 25, new Position(0, 25), texture);
             this.AddObstacle(75, 275, 25, new Position(25, 125), texture);
             this.AddObstacle(20, 80, 20, new Position(100, 60), texture);
@@ -537,7 +537,6 @@
             spriteBatch.Draw(this.heroBarHolderReversed, position, Color.White);
 
             position = new Vector2(900, 600);
-            spriteBatch.DrawString(font, string.Format("{0} {1}", this.mouse.X, this.mouse.Y), position, Color.White);
 
             if (this.skillTimer != 0)
             {
