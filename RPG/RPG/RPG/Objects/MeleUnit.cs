@@ -2,7 +2,7 @@
 { 
     using Interfaces;
 
-    public class MeleUnit : Units, IMonster
+    public class MeleUnit : Unit, IMonster
     {
         private float expGiven;
 

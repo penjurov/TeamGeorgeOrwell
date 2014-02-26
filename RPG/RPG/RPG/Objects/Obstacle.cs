@@ -2,9 +2,9 @@
 {
     using Microsoft.Xna.Framework.Graphics;  
 
-    public class Obstacles : Obj
+    public class Obstacle : Obj
     {
-        public Obstacles(Position pos, Texture2D texture, bool vis) : base(pos)
+        public Obstacle(Position pos, Texture2D texture, bool vis) : base(pos)
         {
             this.Position = pos;
             this.SpriteIndex = texture;

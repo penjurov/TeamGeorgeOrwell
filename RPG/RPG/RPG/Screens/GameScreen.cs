@@ -14,11 +14,11 @@
     internal class GameScreen : Screen
     {
         private readonly IList<MenuItems> levelUpItems = new List<MenuItems>();     
-        private readonly IList<Obstacles> obstacles = new List<Obstacles>();
+        private readonly IList<Obstacle> obstacles = new List<Obstacle>();
         private readonly IList<Bullet> bullets = new List<Bullet>();
         private readonly IList<Bullet> enemyBullets = new List<Bullet>();        
-        private readonly IList<Units> units = new List<Units>();
-        private readonly IList<Bonuses> bonuses = new List<Bonuses>();
+        private readonly IList<Unit> units = new List<Unit>();
+        private readonly IList<Bonus> bonuses = new List<Bonus>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0));
         private readonly Cursor cursorMenu = new Cursor(new Position(0, 0));
         private readonly Random rand = new Random();
@@ -1164,13 +1164,13 @@
                                 {
                                     case 0:
                                         {
-                                            this.bonuses.Add(new Bonuses(unit.Position, this.bonusHPTexture, "hp", unit.Area));
+                                            this.bonuses.Add(new Bonus(unit.Position, this.bonusHPTexture, "hp", unit.Area));
                                             break;
                                         }
 
                                     case 1:
                                         {
-                                            this.bonuses.Add(new Bonuses(unit.Position, this.bonusMPTexture, "mp", unit.Area));
+                                            this.bonuses.Add(new Bonus(unit.Position, this.bonusMPTexture, "mp", unit.Area));
                                             break;
                                         }
                                 }
@@ -1452,7 +1452,7 @@
             {
                 for (int p = (int)position.Y; p < height + (int)position.Y; p += interval)
                 {
-                    Obstacles obstacle = new Obstacles(new Position(p, i), texture, false);
+                    Obstacle obstacle = new Obstacle(new Position(p, i), texture, false);
                     obstacle.Area = new Rectangle((int)obstacle.Position.X, (int)obstacle.Position.Y, texture.Width, texture.Height);
                     this.obstacles.Add(obstacle);
                 }

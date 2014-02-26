@@ -2,11 +2,11 @@
 {
     using System;
 
-    public class Skills : Obj
+    public class Skill : Obj
     {
         private readonly int cost = 100;
 
-        public Skills(Position pos, SkillType type, int power) : base(pos)
+        public Skill(Position pos, SkillType type, int power) : base(pos)
         {
             this.Position = pos;
             this.Type = type;

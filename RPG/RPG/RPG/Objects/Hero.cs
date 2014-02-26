@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Interfaces;
     
-    public class Hero : Units, IShooting, IPlayer
+    public class Hero : Unit, IShooting, IPlayer
     {
         // Singleton
         private static Hero instance;
@@ -23,7 +23,7 @@
             this.mana = mp;
             this.maxMP = mp;
             this.Level = 1;
-            this.Skill = new Skills(pos, skillType, skillPower);
+            this.Skill = new Skill(pos, skillType, skillPower);
         }
      
         public float CurrentExp { get; set; }
@@ -102,7 +102,7 @@
             }
         }
 
-        public Skills Skill { get; set; }
+        public Skill Skill { get; set; }
 
         // Singleton
         public static Hero Instance(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skillType, int skillPower)

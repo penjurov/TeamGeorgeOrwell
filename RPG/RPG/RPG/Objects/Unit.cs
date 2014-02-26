@@ -2,7 +2,7 @@
 {
     using Interfaces;
 
-    public abstract class Units : Obj, IUnit, IMovable
+    public abstract class Unit : Obj, IUnit, IMovable
     {
         private float range;
         private float speed;
@@ -13,7 +13,7 @@
         private int hitRate;
         private int hitTimer;
 
-        protected Units(Position pos, float speed, float range) : base(pos)
+        protected Unit(Position pos, float speed, float range) : base(pos)
         {
             this.Speed = speed;
             this.Alive = true;

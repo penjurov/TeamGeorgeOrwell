@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using Interfaces;
 
-    public class RangedUnit : Units, IMonster, IShooting
+    public class RangedUnit : Unit, IMonster, IShooting
     {
         private readonly float fireRate = 60;
         private int firingTimer = 0;

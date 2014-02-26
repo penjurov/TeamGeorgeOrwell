@@ -14,6 +14,6 @@
 
         float Mana { get; set; }
 
-        Skills Skill { get; set; }
+        Skill Skill { get; set; }
     }
 }
