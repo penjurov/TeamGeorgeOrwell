@@ -115,37 +115,53 @@
                 PMainMenuItems[this.selectedEntry].Selected = true;
             }
 
-            if ((this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter)) || 
-                (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed))
+            if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter))
             {
-                if (PMainMenuItems[this.selectedEntry].ItemText == "NEW GAME")
-                {
-                    Rpg.PActiveWindow=EnumActiveWindow.ChooseHeroWindow;
-                }
+                ChangeScreen(PMainMenuItems[this.selectedEntry]);
+            }
 
-                if (PMainMenuItems[this.selectedEntry].ItemText == "RESUME GAME")
+            if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed)
+            {
+                foreach (var item in PMainMenuItems)
                 {
-                    Rpg.PActiveWindow=EnumActiveWindow.GameWindow;
-                }
-
-                if (PMainMenuItems[this.selectedEntry].ItemText == "CONTROLS")
-                {
-                    Rpg.PActiveWindow=EnumActiveWindow.ControlWindow;
-                }
-
-                if (PMainMenuItems[this.selectedEntry].ItemText == "ABOUT")
-                {
-                    Rpg.PActiveWindow=EnumActiveWindow.AboutWindow;
-                }
-
-                if (PMainMenuItems[this.selectedEntry].ItemText == "EXIT GAME")
-                {
-                    Environment.Exit(1);
+                    if (this.mouse.X > item.ItemPosition.X && this.mouse.X < item.ItemPosition.X + item.ItemTexture.Bounds.Width &&
+                        this.mouse.Y > item.ItemPosition.Y && this.mouse.Y < item.ItemPosition.Y + item.ItemTexture.Bounds.Height)
+                    {
+                        ChangeScreen(item);
+                    }
                 }
             }
 
             this.previousKeyboard = this.keyboard;
             this.previousMouse = this.mouse;
+        }
+
+        private static void ChangeScreen(MenuItems item)
+        {
+            if (item.ItemText == "NEW GAME")
+            {
+                Rpg.PActiveWindow = EnumActiveWindow.ChooseHeroWindow;
+            }
+
+            if (item.ItemText == "RESUME GAME")
+            {
+                Rpg.PActiveWindow = EnumActiveWindow.GameWindow;
+            }
+
+            if (item.ItemText == "CONTROLS")
+            {
+                Rpg.PActiveWindow = EnumActiveWindow.ControlWindow;
+            }
+
+            if (item.ItemText == "ABOUT")
+            {
+                Rpg.PActiveWindow = EnumActiveWindow.AboutWindow;
+            }
+
+            if (item.ItemText == "EXIT GAME")
+            {
+                Environment.Exit(1);
+            }
         }
 
         private void LoadCursor(ContentManager content)
