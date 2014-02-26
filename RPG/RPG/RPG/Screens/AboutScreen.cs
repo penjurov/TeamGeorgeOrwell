@@ -11,9 +11,9 @@
     {
         private readonly IList<MenuItems> aboutScreenItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
-        private Texture2D button;
         private readonly int selectedEntry = 0;
 
+        private Texture2D button;
         private Texture2D aboutScreenBackgroundTexture;
         private Vector2 aboutScreenBackgroundPosition;
 
@@ -66,8 +66,8 @@
 
             this.UpdateCursor();
 
-            if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter) 
-                && this.aboutScreenItems.Count != 0)
+            if (this.keyboard.IsKeyDown(Keys.Enter) && this.previousKeyboard.IsKeyUp(Keys.Enter) &&
+                this.aboutScreenItems.Count != 0)
             {
                 if (this.aboutScreenItems[this.selectedEntry].ItemText == "Back")
                 {

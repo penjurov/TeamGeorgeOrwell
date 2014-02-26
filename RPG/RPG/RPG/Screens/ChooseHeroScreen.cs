@@ -7,7 +7,7 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
     
-    internal class ChooseHeroScreen :Screen
+    internal class ChooseHeroScreen : Screen
     {
         private static string heroName;
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 

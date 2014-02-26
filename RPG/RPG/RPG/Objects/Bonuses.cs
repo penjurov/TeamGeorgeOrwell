@@ -7,8 +7,7 @@
     {
         private const int Spawn = 500;
 
-        public Bonuses(Position pos, Texture2D texture, string type, Rectangle area)
-            : base(pos)
+        public Bonuses(Position pos, Texture2D texture, string type, Rectangle area) : base(pos)
         {
             this.Position = pos;
             this.SpriteIndex = texture;
