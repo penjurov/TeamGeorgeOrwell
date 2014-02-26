@@ -13,15 +13,15 @@
 
     internal class GameScreen : Screen
     {
-        private readonly IList<MenuItems> levelUpItems = new List<MenuItems>();
-        private readonly Cursor cursor = new Cursor(new Position(0, 0));
-        private readonly Cursor cursorMenu = new Cursor(new Position(0, 0));
+        private readonly IList<MenuItems> levelUpItems = new List<MenuItems>();     
         private readonly IList<Obstacles> obstacles = new List<Obstacles>();
         private readonly IList<Bullet> bullets = new List<Bullet>();
-        private readonly IList<Bullet> enemyBullets = new List<Bullet>();
-        private readonly Random rand = new Random();
+        private readonly IList<Bullet> enemyBullets = new List<Bullet>();        
         private readonly IList<Units> units = new List<Units>();
         private readonly IList<Bonuses> bonuses = new List<Bonuses>();
+        private readonly Cursor cursor = new Cursor(new Position(0, 0));
+        private readonly Cursor cursorMenu = new Cursor(new Position(0, 0));
+        private readonly Random rand = new Random();
         private readonly Rectangle exitSpot = new Rectangle(786, 157, 160, 80);
 
         private bool bulletShooted = false;
@@ -142,7 +142,7 @@
                 this.paused = true;
                 MainMenuScreen.PMainMenuItems[0].ItemText = "RESUME GAME";
                 this.gameSongInstance.Stop();
-                Rpg.PActiveWindow=EnumActiveWindow.MainMenu;
+                Rpg.PActiveWindow = EnumActiveWindow.MainMenu;
             }
 
             if (this.keyboard.IsKeyUp(Keys.P) && this.previousKeyboard.IsKeyDown(Keys.P))
@@ -186,8 +186,6 @@
         {
             Texture2D texture = content.Load<Texture2D>(@"Textures\Objects\visible");
             this.AddObstacle(100, 100, 25, new Position(0, 25), texture);
-            this.AddObstacle(75, 275, 25, new Position(25, 125), texture);
-            this.AddObstacle(50, 75, 25, new Position(100, 75), texture);
         }
 
         // end obsticles
@@ -252,21 +250,21 @@
                 case "ODIN":
                     {
                         // Singleton                                         
-                        this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 2, 900, 110, 70, 200, 800, SkillType.Defence, 5);
+                        this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 2, 900, 110, 70, 200, 800, SkillType.Defence, 3);
                         break;
                     }
 
                 case "THOR":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Rage, 3);
+                        this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 1.5f, 1100, 130, 90, 90, 600, SkillType.Rage, 2);
                         break;
                     }
 
                 case "EIR":
                     {
                         // Singleton
-                        this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal, 50);
+                        this.hero = Hero.Instance(new Position(this.room.Width, this.room.Height / 2), 3, 750, 90, 60, 150, 1000, SkillType.Heal, 150);
                         break;
                     }
 
@@ -513,32 +511,25 @@
         private void DrawPaused(SpriteBatch spriteBatch, ContentManager content)
         {
             SpriteFont font = content.Load<SpriteFont>(@"Fonts/Title");
-            string itemText = "Pause";
 
-            Vector2 textSize = font.MeasureString(itemText);
-            Vector2 position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 300);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.PausedScreenDraw("Pause", null, 300, font, spriteBatch);           
 
             font = content.Load<SpriteFont>(@"Fonts/Text");
 
-            itemText = string.Format("Hero Attack : {0}", this.hero.Attack);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 350);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.PausedScreenDraw("Hero attack: ", this.hero.Attack, 350, font, spriteBatch);
 
-            itemText = string.Format("Hero Defence : {0}", this.hero.Defence);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 400);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.PausedScreenDraw("Hero defence: ", this.hero.Defence, 400, font, spriteBatch);
 
-            itemText = string.Format("Hero Speed : {0}", this.hero.Speed);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 450);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.PausedScreenDraw("Hero speed: ", this.hero.Speed, 450, font, spriteBatch);
 
-            itemText = string.Format("Hero Range : {0}", this.hero.Range);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 500);
+            this.PausedScreenDraw("Hero range: ", this.hero.Range, 500, font, spriteBatch);
+        }
+
+        private void PausedScreenDraw(string text, float? stat, float y, SpriteFont font, SpriteBatch spriteBatch)
+        {
+            string itemText = string.Format("{0} {1}", text, stat);
+            Vector2 textSize = font.MeasureString(itemText);
+            Vector2 position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), y);
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
         }
 
@@ -567,134 +558,22 @@
             spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
 
             // Health
-            position = new Vector2(360, 150);
-            spriteBatch.Draw(this.leftButton, position, Color.White);
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Health-", font, false));
-            }
-
-            position = new Vector2(605, 150);
-            spriteBatch.Draw(this.rightButton, position, Color.White);
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Health+", font, false));
-            }
-
-            itemText = string.Format("Health: {0}", this.hero.MaxHP);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 170);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.DrawLevelUpItem(spriteBatch, font, new Vector2(360, 150), "Health", this.hero.MaxHP);
 
             // Mana
-            position = new Vector2(360, 210);
-            spriteBatch.Draw(this.leftButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Mana-", font, false));
-            }
-
-            position = new Vector2(605, 210);
-            spriteBatch.Draw(this.rightButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Mana+", font, false));
-            }
-
-            itemText = string.Format("Mana: {0}", this.hero.MaxMP);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 230);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.DrawLevelUpItem(spriteBatch, font, new Vector2(360, 210), "Mana", this.hero.MaxMP);
 
             // Attack
-            position = new Vector2(360, 270);
-            spriteBatch.Draw(this.leftButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Attack-", font, false));
-            }
-
-            position = new Vector2(605, 270);
-            spriteBatch.Draw(this.rightButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Attack+", font, false));
-            }
-
-            itemText = string.Format("Attack: {0}", this.hero.Attack);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 290);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.DrawLevelUpItem(spriteBatch, font, new Vector2(360, 270), "Attack", this.hero.Attack);
 
             // Defence
-            position = new Vector2(360, 330);
-            spriteBatch.Draw(this.leftButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Defence-", font, false));
-            }
-
-            position = new Vector2(605, 330);
-            spriteBatch.Draw(this.rightButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Defence+", font, false));
-            }
-
-            itemText = string.Format("Defence: {0}", this.hero.Defence);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 350);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.DrawLevelUpItem(spriteBatch, font, new Vector2(360, 330), "Defence", this.hero.Defence);
 
             // Speed
-            position = new Vector2(360, 390);
-            spriteBatch.Draw(this.leftButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Speed-", font, false));
-            }
-
-            position = new Vector2(605, 390);
-            spriteBatch.Draw(this.rightButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Speed+", font, false));
-            }
-
-            itemText = string.Format("Speed: {0}", this.hero.Speed);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 410);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.DrawLevelUpItem(spriteBatch, font, new Vector2(360, 390), "Speed", this.hero.Speed);
 
             // Range
-            position = new Vector2(360, 450);
-            spriteBatch.Draw(this.leftButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.leftButton, position, "Range-", font, false));
-            }
-
-            position = new Vector2(605, 450);
-            spriteBatch.Draw(this.rightButton, position, Color.White);
-
-            if (this.levelUpItems.Count < 13)
-            {
-                this.levelUpItems.Add(new MenuItems(this.rightButton, position, "Range+", font, false));
-            }
-
-            itemText = string.Format("Range: {0}", this.hero.Range);
-            textSize = font.MeasureString(itemText);
-            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), 470);
-            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
+            this.DrawLevelUpItem(spriteBatch, font, new Vector2(360, 450), "Range", this.hero.Range);
 
             // OK button
             position = new Vector2(434, 530);
@@ -713,6 +592,29 @@
                 (float)Math.Floor((this.okButton.Width - textSize.X) / 2),
                 (float)Math.Floor((this.okButton.Height - textSize.Y) / 2));
             spriteBatch.DrawString(font, itemText, textPosition, color);
+        }
+
+        private void DrawLevelUpItem(SpriteBatch spriteBatch, SpriteFont font, Vector2 position, string statText, float stat)
+        {
+            spriteBatch.Draw(this.leftButton, position, Color.White);
+
+            if (this.levelUpItems.Count < 13)
+            {
+                this.levelUpItems.Add(new MenuItems(this.leftButton, position, string.Format("{0}-", statText), font, false));
+            }
+
+            position = new Vector2(605, position.Y);
+            spriteBatch.Draw(this.rightButton, position, Color.White);
+
+            if (this.levelUpItems.Count < 13)
+            {
+                this.levelUpItems.Add(new MenuItems(this.rightButton, position, string.Format("{0}+", statText), font, false));
+            }
+
+            string itemText = string.Format("{0}: {1}", statText, stat);
+            Vector2 textSize = font.MeasureString(itemText);
+            position = new Vector2((float)Math.Floor((1020 - textSize.X) / 2), position.Y + 20);
+            spriteBatch.DrawString(font, itemText, position, Color.DeepSkyBlue);
         }
 
         private void UpdateLevelUp()
@@ -825,6 +727,7 @@
                             }
                         }
 
+
                         if (item.ItemText == "Speed+")
                         {
                             if (this.points > 0)
@@ -833,7 +736,7 @@
                                 this.points--;
                             }
                         }
-
+                        
                         if (item.ItemText == "Speed-")
                         {
                             if ((this.hero.Speed - 0.5f) >= this.currentSpeed)
