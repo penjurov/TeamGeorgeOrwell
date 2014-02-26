@@ -7,7 +7,7 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
     
-    internal class WinScreen :Screen
+    internal class WinScreen : Screen
     {
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
 

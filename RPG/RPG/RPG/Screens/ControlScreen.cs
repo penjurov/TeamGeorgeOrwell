@@ -7,13 +7,13 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
     
-    internal class ControlScreen :Screen
+    internal class ControlScreen : Screen
     {
         private readonly IList<MenuItems> controlScreenItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
-        private Texture2D button;
         private readonly int selectedEntry = 0;
         
+        private Texture2D button;
         private Texture2D controlScreenBackgroundTexture;
         private Vector2 controlScreenBackgroundPosition;
 
@@ -27,10 +27,6 @@
         {
             this.controlScreenBackgroundTexture = content.Load<Texture2D>(@"Textures\GameScreens\control_screen");
             this.button = content.Load<Texture2D>(@"Textures\GameScreens\Button");  
-         
-            //this.keyboardTexture = content.LoadObjects<Texture2D>(@"Textures\GameScreens\keyboard");
-            //this.mouseTexture = content.LoadObjects<Texture2D>(@"Textures\GameScreens\mouse");
-
             this.LoadCursor(content);
         }
 

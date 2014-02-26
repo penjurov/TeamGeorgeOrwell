@@ -8,8 +8,8 @@
         // Singleton
         private static Hero instance;
 
-        private int firingTimer = 0;
         private readonly float fireRate = 20;
+        private int firingTimer = 0;
         private float mana;
         private float maxHP;
         private float maxMP;
@@ -103,7 +103,6 @@
         }
 
         public Skills Skill { get; set; }
-
 
         // Singleton
         public static Hero Instance(Position pos, float speed, float hp, float att, float def, float range, float mp, SkillType skillType, int skillPower)

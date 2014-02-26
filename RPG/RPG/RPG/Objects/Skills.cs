@@ -4,10 +4,7 @@
 
     public class Skills : Obj
     {
-        private SkillType type;
         private readonly int cost = 100;
-        private int power;
-
 
         public Skills(Position pos, SkillType type, int power) : base(pos)
         {
@@ -24,28 +21,8 @@
             }
         }
 
-        public int Power
-        {
-            get
-            {
-                return this.power;
-            }
-            private set
-            {
-                this.power = value;
-            }
-        }
+        public int Power { get; private set; }
 
-        public SkillType Type
-        {
-            get
-            {
-                return this.type;
-            }
-            private set
-            {
-                this.type = value;
-            }
-        }
+        public SkillType Type { get; private set; }
     }
 }

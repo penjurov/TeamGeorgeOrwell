@@ -8,7 +8,7 @@
     using Microsoft.Xna.Framework.Input;
     using Objects;
 
-    internal class MainMenuScreen :Screen
+    internal class MainMenuScreen : Screen
     {
         private static readonly IList<MenuItems> mainMenuItems = new List<MenuItems>();
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 

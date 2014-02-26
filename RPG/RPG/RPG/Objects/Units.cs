@@ -134,6 +134,7 @@
             {
                 return this.hitRate;
             }
+
             protected set
             {
                 if (value < 0)
