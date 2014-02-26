@@ -253,9 +253,27 @@
             this.AddObstacle(20, 65, 26, new Position(610, 620), texture);
 
             //CAVE
-            // височина, дължина, разстояние      вертикала, хоризонтала
+            //Left Part
+            this.AddObstacle(20, 900, 25, new Position(40, 650), texture);
+            this.AddObstacle(20, 900, 25, new Position(60, 650), texture);
             this.AddObstacle(20, 900, 25, new Position(80, 650), texture);
-            this.AddObstacle(20, 900, 25, new Position(80, 650), texture);
+            this.AddObstacle(20, 120, 25, new Position(115, 650), texture);
+            this.AddObstacle(20, 125, 25, new Position(135, 650), texture);
+            this.AddObstacle(20, 125, 25, new Position(150, 650), texture);
+            this.AddObstacle(20, 125, 25, new Position(175, 650), texture);
+            //Right Part
+            this.AddObstacle(20, 90, 25, new Position(120, 935), texture);
+            this.AddObstacle(20, 90, 25, new Position(155, 935), texture);
+            this.AddObstacle(20, 90, 25, new Position(175, 935), texture);
+            this.AddObstacle(20, 90, 25, new Position(195, 935), texture);
+            this.AddObstacle(20, 70, 25, new Position(215, 950), texture);
+
+            //Small Mountain
+
+            this.AddObstacle(20, 85, 25, new Position(340, 945), texture);
+            this.AddObstacle(20, 90, 25, new Position(360, 935), texture);
+            this.AddObstacle(20, 90, 25, new Position(390, 935), texture);
+            this.AddObstacle(20, 90, 25, new Position(410, 1000), texture);
         }
 
         // end obsticles
