@@ -6,21 +6,16 @@
     using Screens;
     using System;
     using System.Collections.Generic;
+    using Interfaces;
+
     public class Rpg : Game
     {
         private static EnumActiveWindow activeWindow;
         
         private readonly GraphicsDeviceManager graphics;
-        private readonly MainMenuScreen mainMenuScreen = new MainMenuScreen();
-        private readonly GameScreen gameScreen = new GameScreen();
-        private readonly ChooseHeroScreen chooseHero = new ChooseHeroScreen();
-        private readonly AboutScreen aboutScreen = new AboutScreen();
-        private readonly ControlScreen controlScreen = new ControlScreen();
-        private readonly GameOver gameOver = new GameOver();
-        private readonly WinScreen win = new WinScreen();
         private readonly SoundEffect mainTheme;
         private readonly SoundEffectInstance mainThemeInstance;
-        private readonly Dictionary<EnumActiveWindow,Screen> screenManager= new Dictionary<EnumActiveWindow,Screen>();
+        private readonly Dictionary<EnumActiveWindow,IScreen> screenManager= new Dictionary<EnumActiveWindow,IScreen>();
 
 
         private SpriteBatch spriteBatch;        
