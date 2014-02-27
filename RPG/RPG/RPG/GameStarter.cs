@@ -5,7 +5,7 @@
         private static void Main()
         {
             Rpg game = new Rpg();           
-            game.Run();            
+            game.Run();
         }
     }
 }

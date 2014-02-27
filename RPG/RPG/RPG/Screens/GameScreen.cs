@@ -880,7 +880,7 @@
 
             if (this.keyboard.IsKeyDown(Keys.S) && !this.Collision(new Vector2(0, this.hero.Speed), this.hero))
             {
-                if (oldPos.Y < this.room.Height - 90)
+                if (oldPos.Y < this.room.Height - 10)
                 {
                     this.hero.Position = new Position(oldPos.X, oldPos.Y + this.hero.Speed);
                     this.walkInstance.Play();

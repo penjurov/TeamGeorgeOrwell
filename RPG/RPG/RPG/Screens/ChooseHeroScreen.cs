@@ -13,6 +13,7 @@
         private readonly Cursor cursor = new Cursor(new Position(0, 0)); 
         private readonly IList<Texture2D> heroTexture = new List<Texture2D>();        
         private IList<MenuItems> chooseHeroList = new List<MenuItems>();
+        private bool active = false;
         
         private int selectedEntry = 0;
 
@@ -137,7 +138,7 @@
                 }
             }
 
-            if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed)
+            if (this.previousMouse.LeftButton == ButtonState.Released && this.mouse.LeftButton == ButtonState.Pressed && active)
             {
                 foreach (var item in this.chooseHeroList)
                 {
@@ -153,6 +154,7 @@
             this.previousMouse = this.mouse;
             this.previousKeyboard = this.keyboard;
             this.inMenu = true;
+            this.active = true;
         }
 
         private void LoadCursor(ContentManager content)

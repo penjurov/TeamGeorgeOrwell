@@ -2,9 +2,10 @@
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;
-    using Microsoft.Xna.Framework.Graphics;    
+    using Microsoft.Xna.Framework.Graphics;
     using Screens;
-
+    using System;
+    using System.Collections.Generic;
     public class Rpg : Game
     {
         private static EnumActiveWindow activeWindow;
@@ -19,6 +20,8 @@
         private readonly WinScreen win = new WinScreen();
         private readonly SoundEffect mainTheme;
         private readonly SoundEffectInstance mainThemeInstance;
+        private readonly Dictionary<EnumActiveWindow,Screen> screenManager= new Dictionary<EnumActiveWindow,Screen>();
+
 
         private SpriteBatch spriteBatch;        
 
@@ -56,117 +59,63 @@
 
         protected override void Initialize()
         {
-            base.Initialize();
             PActiveWindow = EnumActiveWindow.MainMenu;
+            screenManager.Add(EnumActiveWindow.MainMenu, new MainMenuScreen());
+            screenManager.Add(EnumActiveWindow.AboutWindow, new AboutScreen());
+            screenManager.Add(EnumActiveWindow.ControlWindow, new ControlScreen());
+            screenManager.Add(EnumActiveWindow.GameOver, new GameOver());
+            screenManager.Add(EnumActiveWindow.GameWindow, new GameScreen());
+            screenManager.Add(EnumActiveWindow.Win, new WinScreen());
+            screenManager.Add(EnumActiveWindow.ChooseHeroWindow, new ChooseHeroScreen());
+
+            base.Initialize();
+           
+
             this.IsMouseVisible = false;
         }
 
         protected override void LoadContent()
         {
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
+
+
+            foreach (var name in screenManager.Keys)
+            {
+                if (name != EnumActiveWindow.GameWindow)
+                {
+                    screenManager[name].LoadObjects(this.Content);
+                }
+            }
             
-            this.mainMenuScreen.LoadObjects(this.Content);
-            
-            this.chooseHero.LoadObjects(this.Content);
-
-            this.aboutScreen.LoadObjects(this.Content);
-
-            this.controlScreen.LoadObjects(this.Content);
-
-            this.gameOver.LoadObjects(this.Content);
-
-            this.win.LoadObjects(this.Content);
                        
             base.LoadContent();
         }
 
         protected override void Update(GameTime gameTime)
         { 
-            if (activeWindow == EnumActiveWindow.MainMenu)
-            {
-                this.mainMenuScreen.UpdateObjects(this.Content);
-                this.mainThemeInstance.Play();
-            }
 
-            if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
-            {
-                this.chooseHero.UpdateObjects(this.Content);
-                this.mainThemeInstance.Play();
-            }
-
-            if (activeWindow == EnumActiveWindow.ControlWindow)
-            {
-                this.controlScreen.UpdateObjects(this.Content);
-                this.mainThemeInstance.Play();
-            }
-
-            if (activeWindow == EnumActiveWindow.AboutWindow)
-            {
-                this.aboutScreen.UpdateObjects(this.Content);
-                this.mainThemeInstance.Play();
-            }
-
-            if (activeWindow == EnumActiveWindow.GameOver)
-            {
-                this.gameOver.UpdateObjects(this.Content);
-                this.mainThemeInstance.Play();
-            }
-
-            if (activeWindow == EnumActiveWindow.Win)
-            {
-                this.win.UpdateObjects(this.Content);
-                this.mainThemeInstance.Play();
-            }
-
-            if (activeWindow == EnumActiveWindow.GameWindow)
+            if (PActiveWindow == EnumActiveWindow.GameWindow)
             {
                 this.mainThemeInstance.Stop();
-
-                if (!this.loaded)
+                if(!this.loaded)
                 {
-                    this.gameScreen.LoadObjects(this.Content); 
-                    this.loaded = true;
+                    screenManager[PActiveWindow].LoadObjects(this.Content);
+                    this.loaded=true;
                 }
-
-                this.gameScreen.UpdateObjects(this.Content);
+                screenManager[PActiveWindow].UpdateObjects(this.Content);
             }
+            else
+            {
+                screenManager[PActiveWindow].UpdateObjects(this.Content);
+                this.mainThemeInstance.Play();
+            }          
         }
 
         protected override void Draw(GameTime gameTime)
-        {
-            if (activeWindow == EnumActiveWindow.MainMenu)
+        {            
+            if (PActiveWindow != EnumActiveWindow.GameWindow || loaded)
             {
-                this.mainMenuScreen.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
-            }
-
-            if (activeWindow == EnumActiveWindow.GameWindow)
-            {
-                this.gameScreen.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
-            }
-
-            if (activeWindow == EnumActiveWindow.ChooseHeroWindow)
-            {
-                this.chooseHero.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
-            }
-
-            if (activeWindow == EnumActiveWindow.AboutWindow)
-            {
-                this.aboutScreen.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
-            }
-
-            if (activeWindow == EnumActiveWindow.ControlWindow)
-            {
-                this.controlScreen.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
-            }
-
-            if (activeWindow == EnumActiveWindow.GameOver)
-            {
-                this.gameOver.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
-            }
-
-            if (activeWindow == EnumActiveWindow.Win)
-            {
-                this.win.DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
+                screenManager[PActiveWindow].DrawObjects(this.graphics.GraphicsDevice, this.spriteBatch, this.Content);
             }
         }
     }
