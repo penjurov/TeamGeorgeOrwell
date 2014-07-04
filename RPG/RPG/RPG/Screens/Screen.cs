@@ -1,4 +1,4 @@
-﻿namespace Rpg.Screens
+namespace Rpg.Screens
 {
     using Interfaces;
     using Microsoft.Xna.Framework.Content;

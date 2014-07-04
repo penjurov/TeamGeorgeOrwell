@@ -1,4 +1,4 @@
-﻿namespace Rpg.Interfaces
+namespace Rpg.Interfaces
 {
     using Objects;
 

@@ -1,4 +1,4 @@
-﻿namespace Rpg.Screens
+namespace Rpg.Screens
 {
     using System;
     using System.Collections.Generic;

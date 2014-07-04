@@ -1,4 +1,4 @@
-﻿namespace Rpg.Objects
+namespace Rpg.Objects
 {
     using System.Collections.Generic;
     using Interfaces;

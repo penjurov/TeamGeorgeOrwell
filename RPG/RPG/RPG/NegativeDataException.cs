@@ -1,4 +1,4 @@
-﻿namespace Rpg
+namespace Rpg
 {
     using System;
 

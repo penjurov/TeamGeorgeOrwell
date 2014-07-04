@@ -1,4 +1,4 @@
-﻿namespace Rpg
+namespace Rpg
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;

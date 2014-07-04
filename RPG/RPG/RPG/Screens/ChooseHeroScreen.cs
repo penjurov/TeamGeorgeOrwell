@@ -1,4 +1,4 @@
-﻿namespace Rpg.Screens
+namespace Rpg.Screens
 {
     using System.Collections.Generic;
     using Microsoft.Xna.Framework;

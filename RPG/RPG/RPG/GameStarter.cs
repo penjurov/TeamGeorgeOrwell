@@ -1,4 +1,4 @@
-﻿namespace Rpg
+namespace Rpg
 { 
     public abstract class GameStarter
     {

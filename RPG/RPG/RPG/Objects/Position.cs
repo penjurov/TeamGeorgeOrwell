@@ -1,4 +1,4 @@
-﻿namespace Rpg.Objects
+namespace Rpg.Objects
 {
     public struct Position
     {
